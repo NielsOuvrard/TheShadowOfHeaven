@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deunht0paok2r"
-path="res://.godot/imported/pix_perfect.png-a27c48656810253e4083825a3156b306.ctex"
+uid="uid://iurnteuwp7yk"
+path="res://.godot/imported/Sectario.png-9b44ae2ca325a66bd9962b508b77fcf4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/pix_perfect.png"
-dest_files=["res://.godot/imported/pix_perfect.png-a27c48656810253e4083825a3156b306.ctex"]
+source_file="res://Assets/Sectario.png"
+dest_files=["res://.godot/imported/Sectario.png-9b44ae2ca325a66bd9962b508b77fcf4.ctex"]
 
 [params]
 
