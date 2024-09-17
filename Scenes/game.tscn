@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bo4n02j4pcicp"]
+[gd_scene load_steps=6 format=3 uid="uid://bo4n02j4pcicp"]
 
 [ext_resource type="Texture2D" uid="uid://dtsodhi2w034i" path="res://Assets/tilemap.png" id="1_82361"]
 [ext_resource type="PackedScene" uid="uid://0y06vbi8ods3" path="res://Scenes/player.tscn" id="2_ogfqg"]
+[ext_resource type="PackedScene" uid="uid://ci1y4rydunn2t" path="res://Scenes/Sectarian.tscn" id="3_oa1ul"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qrtt7"]
 texture = ExtResource("1_82361")
@@ -57,3 +58,9 @@ position = Vector2(15, -2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_oa1ul")]
+position = Vector2(48, -14)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("3_oa1ul")]
+position = Vector2(-16, -6)
