@@ -10,7 +10,7 @@ Players control Amos in a 2D top-down shooter. The goal is to ascend seven tower
 
 ## Game Character: Amos
 
-![Amos Screenshot](Assets/Amos.png)
+<img src="Assets/Amos.png" style="image-rendering: pixelated;" width="400" alt="Asrael Screenshot">
 
 Amos, a fierce warrior angel sent by God, carries the burden of saving humanity. Armed with celestial weapons, he must dismantle the seven Towers of Babel and face the embodiments of humanity’s darkest sins. As he ascends, Amos confronts the weight of sin and fights to restore balance between light and darkness.
 
@@ -111,7 +111,7 @@ The game's main enemies are Freemason sectarians and demons, each with a specifi
 
 ### Freemason Sectarians
 
-![Sectarians Screenshot](Assets/Sectario.png)
+<img src="Assets/Sectario.png" style="image-rendering: pixelated;" width="400" alt="Sectarians Screenshot">
 
 They wield corrupted rifles that fire single bullets imbued with dark energy. These bullets deal direct damage without additional effects. When defeated, sectarians drop rifle ammunition and health points.
 
