@@ -1,7 +1,7 @@
 extends CharacterBody2D
+@onready var amos = $Amos
 
-
-const SPEED = 300.0
+const SPEED = 5000.0
 const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -9,20 +9,31 @@ const JUMP_VELOCITY = -400.0
 
 
 func _physics_process(delta):
-	# Add the gravity.
-	#if not is_on_floor():
-		#velocity.y += gravity * delta
+	var direction_input = Vector2.ZERO
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if Input.is_action_pressed('move_right'):
+		direction_input.x += 1
+	if Input.is_action_pressed('move_left'):
+		direction_input.x -= 1
+	if Input.is_action_pressed('move_down'):
+		direction_input.y += 1
+	if Input.is_action_pressed('move_up'):
+		direction_input.y -= 1
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
+
+	if direction_input != null:
+		direction_input = direction_input.normalized()
+
+	var direction = direction_input
+	if direction.x != 0:
+		amos.flip_h = direction.x > 0
+	direction = direction.rotated(rotation)
+	
+
+	if direction != Vector2.ZERO:
+		velocity = delta * direction * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity = Vector2.ZERO
+
 
 	move_and_slide()
