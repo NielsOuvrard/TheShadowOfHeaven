@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://ci1y4rydunn2t"]
+[gd_scene load_steps=4 format=3 uid="uid://ci1y4rydunn2t"]
 
 [ext_resource type="Texture2D" uid="uid://iurnteuwp7yk" path="res://Assets/Sectario.png" id="1_2lbij"]
+[ext_resource type="Script" path="res://Scripts/sectarian.gd" id="1_oxo2l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1f8bk"]
 radius = 6.0
 
 [node name="Sectarian" type="CharacterBody2D"]
+script = ExtResource("1_oxo2l")
 
 [node name="Sectario" type="Sprite2D" parent="."]
 texture = ExtResource("1_2lbij")

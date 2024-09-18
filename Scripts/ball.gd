@@ -11,4 +11,10 @@ func _ready():
 func _process(delta):
 	var velocity = direction_ball * 100 * delta
 	position += velocity
-	
+
+
+func _on_body_entered(body):
+	if body.is_in_group("enemies"):
+		# animation_player.play("explode")
+		queue_free()
+		body.queue_free()
