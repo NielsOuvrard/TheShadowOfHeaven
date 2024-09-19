@@ -1,5 +1,6 @@
 extends Area2D
 
+@export var SPEED = 200
 
 var direction_ball : Vector2
 
@@ -9,7 +10,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var velocity = direction_ball * 100 * delta
+	var velocity = direction_ball * SPEED * delta
 	position += velocity
 
 
