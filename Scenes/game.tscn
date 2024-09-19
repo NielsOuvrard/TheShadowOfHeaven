@@ -29,20 +29,22 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 zoom = Vector2(8, 8)
 position_smoothing_enabled = true
 
-[node name="Sectarian" parent="." instance=ExtResource("3_oa1ul")]
+[node name="Sectarians" type="Node" parent="."]
+
+[node name="Sectarian1" parent="Sectarians" instance=ExtResource("3_oa1ul")]
 position = Vector2(11, 21)
 
-[node name="Sectarian2" parent="." instance=ExtResource("3_oa1ul")]
+[node name="Sectarian2" parent="Sectarians" instance=ExtResource("3_oa1ul")]
 position = Vector2(111, -38)
 
-[node name="Sectarian3" parent="." instance=ExtResource("3_oa1ul")]
+[node name="Sectarian3" parent="Sectarians" instance=ExtResource("3_oa1ul")]
 position = Vector2(26, -72)
 
-[node name="Sectarian4" parent="." instance=ExtResource("3_oa1ul")]
+[node name="Sectarian4" parent="Sectarians" instance=ExtResource("3_oa1ul")]
 position = Vector2(-58, -26)
 
-[node name="Sectarian5" parent="." instance=ExtResource("3_oa1ul")]
+[node name="Sectarian5" parent="Sectarians" instance=ExtResource("3_oa1ul")]
 position = Vector2(237, -60)
 
-[node name="Sectarian6" parent="." instance=ExtResource("3_oa1ul")]
+[node name="Sectarian6" parent="Sectarians" instance=ExtResource("3_oa1ul")]
 position = Vector2(197, 16)
