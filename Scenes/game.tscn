@@ -29,7 +29,7 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(8, 8)
-position_smoothing_enabled = true
+position_smoothing_speed = 15.0
 
 [node name="Sectarians" type="Node" parent="."]
 
@@ -39,6 +39,7 @@ movement_type = 2
 
 [node name="Sectarian2" parent="Sectarians" instance=ExtResource("3_oa1ul")]
 position = Vector2(111, -38)
+movement_type = 2
 
 [node name="Sectarian3" parent="Sectarians" instance=ExtResource("3_oa1ul")]
 position = Vector2(26, -72)
@@ -46,9 +47,12 @@ movement_type = 1
 
 [node name="Sectarian4" parent="Sectarians" instance=ExtResource("3_oa1ul")]
 position = Vector2(-58, -26)
+movement_type = 1
 
 [node name="Sectarian5" parent="Sectarians" instance=ExtResource("3_oa1ul")]
 position = Vector2(237, -60)
+movement_type = 2
 
 [node name="Sectarian6" parent="Sectarians" instance=ExtResource("3_oa1ul")]
 position = Vector2(197, 16)
+movement_type = 1

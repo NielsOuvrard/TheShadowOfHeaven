@@ -1,14 +1,12 @@
 extends CharacterBody2D
 
-@onready var ray_horizontal = $RayHorizontal
-@onready var ray_vertical = $RayVertical
-
-
 enum Movement {
 	NONE,
 	HORIZONTAL,
 	VERTICAL
 }
+
+@onready var sectario: Sprite2D = $Sectario
 
 @export var movement_type := Movement.NONE
 @export var SPEED = 900.0
@@ -25,9 +23,12 @@ func _ready():
 		direction = Vector2.UP
 
 func _physics_process(delta):
-	if ray_horizontal.is_colliding() or ray_vertical.is_colliding():
-		direction = -direction
-
 	velocity = direction * SPEED * delta
 
 	move_and_slide()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	direction = -direction
+
+	if movement_type == Movement.HORIZONTAL:
+		sectario.flip_h = direction.x > 0

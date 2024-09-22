@@ -1,10 +1,10 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dm8na3erkiu3q"]
 
-[ext_resource type="Texture2D" uid="uid://lcycf61bkenf" path="res://Assets/TileSet_Greed02.png" id="1_ntqeh"]
+[ext_resource type="Texture2D" uid="uid://lcycf61bkenf" path="res://Assets/World/TileSet_Greed02.png" id="1_deog3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qrtt7"]
 resource_name = "GreedFloor"
-texture = ExtResource("1_ntqeh")
+texture = ExtResource("1_deog3")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)

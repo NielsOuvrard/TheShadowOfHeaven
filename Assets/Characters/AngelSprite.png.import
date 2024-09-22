@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fcywu1678wou"
-path="res://.godot/imported/Amos.png-a4a623b7e55ea7a3032befb2cf9948e5.ctex"
+uid="uid://rhxx7fe8qg4m"
+path="res://.godot/imported/AngelSprite.png-2ddaf1086311f6c70bf4606ea51725bb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Amos.png"
-dest_files=["res://.godot/imported/Amos.png-a4a623b7e55ea7a3032befb2cf9948e5.ctex"]
+source_file="res://Assets/Characters/AngelSprite.png"
+dest_files=["res://.godot/imported/AngelSprite.png-2ddaf1086311f6c70bf4606ea51725bb.ctex"]
 
 [params]
 

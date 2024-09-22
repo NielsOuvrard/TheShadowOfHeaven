@@ -1,17 +1,33 @@
 extends CharacterBody2D
 
-@onready var amos = $Amos
-@onready var shot_cooldown = $ShotCooldown
-@onready var weapon = $Weapon
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var shot_cooldown: Timer = $ShotCooldown
 
 @export var SPEED = 5000.0
 @export var ACCELERATION = 0.2
-
+@onready var player: CharacterBody2D = $"."
 const BALL = preload("res://scenes/ball.tscn")
+
+# Weapons
+@onready var weapon: Sprite2D = $Weapon
+const GUN = preload("res://Assets/Items/Gun.png")
+const RAY_GUN = preload("res://Assets/Items/RayGun.png")
+const SHOTGUN = preload("res://Assets/Items/Shotgun.png")
+const SWORD = preload("res://Assets/Items/Sword.png")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var weapons = [GUN, RAY_GUN, SHOTGUN, SWORD]
+var current_weapon = 0
+
+func change_weapon(value: int) -> void:
+	current_weapon = (current_weapon + value) % weapons.size()
+	weapon.texture = weapons[current_weapon]
+	
+
+func _ready():
+	pass
 
 func _physics_process(delta):
 	var direction_input = Vector2.ZERO
@@ -31,8 +47,11 @@ func _physics_process(delta):
 
 	var direction = direction_input
 	if direction.x != 0:
-		amos.flip_h = direction.x > 0
+		animated_sprite.flip_h = direction.x > 0
 		weapon.flip_h = direction.x > 0
+		animated_sprite.play("Move")
+	else:
+		animated_sprite.play("Idle")
 	direction = direction.rotated(rotation)
 	
 	if direction != Vector2.ZERO:
@@ -48,21 +67,16 @@ func _physics_process(delta):
 
 	if Input.is_action_pressed("reload") and shot_cooldown.is_stopped():
 		shot_cooldown.start()
-		print(weapon.hframes)
-		print(weapon.frame)
-		print("-")
-		weapon.frame = (weapon.frame + 1) % weapon.hframes
+		change_weapon(1)
 
 	if Input.is_action_pressed('shoot') and shot_cooldown.is_stopped():
 		shot_cooldown.start()
 		var window_size = get_viewport().get_visible_rect().size
 		var mouse_position = get_viewport().get_mouse_position() - window_size / 2
 
-		mouse_position = mouse_position.normalized() # * amos.size.x
+		mouse_position = mouse_position.normalized() # * amos.size.x ?
 
 		var ball = BALL.instantiate()
 		ball.direction_ball = mouse_position
-		ball.position = amos.position + mouse_position + amos.get_parent().position
+		ball.position = mouse_position + player.position
 		get_parent().add_child(ball)
-
-

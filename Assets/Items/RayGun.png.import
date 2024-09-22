@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lcycf61bkenf"
-path="res://.godot/imported/TileSet_Greed02.png-666c8d08b6e80e3a347ba0f09a49c723.ctex"
+uid="uid://bm1ngiwk2sx8m"
+path="res://.godot/imported/RayGun.png-18546983f01455f421f1c615b67c488a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TileSet_Greed02.png"
-dest_files=["res://.godot/imported/TileSet_Greed02.png-666c8d08b6e80e3a347ba0f09a49c723.ctex"]
+source_file="res://Assets/Items/RayGun.png"
+dest_files=["res://.godot/imported/RayGun.png-18546983f01455f421f1c615b67c488a.ctex"]
 
 [params]
 
