@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://cy2atdt0bqntm"]
+
+[ext_resource type="Texture2D" uid="uid://btl4e8gb8g5x2" path="res://Assets/World/torch.png" id="1_s6h6e"]
+[ext_resource type="Texture2D" uid="uid://b0606qmktrjkd" path="res://Assets/light_halo.png" id="2_ftp3d"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_j6ih7"]
+polygon = PackedVector2Array(-10, 20, 0, 23, 10, 20, 3, 18, 1, 22, -1, 22, -3, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81hhh"]
+atlas = ExtResource("1_s6h6e")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8ox0"]
+atlas = ExtResource("1_s6h6e")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qla4"]
+atlas = ExtResource("1_s6h6e")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3b4tl"]
+atlas = ExtResource("1_s6h6e")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q05og"]
+atlas = ExtResource("1_s6h6e")
+region = Rect2(32, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8gsm"]
+atlas = ExtResource("1_s6h6e")
+region = Rect2(64, 48, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sh6yb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81hhh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8ox0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qla4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3b4tl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q05og")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8gsm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Torch" type="Node2D"]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
+occluder = SubResource("OccluderPolygon2D_j6ih7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sh6yb")
+autoplay = "default"
+frame = 3
+frame_progress = 0.339737
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.2, 0.2)
+color = Color(0.944724, 0.871354, 0, 1)
+shadow_enabled = true
+texture = ExtResource("2_ftp3d")
