@@ -1,5 +1,7 @@
 # TheShadowOfHeaven
 
+![Made with Godot 4.3](https://img.shields.io/badge/Made%20with-Godot%204.3-478cbf?logo=godot-engine)
+
 ## Summary
 
 In Shadows of Heaven, the world is plunged into chaos after freemasons form an alliance with demons to construct seven Towers of Babel, each representing a deadly sin. These towers rip open the veil between realms, unleashing demonic forces and triggering the apocalypse. God sends Amos, a warrior angel, to destroy the towers and stop the corruption. Armed with divine light and celestial weapons, Amos must battle through waves of enemies, ascend each tower, and ultimately face Asrael, the Angel of Death, to decide the fate of humanity.

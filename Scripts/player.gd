@@ -19,15 +19,25 @@ const SWORD = preload("res://Assets/Items/Sword.png")
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var weapons = [GUN, RAY_GUN, SHOTGUN, SWORD]
+var weapons_unlocked = [SWORD]
 var current_weapon = 0
 
+func unlock_weapon(weapon_name: String) -> void:
+	match weapon_name:
+		"pistol":
+			weapons_unlocked.append(GUN)
+		"shotgun":
+			weapons_unlocked.append(SHOTGUN)
+		"raygun":
+			weapons_unlocked.append(RAY_GUN)
+
 func change_weapon(value: int) -> void:
-	current_weapon = (current_weapon + value) % weapons.size()
-	weapon.texture = weapons[current_weapon]
+	current_weapon = (current_weapon + value) % weapons_unlocked.size()
+	weapon.texture = weapons_unlocked[current_weapon]
 	
 
 func _ready():
-	pass
+	add_to_group("player")
 
 func _physics_process(delta):
 	var direction_input = Vector2.ZERO
