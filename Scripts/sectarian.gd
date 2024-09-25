@@ -1,3 +1,11 @@
+# sectarian.gd
+#
+# This script defines the behavior of the enemies that the player will face.
+#
+# Author: Sol Rojo
+# Date: 24-09-2024
+#
+
 extends CharacterBody2D
 
 enum Movement {
@@ -27,7 +35,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_2d_body_entered(_body: Node2D) -> void:
 	direction = -direction
 
 	if movement_type == Movement.HORIZONTAL:

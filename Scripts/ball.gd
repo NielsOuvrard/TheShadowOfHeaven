@@ -1,3 +1,11 @@
+# ball.gd
+#
+# This script defines the behavior of the ball that the player shoots.
+#
+# Author: Sol Rojo
+# Date: 24-09-2024
+#
+
 extends Area2D
 
 @export var SPEED = 200

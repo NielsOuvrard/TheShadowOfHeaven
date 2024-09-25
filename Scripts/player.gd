@@ -1,47 +1,105 @@
+# player.gd
+#
+# This script defines the behavior of the player character.
+# The class Player is used to manage the player's actions and states.
+#
+# Author: Sol Rojo
+# Date: 24-09-2024
+#
+
 extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var shot_cooldown: Timer = $ShotCooldown
+@onready var player_body: CharacterBody2D = $"."
+@onready var weapon_sprite: Sprite2D = $Weapon
 
 @export var SPEED = 5000.0
 @export var ACCELERATION = 0.2
-@onready var player: CharacterBody2D = $"."
+
+# for now, we will put a scene for each weapon_sprite's bullet
 const BALL = preload("res://scenes/ball.tscn")
 
-# Weapons
-@onready var weapon: Sprite2D = $Weapon
-const GUN = preload("res://Assets/Items/Gun.png")
-const RAY_GUN = preload("res://Assets/Items/RayGun.png")
-const SHOTGUN = preload("res://Assets/Items/Shotgun.png")
-const SWORD = preload("res://Assets/Items/Sword.png")
+class Player:
+	var life := 100
+	var ammo_inventory := {
+		Data.Weapons.PISTOL: 0,
+		Data.Weapons.SHOTGUN: 0,
+		Data.Weapons.RAYGUN: 0
+	}
+	var ammo_current := {
+		Data.Weapons.PISTOL: 0,
+		Data.Weapons.SHOTGUN: 0,
+		Data.Weapons.RAYGUN: 0
+	}
+	var weapons_unlocked := {
+		Data.Weapons.SWORD: true,
+		Data.Weapons.PISTOL: false,
+		Data.Weapons.SHOTGUN: false,
+		Data.Weapons.RAYGUN: false
+	}
+	var current_weapon := Data.Weapons.SWORD
+	var shoot_cooldown # ? a way to put the Timer Cooldown global in the file
+	var weapon_sprite
+	var parent_node
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-#var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+	func _init(_shoot_cooldown, _weapon, _parent_node):
+		self.shoot_cooldown = _shoot_cooldown
+		self.weapon_sprite = _weapon
+		self.parent_node = _parent_node
 
-var weapons = [GUN, RAY_GUN, SHOTGUN, SWORD]
-var weapons_unlocked = [SWORD]
-var current_weapon = 0
+	func shoot():
+		shoot_cooldown.start()
+		var window_size = parent_node.get_viewport().get_visible_rect().size
+		var mouse_position = parent_node.get_viewport().get_mouse_position() - window_size / 2
 
-func unlock_weapon(weapon_name: String) -> void:
-	match weapon_name:
-		"pistol":
-			weapons_unlocked.append(GUN)
-		"shotgun":
-			weapons_unlocked.append(SHOTGUN)
-		"raygun":
-			weapons_unlocked.append(RAY_GUN)
+		mouse_position = mouse_position.normalized() # * amos.size.x ?
 
-func change_weapon(value: int) -> void:
-	current_weapon = (current_weapon + value) % weapons_unlocked.size()
-	weapon.texture = weapons_unlocked[current_weapon]
+		var ball = BALL.instantiate()
+		ball.direction_ball = mouse_position
+		ball.position = mouse_position + parent_node.position
+		parent_node.get_parent().add_child(ball)
+
+	func reload():
+		if ammo_current[current_weapon] == Data.WEAPONS[Data.Weapons.PISTOL].ammo_max:
+			return
+		if ammo_inventory[current_weapon] == 0:
+			return
+		# state = State.RELOAD
+		# action_cooldown.start()
+
+		# * ammo inventory to current ammo
+		ammo_current[current_weapon] = min(ammo_inventory[current_weapon], Data.WEAPONS[Data.Weapons.PISTOL].ammo_max)
+		# * ammo inventory minus the current ammo
+		ammo_inventory[current_weapon] -= ammo_current[current_weapon]
+
+	func change_weapon():
+		var next_weapon = (current_weapon + 1) % Data.WEAPONS.size()
+		while not weapons_unlocked[next_weapon]:
+			next_weapon = (next_weapon + 1) % Data.WEAPONS.size()
+
+		if next_weapon == current_weapon:
+			return
+		current_weapon = next_weapon as Data.Weapons
+		weapon_sprite.texture = load(Data.WEAPONS[current_weapon].texture)
 	
+	func add_to_inventory(item: Data.Items, number: int):
+		ammo_inventory[item] += number
+
+	func unlock_weapon(weapon: Data.Weapons):
+		weapons_unlocked[weapon] = true
+
+
+
+var player
 
 func _ready():
 	add_to_group("player")
+	player = Player.new(shot_cooldown, weapon_sprite, self)
 
 func _physics_process(delta):
+	# * Direction
 	var direction_input = Vector2.ZERO
-	var target_velocity = Vector2.ZERO
 
 	if Input.is_action_pressed('move_right'):
 		direction_input.x += 1
@@ -52,32 +110,36 @@ func _physics_process(delta):
 	if Input.is_action_pressed('move_up'):
 		direction_input.y -= 1
 
+	# TODO looks like repeated code with "direction_input != null" and "target_velocity != Vector2.ZERO"
+	# TODO fix it
 	if direction_input != null:
 		direction_input = direction_input.normalized()
 
 	var direction = direction_input
 	if direction.x != 0:
 		animated_sprite.flip_h = direction.x > 0
-		weapon.flip_h = direction.x > 0
+		weapon_sprite.flip_h = direction.x > 0
 		animated_sprite.play("Move")
 	else:
 		animated_sprite.play("Idle")
 	direction = direction.rotated(rotation)
 	
+	# * Velocity 
+	var target_velocity = Vector2.ZERO
 	if direction != Vector2.ZERO:
 		target_velocity = delta * direction * SPEED
 	else:
 		target_velocity = Vector2.ZERO
-
 	# Use lerp to smoothly transition the velocity
 	velocity = velocity.lerp(target_velocity, ACCELERATION)
-
-
 	move_and_slide()
 
+	# * Actions
 	if Input.is_action_pressed("reload") and shot_cooldown.is_stopped():
 		shot_cooldown.start()
-		change_weapon(1)
+
+		# ! change to reload animation, and add an action for changing the weapon
+		player.change_weapon()
 
 	if Input.is_action_pressed('shoot') and shot_cooldown.is_stopped():
 		shot_cooldown.start()
@@ -88,5 +150,5 @@ func _physics_process(delta):
 
 		var ball = BALL.instantiate()
 		ball.direction_ball = mouse_position
-		ball.position = mouse_position + player.position
+		ball.position = mouse_position + player_body.position
 		get_parent().add_child(ball)
