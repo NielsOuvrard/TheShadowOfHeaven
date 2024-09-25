@@ -90,6 +90,12 @@ class Player:
 				continue
 			print("weapon ", Data.WEAPONS[weapon].name, " ammo current ", ammo_current[weapon], " ammo inventory ", ammo_inventory[weapon])
 
+	func debug_weapons():
+		for weapon in weapons_unlocked:
+			weapons_unlocked[weapon] = true
+		for weapon in ammo_current:
+			ammo_current[weapon] = 500
+
 	func reload():
 		if current_weapon == Data.Weapons.SWORD:
 			return
@@ -126,7 +132,7 @@ class Player:
 			life += number
 			progress_bar.value = life
 		else:
-			ammo_inventory[Data.ITEMS[item]["weapon"]] += number
+			ammo_inventory[Data.ITEMS[item].weapon] += number
 
 	func unlock_weapon(weapon: Data.Weapons):
 		weapons_unlocked[weapon] = true

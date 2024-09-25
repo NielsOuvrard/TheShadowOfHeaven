@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cs3kxlypriajq"]
 
-[ext_resource type="Script" path="res://Scripts/damaget_text.gd" id="1_8bys5"]
-[ext_resource type="FontFile" uid="uid://dsvosxxjomnr5" path="res://Assets/Fonts/PixelOperator8.ttf" id="1_fujrl"]
+[ext_resource type="Script" path="res://Scripts/damaget_text.gd" id="1_ygkvu"]
+[ext_resource type="FontFile" uid="uid://dsvosxxjomnr5" path="res://Assets/Fonts/PixelOperator8.ttf" id="2_u0gie"]
 
 [sub_resource type="Animation" id="Animation_rvm6s"]
 resource_name = "text"
@@ -142,7 +142,7 @@ _data = {
 }
 
 [node name="DamagetText" type="Node2D"]
-script = ExtResource("1_8bys5")
+script = ExtResource("1_ygkvu")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 8
@@ -156,7 +156,7 @@ offset_right = 25.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_fujrl")
+theme_override_fonts/font = ExtResource("2_u0gie")
 text = "50"
 horizontal_alignment = 1
 vertical_alignment = 1

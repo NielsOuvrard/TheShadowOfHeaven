@@ -1,17 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://bcbtjhffrph75"]
 
 [ext_resource type="Script" path="res://scripts/item.gd" id="1_tbm5b"]
-[ext_resource type="Texture2D" uid="uid://eba8p4a1wcyh" path="res://Assets/Items/life.png" id="2_2yyxl"]
+[ext_resource type="Texture2D" uid="uid://2u0tuliq82gr" path="res://Assets/Items/Armas.png" id="2_2fo4k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uytgi"]
-radius = 5.83095
+radius = 8.0
 
 [node name="Item" type="Node2D"]
 script = ExtResource("1_tbm5b")
 
 [node name="ItemSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.424242, 0.424242)
-texture = ExtResource("2_2yyxl")
+texture = ExtResource("2_2fo4k")
+hframes = 4
+vframes = 2
 
 [node name="Area2D" type="Area2D" parent="."]
 

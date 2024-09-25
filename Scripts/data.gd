@@ -25,11 +25,11 @@ enum Items {
 }
 
 
-# TODO link cooldowns
 const WEAPONS = {
 	Weapons.SWORD: {
 		"name": "sword",
 		"texture": "res://Assets/Items/Sword.png",
+		"item_frame": 3,
 		"cooldown_shot": 0.2,
 		"cooldown_reload": 0.0,
 		"ammo_max": 0,
@@ -38,6 +38,7 @@ const WEAPONS = {
 	Weapons.PISTOL: {
 		"name": "pistol",
 		"texture": "res://Assets/Items/Gun.png",
+		"item_frame": 0,
 		"cooldown_shot": 0.2,
 		"cooldown_reload": 1.0,
 		"ammo_max": 6,
@@ -46,6 +47,7 @@ const WEAPONS = {
 	Weapons.SHOTGUN: {
 		"name": "shotgun",
 		"texture": "res://Assets/Items/Shotgun.png",
+		"item_frame": 1,
 		"cooldown_shot": 0.5,
 		"cooldown_reload": 1.5,
 		"ammo_max": 2,
@@ -54,6 +56,7 @@ const WEAPONS = {
 	Weapons.RAYGUN: {
 		"name": "raygun", # maybe a charge, and need to wait to shoot again
 		"texture": "res://Assets/Items/RayGun.png",
+		"item_frame": 2,
 		"cooldown_shot": 0.1,
 		"cooldown_reload": 0.4,
 		"ammo_max": 10,
@@ -64,28 +67,28 @@ const WEAPONS = {
 const ITEMS = {
 	Items.PISTOL_AMMO: {
 		"name": "pistol_ammo",
-		"texture": "res://Assets/Items/ammo.png", # TODO put art's work
+		"frame": 4,
 		"weapon": Weapons.PISTOL,
 		"n_max": 6,
 		"n_min": 1
 	},
 	Items.SHOTGUN_AMMO: {
 		"name": "shotgun_ammo",
-		"texture": "res://Assets/Items/ammo.png", # TODO put art's work
+		"frame": 5,
 		"weapon": Weapons.SHOTGUN,
 		"n_max": 4,
 		"n_min": 1
 	},
 	Items.RAYGUN_AMMO: {
 		"name": "raygun_ammo",
-		"texture": "res://Assets/Items/ammo.png", # TODO put art's work
+		"frame": 6,
 		"weapon": Weapons.RAYGUN,
 		"n_max": 2,
 		"n_min": 1
 	},
 	Items.LIFE: {
 		"name": "life",
-		"texture": "res://Assets/Items/life.png",  # TODO put art's work
+		"frame": 7,
 		"weapon": null,
 		"n_max": 15,
 		"n_min": 3

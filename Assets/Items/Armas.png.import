@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eba8p4a1wcyh"
-path="res://.godot/imported/life.png-f53989da84a5fcc954186984d28ef389.ctex"
+uid="uid://2u0tuliq82gr"
+path="res://.godot/imported/Armas.png-97d42189695b1104696d4f615ff82bd0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Items/life.png"
-dest_files=["res://.godot/imported/life.png-f53989da84a5fcc954186984d28ef389.ctex"]
+source_file="res://Assets/Items/Armas.png"
+dest_files=["res://.godot/imported/Armas.png-97d42189695b1104696d4f615ff82bd0.ctex"]
 
 [params]
 

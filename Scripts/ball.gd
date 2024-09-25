@@ -18,7 +18,7 @@ var target : String
 var color : Color = Color(1, 1, 1, 1)
 var light := false
 
-const DAMAGET_TEXT = preload("res://Scenes/damaget_text.tscn")
+const DAMAGET_TEXT = preload("res://Scenes/damage_text.tscn")
 
 func _ready():
 	color_rect.color = color
