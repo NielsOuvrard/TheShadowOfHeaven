@@ -26,6 +26,7 @@ var direction = Vector2.ZERO
 
 # for now, we will put a scene for each weapon_sprite's bullet
 const BALL = preload("res://scenes/ball.tscn")
+const ITEM = preload("res://Scenes/item.tscn")
 
 func _ready():
 	add_to_group("enemies")
@@ -46,11 +47,17 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func take_damage(damage: int) -> void:
+func take_damage(damage: int) -> int:
+	var damage_received = min(damage, life)
 	life -= damage
 	progress_bar.value = life
 	if life <= 0:
+		var item = ITEM.instantiate()
+		item.type_item = randi() % Data.Items.size()
+		item.position = position
+		get_parent().add_child(item)
 		queue_free()
+	return damage_received
 
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
@@ -66,6 +73,7 @@ func _on_shot_cooldown_timeout() -> void:
 	ball.position = position
 	ball.damage = 5
 	ball.target = "player"
+	ball.thrower = "enemies"
 	ball.color = Color(1, 0, 0, 1)
 	get_parent().add_child(ball)
 

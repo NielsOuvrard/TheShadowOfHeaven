@@ -13,9 +13,12 @@ extends Area2D
 @export var SPEED := 200 # maybe shoud vary according to weapon
 var damage : int
 var direction_ball : Vector2
+var thrower : String
 var target : String
 var color : Color = Color(1, 1, 1, 1)
 var light := false
+
+const DAMAGET_TEXT = preload("res://Scenes/damaget_text.tscn")
 
 func _ready():
 	color_rect.color = color
@@ -32,5 +35,11 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if body.is_in_group(target):
-		queue_free()
-		body.take_damage(damage)
+		var damage_given = body.take_damage(damage)
+		var damage_text = DAMAGET_TEXT.instantiate()
+		damage_text.text = str(damage_given)
+		damage_text.position = position
+		get_parent().add_child(damage_text)
+	elif body.is_in_group(thrower):
+		return
+	queue_free()

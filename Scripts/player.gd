@@ -79,6 +79,7 @@ class Player:
 		ball.position = mouse_position + parent_node.position
 		ball.damage = Data.WEAPONS[current_weapon].damage
 		ball.target = "enemies"
+		ball.thrower = "player"
 		ball.color = Color(0.8, 0.8, 1, 1)
 		ball.light = true
 		parent_node.get_parent().add_child(ball)
@@ -131,14 +132,16 @@ class Player:
 		weapons_unlocked[weapon] = true
 
 	func take_damage(damage: int):
+		var damage_received = min(damage, life)
 		life -= damage
 		progress_bar.value = life
 		if life <= 0:
 			# parent_node.queue_free() # TODO just game over
 			print("Game Over")
+		return damage_received
 
-func take_damage(damage: int) -> void:
-	player.take_damage(damage)
+func take_damage(damage: int) -> int:
+	return player.take_damage(damage)
 
 var player
 
