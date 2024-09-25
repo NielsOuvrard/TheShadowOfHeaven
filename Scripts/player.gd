@@ -10,9 +10,11 @@
 extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var reload_cooldown: Timer = $ReloadCooldown
 @onready var shot_cooldown: Timer = $ShotCooldown
 @onready var player_body: CharacterBody2D = $"."
 @onready var weapon_sprite: Sprite2D = $Weapon
+@onready var progress_bar: ProgressBar = $ProgressBar
 
 @export var SPEED = 5000.0
 @export var ACCELERATION = 0.2
@@ -40,13 +42,25 @@ class Player:
 	}
 	var current_weapon := Data.Weapons.SWORD
 	var shoot_cooldown # ? a way to put the Timer Cooldown global in the file
+	var reload_cooldown
+	var progress_bar
 	var weapon_sprite
 	var parent_node
 
-	func _init(_shoot_cooldown, _weapon, _parent_node):
+	func _init(_shoot_cooldown, _reload_cooldown, _progress_bar, _weapon, _parent_node):
 		self.shoot_cooldown = _shoot_cooldown
+		self.reload_cooldown = _reload_cooldown
+		self.progress_bar = _progress_bar
 		self.weapon_sprite = _weapon
 		self.parent_node = _parent_node
+
+		# * Life Progress Bar
+		progress_bar.max_value = life
+		progress_bar.value = life
+
+		# * Cooldowns
+		reload_cooldown.wait_time = Data.WEAPONS[current_weapon].cooldown_reload
+		shoot_cooldown.wait_time = Data.WEAPONS[current_weapon].cooldown_shot
 
 	func shoot():
 		if current_weapon == Data.Weapons.SWORD:
@@ -63,6 +77,8 @@ class Player:
 		var ball = BALL.instantiate()
 		ball.direction_ball = mouse_position
 		ball.position = mouse_position + parent_node.position
+		ball.damage = Data.WEAPONS[current_weapon].damage
+		ball.target = "enemies"
 		parent_node.get_parent().add_child(ball)
 
 	func debug_inventory():
@@ -98,6 +114,10 @@ class Player:
 		current_weapon = next_weapon as Data.Weapons
 		weapon_sprite.texture = load(Data.WEAPONS[current_weapon].texture)
 
+		# * Cooldowns
+		reload_cooldown.wait_time = Data.WEAPONS[current_weapon].cooldown_reload
+		shoot_cooldown.wait_time = Data.WEAPONS[current_weapon].cooldown_shot
+
 	func add_to_inventory(item: Data.Items, number: int):
 		if item == Data.Items.LIFE:
 			life += number
@@ -107,13 +127,21 @@ class Player:
 	func unlock_weapon(weapon: Data.Weapons):
 		weapons_unlocked[weapon] = true
 
+	func take_damage(damage: int):
+		life -= damage
+		progress_bar.value = life
+		if life <= 0:
+			# parent_node.queue_free() # TODO just game over
+			print("Game Over")
 
+func take_damage(damage: int) -> void:
+	player.take_damage(damage)
 
 var player
 
 func _ready():
 	add_to_group("player")
-	player = Player.new(shot_cooldown, weapon_sprite, self)
+	player = Player.new(shot_cooldown, reload_cooldown, progress_bar, weapon_sprite, self)
 
 func _physics_process(delta):
 	# * Direction

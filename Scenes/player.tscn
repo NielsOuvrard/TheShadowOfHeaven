@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://0y06vbi8ods3"]
+[gd_scene load_steps=16 format=3 uid="uid://0y06vbi8ods3"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_flqv2"]
 [ext_resource type="Texture2D" uid="uid://ddh0hbfsxf05q" path="res://Assets/Items/Sword.png" id="4_12yd1"]
@@ -72,6 +72,12 @@ size = Vector2(10, 14)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jjm0m"]
 polygon = PackedVector2Array(5, 6, 3, 6, 3, 7, 1, 7, 1, 6, -1, 6, -1, 7, -3, 7, -3, 6, -4, 6, -4, 6, -5, 6, -3, 9, 0.900787, 9, 3, 9)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5jfo"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xv7rb"]
+bg_color = Color(0, 100, 0, 1)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_flqv2")
 
@@ -88,9 +94,23 @@ texture = ExtResource("4_12yd1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hv8be")
 
+[node name="ReloadCooldown" type="Timer" parent="."]
+one_shot = true
+
 [node name="ShotCooldown" type="Timer" parent="."]
 one_shot = true
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 position = Vector2(0, 1)
 occluder = SubResource("OccluderPolygon2D_jjm0m")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -11.0
+offset_top = -11.0
+offset_right = 11.0
+offset_bottom = -10.0
+theme_override_styles/background = SubResource("StyleBoxFlat_w5jfo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xv7rb")
+step = 1.0
+value = 50.0
+show_percentage = false

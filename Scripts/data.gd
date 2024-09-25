@@ -25,34 +25,39 @@ enum Items {
 }
 
 
+# TODO link cooldowns
 const WEAPONS = {
 	Weapons.SWORD: {
 		"name": "sword",
 		"texture": "res://Assets/Items/Sword.png",
-		"cooldown_shot": 0.5,
-		"cooldown_reload": 0.5,
+		"cooldown_shot": 0.2,
+		"cooldown_reload": 0.0,
 		"ammo_max": 0,
+		"damage": 30
 	},
 	Weapons.PISTOL: {
 		"name": "pistol",
 		"texture": "res://Assets/Items/Gun.png",
-		"cooldown_shot": 0.5,
-		"cooldown_reload": 0.5,
+		"cooldown_shot": 0.2,
+		"cooldown_reload": 1.0,
 		"ammo_max": 6,
+		"damage": 20
 	},
 	Weapons.SHOTGUN: {
 		"name": "shotgun",
 		"texture": "res://Assets/Items/Shotgun.png",
 		"cooldown_shot": 0.5,
-		"cooldown_reload": 0.5,
+		"cooldown_reload": 1.5,
 		"ammo_max": 2,
+		"damage": 40
 	},
 	Weapons.RAYGUN: {
 		"name": "raygun", # maybe a charge, and need to wait to shoot again
 		"texture": "res://Assets/Items/RayGun.png",
-		"cooldown_shot": 0.5,
-		"cooldown_reload": 0.5,
+		"cooldown_shot": 0.1,
+		"cooldown_reload": 0.4,
 		"ammo_max": 10,
+		"damage": 50
 	}
 }
 

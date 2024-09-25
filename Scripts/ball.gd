@@ -8,10 +8,10 @@
 
 extends Area2D
 
-@export var damage := 30
-@export var SPEED := 200
-
+@export var SPEED := 200 # maybe shoud vary according to weapon
+var damage : int
 var direction_ball : Vector2
+var target : String
 
 func _ready():
 	pass # Replace with function body.
@@ -24,6 +24,6 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	if body.is_in_group("enemies"):
+	if body.is_in_group(target):
 		queue_free()
 		body.take_damage(damage)
