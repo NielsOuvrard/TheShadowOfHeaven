@@ -35,6 +35,7 @@ func _ready():
 	elif movement_type == Movement.VERTICAL:
 		direction = Vector2.UP
 	
+	shot_cooldown.wait_time = float(Data.rand_range(10, 30)) / 10
 	shot_cooldown.start()
 	
 	progress_bar.max_value = life
@@ -65,5 +66,8 @@ func _on_shot_cooldown_timeout() -> void:
 	ball.position = position
 	ball.damage = 5
 	ball.target = "player"
+	ball.color = Color(1, 0, 0, 1)
 	get_parent().add_child(ball)
+
+	shot_cooldown.wait_time = float(Data.rand_range(10, 30)) / 10
 	shot_cooldown.start()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmw0ljnlnfdib"]
+[gd_scene load_steps=4 format=3 uid="uid://cmw0ljnlnfdib"]
 
 [ext_resource type="Script" path="res://Scripts/ball.gd" id="1_bqjdq"]
+[ext_resource type="Texture2D" uid="uid://b0606qmktrjkd" path="res://Assets/light_halo.png" id="2_56tqa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ub76g"]
 radius = 3.0
@@ -16,5 +17,10 @@ offset_bottom = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ub76g")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+scale = Vector2(0.0222222, 0.0222222)
+texture = ExtResource("2_56tqa")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

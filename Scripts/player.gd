@@ -79,6 +79,8 @@ class Player:
 		ball.position = mouse_position + parent_node.position
 		ball.damage = Data.WEAPONS[current_weapon].damage
 		ball.target = "enemies"
+		ball.color = Color(0.8, 0.8, 1, 1)
+		ball.light = true
 		parent_node.get_parent().add_child(ball)
 
 	func debug_inventory():

@@ -7,14 +7,19 @@
 #
 
 extends Area2D
+@onready var color_rect: ColorRect = $ColorRect
+@onready var point_light_2d: PointLight2D = $PointLight2D
 
 @export var SPEED := 200 # maybe shoud vary according to weapon
 var damage : int
 var direction_ball : Vector2
 var target : String
+var color : Color = Color(1, 1, 1, 1)
+var light := false
 
 func _ready():
-	pass # Replace with function body.
+	color_rect.color = color
+	point_light_2d.visible = light
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
