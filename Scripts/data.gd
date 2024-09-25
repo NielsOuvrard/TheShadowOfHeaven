@@ -49,7 +49,7 @@ const WEAPONS = {
 		"cooldown_shot": 0.5,
 		"cooldown_reload": 1.5,
 		"ammo_max": 2,
-		"damage": 40
+		"damage": 99
 	},
 	Weapons.RAYGUN: {
 		"name": "raygun", # maybe a charge, and need to wait to shoot again
@@ -57,7 +57,7 @@ const WEAPONS = {
 		"cooldown_shot": 0.1,
 		"cooldown_reload": 0.4,
 		"ammo_max": 10,
-		"damage": 50
+		"damage": 40
 	}
 }
 
