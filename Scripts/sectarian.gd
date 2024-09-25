@@ -14,10 +14,12 @@ enum Movement {
 	VERTICAL
 }
 
+@onready var progress_bar: ProgressBar = $ProgressBar
 @onready var sectario: Sprite2D = $Sectario
 
 @export var movement_type := Movement.NONE
-@export var SPEED = 900.0
+@export var life := 100
+@export var SPEED := 900.0
 
 var direction = Vector2.ZERO
 
@@ -29,6 +31,9 @@ func _ready():
 		direction = Vector2.RIGHT
 	elif movement_type == Movement.VERTICAL:
 		direction = Vector2.UP
+	
+	progress_bar.max_value = life
+	progress_bar.value = life
 
 func _physics_process(delta):
 	velocity = direction * SPEED * delta
@@ -40,3 +45,10 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 
 	if movement_type == Movement.HORIZONTAL:
 		sectario.flip_h = direction.x > 0
+
+func take_damage(damage: int) -> void:
+	life -= damage
+	progress_bar.value = life
+	if life <= 0:
+		queue_free()
+	

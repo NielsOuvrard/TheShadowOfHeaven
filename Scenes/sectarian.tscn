@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ci1y4rydunn2t"]
+[gd_scene load_steps=8 format=3 uid="uid://ci1y4rydunn2t"]
 
 [ext_resource type="Texture2D" uid="uid://iurnteuwp7yk" path="res://Assets/Characters/Sectario.png" id="1_2lbij"]
 [ext_resource type="Script" path="res://Scripts/sectarian.gd" id="1_oxo2l"]
@@ -11,6 +11,12 @@ radius = 6.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_02vjn"]
 polygon = PackedVector2Array(3, 8, -1, 8, 1, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sss86"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lhq6"]
+bg_color = Color(0, 100, 0, 1)
 
 [node name="Sectarian" type="CharacterBody2D"]
 script = ExtResource("1_oxo2l")
@@ -30,5 +36,16 @@ shape = SubResource("CircleShape2D_1f8bk")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_02vjn")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -11.0
+offset_top = -7.0
+offset_right = 11.0
+offset_bottom = -6.0
+theme_override_styles/background = SubResource("StyleBoxFlat_sss86")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2lhq6")
+step = 1.0
+value = 50.0
+show_percentage = false
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

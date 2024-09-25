@@ -8,7 +8,8 @@
 
 extends Area2D
 
-@export var SPEED = 200
+@export var damage := 30
+@export var SPEED := 200
 
 var direction_ball : Vector2
 
@@ -24,6 +25,5 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if body.is_in_group("enemies"):
-		# animation_player.play("explode")
 		queue_free()
-		body.queue_free()
+		body.take_damage(damage)
