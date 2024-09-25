@@ -123,6 +123,7 @@ class Player:
 	func add_to_inventory(item: Data.Items, number: int):
 		if item == Data.Items.LIFE:
 			life += number
+			progress_bar.value = life
 		else:
 			ammo_inventory[Data.ITEMS[item]["weapon"]] += number
 

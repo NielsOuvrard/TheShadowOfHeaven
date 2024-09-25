@@ -19,7 +19,9 @@ var light := false
 
 func _ready():
 	color_rect.color = color
-	point_light_2d.visible = light
+	point_light_2d.color = color
+	if light:
+		point_light_2d.energy = 1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
