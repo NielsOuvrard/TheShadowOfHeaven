@@ -59,25 +59,29 @@ const WEAPONS = {
 const ITEMS = {
 	Items.PISTOL_AMMO: {
 		"name": "pistol_ammo",
-		"texture": "res://Assets/Items/GunAmmo.png",
+		"texture": "res://Assets/Items/ammo.png", # TODO put art's work
+		"weapon": Weapons.PISTOL,
 		"n_max": 6,
 		"n_min": 1
 	},
 	Items.SHOTGUN_AMMO: {
 		"name": "shotgun_ammo",
-		"texture": "res://Assets/Items/ShotgunAmmo.png",
+		"texture": "res://Assets/Items/ammo.png", # TODO put art's work
+		"weapon": Weapons.SHOTGUN,
 		"n_max": 4,
 		"n_min": 1
 	},
 	Items.RAYGUN_AMMO: {
 		"name": "raygun_ammo",
-		"texture": "res://Assets/Items/RayGunAmmo.png",
+		"texture": "res://Assets/Items/ammo.png", # TODO put art's work
+		"weapon": Weapons.RAYGUN,
 		"n_max": 2,
 		"n_min": 1
 	},
 	Items.LIFE: {
 		"name": "life",
-		"texture": "res://Assets/Items/Life.png",
+		"texture": "res://Assets/Items/life.png",  # TODO put art's work
+		"weapon": null,
 		"n_max": 15,
 		"n_min": 3
 	},

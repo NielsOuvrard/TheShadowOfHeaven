@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://bo4n02j4pcicp"]
+[gd_scene load_steps=7 format=4 uid="uid://bo4n02j4pcicp"]
 
 [ext_resource type="TileSet" uid="uid://dm8na3erkiu3q" path="res://TileSet/greed.tres" id="1_coy4n"]
 [ext_resource type="PackedScene" uid="uid://0y06vbi8ods3" path="res://Scenes/player.tscn" id="2_ogfqg"]
 [ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="3_1socm"]
 [ext_resource type="PackedScene" uid="uid://cy2atdt0bqntm" path="res://Scenes/torch.tscn" id="3_dyfy7"]
 [ext_resource type="PackedScene" uid="uid://ci1y4rydunn2t" path="res://Scenes/sectarian.tscn" id="3_oa1ul"]
+[ext_resource type="PackedScene" uid="uid://bcbtjhffrph75" path="res://Scenes/item.tscn" id="5_43vmu"]
 
 [node name="Game" type="Node2D"]
 
@@ -36,17 +37,6 @@ position = Vector2(120, -61)
 
 [node name="Torch2" parent="TerrainElements" instance=ExtResource("3_dyfy7")]
 position = Vector2(-25, -42)
-
-[node name="Weapon" parent="TerrainElements" instance=ExtResource("3_1socm")]
-position = Vector2(58, 10)
-
-[node name="Weapon2" parent="TerrainElements" instance=ExtResource("3_1socm")]
-position = Vector2(106, 24)
-type_weapon = 3
-
-[node name="Weapon3" parent="TerrainElements" instance=ExtResource("3_1socm")]
-position = Vector2(97, -13)
-type_weapon = 2
 
 [node name="Player" parent="." instance=ExtResource("2_ogfqg")]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -83,3 +73,22 @@ position = Vector2(197, 16)
 movement_type = 1
 
 [node name="Items" type="Node" parent="."]
+
+[node name="Weapon" parent="Items" instance=ExtResource("3_1socm")]
+position = Vector2(58, 10)
+
+[node name="Weapon2" parent="Items" instance=ExtResource("3_1socm")]
+position = Vector2(106, 24)
+type_weapon = 3
+
+[node name="Weapon3" parent="Items" instance=ExtResource("3_1socm")]
+position = Vector2(97, -13)
+type_weapon = 2
+
+[node name="Item" parent="Items" instance=ExtResource("5_43vmu")]
+position = Vector2(163, -13)
+type_item = 3
+
+[node name="Item2" parent="Items" instance=ExtResource("5_43vmu")]
+position = Vector2(168, -39)
+type_item = 1

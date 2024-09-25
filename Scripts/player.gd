@@ -28,9 +28,9 @@ class Player:
 		Data.Weapons.RAYGUN: 0
 	}
 	var ammo_current := {
-		Data.Weapons.PISTOL: 0,
-		Data.Weapons.SHOTGUN: 0,
-		Data.Weapons.RAYGUN: 0
+		Data.Weapons.PISTOL: Data.WEAPONS[Data.Weapons.PISTOL].ammo_max,
+		Data.Weapons.SHOTGUN: Data.WEAPONS[Data.Weapons.SHOTGUN].ammo_max,
+		Data.Weapons.RAYGUN: Data.WEAPONS[Data.Weapons.RAYGUN].ammo_max
 	}
 	var weapons_unlocked := {
 		Data.Weapons.SWORD: true,
@@ -49,6 +49,11 @@ class Player:
 		self.parent_node = _parent_node
 
 	func shoot():
+		if current_weapon == Data.Weapons.SWORD:
+			return
+		if ammo_current[current_weapon] == 0:
+			return
+		ammo_current[current_weapon] -= 1
 		shoot_cooldown.start()
 		var window_size = parent_node.get_viewport().get_visible_rect().size
 		var mouse_position = parent_node.get_viewport().get_mouse_position() - window_size / 2
@@ -60,10 +65,18 @@ class Player:
 		ball.position = mouse_position + parent_node.position
 		parent_node.get_parent().add_child(ball)
 
+	func debug_inventory():
+		for weapon in Data.WEAPONS:
+			if weapon == Data.Weapons.SWORD:
+				continue
+			print("weapon ", Data.WEAPONS[weapon].name, " ammo current ", ammo_current[weapon], " ammo inventory ", ammo_inventory[weapon])
+
 	func reload():
-		if ammo_current[current_weapon] == Data.WEAPONS[Data.Weapons.PISTOL].ammo_max:
+		if current_weapon == Data.Weapons.SWORD:
 			return
 		if ammo_inventory[current_weapon] == 0:
+			return
+		if ammo_current[current_weapon] == Data.WEAPONS[current_weapon].ammo_max:
 			return
 		# state = State.RELOAD
 		# action_cooldown.start()
@@ -78,13 +91,18 @@ class Player:
 		while not weapons_unlocked[next_weapon]:
 			next_weapon = (next_weapon + 1) % Data.WEAPONS.size()
 
+		# debug_inventory()
+
 		if next_weapon == current_weapon:
 			return
 		current_weapon = next_weapon as Data.Weapons
 		weapon_sprite.texture = load(Data.WEAPONS[current_weapon].texture)
-	
+
 	func add_to_inventory(item: Data.Items, number: int):
-		ammo_inventory[item] += number
+		if item == Data.Items.LIFE:
+			life += number
+		else:
+			ammo_inventory[Data.ITEMS[item]["weapon"]] += number
 
 	func unlock_weapon(weapon: Data.Weapons):
 		weapons_unlocked[weapon] = true
@@ -137,18 +155,11 @@ func _physics_process(delta):
 	# * Actions
 	if Input.is_action_pressed("reload") and shot_cooldown.is_stopped():
 		shot_cooldown.start()
+		player.reload()
 
-		# ! change to reload animation, and add an action for changing the weapon
+	if Input.is_action_pressed("change_weapon") and shot_cooldown.is_stopped():
+		shot_cooldown.start()
 		player.change_weapon()
 
 	if Input.is_action_pressed('shoot') and shot_cooldown.is_stopped():
-		shot_cooldown.start()
-		var window_size = get_viewport().get_visible_rect().size
-		var mouse_position = get_viewport().get_mouse_position() - window_size / 2
-
-		mouse_position = mouse_position.normalized() # * amos.size.x ?
-
-		var ball = BALL.instantiate()
-		ball.direction_ball = mouse_position
-		ball.position = mouse_position + player_body.position
-		get_parent().add_child(ball)
+		player.shoot()
