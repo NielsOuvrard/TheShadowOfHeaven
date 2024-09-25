@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btl4e8gb8g5x2"
-path="res://.godot/imported/torch.png-3a5b608bfb93aff64542d9ef83b3a05a.ctex"
+uid="uid://bv1f68b0dkmkw"
+path="res://.godot/imported/Fire.png-b954d3c2143c7db9336362d96b3aeef6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/World/torch.png"
-dest_files=["res://.godot/imported/torch.png-3a5b608bfb93aff64542d9ef83b3a05a.ctex"]
+source_file="res://Assets/World/Fire.png"
+dest_files=["res://.godot/imported/Fire.png-b954d3c2143c7db9336362d96b3aeef6.ctex"]
 
 [params]
 

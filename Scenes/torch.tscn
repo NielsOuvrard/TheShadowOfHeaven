@@ -1,59 +1,66 @@
-[gd_scene load_steps=11 format=3 uid="uid://cy2atdt0bqntm"]
+[gd_scene load_steps=12 format=3 uid="uid://cy2atdt0bqntm"]
 
-[ext_resource type="Texture2D" uid="uid://btl4e8gb8g5x2" path="res://Assets/World/torch.png" id="1_s6h6e"]
+[ext_resource type="Texture2D" uid="uid://bv1f68b0dkmkw" path="res://Assets/World/Fire.png" id="1_xdjud"]
 [ext_resource type="Texture2D" uid="uid://b0606qmktrjkd" path="res://Assets/light_halo.png" id="2_ftp3d"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_j6ih7"]
 polygon = PackedVector2Array(-10, 20, 0, 23, 10, 20, 3, 18, 1, 22, -1, 22, -3, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_81hhh"]
-atlas = ExtResource("1_s6h6e")
-region = Rect2(0, 0, 32, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee8es"]
+atlas = ExtResource("1_xdjud")
+region = Rect2(0, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k8ox0"]
-atlas = ExtResource("1_s6h6e")
-region = Rect2(32, 0, 32, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_jw3oj"]
+atlas = ExtResource("1_xdjud")
+region = Rect2(16, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5qla4"]
-atlas = ExtResource("1_s6h6e")
-region = Rect2(64, 0, 32, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_snxjp"]
+atlas = ExtResource("1_xdjud")
+region = Rect2(32, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3b4tl"]
-atlas = ExtResource("1_s6h6e")
-region = Rect2(0, 48, 32, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2mhq"]
+atlas = ExtResource("1_xdjud")
+region = Rect2(48, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q05og"]
-atlas = ExtResource("1_s6h6e")
-region = Rect2(32, 48, 32, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_uy6vr"]
+atlas = ExtResource("1_xdjud")
+region = Rect2(64, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b8gsm"]
-atlas = ExtResource("1_s6h6e")
-region = Rect2(64, 48, 32, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyijr"]
+atlas = ExtResource("1_xdjud")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xul3"]
+atlas = ExtResource("1_xdjud")
+region = Rect2(96, 0, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sh6yb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_81hhh")
+"texture": SubResource("AtlasTexture_ee8es")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k8ox0")
+"texture": SubResource("AtlasTexture_jw3oj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5qla4")
+"texture": SubResource("AtlasTexture_snxjp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3b4tl")
+"texture": SubResource("AtlasTexture_s2mhq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q05og")
+"texture": SubResource("AtlasTexture_uy6vr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b8gsm")
+"texture": SubResource("AtlasTexture_wyijr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xul3")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="Torch" type="Node2D"]
@@ -65,8 +72,7 @@ occluder = SubResource("OccluderPolygon2D_j6ih7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sh6yb")
 autoplay = "default"
-frame = 3
-frame_progress = 0.339737
+frame_progress = 0.406218
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(0.2, 0.2)
