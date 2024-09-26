@@ -63,6 +63,27 @@ class Player:
 		shoot_cooldown.wait_time = Data.WEAPONS[current_weapon].cooldown_shot
 		#debug_weapons()
 		
+	func look_player():
+		var direction_input = Vector2.ZERO
+
+		if Input.is_action_pressed('look_right'):
+			direction_input.x += Input.get_action_strength('look_right')
+		if Input.is_action_pressed('look_left'):
+			direction_input.x -= Input.get_action_strength('look_left')
+		if Input.is_action_pressed('look_down'):
+			direction_input.y += Input.get_action_strength('look_down')
+		if Input.is_action_pressed('look_up'):
+			direction_input.y -= Input.get_action_strength('look_up')
+
+		# * if we are using the controller
+		if direction_input != Vector2.ZERO:
+			return direction_input.normalized()
+
+		# * if we are using the mouse
+		var window_size = parent_node.get_viewport().get_visible_rect().size
+		var mouse_position = parent_node.get_viewport().get_mouse_position() - window_size / 2
+		return mouse_position.normalized()
+
 	func shoot():
 		if current_weapon == Data.Weapons.SWORD:
 			return
@@ -70,13 +91,9 @@ class Player:
 			return
 		ammo_current[current_weapon] -= 1
 		shoot_cooldown.start()
-		var window_size = parent_node.get_viewport().get_visible_rect().size
-		var mouse_position = parent_node.get_viewport().get_mouse_position() - window_size / 2
-
-		mouse_position = mouse_position.normalized() # * amos.size.x ?
 
 		var ball = BALL.instantiate()
-		ball.direction_ball = mouse_position
+		ball.direction_ball = look_player()
 		ball.thrower = "player"
 		ball.target = "enemies"
 		ball.type = Data.WEAPONS[current_weapon].projectile
