@@ -70,11 +70,10 @@ func _on_shot_cooldown_timeout() -> void:
 	var ball = BALL.instantiate()
 	var player = get_tree().get_nodes_in_group("player")[0]  # get the player node
 	ball.direction_ball = (player.global_position - global_position).normalized()  # calculate the direction to the player
-	ball.position = position
-	ball.damage = 5
-	ball.target = "player"
 	ball.thrower = "enemies"
-	ball.color = Color(1, 0, 0, 1)
+	ball.target = "player"
+	ball.position = position
+	ball.type = Data.Projectiles.ENEMIES
 	get_parent().add_child(ball)
 
 	shot_cooldown.wait_time = float(Data.rand_range(10, 30)) / 10

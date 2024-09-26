@@ -61,7 +61,7 @@ class Player:
 		# * Cooldowns
 		reload_cooldown.wait_time = Data.WEAPONS[current_weapon].cooldown_reload
 		shoot_cooldown.wait_time = Data.WEAPONS[current_weapon].cooldown_shot
-
+		
 	func shoot():
 		if current_weapon == Data.Weapons.SWORD:
 			return
@@ -76,12 +76,11 @@ class Player:
 
 		var ball = BALL.instantiate()
 		ball.direction_ball = mouse_position
-		ball.position = mouse_position + parent_node.position
-		ball.damage = Data.WEAPONS[current_weapon].damage
-		ball.target = "enemies"
 		ball.thrower = "player"
-		ball.color = Color(0.8, 0.8, 1, 1)
-		ball.light = true
+		ball.target = "enemies"
+		ball.type = Data.WEAPONS[current_weapon].projectile
+		ball.position = mouse_position + parent_node.position
+		print("mouse_position ", mouse_position, " parent_node.position ", parent_node.position, " ball.position ", ball.position)
 		parent_node.get_parent().add_child(ball)
 
 	func debug_inventory():

@@ -24,6 +24,13 @@ enum Items {
 	LIFE
 }
 
+enum Projectiles {
+	PISTOL,
+	SHOTGUN,
+	RAYGUN,
+	ENEMIES,
+	DEATH_BALL,
+}
 
 const WEAPONS = {
 	Weapons.SWORD: {
@@ -33,7 +40,7 @@ const WEAPONS = {
 		"cooldown_shot": 0.2,
 		"cooldown_reload": 0.0,
 		"ammo_max": 0,
-		"damage": 30
+		"projectile": null,
 	},
 	Weapons.PISTOL: {
 		"name": "pistol",
@@ -42,7 +49,7 @@ const WEAPONS = {
 		"cooldown_shot": 0.2,
 		"cooldown_reload": 1.0,
 		"ammo_max": 6,
-		"damage": 20
+		"projectile": Projectiles.PISTOL
 	},
 	Weapons.SHOTGUN: {
 		"name": "shotgun",
@@ -51,7 +58,7 @@ const WEAPONS = {
 		"cooldown_shot": 0.5,
 		"cooldown_reload": 1.5,
 		"ammo_max": 2,
-		"damage": 99
+		"projectile": Projectiles.SHOTGUN
 	},
 	Weapons.RAYGUN: {
 		"name": "raygun", # maybe a charge, and need to wait to shoot again
@@ -60,7 +67,55 @@ const WEAPONS = {
 		"cooldown_shot": 0.1,
 		"cooldown_reload": 0.4,
 		"ammo_max": 10,
-		"damage": 40
+		"projectile": Projectiles.RAYGUN
+	}
+}
+
+const PROJECTILS = {
+	Projectiles.PISTOL: {
+		"animation": "pistol",
+		"speed": 20,
+		"damage": 20,
+		"light_color": Color(1, 1, 0, 1),
+		"light_energy": 1,
+		"collision_scale": Vector2(1, 0.5),
+		"collision_radius": 5
+	},
+	Projectiles.SHOTGUN: {
+		"animation": "shotgun",
+		"speed": 20,
+		"damage": 99,
+		"light_energy": 1.5,
+		"light_color": Color(1, 1, 0, 1),
+		"collision_scale": Vector2(1, 0.33),
+		"collision_radius": 5
+	},
+	Projectiles.RAYGUN: {
+		"animation": "raygun", # this one is different, it's a ray
+		"speed": 20,
+		"damage": 40,
+		"light_energy": 1,
+		"light_color": Color(0, 1, 1, 1),
+		"collision_scale": Vector2(10, 10),
+		"collision_radius": 5.83
+	},
+	Projectiles.ENEMIES: {
+		"animation": "enemies",
+		"speed": 20,
+		"damage": 30,
+		"light_energy": 0.5,
+		"light_color": Color(1, 0.5, 0, 1),
+		"collision_scale": Vector2(1.2, 0.7),
+		"collision_radius": 5.83
+	},
+	Projectiles.DEATH_BALL: {
+		"animation": "death_ball",
+		"speed": 20,
+		"damage": 50,
+		"light_energy": 2,
+		"light_color": Color(1, 0, 1, 1),
+		"collision_scale": Vector2(1.2, 0.6),
+		"collision_radius": 13.33
 	}
 }
 
