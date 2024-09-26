@@ -61,6 +61,7 @@ class Player:
 		# * Cooldowns
 		reload_cooldown.wait_time = Data.WEAPONS[current_weapon].cooldown_reload
 		shoot_cooldown.wait_time = Data.WEAPONS[current_weapon].cooldown_shot
+		#debug_weapons()
 		
 	func shoot():
 		if current_weapon == Data.Weapons.SWORD:
@@ -103,11 +104,10 @@ class Player:
 			return
 		# state = State.RELOAD
 		# action_cooldown.start()
-
-		# * ammo inventory to current ammo
-		ammo_current[current_weapon] = min(ammo_inventory[current_weapon], Data.WEAPONS[Data.Weapons.PISTOL].ammo_max)
-		# * ammo inventory minus the current ammo
-		ammo_inventory[current_weapon] -= ammo_current[current_weapon]
+		var ammo_max_needed = Data.WEAPONS[current_weapon].ammo_max - ammo_current[current_weapon]
+		var ammo_taken = min(ammo_inventory[current_weapon], ammo_max_needed)
+		ammo_current[current_weapon] += ammo_taken
+		ammo_inventory[current_weapon] -= ammo_taken
 
 	func change_weapon():
 		var next_weapon = (current_weapon + 1) % Data.WEAPONS.size()
@@ -137,6 +137,8 @@ class Player:
 
 	func take_damage(damage: int):
 		var damage_received = min(damage, life)
+		if life <= 0:
+			damage_received = 0
 		life -= damage
 		progress_bar.value = life
 		if life <= 0:

@@ -72,7 +72,7 @@ position = Vector2(162, 285)
 movement_type = 1
 
 [node name="Sectarian5" parent="Sectarians" instance=ExtResource("3_oa1ul")]
-position = Vector2(506, 254)
+position = Vector2(493, 258)
 movement_type = 2
 
 [node name="Sectarian6" parent="Sectarians" instance=ExtResource("3_oa1ul")]
@@ -81,21 +81,37 @@ movement_type = 1
 
 [node name="Items" type="Node" parent="."]
 
-[node name="Weapon" parent="Items" instance=ExtResource("3_1socm")]
+[node name="Pistol" parent="Items" instance=ExtResource("3_1socm")]
 position = Vector2(-21, 327)
 
-[node name="Weapon2" parent="Items" instance=ExtResource("3_1socm")]
+[node name="ShotGun" parent="Items" instance=ExtResource("3_1socm")]
 position = Vector2(541, -19)
 type = 2
 
-[node name="Weapon3" parent="Items" instance=ExtResource("3_1socm")]
-position = Vector2(512, 256)
+[node name="RayGun" parent="Items" instance=ExtResource("3_1socm")]
+position = Vector2(524, 239)
 type = 3
 
 [node name="Item" parent="Items" instance=ExtResource("5_43vmu")]
-position = Vector2(126, 349)
-type_item = 3
+position = Vector2(77, 344)
 
 [node name="Item2" parent="Items" instance=ExtResource("5_43vmu")]
-position = Vector2(537, -96)
-type_item = 1
+position = Vector2(563, -158)
+
+[node name="Item" parent="." instance=ExtResource("5_43vmu")]
+position = Vector2(7, 36)
+
+[node name="Item2" parent="." instance=ExtResource("5_43vmu")]
+position = Vector2(62, 297)
+
+[node name="Item3" parent="." instance=ExtResource("5_43vmu")]
+position = Vector2(41, 182)
+
+[node name="Item4" parent="." instance=ExtResource("5_43vmu")]
+position = Vector2(-1, 367)
+
+[node name="Item5" parent="." instance=ExtResource("5_43vmu")]
+position = Vector2(-37, 354)
+
+[node name="Item6" parent="." instance=ExtResource("5_43vmu")]
+position = Vector2(-110, 300)

@@ -74,7 +74,7 @@ const WEAPONS = {
 const PROJECTILS = {
 	Projectiles.PISTOL: {
 		"animation": "pistol",
-		"speed": 20,
+		"speed": 200,
 		"damage": 20,
 		"light_color": Color(1, 1, 0, 1),
 		"light_energy": 1,
@@ -83,7 +83,7 @@ const PROJECTILS = {
 	},
 	Projectiles.SHOTGUN: {
 		"animation": "shotgun",
-		"speed": 20,
+		"speed": 200,
 		"damage": 99,
 		"light_energy": 1.5,
 		"light_color": Color(1, 1, 0, 1),
@@ -92,7 +92,7 @@ const PROJECTILS = {
 	},
 	Projectiles.RAYGUN: {
 		"animation": "raygun", # this one is different, it's a ray
-		"speed": 20,
+		"speed": 300,
 		"damage": 40,
 		"light_energy": 1,
 		"light_color": Color(0, 1, 1, 1),
@@ -101,7 +101,7 @@ const PROJECTILS = {
 	},
 	Projectiles.ENEMIES: {
 		"animation": "enemies",
-		"speed": 20,
+		"speed": 150,
 		"damage": 30,
 		"light_energy": 0.5,
 		"light_color": Color(1, 0.5, 0, 1),
@@ -110,7 +110,7 @@ const PROJECTILS = {
 	},
 	Projectiles.DEATH_BALL: {
 		"animation": "death_ball",
-		"speed": 20,
+		"speed": 200,
 		"damage": 50,
 		"light_energy": 2,
 		"light_color": Color(1, 0, 1, 1),

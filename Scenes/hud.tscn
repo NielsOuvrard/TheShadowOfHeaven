@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c43q6ncwe5wl0"]
+[gd_scene load_steps=8 format=3 uid="uid://c43q6ncwe5wl0"]
 
 [ext_resource type="Script" path="res://Scripts/hud.gd" id="1_7r4t5"]
 [ext_resource type="Texture2D" uid="uid://di8sp2r62jgrd" path="res://Assets/HUD/Fuego.png" id="1_nn1e5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bwtf2mxsu1471" path="res://Assets/HUD/Corazones.png" id="3_wax87"]
 [ext_resource type="FontFile" uid="uid://dsvosxxjomnr5" path="res://Assets/Fonts/PixelOperator8.ttf" id="5_3rqoy"]
 [ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="5_s1o24"]
+[ext_resource type="Texture2D" uid="uid://bkyahaeeslbp7" path="res://Assets/HUD/Cursor.png" id="7_1dos8"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_7r4t5")
@@ -52,6 +53,7 @@ stretch_mode = 4
 [node name="Weapon" parent="Right" instance=ExtResource("5_s1o24")]
 position = Vector2(-64, 80)
 scale = Vector2(8, 8)
+is_static = true
 
 [node name="InvText" type="Label" parent="Right"]
 layout_mode = 1
@@ -81,3 +83,9 @@ grow_vertical = 2
 scale = Vector2(4, 4)
 theme_override_fonts/font = ExtResource("5_3rqoy")
 text = "6"
+
+[node name="Cursor" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(872, 576)
+scale = Vector2(8, 8)
+texture = ExtResource("7_1dos8")

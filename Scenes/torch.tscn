@@ -1,10 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cy2atdt0bqntm"]
+[gd_scene load_steps=11 format=3 uid="uid://cy2atdt0bqntm"]
 
 [ext_resource type="Texture2D" uid="uid://bv1f68b0dkmkw" path="res://Assets/World/Fire.png" id="1_xdjud"]
 [ext_resource type="Texture2D" uid="uid://b0606qmktrjkd" path="res://Assets/light_halo.png" id="2_ftp3d"]
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_j6ih7"]
-polygon = PackedVector2Array(-10, 20, 0, 23, 10, 20, 3, 18, 1, 22, -1, 22, -3, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ee8es"]
 atlas = ExtResource("1_xdjud")
@@ -64,10 +61,6 @@ animations = [{
 }]
 
 [node name="Torch" type="Node2D"]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-visible = false
-occluder = SubResource("OccluderPolygon2D_j6ih7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sh6yb")

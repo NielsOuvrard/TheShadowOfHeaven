@@ -10,11 +10,13 @@ extends Area2D
 @onready var point_light: PointLight2D = $PointLight2D
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var collision: CollisionShape2D = $CollisionShape2D
+@onready var shadow_small: Sprite2D = $ShadowSmall
 
 var direction_ball : Vector2
 var thrower : String
 var target : String
 var type : Data.Projectiles
+var is_shadow := false
 
 const DAMAGET_TEXT = preload("res://Scenes/damage_text.tscn")
 
@@ -27,7 +29,9 @@ func _ready():
 	collision.scale = Data.PROJECTILS[type].collision_scale
 	collision.shape.radius = Data.PROJECTILS[type].collision_radius
 
-	rotate(direction_ball.angle())
+	sprite.rotation = direction_ball.angle()
+	if is_shadow:
+		shadow_small.visible = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

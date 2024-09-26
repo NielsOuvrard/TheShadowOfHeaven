@@ -1,10 +1,71 @@
-[gd_scene load_steps=4 format=3 uid="uid://domryt018ofom"]
+[gd_scene load_steps=8 format=3 uid="uid://domryt018ofom"]
 
 [ext_resource type="Script" path="res://Scripts/weapons.gd" id="1_r6hc8"]
 [ext_resource type="Texture2D" uid="uid://2u0tuliq82gr" path="res://Assets/Items/Armas.png" id="2_ysdcs"]
+[ext_resource type="Texture2D" uid="uid://w2nt6equg4mk" path="res://Assets/shadow_small.png" id="3_g7di7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8x3ik"]
 radius = 5.83095
+
+[sub_resource type="Animation" id="Animation_8l8ov"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShadowSmall:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponSprite:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_yi4qd"]
+resource_name = "floating"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShadowSmall:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponSprite:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -4, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.5, 3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7cuq4"]
+_data = {
+"RESET": SubResource("Animation_8l8ov"),
+"floating": SubResource("Animation_yi4qd")
+}
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_r6hc8")
@@ -18,5 +79,15 @@ vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_8x3ik")
+
+[node name="ShadowSmall" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 5)
+texture = ExtResource("3_g7di7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7cuq4")
+}
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

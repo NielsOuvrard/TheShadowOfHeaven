@@ -53,7 +53,7 @@ func take_damage(damage: int) -> int:
 	progress_bar.value = life
 	if life <= 0:
 		var item = ITEM.instantiate()
-		item.type_item = randi() % Data.Items.size()
+		item.type = randi() % Data.Items.size()
 		item.position = position
 		get_parent().add_child(item)
 		queue_free()
@@ -74,6 +74,7 @@ func _on_shot_cooldown_timeout() -> void:
 	ball.target = "player"
 	ball.position = position
 	ball.type = Data.Projectiles.ENEMIES
+	ball.is_shadow = true
 	get_parent().add_child(ball)
 
 	shot_cooldown.wait_time = float(Data.rand_range(10, 30)) / 10
