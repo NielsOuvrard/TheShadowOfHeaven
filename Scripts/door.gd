@@ -9,6 +9,7 @@
 
 extends CharacterBody2D
 
+@onready var door: CharacterBody2D = $"."
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -19,11 +20,22 @@ enum DoorState {
 	CLOSING
 }
 # opend-front / opend-back
+# one way doors
+# not openable
+# openable with interract ?
 
-@export var state: DoorState = DoorState.CLOSED
+var state: DoorState = DoorState.CLOSED
+
+var is_rotation_normal := true
+var rotation_normal : float
+var rotation_reversed : float
 
 
 func _ready() -> void:
+	rotation_normal = rotation
+	rotation_reversed = rotation + PI
+	print("rotation_normal: ", rotation_normal, " rotation_reversed: ", rotation_reversed)
+	
 	match state:
 		DoorState.CLOSED:
 			animated_sprite.play("closed")
@@ -34,21 +46,39 @@ func _ready() -> void:
 		DoorState.CLOSING:
 			animated_sprite.play("closing")
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player") and (state == DoorState.CLOSED or state == DoorState.CLOSING):
+func open(body: Node2D):
+	if state == DoorState.CLOSED or state == DoorState.CLOSING:
 		state = DoorState.OPENING
 		animation_player.play("opening")
 
-
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.is_in_group("player") and (state == DoorState.OPENED or state == DoorState.OPENING):
+func close(body: Node2D):
+	if state == DoorState.OPENED or state == DoorState.OPENING:
 		state = DoorState.CLOSING
 		animation_player.play("closing")
 
-# TODO directly in the animation
-#func _on_animated_sprite_2d_animation_finished() -> void:
-	#match state:
-		#DoorState.OPENING:
-			#state = DoorState.OPENED
-		#DoorState.CLOSING:
-			#state = DoorState.CLOSED
+func set_state(value: DoorState):
+	state = value
+
+func reverse_door():
+	if is_rotation_normal:
+		is_rotation_normal = false
+		rotation = rotation_reversed
+	else:
+		is_rotation_normal = true
+		rotation = rotation_normal
+
+func _on_back_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player") and state == DoorState.CLOSED:
+		reverse_door()
+
+func _on_back_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player") and state == DoorState.CLOSED:
+		reverse_door()
+
+func _on_front_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		open(body)
+
+func _on_front_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		close(body)

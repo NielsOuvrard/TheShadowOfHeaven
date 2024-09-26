@@ -60,7 +60,6 @@ position = Vector2(40, 65)
 [node name="Door2" parent="TerrainElements" instance=ExtResource("6_6swl3")]
 position = Vector2(280, -40)
 rotation = 1.5708
-state = 1
 
 [node name="Sectarians" type="Node" parent="."]
 
