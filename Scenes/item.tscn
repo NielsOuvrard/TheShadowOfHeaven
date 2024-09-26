@@ -13,6 +13,7 @@ script = ExtResource("1_tbm5b")
 texture = ExtResource("2_2fo4k")
 hframes = 4
 vframes = 2
+frame = 7
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -79,8 +79,7 @@ class Player:
 		ball.thrower = "player"
 		ball.target = "enemies"
 		ball.type = Data.WEAPONS[current_weapon].projectile
-		ball.position = mouse_position + parent_node.position
-		print("mouse_position ", mouse_position, " parent_node.position ", parent_node.position, " ball.position ", ball.position)
+		ball.position = parent_node.position
 		parent_node.get_parent().add_child(ball)
 
 	func debug_inventory():

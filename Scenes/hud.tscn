@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://c43q6ncwe5wl0"]
+
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="1_7r4t5"]
+[ext_resource type="Texture2D" uid="uid://di8sp2r62jgrd" path="res://Assets/HUD/Fuego.png" id="1_nn1e5"]
+[ext_resource type="Texture2D" uid="uid://xopwsyp6u5xh" path="res://Assets/HUD/Pluma.png" id="2_akymb"]
+[ext_resource type="Texture2D" uid="uid://bwtf2mxsu1471" path="res://Assets/HUD/Corazones.png" id="3_wax87"]
+[ext_resource type="FontFile" uid="uid://dsvosxxjomnr5" path="res://Assets/Fonts/PixelOperator8.ttf" id="5_3rqoy"]
+[ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="5_s1o24"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_7r4t5")
+
+[node name="Left" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Plume" type="TextureRect" parent="Left"]
+layout_mode = 0
+offset_right = 560.0
+offset_bottom = 256.0
+texture = ExtResource("2_akymb")
+stretch_mode = 4
+
+[node name="Heart" type="Sprite2D" parent="Left"]
+position = Vector2(100, 60)
+scale = Vector2(8, 8)
+texture = ExtResource("3_wax87")
+hframes = 2
+
+[node name="Right" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Fire" type="TextureRect" parent="Right"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -800.0
+offset_bottom = 256.0
+grow_horizontal = 0
+texture = ExtResource("1_nn1e5")
+stretch_mode = 4
+
+[node name="Weapon" parent="Right" instance=ExtResource("5_s1o24")]
+position = Vector2(-64, 80)
+scale = Vector2(8, 8)
+
+[node name="InvText" type="Label" parent="Right"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = 152.0
+offset_right = -66.0
+offset_bottom = 152.0
+grow_vertical = 2
+scale = Vector2(4, 4)
+theme_override_fonts/font = ExtResource("5_3rqoy")
+text = "6"
+
+[node name="CurText" type="Label" parent="Right"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_top = 152.0
+offset_right = -210.0
+offset_bottom = 152.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(4, 4)
+theme_override_fonts/font = ExtResource("5_3rqoy")
+text = "6"
