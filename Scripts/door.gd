@@ -9,7 +9,6 @@
 
 extends CharacterBody2D
 
-@onready var door: CharacterBody2D = $"."
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -46,12 +45,12 @@ func _ready() -> void:
 		DoorState.CLOSING:
 			animated_sprite.play("closing")
 
-func open(body: Node2D):
+func open():
 	if state == DoorState.CLOSED or state == DoorState.CLOSING:
 		state = DoorState.OPENING
 		animation_player.play("opening")
 
-func close(body: Node2D):
+func close():
 	if state == DoorState.OPENED or state == DoorState.OPENING:
 		state = DoorState.CLOSING
 		animation_player.play("closing")
@@ -77,8 +76,8 @@ func _on_back_body_exited(body: Node2D) -> void:
 
 func _on_front_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		open(body)
+		open()
 
 func _on_front_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		close(body)
+		close()
