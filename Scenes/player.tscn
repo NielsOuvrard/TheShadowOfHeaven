@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://0y06vbi8ods3"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_flqv2"]
-[ext_resource type="Texture2D" uid="uid://w2nt6equg4mk" path="res://Assets/shadow_small.png" id="2_8qbm6"]
+[ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_8qbm6"]
 [ext_resource type="Texture2D" uid="uid://ddh0hbfsxf05q" path="res://Assets/Items/Sword.png" id="4_12yd1"]
 [ext_resource type="Texture2D" uid="uid://rhxx7fe8qg4m" path="res://Assets/Characters/AngelSprite.png" id="4_auylh"]
 
@@ -80,7 +80,7 @@ bg_color = Color(0, 100, 0, 1)
 script = ExtResource("1_flqv2")
 
 [node name="ShadowSmall" type="Sprite2D" parent="."]
-position = Vector2(0, 6)
+position = Vector2(0, 8)
 texture = ExtResource("2_8qbm6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

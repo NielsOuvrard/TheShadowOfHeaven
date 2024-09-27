@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/weapons.gd" id="1_r6hc8"]
 [ext_resource type="Texture2D" uid="uid://2u0tuliq82gr" path="res://Assets/Items/Armas.png" id="2_ysdcs"]
-[ext_resource type="Texture2D" uid="uid://w2nt6equg4mk" path="res://Assets/shadow_small.png" id="3_g7di7"]
+[ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="3_g7di7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8x3ik"]
 radius = 5.83095
@@ -70,6 +70,11 @@ _data = {
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_r6hc8")
 
+[node name="ShadowSmall" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 7)
+texture = ExtResource("3_g7di7")
+
 [node name="WeaponSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_ysdcs")
 hframes = 4
@@ -79,11 +84,6 @@ vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_8x3ik")
-
-[node name="ShadowSmall" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, 5)
-texture = ExtResource("3_g7di7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

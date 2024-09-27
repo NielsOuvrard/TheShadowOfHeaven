@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/ball.gd" id="1_bqjdq"]
 [ext_resource type="Texture2D" uid="uid://b0606qmktrjkd" path="res://Assets/light_halo.png" id="2_56tqa"]
-[ext_resource type="Texture2D" uid="uid://w2nt6equg4mk" path="res://Assets/shadow_small.png" id="2_roc7b"]
+[ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_roc7b"]
 [ext_resource type="Texture2D" uid="uid://khoheu8iu4pt" path="res://Assets/Items/Bullets.png" id="3_fh0sp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8kqn0"]

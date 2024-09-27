@@ -18,7 +18,7 @@ enum DoorState {
 	OPENING,
 	CLOSING
 }
-# opend-front / opend-back
+# opend-front / opend-back only
 # one way doors
 # not openable
 # openable with interract ?
@@ -33,7 +33,6 @@ var rotation_reversed : float
 func _ready() -> void:
 	rotation_normal = rotation
 	rotation_reversed = rotation + PI
-	print("rotation_normal: ", rotation_normal, " rotation_reversed: ", rotation_reversed)
 	
 	match state:
 		DoorState.CLOSED:

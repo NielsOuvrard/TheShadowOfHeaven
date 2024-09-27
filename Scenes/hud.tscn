@@ -85,7 +85,7 @@ theme_override_fonts/font = ExtResource("5_3rqoy")
 text = "6"
 
 [node name="Cursor" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(872, 576)
+position = Vector2(960, 540)
 scale = Vector2(8, 8)
 texture = ExtResource("7_1dos8")
+offset = Vector2(40, 0)

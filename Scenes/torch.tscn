@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cy2atdt0bqntm"]
+[gd_scene load_steps=12 format=3 uid="uid://cy2atdt0bqntm"]
 
 [ext_resource type="Texture2D" uid="uid://bv1f68b0dkmkw" path="res://Assets/World/Fire.png" id="1_xdjud"]
 [ext_resource type="Texture2D" uid="uid://b0606qmktrjkd" path="res://Assets/light_halo.png" id="2_ftp3d"]
@@ -60,7 +60,10 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Torch" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_xpxai"]
+radius = 8.0
+
+[node name="Torch" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sh6yb")
@@ -72,3 +75,8 @@ scale = Vector2(0.2, 0.2)
 color = Color(0.944724, 0.871354, 0, 1)
 shadow_enabled = true
 texture = ExtResource("2_ftp3d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12)
+scale = Vector2(1, 0.47)
+shape = SubResource("CircleShape2D_xpxai")
