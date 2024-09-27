@@ -85,9 +85,12 @@ class Player:
 		return mouse_position.normalized()
 
 	func shoot():
+		if not reload_cooldown.is_stopped():
+			return
 		if current_weapon == Data.Weapons.SWORD:
 			return
 		if ammo_current[current_weapon] == 0:
+			reload()
 			return
 		ammo_current[current_weapon] -= 1
 		shoot_cooldown.start()
@@ -125,6 +128,8 @@ class Player:
 		var ammo_taken = min(ammo_inventory[current_weapon], ammo_max_needed)
 		ammo_current[current_weapon] += ammo_taken
 		ammo_inventory[current_weapon] -= ammo_taken
+		
+		reload_cooldown.start()
 
 	func change_weapon():
 		var next_weapon = (current_weapon + 1) % Data.WEAPONS.size()
@@ -191,7 +196,7 @@ func _physics_process(delta):
 		direction_input = direction_input.normalized()
 
 	var direction = direction_input
-	if direction.x != 0:
+	if direction != Vector2.ZERO:
 		animated_sprite.flip_h = direction.x > 0
 		weapon_sprite.flip_h = direction.x > 0
 		animated_sprite.play("Move")

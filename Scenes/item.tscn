@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/item.gd" id="1_tbm5b"]
 [ext_resource type="Texture2D" uid="uid://2u0tuliq82gr" path="res://Assets/Items/Armas.png" id="2_2fo4k"]
-[ext_resource type="Texture2D" uid="uid://w2nt6equg4mk" path="res://Assets/shadow_small.png" id="2_rcabs"]
+[ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_rcabs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uytgi"]
 radius = 8.0
@@ -72,7 +72,7 @@ script = ExtResource("1_tbm5b")
 
 [node name="ShadowSmall" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0, 4)
+position = Vector2(0, 6)
 texture = ExtResource("2_rcabs")
 
 [node name="ItemSprite" type="Sprite2D" parent="."]
