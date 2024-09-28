@@ -15,6 +15,7 @@ extends CharacterBody2D
 @onready var player_body: CharacterBody2D = $"."
 @onready var weapon_sprite: Sprite2D = $Weapon
 @onready var progress_bar: ProgressBar = $ProgressBar
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var SPEED = 5000.0
 @export var ACCELERATION = 0.2
@@ -45,13 +46,15 @@ class Player:
 	var reload_cooldown
 	var progress_bar
 	var weapon_sprite
+	var animation_player
 	var parent_node
 
-	func _init(_shoot_cooldown, _reload_cooldown, _progress_bar, _weapon, _parent_node):
+	func _init(_shoot_cooldown, _reload_cooldown, _progress_bar, _weapon, _animation_player, _parent_node):
 		self.shoot_cooldown = _shoot_cooldown
 		self.reload_cooldown = _reload_cooldown
 		self.progress_bar = _progress_bar
 		self.weapon_sprite = _weapon
+		self.animation_player = _animation_player
 		self.parent_node = _parent_node
 
 		# * Life Progress Bar
@@ -88,6 +91,7 @@ class Player:
 		if not reload_cooldown.is_stopped():
 			return
 		if current_weapon == Data.Weapons.SWORD:
+			animation_player.play("sword_attack")
 			return
 		if ammo_current[current_weapon] == 0:
 			reload()
@@ -175,7 +179,7 @@ var player
 
 func _ready():
 	add_to_group("player")
-	player = Player.new(shot_cooldown, reload_cooldown, progress_bar, weapon_sprite, self)
+	player = Player.new(shot_cooldown, reload_cooldown, progress_bar, weapon_sprite, animation_player, self)
 
 func _physics_process(delta):
 	# * Direction
@@ -225,3 +229,8 @@ func _physics_process(delta):
 
 	if Input.is_action_pressed('shoot') and shot_cooldown.is_stopped():
 		player.shoot()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		body.take_damage(100)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://0y06vbi8ods3"]
+[gd_scene load_steps=20 format=3 uid="uid://0y06vbi8ods3"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_flqv2"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_8qbm6"]
@@ -76,6 +76,134 @@ bg_color = Color(1, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xv7rb"]
 bg_color = Color(0, 100, 0, 1)
 
+[sub_resource type="Animation" id="Animation_hcaa6"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D/CollisionShape2D2:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Area2D/CollisionShape2D2:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_c0knh"]
+resource_name = "sword_attack"
+length = 0.8
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.1, -4.58961, -10, -0.25, 0, 0.1, 0.362062, 0, -0.0666667, -1.85255, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.8)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.1, 1.85274, 6, -0.133333, -0.517123, 0.1, 0.0194063, 0, -0.133333, 0.0605022, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.6, 0.8)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.133333, -0.714901, -2.83587, -0.133333, 0.742847, 0.1, 1.221, 0, -0.1, -0.972807, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6, 0.8)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D/CollisionShape2D2:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.133333, 0.633333, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Area2D/CollisionShape2D2:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.0160984, -0.25, 0, 0.1, -0.425138, -2.10622, -0.133333, 0.368713, 0.1, 0.982474, 0.0160984, -0.0666667, -0.937951, 0.25, 0),
+"times": PackedFloat32Array(0.0666667, 0.666667, 0.8)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qs1ev"]
+_data = {
+"RESET": SubResource("Animation_hcaa6"),
+"sword_attack": SubResource("Animation_c0knh")
+}
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_jnl32"]
+b = Vector2(0, -15)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_flqv2")
 
@@ -85,7 +213,7 @@ texture = ExtResource("2_8qbm6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2tbwc")
-animation = &"Idle"
+animation = &"Move"
 autoplay = "Idle"
 offset = Vector2(-1, 0)
 
@@ -112,3 +240,16 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_xv7rb")
 step = 1.0
 value = 50.0
 show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qs1ev")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("SegmentShape2D_jnl32")
+disabled = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
