@@ -24,6 +24,7 @@ const DAMAGE_TEXT = preload("res://Scenes/damage_text.tscn")
 # BALL
 
 func _ready():
+	add_to_group("projectiles") # useless for now
 	point_light.color = Data.PROJECTILS[type].light_color
 	point_light.energy = Data.PROJECTILS[type].light_energy
 	sprite.play(Data.PROJECTILS[type].animation)
@@ -52,3 +53,9 @@ func _on_body_entered(body):
 	elif body.is_in_group(thrower):
 		return
 	queue_free()
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("sword_attack"):
+		print(area)
+		queue_free()

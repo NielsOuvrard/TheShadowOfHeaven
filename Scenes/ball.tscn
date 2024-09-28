@@ -267,4 +267,5 @@ scale = Vector2(0.037037, 0.037037)
 energy = 0.4
 texture = ExtResource("2_56tqa")
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

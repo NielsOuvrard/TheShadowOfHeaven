@@ -1,9 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://0y06vbi8ods3"]
+[gd_scene load_steps=27 format=3 uid="uid://0y06vbi8ods3"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_flqv2"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_8qbm6"]
 [ext_resource type="Texture2D" uid="uid://ddh0hbfsxf05q" path="res://Assets/Items/Sword.png" id="4_12yd1"]
 [ext_resource type="Texture2D" uid="uid://rhxx7fe8qg4m" path="res://Assets/Characters/AngelSprite.png" id="4_auylh"]
+[ext_resource type="Script" path="res://Scripts/sword_attack.gd" id="5_rnjnq"]
 [ext_resource type="Texture2D" uid="uid://btn2i18uvt7qf" path="res://Assets/Characters/EspadaSlash.png" id="5_y8fcm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_koeyi"]
@@ -288,6 +289,7 @@ value = 50.0
 show_percentage = false
 
 [node name="SwordAttack" type="Area2D" parent="."]
+script = ExtResource("5_rnjnq")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="SwordAttack"]
 sprite_frames = SubResource("SpriteFrames_5j060")
