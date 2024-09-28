@@ -18,7 +18,7 @@ var target : String
 var type : Data.Projectiles
 var is_shadow := false
 
-const DAMAGET_TEXT = preload("res://Scenes/damage_text.tscn")
+const DAMAGE_TEXT = preload("res://Scenes/damage_text.tscn")
 
 # BALL
 
@@ -43,7 +43,7 @@ func _process(delta):
 func _on_body_entered(body):
 	if body.is_in_group(target):
 		var damage_given = body.take_damage(Data.PROJECTILS[type].damage)
-		var damage_text = DAMAGET_TEXT.instantiate()
+		var damage_text = DAMAGE_TEXT.instantiate()
 		damage_text.text = str(damage_given)
 		damage_text.position = position
 		get_parent().add_child(damage_text)

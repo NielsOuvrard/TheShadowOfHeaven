@@ -40,7 +40,7 @@ func look_player():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	var player = get_tree().get_nodes_in_group("player")[0].player  # get the player node
+	var player = get_tree().get_nodes_in_group("player")[0]  # get the player node
 	if current_weapon != player.current_weapon:
 		current_weapon = player.current_weapon
 		weapon.type = player.current_weapon

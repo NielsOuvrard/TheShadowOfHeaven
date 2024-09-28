@@ -282,7 +282,7 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvyxd"]
 radius = 23.1948
 
-[node name="Door" type="CharacterBody2D"]
+[node name="Door" type="StaticBody2D"]
 script = ExtResource("1_82spt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -322,7 +322,6 @@ position = Vector2(0, 12)
 scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_cvyxd")
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Front" to="." method="_on_front_body_entered"]
 [connection signal="body_exited" from="Front" to="." method="_on_front_body_exited"]
 [connection signal="body_entered" from="Back" to="." method="_on_back_body_entered"]

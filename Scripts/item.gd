@@ -30,7 +30,7 @@ func _ready() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		var nmb = Data.rand_range(Data.ITEMS[type].n_min, Data.ITEMS[type].n_max)
-		body.player.add_to_inventory(type, nmb)
+		body.add_to_inventory(type, nmb)
 
 		var damage_text = DAMAGET_TEXT.instantiate()
 		damage_text.text = str(nmb)
