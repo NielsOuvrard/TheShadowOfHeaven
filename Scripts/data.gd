@@ -39,8 +39,9 @@ const WEAPONS = {
 		"item_frame": 3,
 		"cooldown_shot": 0.8,
 		"cooldown_reload": 0.01,
-		"ammo_max": 0,
+		"ammo_max": 0, 
 		"projectile": null,
+		"ammo": null,
 	},
 	Weapons.PISTOL: {
 		"name": "pistol",
@@ -49,7 +50,8 @@ const WEAPONS = {
 		"cooldown_shot": 0.2,
 		"cooldown_reload": 1.0,
 		"ammo_max": 6,
-		"projectile": Projectiles.PISTOL
+		"projectile": Projectiles.PISTOL,
+		"ammo": Items.PISTOL_AMMO,
 	},
 	Weapons.SHOTGUN: {
 		"name": "shotgun",
@@ -58,7 +60,8 @@ const WEAPONS = {
 		"cooldown_shot": 0.5,
 		"cooldown_reload": 1.5,
 		"ammo_max": 2,
-		"projectile": Projectiles.SHOTGUN
+		"projectile": Projectiles.SHOTGUN,
+		"ammo": Items.SHOTGUN_AMMO,
 	},
 	Weapons.RAYGUN: {
 		"name": "raygun", # maybe a charge, and need to wait to shoot again
@@ -67,7 +70,8 @@ const WEAPONS = {
 		"cooldown_shot": 0.1,
 		"cooldown_reload": 0.4,
 		"ammo_max": 10,
-		"projectile": Projectiles.RAYGUN
+		"projectile": Projectiles.RAYGUN,
+		"ammo": Items.RAYGUN_AMMO,
 	}
 }
 

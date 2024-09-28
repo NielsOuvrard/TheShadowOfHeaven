@@ -96,9 +96,8 @@ func look_player():
 func shoot():
 	if not reload_cooldown.is_stopped():
 		return
+	shoot_cooldown.start()
 	if current_weapon == Data.Weapons.SWORD:
-		print(position)
-		sword_attack.visible = true
 		sword_attack_animation.play("sword_attack")
 		sword_attack.rotation = look_player().angle() + (3.0 / 4.0 * PI)
 		return
@@ -106,13 +105,13 @@ func shoot():
 		reload()
 		return
 	ammo_current[current_weapon] -= 1
-	shoot_cooldown.start()
 
 	var ball = BALL.instantiate()
 	ball.direction_ball = look_player()
 	ball.thrower = "player"
 	ball.target = "enemies"
 	ball.type = Data.WEAPONS[current_weapon].projectile
+	ball.weapons_unlocked = weapons_unlocked
 	ball.position = position
 	get_parent().add_child(ball)
 
@@ -232,7 +231,7 @@ func _physics_process(delta):
 
 func _on_sword_attack_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies") and body.has_method("damage"):
-		var attack = Attack.new(60, position, 100)
+		var attack = Attack.new(60, position, 100, weapons_unlocked)
 		var damage_given = body.damage(attack)
 		var damage_text = DAMAGE_TEXT.instantiate()
 		damage_text.text = str(damage_given)
@@ -242,6 +241,9 @@ func _on_sword_attack_body_entered(body: Node2D) -> void:
 
 
 func debug_inventory():
+	for weapon in weapons_unlocked:
+		print("weapon ", weapon, " unlocked ", weapons_unlocked[weapon])
+
 	for weapon in Data.WEAPONS:
 		if weapon == Data.Weapons.SWORD:
 			continue

@@ -59,7 +59,12 @@ func damage(attack: Attack) -> int:
 
 	if life <= 0:
 		var item = ITEM.instantiate()
-		item.type = randi() % Data.Items.size()
+		var items_dropabale := []
+		for weapon in attack.unlocked_weapons:
+			if weapon != Data.Weapons.SWORD and attack.unlocked_weapons[weapon] == true:
+				items_dropabale.append(Data.WEAPONS[weapon].ammo)
+		items_dropabale.append(Data.Items.LIFE)
+		item.type = items_dropabale[randi() % len(items_dropabale)]
 		item.position = position
 		get_parent().add_child(item)
 		queue_free()

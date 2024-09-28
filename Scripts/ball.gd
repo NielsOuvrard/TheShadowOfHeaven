@@ -17,6 +17,7 @@ var thrower : String
 var target : String
 var type : Data.Projectiles
 var is_shadow := false
+var weapons_unlocked := {}
 
 const DAMAGE_TEXT = preload("res://Scenes/damage_text.tscn")
 
@@ -42,7 +43,7 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if body.is_in_group(target) and body.has_method("damage"):
-		var attack = Attack.new(Data.PROJECTILS[type].damage, position, Data.PROJECTILS[type].knockback)
+		var attack = Attack.new(Data.PROJECTILS[type].damage, position, Data.PROJECTILS[type].knockback, weapons_unlocked)
 		var damage_given = body.damage(attack)
 		var damage_text = DAMAGE_TEXT.instantiate()
 		damage_text.text = str(damage_given)
