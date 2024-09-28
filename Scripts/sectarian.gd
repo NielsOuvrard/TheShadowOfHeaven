@@ -23,6 +23,7 @@ enum Movement {
 @export var SPEED := 900.0
 
 var direction = Vector2.ZERO
+var knockback_velocity = Vector2.ZERO
 
 # for now, we will put a scene for each weapon_sprite's bullet
 const BALL = preload("res://scenes/ball.tscn")
@@ -44,13 +45,18 @@ func _ready():
 
 func _physics_process(delta):
 	velocity = direction * SPEED * delta
-
+	velocity += knockback_velocity
+	knockback_velocity = knockback_velocity.lerp(Vector2.ZERO, 0.1)
 	move_and_slide()
 
-func take_damage(damage: int) -> int:
-	var damage_received = min(damage, life)
-	life -= damage
+func damage(attack: Attack) -> int:
+	var damage_received = min(attack.damage, life)
+	life -= attack.damage
 	progress_bar.value = life
+
+	if attack.knockback > 0.0:
+		knockback_velocity = (position - attack.position).normalized() * attack.knockback
+
 	if life <= 0:
 		var item = ITEM.instantiate()
 		item.type = randi() % Data.Items.size()
@@ -68,6 +74,8 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 
 func _on_shot_cooldown_timeout() -> void:
 	var ball = BALL.instantiate()
+	
+	# TODO real IA, if enemy detect player
 	var player = get_tree().get_nodes_in_group("player")[0]  # get the player node
 	ball.direction_ball = (player.global_position - global_position).normalized()  # calculate the direction to the player
 	ball.thrower = "enemies"

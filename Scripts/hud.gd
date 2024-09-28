@@ -9,7 +9,7 @@ extends CanvasLayer
 
 @onready var weapon: Node2D = $Right/Weapon
 @onready var heart: Sprite2D = $Left/Heart
-@onready var cursor: Sprite2D = $Cursor
+@onready var cursor: Sprite2D = $Center/Cursor
 
 @onready var cur_text: Label = $Right/CurText
 @onready var inv_text: Label = $Right/InvText

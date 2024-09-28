@@ -143,6 +143,10 @@ func change_weapon():
 
 	if next_weapon == current_weapon:
 		return
+	
+	# auto reload
+	if current_weapon != Data.Weapons.SWORD and ammo_current[current_weapon] == 0 and ammo_inventory[current_weapon] > 0:
+		reload()
 	current_weapon = next_weapon as Data.Weapons
 	weapon_sprite.texture = load(Data.WEAPONS[current_weapon].texture)
 
@@ -161,12 +165,16 @@ func unlock_weapon(weapon: Data.Weapons):
 	weapons_unlocked[weapon] = true
 
 # TODO put this in a component
-func take_damage(damage: int):
-	var damage_received = min(damage, life)
+func damage(attack: Attack) -> int:
+	var damage_received = min(attack.damage, life)
 	if life <= 0:
 		damage_received = 0
-	life -= damage
+	life -= attack.damage
 	life_bar.value = life
+
+	if attack.knockback > 0.0:
+		velocity = (position - attack.position).normalized() * attack.knockback
+
 	if life <= 0:
 		# TODO game over
 		print("Game Over")
@@ -223,8 +231,9 @@ func _physics_process(delta):
 		shoot()
 
 func _on_sword_attack_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
-		var damage_given = body.take_damage(60)
+	if body.is_in_group("enemies") and body.has_method("damage"):
+		var attack = Attack.new(60, position, 100)
+		var damage_given = body.damage(attack)
 		var damage_text = DAMAGE_TEXT.instantiate()
 		damage_text.text = str(damage_given)
 		damage_text.position = position

@@ -41,8 +41,9 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	if body.is_in_group(target):
-		var damage_given = body.take_damage(Data.PROJECTILS[type].damage)
+	if body.is_in_group(target) and body.has_method("damage"):
+		var attack = Attack.new(Data.PROJECTILS[type].damage, position, Data.PROJECTILS[type].knockback)
+		var damage_given = body.damage(attack)
 		var damage_text = DAMAGE_TEXT.instantiate()
 		damage_text.text = str(damage_given)
 		damage_text.position = position
