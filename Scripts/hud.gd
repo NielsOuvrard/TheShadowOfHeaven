@@ -21,23 +21,6 @@ func _ready() -> void:
 	weapon.type = Data.Weapons.SWORD
 	weapon._ready()
 
-func look_player():
-	var direction_input = Vector2.ZERO
-
-	if Input.is_action_pressed('look_right'):
-		direction_input.x += Input.get_action_strength('look_right')
-	if Input.is_action_pressed('look_left'):
-		direction_input.x -= Input.get_action_strength('look_left')
-	if Input.is_action_pressed('look_down'):
-		direction_input.y += Input.get_action_strength('look_down')
-	if Input.is_action_pressed('look_up'):
-		direction_input.y -= Input.get_action_strength('look_up')
-
-	# * if we are using the controller
-	if direction_input != Vector2.ZERO:
-		return direction_input.normalized()
-	return Vector2.ZERO # change this
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	var player = get_tree().get_nodes_in_group("player")[0]  # get the player node
@@ -53,6 +36,10 @@ func _process(_delta: float) -> void:
 		cur_text.text = str(player.ammo_current[player.current_weapon])
 		inv_text.text = str(player.ammo_inventory[player.current_weapon])
 		
-	var cursor_vector = look_player()
-	if cursor_vector != Vector2.ZERO:
-		cursor.rotation = cursor_vector.angle()
+	if Data.is_playing_controller:
+		cursor.visible = true
+		var cursor_vector = player.look_direction
+		if cursor_vector != Vector2.ZERO:
+			cursor.rotation = cursor_vector.angle()
+	else:
+		cursor.visible = false

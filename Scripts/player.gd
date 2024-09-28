@@ -21,11 +21,14 @@ extends CharacterBody2D
 @onready var sword_attack_animation: AnimationPlayer = $SwordAttack/Animation
 @onready var sword_collision: CollisionShape2D = $SwordAttack/Collision
 
-@export var SPEED = 5000.0
-@export var ACCELERATION = 0.2
+@export var SPEED := 5000.0
+@export var ACCELERATION := 0.2
 @export var life := 100
 @export var current_weapon := Data.Weapons.SWORD
 @export var debug := false
+
+var look_direction := Vector2.ZERO
+var last_look_direction_mouse := Vector2.ZERO
 
 # TODO components
 # - health
@@ -86,12 +89,17 @@ func look_player():
 
 	# * if we are using the controller
 	if direction_input != Vector2.ZERO:
-		return direction_input.normalized()
+		Data.is_playing_controller = true
+		look_direction = direction_input.normalized()
+		return
 
 	# * if we are using the mouse
 	var window_size = get_viewport().get_visible_rect().size
 	var mouse_position = get_viewport().get_mouse_position() - window_size / 2
-	return mouse_position.normalized()
+	if last_look_direction_mouse != mouse_position.normalized():
+		look_direction = mouse_position.normalized()
+		Data.is_playing_controller = false
+		last_look_direction_mouse = mouse_position.normalized()
 
 func shoot():
 	if not reload_cooldown.is_stopped():
@@ -99,7 +107,7 @@ func shoot():
 	shoot_cooldown.start()
 	if current_weapon == Data.Weapons.SWORD:
 		sword_attack_animation.play("sword_attack")
-		sword_attack.rotation = look_player().angle() + (3.0 / 4.0 * PI)
+		sword_attack.rotation = look_direction.angle() + (3.0 / 4.0 * PI)
 		return
 	if ammo_current[current_weapon] == 0:
 		reload()
@@ -107,7 +115,7 @@ func shoot():
 	ammo_current[current_weapon] -= 1
 
 	var ball = BALL.instantiate()
-	ball.direction_ball = look_player()
+	ball.direction_ball = look_direction
 	ball.thrower = "player"
 	ball.target = "enemies"
 	ball.type = Data.WEAPONS[current_weapon].projectile
@@ -206,7 +214,7 @@ func _physics_process(delta):
 	else:
 		animated_sprite.play("Idle")
 	direction = direction.rotated(rotation)
-	
+
 	# * Velocity 
 	var target_velocity = Vector2.ZERO
 	if direction != Vector2.ZERO:
@@ -217,17 +225,21 @@ func _physics_process(delta):
 	velocity = velocity.lerp(target_velocity, ACCELERATION)
 	move_and_slide()
 
+	# * Look
+	look_player()
+
 	# * Actions
-	if Input.is_action_pressed("reload") and shoot_cooldown.is_stopped():
-		shoot_cooldown.start()
-		reload()
+	if shoot_cooldown.is_stopped():
+		if Input.is_action_pressed('reload'):
+			shoot_cooldown.start()
+			reload()
 
-	if Input.is_action_pressed("change_weapon") and shoot_cooldown.is_stopped():
-		shoot_cooldown.start()
-		change_weapon()
+		if Input.is_action_pressed('change_weapon'):
+			shoot_cooldown.start()
+			change_weapon()
 
-	if Input.is_action_pressed('shoot') and shoot_cooldown.is_stopped():
-		shoot()
+		if Input.is_action_pressed('shoot'):
+			shoot()
 
 func _on_sword_attack_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies") and body.has_method("damage"):

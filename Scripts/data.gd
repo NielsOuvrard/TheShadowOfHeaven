@@ -161,3 +161,6 @@ const ITEMS = {
 
 func rand_range(min_value: int, max_value: int) -> int:
 	return randi() % (max_value - min_value) + min_value
+
+# not fan of putting this here, but it's working
+var is_playing_controller := false
