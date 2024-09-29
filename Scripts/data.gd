@@ -98,12 +98,12 @@ const PROJECTILS = {
 	},
 	Projectiles.RAYGUN: {
 		"animation": "raygun", # this one is different, it's a ray
-		"speed": 300,
+		"speed": 100,
 		"damage": 40,
 		"knockback": 0.0,
 		"light_energy": 1,
 		"light_color": Color(0, 1, 1, 1),
-		"collision_scale": Vector2(10, 10),
+		"collision_scale": Vector2(1, 1),
 		"collision_radius": 5.83
 	},
 	Projectiles.ENEMIES: {

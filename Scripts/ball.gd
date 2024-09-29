@@ -36,7 +36,12 @@ func _ready():
 	collision.scale = Data.PROJECTILS[type].collision_scale
 	collision.shape.radius = Data.PROJECTILS[type].collision_radius
 
-	sprite.rotation = direction_ball.angle()
+	sprite.flip_h = direction_ball.x < 0
+	if direction_ball.x < 0:
+		sprite.rotation = direction_ball.angle() + PI
+	else:
+		sprite.rotation = direction_ball.angle()
+
 	if is_shadow:
 		shadow_small.visible = true
 	

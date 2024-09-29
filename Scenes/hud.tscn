@@ -51,7 +51,7 @@ texture = ExtResource("1_nn1e5")
 stretch_mode = 4
 
 [node name="Weapon" parent="Right" instance=ExtResource("5_s1o24")]
-position = Vector2(-64, 80)
+position = Vector2(-64, 136)
 scale = Vector2(8, 8)
 is_static = true
 

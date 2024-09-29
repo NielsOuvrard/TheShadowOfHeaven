@@ -251,11 +251,10 @@ radius = 5.0
 script = ExtResource("1_bqjdq")
 
 [node name="ShadowSmall" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, 7)
 texture = ExtResource("2_roc7b")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_5qtxd")
 animation = &"shotgun"
 

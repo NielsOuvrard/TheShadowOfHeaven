@@ -36,18 +36,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		damage_text.text = str(nmb)
 		damage_text.position = position
 		get_parent().add_child(damage_text)
-		queue_free()
-
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	#if area.is_in_group("player"):
-	var body = area.get_parent()
-	var nmb = Data.rand_range(Data.ITEMS[type].n_min, Data.ITEMS[type].n_max)
-	body.add_to_inventory(type, nmb)
-
-	var damage_text = DAMAGET_TEXT.instantiate()
-	damage_text.text = str(nmb)
-	damage_text.position = position
-	get_parent().add_child(damage_text)
-
 	queue_free()

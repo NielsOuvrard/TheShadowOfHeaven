@@ -71,6 +71,7 @@ collision_mask = 5
 sprite_frames = SubResource("SpriteFrames_sh6yb")
 autoplay = "default"
 frame_progress = 0.406218
+offset = Vector2(0, -12)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(0.2, 0.2)
@@ -79,6 +80,5 @@ shadow_enabled = true
 texture = ExtResource("2_ftp3d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 12)
 scale = Vector2(1, 0.47)
 shape = SubResource("RectangleShape2D_oigc6")
