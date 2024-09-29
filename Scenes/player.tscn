@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://0y06vbi8ods3"]
+[gd_scene load_steps=30 format=3 uid="uid://0y06vbi8ods3"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_flqv2"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_8qbm6"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://rhxx7fe8qg4m" path="res://Assets/Characters/AngelSprite.png" id="4_auylh"]
 [ext_resource type="Script" path="res://Scripts/sword_attack.gd" id="5_rnjnq"]
 [ext_resource type="Texture2D" uid="uid://btn2i18uvt7qf" path="res://Assets/Characters/EspadaSlash.png" id="5_y8fcm"]
+[ext_resource type="PackedScene" uid="uid://1x2po7j8v5h5" path="res://Scenes/Components/hitbox.tscn" id="7_x6n5e"]
+[ext_resource type="PackedScene" uid="uid://dp35m0rg0pdly" path="res://Scenes/Components/health.tscn" id="8_tbca4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_koeyi"]
 atlas = ExtResource("4_auylh")
@@ -69,8 +71,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hv8be"]
-size = Vector2(10, 14)
+[sub_resource type="CircleShape2D" id="CircleShape2D_tkcmj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5jfo"]
 bg_color = Color(1, 0, 0, 1)
@@ -251,7 +252,11 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_owcke"]
 radius = 13.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hv8be"]
+size = Vector2(10, 14)
+
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 52
 script = ExtResource("1_flqv2")
 
 [node name="ShadowSmall" type="Sprite2D" parent="."]
@@ -268,8 +273,11 @@ offset = Vector2(-1, 0)
 position = Vector2(1, 0)
 texture = ExtResource("4_12yd1")
 
-[node name="Collision" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_hv8be")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visibility_layer = 52
+position = Vector2(0, 7)
+scale = Vector2(0.67, 0.29)
+shape = SubResource("CircleShape2D_tkcmj")
 
 [node name="ReloadCooldown" type="Timer" parent="."]
 one_shot = true
@@ -289,6 +297,8 @@ value = 50.0
 show_percentage = false
 
 [node name="SwordAttack" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("5_rnjnq")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="SwordAttack"]
@@ -307,4 +317,15 @@ position = Vector2(-6, -5)
 shape = SubResource("CircleShape2D_owcke")
 disabled = true
 
+[node name="Hitbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_x6n5e")]
+collision_mask = 72
+health_component = NodePath("../Health")
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_hv8be")
+
+[node name="Health" parent="." instance=ExtResource("8_tbca4")]
+life = 100
+
+[connection signal="area_entered" from="SwordAttack" to="." method="_on_sword_attack_area_entered"]
 [connection signal="body_entered" from="SwordAttack" to="." method="_on_sword_attack_body_entered"]

@@ -14,7 +14,7 @@ enum Movement {
 	VERTICAL
 }
 
-@onready var progress_bar: ProgressBar = $ProgressBar
+@onready var life_bar: ProgressBar = $LifeBar
 @onready var sectario: Sprite2D = $Sectario
 @onready var shot_cooldown: Timer = $ShotCooldown
 
@@ -40,8 +40,11 @@ func _ready():
 	shot_cooldown.wait_time = float(Data.rand_range(10, 30)) / 10
 	shot_cooldown.start()
 	
-	progress_bar.max_value = life
-	progress_bar.value = life
+	life_bar.max_value = life
+	life_bar.value = life
+
+func add_knockback(knockback: Vector2):
+	knockback_velocity = knockback
 
 func _physics_process(delta):
 	velocity = direction * SPEED * delta
@@ -49,27 +52,9 @@ func _physics_process(delta):
 	knockback_velocity = knockback_velocity.lerp(Vector2.ZERO, 0.1)
 	move_and_slide()
 
-func damage(attack: Attack) -> int:
-	var damage_received = min(attack.damage, life)
-	life -= attack.damage
-	progress_bar.value = life
-
-	if attack.knockback > 0.0:
-		knockback_velocity = (position - attack.position).normalized() * attack.knockback
-
-	if life <= 0:
-		var item = ITEM.instantiate()
-		var items_dropabale := []
-		for weapon in attack.unlocked_weapons:
-			if weapon != Data.Weapons.SWORD and attack.unlocked_weapons[weapon] == true:
-				items_dropabale.append(Data.WEAPONS[weapon].ammo)
-		items_dropabale.append(Data.Items.LIFE)
-		item.type = items_dropabale[randi() % len(items_dropabale)]
-		item.position = position
-		get_parent().add_child(item)
-		queue_free()
-	return damage_received
-
+func update_life(new_life: int):
+	life_bar.value = new_life
+	life = new_life
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	direction = -direction
@@ -81,7 +66,7 @@ func _on_shot_cooldown_timeout() -> void:
 	var ball = BALL.instantiate()
 	
 	# TODO real IA, if enemy detect player
-	var player = get_tree().get_nodes_in_group("player")[0]  # get the player node
+	var player = get_tree().get_first_node_in_group("player")
 	ball.direction_ball = (player.global_position - global_position).normalized()  # calculate the direction to the player
 	ball.thrower = "enemies"
 	ball.target = "player"

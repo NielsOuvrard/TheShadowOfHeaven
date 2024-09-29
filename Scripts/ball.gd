@@ -6,11 +6,12 @@
 # Date: 24-09-2024
 #
 
-extends Area2D
+extends Node2D
 @onready var point_light: PointLight2D = $PointLight2D
 @onready var sprite: AnimatedSprite2D = $Sprite
-@onready var collision: CollisionShape2D = $CollisionShape2D
+@onready var collision: CollisionShape2D = $Hitbox/CollisionShape2D
 @onready var shadow_small: Sprite2D = $ShadowSmall
+@onready var hitbox: Hitbox = $Hitbox
 
 var direction_ball : Vector2
 var thrower : String
@@ -21,7 +22,11 @@ var weapons_unlocked := {}
 
 const DAMAGE_TEXT = preload("res://Scenes/damage_text.tscn")
 
-# BALL
+const LAYER_PLAYER = 1
+const LAYER_PLAYER_ATTACK = 2
+const LAYER_ENEMY = 4
+const LAYER_ENEMY_ATTACK = 8
+
 
 func _ready():
 	add_to_group("projectiles") # useless for now
@@ -34,28 +39,28 @@ func _ready():
 	sprite.rotation = direction_ball.angle()
 	if is_shadow:
 		shadow_small.visible = true
+	
+	hitbox.collision_layer = LAYER_PLAYER_ATTACK if thrower == "player" else LAYER_ENEMY_ATTACK
+	hitbox.collision_mask = 48 + (LAYER_PLAYER if thrower != "player" else LAYER_ENEMY)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var velocity = direction_ball * Data.PROJECTILS[type].speed * delta
 	position += velocity
 
-
-func _on_body_entered(body):
-	if body.is_in_group(target) and body.has_method("damage"):
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area is Hitbox and area.get_parent().is_in_group(target): 
 		var attack = Attack.new(Data.PROJECTILS[type].damage, position, Data.PROJECTILS[type].knockback, weapons_unlocked)
-		var damage_given = body.damage(attack)
+		var damage_given = area.damage(attack)
 		var damage_text = DAMAGE_TEXT.instantiate()
 		damage_text.text = str(damage_given)
 		damage_text.position = position
 		get_parent().add_child(damage_text)
-	elif body.is_in_group(thrower):
-		return
-	queue_free()
-
-
-func _on_area_entered(area: Area2D) -> void:
+		queue_free()
 	if area.is_in_group("sword_attack"):
-		print(area)
+		queue_free()
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	# if it's the player body, don't care the area will handle it
+	# maybe find a better way to do it
+	if not body.has_method("shoot"):
 		queue_free()

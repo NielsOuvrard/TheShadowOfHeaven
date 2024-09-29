@@ -110,7 +110,7 @@ const PROJECTILS = {
 		"animation": "enemies",
 		"speed": 150,
 		"damage": 30,
-		"knockback": 0.0,
+		"knockback": 5.0,
 		"light_energy": 0.5,
 		"light_color": Color(1, 0.5, 0, 1),
 		"collision_scale": Vector2(1.2, 0.7),

@@ -283,6 +283,8 @@ _data = {
 radius = 23.1948
 
 [node name="Door" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 5
 script = ExtResource("1_82spt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -310,6 +312,7 @@ libraries = {
 
 [node name="Front" type="Area2D" parent="."]
 position = Vector2(0, -12)
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Front"]
 scale = Vector2(1, 0.5)
@@ -317,6 +320,7 @@ shape = SubResource("CircleShape2D_cvyxd")
 
 [node name="Back" type="Area2D" parent="."]
 position = Vector2(0, 12)
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Back"]
 scale = Vector2(1, 0.5)

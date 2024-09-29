@@ -23,19 +23,13 @@ extends CharacterBody2D
 
 @export var SPEED := 5000.0
 @export var ACCELERATION := 0.2
-@export var life := 100
+@export var life := 100 # ? remove this for Health Component
 @export var current_weapon := Data.Weapons.SWORD
 @export var debug := false
 
 var look_direction := Vector2.ZERO
 var last_look_direction_mouse := Vector2.ZERO
-
-# TODO components
-# - health
-# - attack
-# - hitbox
-
-
+var knockback_velocity := Vector2.ZERO
 
 # for now, we will put a scene for each weapon_sprite's bullet
 const BALL = preload("res://scenes/ball.tscn")
@@ -74,6 +68,12 @@ func _ready():
 func change_radius_sword_collision(value: float):
 	sword_collision.shape.radius = value
 
+func update_life(new_life: int):
+	life_bar.value = new_life
+	life = new_life
+
+func add_knockback(knockback: Vector2):
+	knockback_velocity = knockback
 
 func look_player():
 	var direction_input = Vector2.ZERO
@@ -161,6 +161,7 @@ func change_weapon():
 	reload_cooldown.wait_time = Data.WEAPONS[current_weapon].cooldown_reload
 	shoot_cooldown.wait_time = Data.WEAPONS[current_weapon].cooldown_shot
 
+# TODO inside hitbox component ?
 func add_to_inventory(item: Data.Items, number: int):
 	if item == Data.Items.LIFE:
 		life += number
@@ -170,23 +171,6 @@ func add_to_inventory(item: Data.Items, number: int):
 
 func unlock_weapon(weapon: Data.Weapons):
 	weapons_unlocked[weapon] = true
-
-# TODO put this in a component
-func damage(attack: Attack) -> int:
-	var damage_received = min(attack.damage, life)
-	if life <= 0:
-		damage_received = 0
-	life -= attack.damage
-	life_bar.value = life
-
-	if attack.knockback > 0.0:
-		velocity = (position - attack.position).normalized() * attack.knockback
-
-	if life <= 0:
-		# TODO game over
-		print("Game Over")
-	return damage_received
-
 
 func _physics_process(delta):
 	# * Direction
@@ -223,6 +207,8 @@ func _physics_process(delta):
 		target_velocity = Vector2.ZERO
 	# Use lerp to smoothly transition the velocity
 	velocity = velocity.lerp(target_velocity, ACCELERATION)
+	velocity += knockback_velocity
+	knockback_velocity = knockback_velocity.lerp(Vector2.ZERO, 0.1)
 	move_and_slide()
 
 	# * Look
@@ -241,13 +227,13 @@ func _physics_process(delta):
 		if Input.is_action_pressed('shoot'):
 			shoot()
 
-func _on_sword_attack_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies") and body.has_method("damage"):
+func _on_sword_attack_area_entered(area: Area2D) -> void:
+	if area is Hitbox:
 		var attack = Attack.new(60, position, 100, weapons_unlocked)
-		var damage_given = body.damage(attack)
+		var damage_given = area.damage(attack)
 		var damage_text = DAMAGE_TEXT.instantiate()
 		damage_text.text = str(damage_given)
-		damage_text.position = position
+		damage_text.position = area.get_parent().position
 		get_parent().add_child(damage_text)
 
 

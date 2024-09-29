@@ -1,9 +1,10 @@
-[gd_scene load_steps=37 format=3 uid="uid://cmw0ljnlnfdib"]
+[gd_scene load_steps=38 format=3 uid="uid://cmw0ljnlnfdib"]
 
 [ext_resource type="Script" path="res://Scripts/ball.gd" id="1_bqjdq"]
 [ext_resource type="Texture2D" uid="uid://b0606qmktrjkd" path="res://Assets/light_halo.png" id="2_56tqa"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_roc7b"]
 [ext_resource type="Texture2D" uid="uid://khoheu8iu4pt" path="res://Assets/Items/Bullets.png" id="3_fh0sp"]
+[ext_resource type="PackedScene" uid="uid://1x2po7j8v5h5" path="res://Scenes/Components/hitbox.tscn" id="5_fnvfa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8kqn0"]
 atlas = ExtResource("3_fh0sp")
@@ -246,7 +247,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ub76g"]
 radius = 5.0
 
-[node name="Ball" type="Area2D"]
+[node name="Ball" type="Node2D"]
 script = ExtResource("1_bqjdq")
 
 [node name="ShadowSmall" type="Sprite2D" parent="."]
@@ -258,14 +259,18 @@ texture = ExtResource("2_roc7b")
 sprite_frames = SubResource("SpriteFrames_5qtxd")
 animation = &"shotgun"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1.2, 0.6)
-shape = SubResource("CircleShape2D_ub76g")
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(0.037037, 0.037037)
 energy = 0.4
 texture = ExtResource("2_56tqa")
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="Hitbox" parent="." instance=ExtResource("5_fnvfa")]
+collision_layer = 8
+collision_mask = 49
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+scale = Vector2(1.2, 0.6)
+shape = SubResource("CircleShape2D_ub76g")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

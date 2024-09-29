@@ -16,14 +16,12 @@ extends CanvasLayer
 
 var current_weapon := Data.Weapons.SWORD
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	weapon.type = Data.Weapons.SWORD
 	weapon._ready()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	var player = get_tree().get_nodes_in_group("player")[0]  # get the player node
+	var player = get_tree().get_first_node_in_group("player")
 	if current_weapon != player.current_weapon:
 		current_weapon = player.current_weapon
 		weapon.type = player.current_weapon
