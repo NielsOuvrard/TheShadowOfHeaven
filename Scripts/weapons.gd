@@ -6,7 +6,7 @@
 # Date: 24-09-2024
 #
 
-extends Node2D
+extends Node2D # change it to area 2D directly ?
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var weapon_sprite: Sprite2D = $WeaponSprite

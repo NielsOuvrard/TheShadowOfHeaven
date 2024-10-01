@@ -47,7 +47,9 @@ var sect_look_at = Vector2.RIGHT
 var knockback_velocity = Vector2.ZERO
 var last_time_i_saw_him : Vector2
 
+# TODO if player very close, he will attack
 # TODO if he takes a projectile, he will search at the projectile's position
+# TODO if he gets attacking, he send a signal to clsest enemy to attack the player
 
 # for now, we will put a scene for each weapon_sprite's bullet
 const PROJECTILE = preload("res://scenes/projectile.tscn")
@@ -150,6 +152,8 @@ func lets_aim_that_mother_fucker(player: Node, delta: float) -> void:
 
 func fuck_i_lost_him(delta: float):
 	if (last_time_i_saw_him - position).length() < 5:
+		sect_look_at = sect_look_at.rotated(SPEED_ROTATE)
+		update_rotation()
 		return
 	direction = (last_time_i_saw_him - position).normalized()
 	velocity += direction * SPEED * delta

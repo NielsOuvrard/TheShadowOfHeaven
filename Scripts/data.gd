@@ -75,6 +75,8 @@ const WEAPONS = {
 	}
 }
 
+
+# ? remplace collision data by animationPlayer ?
 const PROJECTILS = {
 	Projectiles.PISTOL: {
 		"animation": "pistol",

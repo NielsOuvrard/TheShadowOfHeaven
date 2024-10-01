@@ -162,6 +162,9 @@ position = Vector2(-97.2414, 370.7)
 rotation = 0.700315
 progress = 447.311
 
+[node name="Sectarian" parent="Sectarians" instance=ExtResource("3_oa1ul")]
+position = Vector2(97, 8)
+
 [node name="Items" type="Node2D" parent="."]
 y_sort_enabled = true
 
