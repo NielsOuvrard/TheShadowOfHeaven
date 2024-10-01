@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://f7hotqo1373f"]
+[gd_scene load_steps=9 format=4 uid="uid://f7hotqo1373f"]
 
 [ext_resource type="TileSet" uid="uid://dm8na3erkiu3q" path="res://TileSet/greed.tres" id="1_coy4n"]
 [ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="3_1socm"]
@@ -7,6 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://bcbtjhffrph75" path="res://Scenes/item.tscn" id="5_43vmu"]
 [ext_resource type="PackedScene" uid="uid://edx4h5swy4gu" path="res://Scenes/door.tscn" id="6_6swl3"]
 [ext_resource type="PackedScene" uid="uid://0y06vbi8ods3" path="res://Scenes/player.tscn" id="7_f7bvl"]
+
+[sub_resource type="Curve2D" id="Curve2D_dd8lc"]
+_data = {
+"points": PackedVector2Array(28.8721, 20.3259, -28.8721, -20.3259, 249, 272, 16.1684, -17.5542, -16.1684, 17.5542, -93.0422, 273.195, -15.0135, -16.8613, 15.0135, 16.8613, -98, 370, -13.3966, 12.7037, 13.3966, -12.7037, 246, 370, 16.6303, 24.2525, -16.6303, -24.2525, 249, 272)
+}
+point_count = 5
 
 [node name="Greed" type="Node2D"]
 y_sort_enabled = true
@@ -104,7 +110,7 @@ rotation = 3.14159
 y_sort_enabled = true
 
 [node name="Sectarian1" parent="Sectarians" instance=ExtResource("3_oa1ul")]
-position = Vector2(368, 304)
+position = Vector2(165, 332)
 movement_type = 2
 
 [node name="Sectarian2" parent="Sectarians" instance=ExtResource("3_oa1ul")]
@@ -119,25 +125,42 @@ movement_type = 1
 position = Vector2(632, -136)
 movement_type = 2
 
-[node name="Sectarian9" parent="Sectarians" instance=ExtResource("3_oa1ul")]
+[node name="Sectarian9" parent="Sectarians" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_oa1ul")]
 position = Vector2(-96, 344)
 movement_type = 2
+followed_path = NodePath("../Path2D/PathFollow2D")
 
 [node name="Sectarian3" parent="Sectarians" instance=ExtResource("3_oa1ul")]
-position = Vector2(464, 288)
+position = Vector2(466, 294)
 movement_type = 1
 
-[node name="Sectarian4" parent="Sectarians" instance=ExtResource("3_oa1ul")]
+[node name="Sectarian4" parent="Sectarians" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_oa1ul")]
 position = Vector2(162, 285)
 movement_type = 1
+followed_path = NodePath("../Path2D/PathFollow2D2")
+offset_followed_path = 0.5
 
 [node name="Sectarian5" parent="Sectarians" instance=ExtResource("3_oa1ul")]
-position = Vector2(493, 258)
+position = Vector2(497, 250)
 movement_type = 2
 
 [node name="Sectarian6" parent="Sectarians" instance=ExtResource("3_oa1ul")]
 position = Vector2(560, -120)
 movement_type = 1
+
+[node name="Path2D" type="Path2D" parent="Sectarians"]
+position = Vector2(0.324127, 38.1656)
+scale = Vector2(1.00303, 0.89985)
+curve = SubResource("Curve2D_dd8lc")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Sectarians/Path2D"]
+position = Vector2(249, 272)
+rotation = -2.52819
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Sectarians/Path2D"]
+position = Vector2(-97.2414, 370.7)
+rotation = 0.700315
+progress = 447.311
 
 [node name="Items" type="Node2D" parent="."]
 y_sort_enabled = true

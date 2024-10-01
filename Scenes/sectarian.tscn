@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://ci1y4rydunn2t"]
+[gd_scene load_steps=12 format=3 uid="uid://ci1y4rydunn2t"]
 
 [ext_resource type="Texture2D" uid="uid://iurnteuwp7yk" path="res://Assets/Characters/Sectario.png" id="1_2lbij"]
 [ext_resource type="Script" path="res://Scripts/sectarian.gd" id="1_oxo2l"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_jb6il"]
+[ext_resource type="Texture2D" uid="uid://dtwdluqpoaog6" path="res://Assets/light_30_1.8.1.png" id="4_fy6r3"]
 [ext_resource type="PackedScene" uid="uid://dp35m0rg0pdly" path="res://Scenes/Components/health.tscn" id="4_p6th1"]
 [ext_resource type="PackedScene" uid="uid://1x2po7j8v5h5" path="res://Scenes/Components/hitbox.tscn" id="5_vgrfs"]
 
@@ -28,6 +29,14 @@ collision_layer = 4
 collision_mask = 53
 script = ExtResource("1_oxo2l")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.073, 0.073)
+color = Color(1, 0, 0, 1)
+energy = 10.0
+shadow_enabled = true
+texture = ExtResource("4_fy6r3")
+offset = Vector2(-540, 0)
+
 [node name="ShadowSmall" type="Sprite2D" parent="."]
 texture = ExtResource("2_jb6il")
 
@@ -35,13 +44,15 @@ texture = ExtResource("2_jb6il")
 texture = ExtResource("1_2lbij")
 offset = Vector2(0, -8)
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(-32, 0)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0)
 scale = Vector2(0.9, 0.47)
 shape = SubResource("CircleShape2D_4000s")
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(1, -5)
+position = Vector2(0, -5)
 collision_layer = 4
 collision_mask = 48
 
@@ -73,7 +84,7 @@ collision_mask = 2
 health_component = NodePath("../Health")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(1, 3)
+position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_1f8bk")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
