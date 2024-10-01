@@ -36,4 +36,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		damage_text.text = str(nmb)
 		damage_text.position = position
 		get_parent().add_child(damage_text)
-	queue_free()
+		queue_free()

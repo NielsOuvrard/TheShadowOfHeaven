@@ -32,7 +32,7 @@ var last_look_direction_mouse := Vector2.ZERO
 var knockback_velocity := Vector2.ZERO
 
 # for now, we will put a scene for each weapon_sprite's bullet
-const BALL = preload("res://scenes/ball.tscn")
+const PROJECTILE = preload("res://scenes/projectile.tscn")
 const DAMAGE_TEXT = preload("res://Scenes/damage_text.tscn")
 
 var ammo_inventory := {
@@ -114,14 +114,14 @@ func shoot():
 		return
 	ammo_current[current_weapon] -= 1
 
-	var ball = BALL.instantiate()
-	ball.direction_ball = look_direction
-	ball.thrower = "player"
-	ball.target = "enemies"
-	ball.type = Data.WEAPONS[current_weapon].projectile
-	ball.weapons_unlocked = weapons_unlocked
-	ball.position = position
-	get_parent().add_child(ball)
+	var proj = PROJECTILE.instantiate()
+	proj.direction_proj = look_direction
+	proj.thrower = "player"
+	proj.target = "enemies"
+	proj.type = Data.WEAPONS[current_weapon].projectile
+	proj.weapons_unlocked = weapons_unlocked
+	proj.position = position
+	get_parent().add_child(proj)
 
 
 func reload():
@@ -231,10 +231,11 @@ func _on_sword_attack_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
 		var attack = Attack.new(60, position, 100, weapons_unlocked)
 		var damage_given = area.damage(attack)
-		var damage_text = DAMAGE_TEXT.instantiate()
-		damage_text.text = str(damage_given)
-		damage_text.position = area.get_parent().position
-		get_parent().add_child(damage_text)
+		if not area.get_meta("is_projectile"):
+			var damage_text = DAMAGE_TEXT.instantiate()
+			damage_text.text = str(damage_given)
+			damage_text.position = area.get_parent().position
+			get_parent().add_child(damage_text)
 
 
 

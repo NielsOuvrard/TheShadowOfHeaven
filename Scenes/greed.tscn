@@ -104,61 +104,42 @@ rotation = 3.14159
 y_sort_enabled = true
 
 [node name="Sectarian1" parent="Sectarians" instance=ExtResource("3_oa1ul")]
-z_index = 1
-y_sort_enabled = true
 position = Vector2(368, 304)
 movement_type = 2
 
 [node name="Sectarian2" parent="Sectarians" instance=ExtResource("3_oa1ul")]
-z_index = 1
-y_sort_enabled = true
 position = Vector2(472, 56)
 movement_type = 2
 
 [node name="Sectarian7" parent="Sectarians" instance=ExtResource("3_oa1ul")]
-z_index = 1
-y_sort_enabled = true
 position = Vector2(480, 0)
 movement_type = 1
 
 [node name="Sectarian8" parent="Sectarians" instance=ExtResource("3_oa1ul")]
-z_index = 1
-y_sort_enabled = true
 position = Vector2(632, -136)
 movement_type = 2
 
 [node name="Sectarian9" parent="Sectarians" instance=ExtResource("3_oa1ul")]
-z_index = 1
-y_sort_enabled = true
 position = Vector2(-96, 344)
 movement_type = 2
 
 [node name="Sectarian3" parent="Sectarians" instance=ExtResource("3_oa1ul")]
-z_index = 1
-y_sort_enabled = true
 position = Vector2(464, 288)
 movement_type = 1
 
 [node name="Sectarian4" parent="Sectarians" instance=ExtResource("3_oa1ul")]
-z_index = 1
-y_sort_enabled = true
 position = Vector2(162, 285)
 movement_type = 1
 
 [node name="Sectarian5" parent="Sectarians" instance=ExtResource("3_oa1ul")]
-z_index = 1
-y_sort_enabled = true
 position = Vector2(493, 258)
 movement_type = 2
 
 [node name="Sectarian6" parent="Sectarians" instance=ExtResource("3_oa1ul")]
-z_index = 1
-y_sort_enabled = true
 position = Vector2(560, -120)
 movement_type = 1
 
 [node name="Items" type="Node2D" parent="."]
-z_index = 1
 y_sort_enabled = true
 
 [node name="Pistol" parent="Items" instance=ExtResource("3_1socm")]

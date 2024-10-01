@@ -1,7 +1,7 @@
 # sword_attack.gd
 #
 # This script defines the behavior of the sword attack.
-# For now, it only adds the sword attack to the "sword_attack" group, so the ball can detect it.
+# For now, it only adds the sword attack to the "sword_attack" group, so the projectile can detect it.
 #
 # Author: Sol Rojo
 # Date: 28-09-2024

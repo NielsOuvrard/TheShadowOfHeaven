@@ -1,6 +1,6 @@
-# ball.gd
+# projectile.gd
 #
-# This script defines the behavior of the ball that the player shoots.
+# This script defines the behavior of the projectile that the player shoots.
 #
 # Author: Sol Rojo
 # Date: 24-09-2024
@@ -13,7 +13,7 @@ extends Node2D
 @onready var shadow_small: Sprite2D = $ShadowSmall
 @onready var hitbox: Hitbox = $Hitbox
 
-var direction_ball : Vector2
+var direction_proj : Vector2
 var thrower : String
 var target : String
 var type : Data.Projectiles
@@ -36,11 +36,11 @@ func _ready():
 	collision.scale = Data.PROJECTILS[type].collision_scale
 	collision.shape.radius = Data.PROJECTILS[type].collision_radius
 
-	sprite.flip_h = direction_ball.x < 0
-	if direction_ball.x < 0:
-		sprite.rotation = direction_ball.angle() + PI
+	sprite.flip_h = direction_proj.x < 0
+	if direction_proj.x < 0:
+		sprite.rotation = direction_proj.angle() + PI
 	else:
-		sprite.rotation = direction_ball.angle()
+		sprite.rotation = direction_proj.angle()
 
 	if is_shadow:
 		shadow_small.visible = true
@@ -49,7 +49,7 @@ func _ready():
 	hitbox.collision_mask = 48 + (LAYER_PLAYER if thrower != "player" else LAYER_ENEMY)
 
 func _process(delta):
-	var velocity = direction_ball * Data.PROJECTILS[type].speed * delta
+	var velocity = direction_proj * Data.PROJECTILS[type].speed * delta
 	position += velocity
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
@@ -65,7 +65,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		queue_free()
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	# if it's the player body, don't care the area will handle it
-	# maybe find a better way to do it
-	if not body.has_method("shoot"):
+	# collision projectile - walls
+	# if it's the player body,ignore it (the area will handle it)
+	if not (body.is_in_group("enemies") or body.is_in_group("player")):
 		queue_free()

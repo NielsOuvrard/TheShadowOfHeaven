@@ -14,4 +14,7 @@ class_name Hitbox
 func damage(attack: Attack) -> int:
 	if health_component:
 		return health_component.damage(attack)
-	return -1
+	else:
+		# in case of projectile
+		get_parent().queue_free()
+		return 0
