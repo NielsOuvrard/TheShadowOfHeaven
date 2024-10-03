@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://edx4h5swy4gu"]
+[gd_scene load_steps=21 format=3 uid="uid://edx4h5swy4gu"]
 
 [ext_resource type="Script" path="res://Scripts/door.gd" id="1_82spt"]
 [ext_resource type="Texture2D" uid="uid://c0mwunnp724o3" path="res://Assets/World/Puerta.png" id="1_odcv0"]
@@ -147,6 +147,30 @@ tracks/3/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LightOccluder2D:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.14159]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LightOccluder2D2:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_hn64y"]
 resource_name = "closing"
@@ -208,6 +232,30 @@ tracks/4/keys = {
 "args": [0],
 "method": &"set_state"
 }]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LightOccluder2D:rotation")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5708, 3.14159]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LightOccluder2D2:rotation")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5708, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_yjqjs"]
@@ -271,6 +319,30 @@ tracks/4/keys = {
 "method": &"set_state"
 }]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LightOccluder2D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.14159, 1.5708]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LightOccluder2D2:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.5708]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_06uga"]
 _data = {
@@ -281,6 +353,9 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvyxd"]
 radius = 23.1948
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0l2ra"]
+polygon = PackedVector2Array(16, -5, 0, -5, 0, 5, 16, 5)
 
 [node name="Door" type="StaticBody2D"]
 collision_layer = 16
@@ -325,6 +400,15 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Back"]
 scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_cvyxd")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(16, 0)
+rotation = 3.14159
+occluder = SubResource("OccluderPolygon2D_0l2ra")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+position = Vector2(-16, 0)
+occluder = SubResource("OccluderPolygon2D_0l2ra")
 
 [connection signal="body_entered" from="Front" to="." method="_on_front_body_entered"]
 [connection signal="body_exited" from="Front" to="." method="_on_front_body_exited"]
