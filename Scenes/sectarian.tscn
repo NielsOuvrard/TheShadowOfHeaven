@@ -13,14 +13,14 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqnwu"]
 radius = 9.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1f8bk"]
+radius = 6.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sss86"]
 bg_color = Color(1, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lhq6"]
 bg_color = Color(0, 100, 0, 1)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_1f8bk"]
-radius = 6.0
 
 [node name="Sectarian" type="CharacterBody2D"]
 z_index = 1
@@ -29,23 +29,12 @@ collision_layer = 4
 collision_mask = 53
 script = ExtResource("1_oxo2l")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-scale = Vector2(0.073, 0.073)
-color = Color(1, 0, 0, 1)
-energy = 10.0
-shadow_enabled = true
-texture = ExtResource("4_fy6r3")
-offset = Vector2(-540, 0)
-
 [node name="ShadowSmall" type="Sprite2D" parent="."]
 texture = ExtResource("2_jb6il")
 
 [node name="Sectario" type="Sprite2D" parent="."]
 texture = ExtResource("1_2lbij")
 offset = Vector2(0, -8)
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(-32, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.9, 0.47)
@@ -58,6 +47,30 @@ collision_mask = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_cqnwu")
+
+[node name="Hitbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_vgrfs")]
+position = Vector2(0, -8)
+collision_layer = 4
+collision_mask = 2
+health_component = NodePath("../Health")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_1f8bk")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(-32, 0)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.073, 0.073)
+color = Color(1, 0, 0, 1)
+energy = 10.0
+shadow_enabled = true
+texture = ExtResource("4_fy6r3")
+offset = Vector2(-540, 0)
+
+[node name="Health" parent="." instance=ExtResource("4_p6th1")]
+life = 100
 
 [node name="LifeBar" type="ProgressBar" parent="."]
 offset_left = -11.0
@@ -74,18 +87,10 @@ show_percentage = false
 one_shot = true
 autostart = true
 
-[node name="Health" parent="." instance=ExtResource("4_p6th1")]
-life = 100
-
-[node name="Hitbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_vgrfs")]
-position = Vector2(0, -8)
-collision_layer = 4
-collision_mask = 2
-health_component = NodePath("../Health")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, 3)
-shape = SubResource("CircleShape2D_1f8bk")
+[node name="ResearchCoolDown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="ShotCooldown" to="." method="_on_shot_cooldown_timeout"]
+[connection signal="timeout" from="ResearchCoolDown" to="." method="_on_research_cool_down_timeout"]
