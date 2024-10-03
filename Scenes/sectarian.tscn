@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://ci1y4rydunn2t"]
+[gd_scene load_steps=13 format=3 uid="uid://ci1y4rydunn2t"]
 
 [ext_resource type="Texture2D" uid="uid://iurnteuwp7yk" path="res://Assets/Characters/Sectario.png" id="1_2lbij"]
 [ext_resource type="Script" path="res://Scripts/sectarian.gd" id="1_oxo2l"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_jb6il"]
+[ext_resource type="Texture2D" uid="uid://c77fg4lkdytoa" path="res://Assets/Items/small_exclamation_mark.png" id="4_fwcav"]
 [ext_resource type="Texture2D" uid="uid://dtwdluqpoaog6" path="res://Assets/light_30_1.8.1.png" id="4_fy6r3"]
 [ext_resource type="PackedScene" uid="uid://dp35m0rg0pdly" path="res://Scenes/Components/health.tscn" id="4_p6th1"]
 [ext_resource type="PackedScene" uid="uid://1x2po7j8v5h5" path="res://Scenes/Components/hitbox.tscn" id="5_vgrfs"]
@@ -30,11 +31,18 @@ collision_mask = 53
 script = ExtResource("1_oxo2l")
 
 [node name="ShadowSmall" type="Sprite2D" parent="."]
+z_index = 1
 texture = ExtResource("2_jb6il")
 
 [node name="Sectario" type="Sprite2D" parent="."]
+z_index = 1
 texture = ExtResource("1_2lbij")
 offset = Vector2(0, -8)
+
+[node name="Mark" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -28)
+texture = ExtResource("4_fwcav")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.9, 0.47)

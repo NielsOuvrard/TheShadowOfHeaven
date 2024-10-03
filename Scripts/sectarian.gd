@@ -15,6 +15,7 @@ enum Movement {
 }
 
 @onready var sectario: Sprite2D = $Sectario
+@onready var mark_sprite: Sprite2D = $Mark
 @onready var ray_cast: RayCast2D = $RayCast2D
 @onready var torch: PointLight2D = $PointLight2D
 @onready var life_bar: ProgressBar = $LifeBar
@@ -66,6 +67,8 @@ func _ready():
 	
 	life_bar.max_value = life
 	life_bar.value = life
+	
+	mark_sprite.visible = false
 	
 	if followed_path:
 		followed_path.progress_ratio = offset_followed_path
@@ -158,7 +161,10 @@ func _physics_process(delta: float) -> void:
 
 	if is_mother_fucker_in_range(player):
 		state = State.ATTACKING
+		mark_sprite.visible = true
+		mark_sprite.texture = load("res://Assets/Items/small_exclamation_mark.png")
 	elif state == State.ATTACKING:
+		mark_sprite.texture = load("res://Assets/Items/small_interogation_mark.png")
 		state = State.SEARCHING
 		research_cool_down.start()
 		print("fuck lost him in", player.position)
@@ -197,3 +203,4 @@ func _on_shot_cooldown_timeout() -> void:
 
 func _on_research_cool_down_timeout() -> void:
 	state = State.WALKING
+	mark_sprite.visible = false
