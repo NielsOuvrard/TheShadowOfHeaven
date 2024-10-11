@@ -1,17 +1,14 @@
-# projectile.gd
-#
-# This script defines the behavior of the projectile that the player shoots.
-#
-# Author: Sol Rojo
-# Date: 24-09-2024
-#
+## Projectile that player and enemies can shoots.
+##
+## Author: Sol Rojo[br]Date: 24-09-2024
+##
 
 extends Node2D
+
 @onready var point_light: PointLight2D = $PointLight2D
 @onready var sprite: AnimatedSprite2D = $Sprite
-@onready var collision: CollisionShape2D = $Hitbox/CollisionShape2D
+@onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var shadow_small: Sprite2D = $ShadowSmall
-@onready var hitbox: Hitbox = $Hitbox
 
 var direction_proj : Vector2
 var thrower : String
@@ -20,7 +17,7 @@ var type : Data.Projectiles
 var is_shadow := false
 var weapons_unlocked := {}
 
-const DAMAGE_TEXT = preload("res://Scenes/damage_text.tscn")
+const DAMAGE_TEXT = preload("res://Scenes/text_animated.tscn")
 
 const LAYER_PLAYER = 1
 const LAYER_PLAYER_ATTACK = 2
@@ -45,26 +42,28 @@ func _ready():
 	if is_shadow:
 		shadow_small.visible = true
 	
-	hitbox.collision_layer = LAYER_PLAYER_ATTACK if thrower == "player" else LAYER_ENEMY_ATTACK
-	hitbox.collision_mask = 48 + (LAYER_PLAYER if thrower != "player" else LAYER_ENEMY)
+	self.collision_layer = LAYER_PLAYER_ATTACK if thrower == "player" else LAYER_ENEMY_ATTACK
+	self.collision_mask = 48 + (LAYER_PLAYER if thrower != "player" else LAYER_ENEMY)
 
 func _process(delta):
 	var velocity = direction_proj * Data.PROJECTILS[type].speed * delta
 	position += velocity
 
-func _on_hitbox_area_entered(area: Area2D) -> void:
-	if area is Hitbox and area.get_parent().is_in_group(target): 
-		var attack = Attack.new(Data.PROJECTILS[type].damage, position, Data.PROJECTILS[type].knockback, weapons_unlocked)
+func _on_area_entered(area: Area2D) -> void:
+	if area is Hitbox and area.owner.is_in_group(target): 
+		var attack = Attack.new(Data.PROJECTILS[type].damage, position,\
+								Data.PROJECTILS[type].knockback, weapons_unlocked)
 		var damage_given = area.damage(attack)
-		var damage_text = DAMAGE_TEXT.instantiate()
-		damage_text.text = str(damage_given)
-		damage_text.position = position
-		get_parent().add_child(damage_text)
+		var text_animated = DAMAGE_TEXT.instantiate()
+		text_animated.text = str(damage_given)
+		text_animated.position = position
+		get_parent().add_child(text_animated)
 		queue_free()
 	if area.is_in_group("sword_attack"):
 		queue_free()
 
-func _on_hitbox_body_entered(body: Node2D) -> void:
+
+func _on_body_entered(body: Node2D) -> void:
 	# collision projectile - walls
 	# if it's the player body,ignore it (the area will handle it)
 	if not (body.is_in_group("enemies") or body.is_in_group("player")):

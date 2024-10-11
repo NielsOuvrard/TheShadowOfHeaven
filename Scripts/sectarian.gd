@@ -1,31 +1,24 @@
-# sectarian.gd
-#
-# This script defines the behavior of the enemies that the player will face.
-#
-# Author: Sol Rojo
-# Date: 24-09-2024
-#
+## Behavior of sectarian enemies.
+##
+## Author: Sol Rojo[br]Date: 24-09-2024
+##
 
 extends CharacterBody2D
 
+# TODO and if diagonal ? change this to a directions vector
 enum Movement {
 	NONE,
 	HORIZONTAL,
 	VERTICAL
 }
 
-@onready var sectario: Sprite2D = $Sectario
 @onready var mark_sprite: Sprite2D = $Mark
-@onready var ray_cast: RayCast2D = $RayCast2D
-@onready var torch: PointLight2D = $PointLight2D
-@onready var life_bar: ProgressBar = $LifeBar
 @onready var shot_cooldown: Timer = $ShotCooldown
 @onready var research_cool_down: Timer = $ResearchCoolDown
 
 @export var movement_type := Movement.NONE
-@export var life := 100
-@export var SPEED := 900.0
-@export var SPEED_ROTATE := 0.01
+@export var SPEED := 900.0 ## speed movement
+@export var SPEED_ROTATE := 0.03
 
 @export var followed_path : PathFollow2D
 @export var offset_followed_path := 0.0
@@ -47,7 +40,12 @@ var sect_look_at = Vector2.RIGHT
 var knockback_velocity = Vector2.ZERO
 var last_time_i_saw_him : Vector2
 
+# TODO ray cast vision, see the first thing in the way, it can see walls, doors, etc
+
+# TODO if player very close, he will attack
 # TODO if he takes a projectile, he will search at the projectile's position
+
+# TODO all_items_dropable.pick_random()
 
 # for now, we will put a scene for each weapon_sprite's bullet
 const PROJECTILE = preload("res://scenes/projectile.tscn")
@@ -62,11 +60,8 @@ func _ready():
 		direction = Vector2.UP
 		sect_look_at = Vector2.UP
 	
-	shot_cooldown.wait_time = float(Data.rand_range(10, 30)) / 10
+	shot_cooldown.wait_time = float(Global.rand_range(10, 30)) / 10
 	shot_cooldown.start()
-	
-	life_bar.max_value = life
-	life_bar.value = life
 	
 	mark_sprite.visible = false
 	
@@ -79,8 +74,8 @@ func add_knockback(knockback: Vector2):
 
 func update_rotation():
 	# var sect_look_at = direction if direction != Vector2.ZERO else Vector2.RIGHT
-	ray_cast.target_position = sect_look_at * distance_vision
-	torch.rotation = sect_look_at.angle() + PI
+	$RayCast2D.target_position = sect_look_at * distance_vision
+	$PointLight2D.rotation = sect_look_at.angle() + PI
 
 func continue_my_boring_life(delta: float):
 	"""
@@ -91,7 +86,7 @@ func continue_my_boring_life(delta: float):
 		direction = (followed_path.position - position).normalized()
 	
 	if direction != Vector2.ZERO:
-		sectario.flip_h = direction.x > 0
+		$Sectarian.flip_h = direction.x > 0
 		velocity += direction * SPEED * delta
 	change_look(direction)
 	update_rotation()
@@ -105,7 +100,8 @@ func is_mother_fucker_in_range(player: Node2D) -> bool:
 		return false
 	if position.distance_to(player.position) > distance_vision:
 		return false
-	# print("angle %10.2f pos %10.2f %10.2f" % [sect_look_at.angle_to(player.position - position), (player.position - position).x, (player.position - position).y])
+	# print("angle %10.2f pos %10.2f %10.2f" % [sect_look_at.angle_to(player.position - position),
+	# (player.position - position).x, (player.position - position).y])
 	if abs(sect_look_at.angle_to(player.position - position)) < ((fov / 2.0) * PI / 180.0):
 		return true
 	return false
@@ -126,7 +122,7 @@ func shoot(player: Node) -> void:
 	proj.is_shadow = true
 	get_parent().add_child(proj)
 
-	shot_cooldown.wait_time = float(Data.rand_range(10, 30)) / 10
+	shot_cooldown.wait_time = float(Global.rand_range(10, 30)) / 10
 	shot_cooldown.start()
 	able_to_shoot = false
 
@@ -186,21 +182,22 @@ func _physics_process(delta: float) -> void:
 
 
 
-func update_life(new_life: int):
-	life_bar.value = new_life
-	life = new_life
-
-
-# todo delet this crap and see according to the raycast
-func _on_area_2d_body_entered(_body: Node2D) -> void:
-	if not followed_path:
-		direction = -direction
+# TODO delet this crap and see according to the raycast
+#func _on_area_2d_body_entered(_body: Node2D) -> void:
+	#if not followed_path:
+		#direction = -direction
 
 
 func _on_shot_cooldown_timeout() -> void:
 	able_to_shoot = true
 
-
 func _on_research_cool_down_timeout() -> void:
 	state = State.WALKING
 	mark_sprite.visible = false
+
+func _on_health_life_change(new_life: int) -> void:
+	$LifeBar.value = new_life
+
+func _on_health_life_ready(value: int) -> void:
+	$LifeBar.max_value = value
+	$LifeBar.value = value

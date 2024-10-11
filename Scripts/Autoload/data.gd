@@ -1,12 +1,10 @@
-# data.gd
-#
-# This script defines global data structures and enums used across the game.
-# It is autoloaded at the start of the game and can be accessed from any script.
-# Only data that is not expected to change during the game should be defined here.
-#
-# Author: Sol Rojo
-# Date: 24-09-2024
-#
+## Global data structures and enums
+##
+## Autoloaded at the start of the game. [br]
+## Only data that is not expected to change during the game should be defined here.[br][br]
+##
+## Author: Sol Rojo[br]Date: 24-09-2024
+##
 
 extends Node
 
@@ -158,9 +156,3 @@ const ITEMS = {
 		"n_min": 3
 	},
 }
-
-func rand_range(min_value: int, max_value: int) -> int:
-	return randi() % (max_value - min_value) + min_value
-
-# not fan of putting this here, but it's working
-var is_playing_controller := false

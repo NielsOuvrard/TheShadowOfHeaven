@@ -1,39 +1,38 @@
-# player.gd
-#
-# This script defines the behavior of the player character.
-# The class Player is used to manage the player's actions and states.
-#
-# Author: Sol Rojo
-# Date: 24-09-2024
-#
+## Behavior of the player character.
+##
+## Author: Sol Rojo[br]Date: 24-09-2024
+##
 
 extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var reload_cooldown: Timer = $ReloadCooldown
-@onready var shoot_cooldown: Timer = $ShotCooldown
 @onready var player_body: CharacterBody2D = $"."
 @onready var weapon_sprite: Sprite2D = $Weapon
-@onready var life_bar: ProgressBar = $LifeBar
 
-# * SWORD
+# * SWORD (Another scene ?)
 @onready var sword_attack: Area2D = $SwordAttack
 @onready var sword_attack_animation: AnimationPlayer = $SwordAttack/Animation
 @onready var sword_collision: CollisionShape2D = $SwordAttack/Collision
 
+@onready var health: Health = $Health
+
+@onready var reload_cooldown: Timer = $ReloadCooldown
+@onready var shoot_cooldown: Timer = $ShotCooldown
+
 @export var SPEED := 5000.0
 @export var ACCELERATION := 0.2
-@export var life := 100 # ? remove this for Health Component
 @export var current_weapon := Data.Weapons.SWORD
 @export var debug := false
 
+# TODO check for _physics_process and _process
+
 var look_direction := Vector2.ZERO
 var last_look_direction_mouse := Vector2.ZERO
-var knockback_velocity := Vector2.ZERO
+var knockback_velocity := Vector2.ZERO # ? component with this
+var is_playing_controller := false
 
-# for now, we will put a scene for each weapon_sprite's bullet
 const PROJECTILE = preload("res://scenes/projectile.tscn")
-const DAMAGE_TEXT = preload("res://Scenes/damage_text.tscn")
+const DAMAGE_TEXT = preload("res://Scenes/text_animated.tscn")
 
 var ammo_inventory := {
 	Data.Weapons.PISTOL: 0,
@@ -53,11 +52,8 @@ var weapons_unlocked := {
 }
 
 func _ready():
+	print_tree_pretty()
 	add_to_group("player")
-
-	# * Life Progress Bar
-	life_bar.max_value = life
-	life_bar.value = life
 
 	# * Cooldowns
 	reload_cooldown.wait_time = Data.WEAPONS[current_weapon].cooldown_reload
@@ -67,10 +63,6 @@ func _ready():
 
 func change_radius_sword_collision(value: float):
 	sword_collision.shape.radius = value
-
-func update_life(new_life: int):
-	life_bar.value = new_life
-	life = new_life
 
 func add_knockback(knockback: Vector2):
 	knockback_velocity = knockback
@@ -87,9 +79,10 @@ func look_player():
 	if Input.is_action_pressed('look_up'):
 		direction_input.y -= Input.get_action_strength('look_up')
 
+	var local_playing_controller = is_playing_controller
 	# * if we are using the controller
 	if direction_input != Vector2.ZERO:
-		Data.is_playing_controller = true
+		local_playing_controller = true
 		look_direction = direction_input.normalized()
 		return
 
@@ -98,8 +91,12 @@ func look_player():
 	var mouse_position = get_viewport().get_mouse_position() - window_size / 2
 	if last_look_direction_mouse != mouse_position.normalized():
 		look_direction = mouse_position.normalized()
-		Data.is_playing_controller = false
+		local_playing_controller = false
 		last_look_direction_mouse = mouse_position.normalized()
+	
+	if local_playing_controller != is_playing_controller:
+		SignalsHandler.player_change_controller.emit(local_playing_controller)
+		is_playing_controller = local_playing_controller
 
 func shoot():
 	if not reload_cooldown.is_stopped():
@@ -121,7 +118,7 @@ func shoot():
 	proj.type = Data.WEAPONS[current_weapon].projectile
 	proj.weapons_unlocked = weapons_unlocked
 	proj.position = position
-	get_parent().add_child(proj)
+	owner.add_child(proj)
 
 
 func reload():
@@ -131,8 +128,6 @@ func reload():
 		return
 	if ammo_current[current_weapon] == Data.WEAPONS[current_weapon].ammo_max:
 		return
-	# state = State.RELOAD
-	# action_cooldown.start()
 	var ammo_max_needed = Data.WEAPONS[current_weapon].ammo_max - ammo_current[current_weapon]
 	var ammo_taken = min(ammo_inventory[current_weapon], ammo_max_needed)
 	ammo_current[current_weapon] += ammo_taken
@@ -150,6 +145,8 @@ func change_weapon():
 
 	if next_weapon == current_weapon:
 		return
+		
+	SignalsHandler.player_change_weapon.emit(next_weapon)
 	
 	# auto reload
 	if current_weapon != Data.Weapons.SWORD and ammo_current[current_weapon] == 0 and ammo_inventory[current_weapon] > 0:
@@ -161,14 +158,14 @@ func change_weapon():
 	reload_cooldown.wait_time = Data.WEAPONS[current_weapon].cooldown_reload
 	shoot_cooldown.wait_time = Data.WEAPONS[current_weapon].cooldown_shot
 
-# TODO inside hitbox component ?
+## called by the item itself to add it to the player inventory
 func add_to_inventory(item: Data.Items, number: int):
 	if item == Data.Items.LIFE:
-		life += number
-		life_bar.value = life
+		health.life += number
 	else:
 		ammo_inventory[Data.ITEMS[item].weapon] += number
 
+## used when the player unlock a new weapon
 func unlock_weapon(weapon: Data.Weapons):
 	weapons_unlocked[weapon] = true
 
@@ -232,13 +229,15 @@ func _on_sword_attack_area_entered(area: Area2D) -> void:
 		var attack = Attack.new(60, position, 100, weapons_unlocked)
 		var damage_given = area.damage(attack)
 		if not area.get_meta("is_projectile"):
-			var damage_text = DAMAGE_TEXT.instantiate()
-			damage_text.text = str(damage_given)
-			damage_text.position = area.get_parent().position
-			get_parent().add_child(damage_text)
+			var text_animated = DAMAGE_TEXT.instantiate()
+			text_animated.text = str(damage_given)
+			text_animated.position = area.get_parent().position
+			get_parent().add_child(text_animated)
 
+func _on_health_life_change(value: Variant) -> void:
+	SignalsHandler.player_life_change.emit(value)
 
-
+#region debug
 func debug_inventory():
 	for weapon in weapons_unlocked:
 		print("weapon ", weapon, " unlocked ", weapons_unlocked[weapon])
@@ -255,3 +254,4 @@ func debug_weapons():
 		ammo_current[weapon] = Data.WEAPONS[weapon].ammo_max
 	for weapon in ammo_inventory:
 		ammo_inventory[weapon] = 99
+#endregion

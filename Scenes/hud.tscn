@@ -85,6 +85,7 @@ theme_override_fonts/font = ExtResource("5_3rqoy")
 text = "6"
 
 [node name="Center" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

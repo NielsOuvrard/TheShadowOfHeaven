@@ -158,8 +158,8 @@ position = Vector2(249, 272)
 rotation = -2.52819
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="Sectarians/Path2D"]
-position = Vector2(-97.2414, 370.7)
-rotation = 0.700315
+position = Vector2(-97.2409, 370.701)
+rotation = 0.700221
 progress = 447.311
 
 [node name="Items" type="Node2D" parent="."]

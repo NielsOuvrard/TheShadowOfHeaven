@@ -72,7 +72,7 @@ collision_mask = 5
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sh6yb")
 autoplay = "default"
-frame_progress = 0.406218
+frame_progress = 0.397829
 offset = Vector2(0, -12)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

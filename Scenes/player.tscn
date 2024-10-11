@@ -1,13 +1,13 @@
-[gd_scene load_steps=30 format=3 uid="uid://0y06vbi8ods3"]
+[gd_scene load_steps=28 format=3 uid="uid://0y06vbi8ods3"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_flqv2"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_8qbm6"]
 [ext_resource type="Texture2D" uid="uid://ddh0hbfsxf05q" path="res://Assets/Items/Sword.png" id="4_12yd1"]
 [ext_resource type="Texture2D" uid="uid://rhxx7fe8qg4m" path="res://Assets/Characters/AngelSprite.png" id="4_auylh"]
+[ext_resource type="Script" path="res://Scripts/Classes/health.gd" id="5_0t1cm"]
+[ext_resource type="Script" path="res://Scripts/Classes/hitbox.gd" id="5_j0n03"]
 [ext_resource type="Script" path="res://Scripts/sword_attack.gd" id="5_rnjnq"]
 [ext_resource type="Texture2D" uid="uid://btn2i18uvt7qf" path="res://Assets/Characters/EspadaSlash.png" id="5_y8fcm"]
-[ext_resource type="PackedScene" uid="uid://1x2po7j8v5h5" path="res://Scenes/Components/hitbox.tscn" id="7_x6n5e"]
-[ext_resource type="PackedScene" uid="uid://dp35m0rg0pdly" path="res://Scenes/Components/health.tscn" id="8_tbca4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_koeyi"]
 atlas = ExtResource("4_auylh")
@@ -73,11 +73,8 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkcmj"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5jfo"]
-bg_color = Color(1, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xv7rb"]
-bg_color = Color(0, 100, 0, 1)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_casbx"]
+size = Vector2(12, 17)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_doaqe"]
 atlas = ExtResource("5_y8fcm")
@@ -276,12 +273,10 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_owcke"]
 radius = 13.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hv8be"]
-size = Vector2(10, 14)
-
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 52
 script = ExtResource("1_flqv2")
+metadata/is_player = true
 
 [node name="ShadowSmall" type="Sprite2D" parent="."]
 texture = ExtResource("2_8qbm6")
@@ -301,24 +296,16 @@ visibility_layer = 52
 scale = Vector2(0.67, 0.29)
 shape = SubResource("CircleShape2D_tkcmj")
 
-[node name="ReloadCooldown" type="Timer" parent="."]
-one_shot = true
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 8
+script = ExtResource("5_j0n03")
 
-[node name="ShotCooldown" type="Timer" parent="."]
-one_shot = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_casbx")
 
-[node name="LifeBar" type="ProgressBar" parent="."]
-z_index = 2
-offset_left = -11.0
-offset_top = -20.0
-offset_right = 11.0
-offset_bottom = -19.0
-theme_override_styles/background = SubResource("StyleBoxFlat_w5jfo")
-theme_override_styles/fill = SubResource("StyleBoxFlat_xv7rb")
-step = 1.0
-value = 50.0
-show_percentage = false
-metadata/_edit_use_anchors_ = true
+[node name="Health" type="Node" parent="."]
+script = ExtResource("5_0t1cm")
 
 [node name="SwordAttack" type="Area2D" parent="."]
 position = Vector2(0, -9)
@@ -343,16 +330,12 @@ position = Vector2(-6, -5)
 shape = SubResource("CircleShape2D_owcke")
 disabled = true
 
-[node name="Hitbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_x6n5e")]
-position = Vector2(0, -8)
-collision_mask = 72
-health_component = NodePath("../Health")
+[node name="ReloadCooldown" type="Timer" parent="."]
+one_shot = true
 
-[node name="Collision" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("RectangleShape2D_hv8be")
+[node name="ShotCooldown" type="Timer" parent="."]
+one_shot = true
 
-[node name="Health" parent="." instance=ExtResource("8_tbca4")]
-life = 100
-
+[connection signal="life_change" from="Health" to="." method="_on_health_life_change"]
 [connection signal="area_entered" from="SwordAttack" to="." method="_on_sword_attack_area_entered"]
 [connection signal="body_entered" from="SwordAttack" to="." method="_on_sword_attack_body_entered"]

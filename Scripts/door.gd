@@ -1,11 +1,8 @@
-# door.gd
-#
-# This script defines the behavior of the doors.
-# The player can interact with it, or it can be triggered by it's own.
-#
-# Author: Sol Rojo
-# Date: 24-09-2024
-#
+## Behavior of the doors.
+## The player can interact with it, or it can be triggered by events.
+##
+## Author: Sol Rojo[br]Date: 24-09-2024
+##
 
 extends StaticBody2D
 
@@ -25,13 +22,13 @@ enum DoorState {
 
 var state: DoorState = DoorState.CLOSED
 
-var is_rotation_normal := true
-var rotation_normal : float
-var rotation_reversed : float
+var is_rotation_original := true ## original or reversed
+var rotation_original : float ## auto set by the rotation of the door
+var rotation_reversed : float ## auto set by the rotation of the door
 
 
 func _ready() -> void:
-	rotation_normal = rotation
+	rotation_original = rotation
 	rotation_reversed = rotation + PI
 	
 	match state:
@@ -58,12 +55,12 @@ func set_state(value: DoorState):
 	state = value
 
 func reverse_door():
-	if is_rotation_normal:
-		is_rotation_normal = false
+	if is_rotation_original:
+		is_rotation_original = false
 		rotation = rotation_reversed
 	else:
-		is_rotation_normal = true
-		rotation = rotation_normal
+		is_rotation_original = true
+		rotation = rotation_original
 
 func _on_back_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") and state == DoorState.CLOSED:

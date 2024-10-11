@@ -1,10 +1,9 @@
-[gd_scene load_steps=38 format=3 uid="uid://cmw0ljnlnfdib"]
+[gd_scene load_steps=37 format=3 uid="uid://cmw0ljnlnfdib"]
 
 [ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_bj1lh"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_kw1xr"]
 [ext_resource type="Texture2D" uid="uid://khoheu8iu4pt" path="res://Assets/Items/Bullets.png" id="3_1rx5r"]
 [ext_resource type="Texture2D" uid="uid://b0606qmktrjkd" path="res://Assets/light_halo.png" id="4_qdkcl"]
-[ext_resource type="PackedScene" uid="uid://1x2po7j8v5h5" path="res://Scenes/Components/hitbox.tscn" id="5_fbhn2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8kqn0"]
 atlas = ExtResource("3_1rx5r")
@@ -244,10 +243,10 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ub76g"]
-radius = 5.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_c5o76"]
+radius = 6.0
 
-[node name="Ball" type="Node2D"]
+[node name="Ball" type="Area2D"]
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_bj1lh")
@@ -265,14 +264,9 @@ scale = Vector2(0.037037, 0.037037)
 energy = 0.4
 texture = ExtResource("4_qdkcl")
 
-[node name="Hitbox" parent="." instance=ExtResource("5_fbhn2")]
-collision_layer = 8
-collision_mask = 51
-metadata/is_projectile = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_c5o76")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-scale = Vector2(1.2, 0.6)
-shape = SubResource("CircleShape2D_ub76g")
-
-[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
