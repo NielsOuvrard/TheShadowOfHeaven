@@ -59,6 +59,7 @@ script = ExtResource("6_uwe72")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(-32, 0)
+collision_mask = 53
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(0.073, 0.073)
@@ -87,6 +88,7 @@ autostart = true
 wait_time = 5.0
 one_shot = true
 
+[connection signal="knockback_emit" from="Hitbox" to="." method="_on_hitbox_knockback_emit"]
 [connection signal="life_change" from="Health" to="." method="_on_health_life_change"]
 [connection signal="life_ready" from="Health" to="." method="_on_health_life_ready"]
 [connection signal="timeout" from="ShotCooldown" to="." method="_on_shot_cooldown_timeout"]

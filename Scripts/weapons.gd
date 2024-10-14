@@ -11,9 +11,6 @@ extends Node2D
 @export var type := Data.Weapons.PISTOL
 @export var is_static := false
 
-# TODO put this in a global script
-const TEXT_ANIMATED = preload("res://Scenes/text_animated.tscn")
-
 func _ready() -> void:
 	weapon_sprite.frame = Data.WEAPONS[type].item_frame
 	if not is_static:
@@ -24,7 +21,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		body.unlock_weapon(type)
 
-		var text_animated = TEXT_ANIMATED.instantiate()
+		var text_animated = Global.ANIMATED_TEXT.instantiate()
 		text_animated.text = str(Data.WEAPONS[type].name)
 		text_animated.position = position
 		get_parent().add_child(text_animated)

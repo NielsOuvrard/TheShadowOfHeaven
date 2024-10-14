@@ -31,9 +31,6 @@ var last_look_direction_mouse := Vector2.ZERO
 var knockback_velocity := Vector2.ZERO # ? component with this
 var is_playing_controller := false
 
-const PROJECTILE = preload("res://scenes/projectile.tscn")
-const DAMAGE_TEXT = preload("res://Scenes/text_animated.tscn")
-
 var ammo_inventory := {
 	Data.Weapons.PISTOL: 0,
 	Data.Weapons.SHOTGUN: 0,
@@ -111,7 +108,7 @@ func shoot():
 		return
 	ammo_current[current_weapon] -= 1
 
-	var proj = PROJECTILE.instantiate()
+	var proj = Global.PROJECTILE.instantiate()
 	proj.direction_proj = look_direction
 	proj.thrower = "player"
 	proj.target = "enemies"
@@ -229,7 +226,7 @@ func _on_sword_attack_area_entered(area: Area2D) -> void:
 		var attack = Attack.new(60, position, 100, weapons_unlocked)
 		var damage_given = area.damage(attack)
 		if not area.get_meta("is_projectile"):
-			var text_animated = DAMAGE_TEXT.instantiate()
+			var text_animated = Global.ANIMATED_TEXT.instantiate()
 			text_animated.text = str(damage_given)
 			text_animated.position = area.get_parent().position
 			get_parent().add_child(text_animated)

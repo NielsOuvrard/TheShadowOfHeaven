@@ -11,8 +11,6 @@ extends Node2D
 @export var type := Data.Items.PISTOL_AMMO
 @export var is_static := false
 
-const TEXT_ANIMATED = preload("res://Scenes/text_animated.tscn")
-
 # make animation throw on the ground
 # make animation moving
 # make animation collect
@@ -30,7 +28,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		var nmb = Global.rand_range(Data.ITEMS[type].n_min, Data.ITEMS[type].n_max)
 		body.add_to_inventory(type, nmb)
 
-		var text_animated = TEXT_ANIMATED.instantiate()
+		var text_animated = Global.ANIMATED_TEXT.instantiate()
 		text_animated.text = str(nmb)
 		text_animated.position = position
 		owner.add_child(text_animated)

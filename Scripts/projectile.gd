@@ -17,8 +17,6 @@ var type : Data.Projectiles
 var is_shadow := false
 var weapons_unlocked := {}
 
-const DAMAGE_TEXT = preload("res://Scenes/text_animated.tscn")
-
 const LAYER_PLAYER = 1
 const LAYER_PLAYER_ATTACK = 2
 const LAYER_ENEMY = 4
@@ -54,7 +52,7 @@ func _on_area_entered(area: Area2D) -> void:
 		var attack = Attack.new(Data.PROJECTILS[type].damage, position,\
 								Data.PROJECTILS[type].knockback, weapons_unlocked)
 		var damage_given = area.damage(attack)
-		var text_animated = DAMAGE_TEXT.instantiate()
+		var text_animated = Global.ANIMATED_TEXT.instantiate()
 		text_animated.text = str(damage_given)
 		text_animated.position = position
 		get_parent().add_child(text_animated)
