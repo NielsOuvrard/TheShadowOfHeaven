@@ -1,0 +1,101 @@
+# dot -Tpng -Gdpi=300 sectarian_behaviour.dot -o sectarian_behaviour.png
+
+digraph SectarianBehaviour {
+    label="Sectarian Behaviour";
+    color=gray;
+    fontname="Arial";
+
+    // State
+    subgraph cluster_Walk {
+        label="Walking";
+        color=lightblue;
+        fontname="Arial";
+
+        Default [label="Default", shape=diamond, color=gold, fillcolor=yellow, fontcolor=black, fontsize=20, style=filled, penwidth=3]
+        WalkLinear [label="Walk linear", shape=hexagon, color=darkgreen, fontname="Arial"];
+        WalkFollowPath [label="Follow path", shape=hexagon, color=darkgreen, fontname="Arial"];
+
+        Default -> WalkLinear [label="!follow_path", color=black];
+        Default -> WalkFollowPath [label="follow_path", color=black];
+
+        Rotate180 [label="rotate 180°", shape=rectangle, color=greenyellow, fontname="Arial"];
+        WalkLinear -> Rotate180 [label="collision in front", color=black];
+    }
+
+    SearchEscape [label="Search\nescape", shape=circle, color=lightblue, fontname="Arial"];
+    SearchDamage [label="Search\ndamage", shape=circle, color=lightblue, fontname="Arial"];
+
+
+
+
+    Default -> Attack [label="player_in_fov", color=black];
+
+
+    subgraph cluster_attack {
+        label = "Attacking";
+        color=red;
+
+        Attack [label="Attack", shape=circle, color=lightblue, fontname="Arial"];
+
+        LostPlayer [label="lost player", shape=rectangle, color=greenyellow, fontname="Arial"];
+        Attack -> AimPlayer [label="", color=blue];
+        Attack -> WaitToShootPlayer [label="", color=darkblue];
+        Attack -> ShootPlayer [label="", color=red];
+        Attack -> LostPlayer [label="", color=black];
+
+        subgraph cluster_attack_fov {
+            label = "player in fov";
+            color=blue;
+            style=dashed;
+
+            AimPlayer [label="aim player", shape=rectangle, color=greenyellow, fontname="Arial"];
+
+            subgraph cluster_attack_raycast {
+                label = "player in raycast";
+                color=darkblue;
+                style=dashed;
+
+                WaitToShootPlayer [label="wait to shoot", shape=rectangle, color=greenyellow, fontname="Arial"];
+
+                subgraph cluster_attack_shoot {
+                    label = "able_to_shoot";
+                    color=red;
+                    style=dashed;
+
+                    ShootPlayer [label="shoot", shape=rectangle, color=greenyellow, fontname="Arial"];
+                }
+            }
+        }
+    }
+
+    subgraph cluster_search {
+        label = "Searching";
+        color=blue;
+
+        LostPlayer -> SearchEscape [label="", color=black];
+
+        RotateEscape [label="rotate of PI\nwhere player escape", shape=rectangle, color=greenyellow, fontname="Arial"];
+        SearchEscape -> RotateEscape [label="", color=black];
+
+        GoLastPlayerPosition [label="go to the last player position", shape=rectangle, color=greenyellow, fontname="Arial"];
+        RotateEscape -> GoLastPlayerPosition [label="", color=black];
+
+        RotateOnItself [label="rotate on itself", shape=rectangle, color=greenyellow, fontname="Arial"];
+    
+        RotateDamage [label="rotate to the origin of the damage", shape=rectangle, color=greenyellow, fontname="Arial"];
+        SearchDamage -> RotateDamage [label="", color=black];
+
+        RotateDamage -> WalkUpTo [label="", color=black];
+
+        WalkUpTo [label="walk up to...", shape=rectangle, color=greenyellow, fontname="Arial"];
+
+        WalkUpTo -> RotateOnItself [label="3 seconds\nor wall collision", color=black];
+    
+        GoLastPlayerPosition -> RotateOnItself [label="", color=black];
+
+        Default -> SearchDamage [label="take_damage", color=black];
+
+    }
+
+    RotateOnItself -> Default [label="after 5 seconds", color=black];
+}

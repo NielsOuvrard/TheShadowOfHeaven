@@ -1,0 +1,40 @@
+# dot -Tpng -Gdpi=300 legend_graph.dot -o legend_graph.png
+
+digraph SectarianBehaviour {
+    label="Legend";
+    color=gray;
+    fontname="Arial";
+
+    // Elements
+    subgraph cluster_elems {
+        label="Elements";
+        color=black;
+        fontname="Arial";
+
+
+        Action [label="Action", shape=rectangle, color=greenyellow, fontname="Arial", fontsize=12];
+        SubState [label="SubState", shape=hexagon, color=darkgreen, fontname="Arial", fontsize=12];
+        State [label="State", shape=circle, color=lightblue, fontname="Arial", fontsize=12];
+        Default [label="Default\nPosition", shape=diamond, color=gold, fillcolor=yellow, fontcolor=black, fontsize=12, style=filled, penwidth=3];
+
+        subgraph cluster_elemnt {
+            label = "Condition";
+            color=blue;
+            style=dashed;
+
+            A [label="", color=none];
+        }
+    }
+
+
+    // // Example 1
+    // subgraph cluster_ex1 {
+    //     label="Example 1";
+    //     color=black;
+    //     fontname="Arial";
+
+    //     StateExample [label="State1", shape=circle, color=lightblue, fontname="Arial", fontsize=12];
+    //     ActionExample [label="Action1", shape=rectangle, color=greenyellow, fontname="Arial", fontsize=12];
+    //     StateExample -> ActionExample [label="Condition1", color=black, fontname="Arial"];
+    // }
+}

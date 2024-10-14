@@ -72,11 +72,12 @@ Find lava floors
 
 ## Enemies
 
-The game's main enemies are Freemason sectarians and demons, each with a specific attack pattern and direct threat.
+The game's main enemies are sectarians and demons, each with a specific attack pattern and direct threat.
 
-### Freemason Sectarians
+### Sectarians
 
 ![Sectarian](Assets/Characters/Sectario.png)
+![IA of sectarian](Info/sectarian_behaviour.png)
 
 **Revolver Sectarian:**
 Fires one bullet at a time
