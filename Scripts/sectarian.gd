@@ -35,16 +35,25 @@ var ready_finished := false
 enum State {
 	WALKING,
 	ATTACKING,
-	SEARCHING_ESCAPE,
-	SEARCHING_DAMAGE,
+	SEARCHING,
 	NOTHING
 }
+
+enum StateSearching {
+	# escape
+	ROTATE_PI_PLAYER_ESCAPE,
+	# damage
+	ROTATE_ORIGIN_DAMAGE,
+	# both
+	GO_TO_POSITION_X,
+	ROTATE_ON_HIMSELF
+}
+var state_searching : StateSearching
 
 var DISTANCE_TO_COLLISION := 20
 var EACH_FRAME := 1.0 / 60.0
 
 var state : State
-var direction = Vector2.ZERO
 
 var SPEED_ROTATE := 0.02
 var sect_look_at = Vector2.RIGHT:
@@ -66,8 +75,7 @@ var knockback_velocity = Vector2.ZERO
 var last_time_i_saw_him : Vector2
 
 # TODO if player very close, he will attack
-# TODO if he takes a projectile, he will search at the projectile's position
-
+# TODO if he gets attacking, he send a signal to clsest enemy to attack the player
 # TODO all_items_dropable.pick_random()
 
 const ITEM = preload("res://Scenes/item.tscn")
@@ -88,15 +96,6 @@ func _ready():
 			sect_look_at = followed_path.position - position
 	else:
 		state = State.NOTHING
-
-	# if is_moving:
-	# 	direction = Vector2.RIGHT
-	# 	sect_look_at = Vector2.UP
-	# else:
-	# 	state = State.NOTHING
-	
-	# shot_cooldown.wait_time = float(Global.rand_range(10, 30)) / 10
-	# shot_cooldown.start()
 	
 	mark_sprite.visible = false
 	ready_finished = true
@@ -177,19 +176,38 @@ func player_in_fov(player: Node, delta: float) -> void:
 	elif shot_cooldown.is_stopped():
 		shoot(player)
 
+	var direction = Vector2.ZERO
 	if position.distance_to(player.position) > 25:
 		direction = sect_look_at
 	else:
 		direction = Vector2.ZERO
 	velocity += direction * SPEED * delta
 
-# func lost_player(delta: float):
-# 	if (last_time_i_saw_him - position).length() < 5:
-# 		sect_look_at = sect_look_at.rotated(SPEED_ROTATE)
-# 	else:
-# 		direction = (last_time_i_saw_him - position).normalized()
-# 		velocity += direction * SPEED * delta
-# 		sect_look_at = direction
+
+func searching(delta: float):
+	match state_searching:
+		StateSearching.ROTATE_PI_PLAYER_ESCAPE:
+			if sect_look_at.angle_to(last_time_i_saw_him - position) > 0.1:
+				sect_look_at = sect_look_at.rotated(SPEED_ROTATE)
+			else:
+				state_searching = StateSearching.GO_TO_POSITION_X
+		StateSearching.ROTATE_ORIGIN_DAMAGE:
+			if sect_look_at.angle_to(last_time_i_saw_him - position) > 0.1:
+				sect_look_at = sect_look_at.rotated(SPEED_ROTATE)
+			else:
+				state_searching = StateSearching.GO_TO_POSITION_X
+		StateSearching.GO_TO_POSITION_X:
+			if position.distance_to(last_time_i_saw_him) > 5:
+				var direction = (last_time_i_saw_him - position).normalized()
+				velocity += direction * SPEED * delta
+			else:
+				state_searching = StateSearching.ROTATE_ON_HIMSELF
+				research_cool_down.start()
+		StateSearching.ROTATE_ON_HIMSELF:
+			if not research_cool_down.is_stopped():
+				sect_look_at = sect_look_at.rotated(-SPEED_ROTATE)
+			else:
+				state = State.WALKING
 
 func _physics_process(delta: float) -> void:
 	var player = get_tree().get_first_node_in_group("player")
@@ -200,9 +218,9 @@ func _physics_process(delta: float) -> void:
 		mark_sprite.texture = mark_texture_exclamation
 	elif state == State.ATTACKING:
 		mark_sprite.texture = mark_texture_interogation
-		state = State.SEARCHING_ESCAPE
-	# 	research_cool_down.start()
-	# 	last_time_i_saw_him = player.position if player else position # we avoid crash as we could
+		state = State.SEARCHING
+		last_time_i_saw_him = player.position
+		state_searching = StateSearching.ROTATE_PI_PLAYER_ESCAPE
 
 	velocity = Vector2.ZERO
 	velocity += knockback_velocity
@@ -211,12 +229,8 @@ func _physics_process(delta: float) -> void:
 	match state:
 		State.ATTACKING:
 			player_in_fov(player, delta)
-			pass
-		State.SEARCHING_ESCAPE:
-			# lost_player(delta)
-			pass
-		State.SEARCHING_DAMAGE:
-			pass
+		State.SEARCHING:
+			searching(delta)
 		State.WALKING:
 			walking(delta)
 		State.NOTHING:
@@ -239,4 +253,10 @@ func _on_health_life_ready(value: int) -> void:
 
 func _on_hitbox_knockback_emit(attack: Attack) -> void:
 	knockback_velocity = (position - attack.position).normalized() * attack.knockback
+	if state == State.WALKING:
+		state = State.SEARCHING
+		state_searching = StateSearching.ROTATE_ORIGIN_DAMAGE
+		last_time_i_saw_him = attack.position
+		mark_sprite.visible = true
+		mark_sprite.texture = mark_texture_interogation
 #endregion
