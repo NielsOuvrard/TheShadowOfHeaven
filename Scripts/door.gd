@@ -20,6 +20,8 @@ enum DoorState {
 # not openable
 # openable with interract ?
 
+var people_inside_areas = 0
+
 var state: DoorState = DoorState.CLOSED
 
 var is_rotation_original := true ## original or reversed
@@ -61,19 +63,32 @@ func reverse_door():
 	else:
 		is_rotation_original = true
 		rotation = rotation_original
+	if people_inside_areas == 0:
+		close()
+		print("reverse_door", state)
 
 func _on_back_body_entered(body: Node2D) -> void:
+	people_inside_areas += 1
+	print("_on_back_body_entered - ", people_inside_areas)
 	if body.is_in_group("player") and state == DoorState.CLOSED:
 		reverse_door()
 
 func _on_back_body_exited(body: Node2D) -> void:
+	people_inside_areas -= 1
+	print("_on_back_body_exited - ", people_inside_areas)
 	if body.is_in_group("player") and state == DoorState.CLOSED:
 		reverse_door()
+	elif people_inside_areas == 0:
+		close()
 
 func _on_front_body_entered(body: Node2D) -> void:
+	people_inside_areas += 1
+	print("_on_front_body_entered - ", people_inside_areas)
 	if body.is_in_group("player"):
 		open()
 
 func _on_front_body_exited(body: Node2D) -> void:
-	if body.is_in_group("player"):
+	people_inside_areas -= 1
+	print("_on_front_body_exited - ", people_inside_areas)
+	if body.is_in_group("player") and people_inside_areas <= 0:
 		close()
