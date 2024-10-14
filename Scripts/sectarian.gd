@@ -21,6 +21,7 @@ var objective_position : Vector2 ## position to go
 var priority_objective_position := Vector2.ZERO ## position to go, in priority
 
 @export var SPEED := 900.0 ## speed movement
+@export var COOLDOWN_SHOT := 1.0 ## time between each shot
 
 @export var followed_path : PathFollow2D
 @export_range(0, 1, 0.01) var offset_followed_path := 0.0 ## offset of the path, between 0 and 1
@@ -45,7 +46,7 @@ var EACH_FRAME := 1.0 / 60.0
 var state : State
 var direction = Vector2.ZERO
 
-var SPEED_ROTATE := 0.01
+var SPEED_ROTATE := 0.02
 var sect_look_at = Vector2.RIGHT:
 	set(v):
 		if not ready_finished:
@@ -69,8 +70,9 @@ var last_time_i_saw_him : Vector2
 
 # TODO all_items_dropable.pick_random()
 
-# for now, we will put a scene for each weapon_sprite's bullet
 const ITEM = preload("res://Scenes/item.tscn")
+const mark_texture_exclamation = preload("res://Assets/Items/small_exclamation_mark.png")
+const mark_texture_interogation = preload("res://Assets/Items/small_interogation_mark.png")
 
 func _ready():
 	add_to_group("enemies")
@@ -134,53 +136,52 @@ func walking(delta: float):
 		velocity += new_direction * SPEED * delta
 
 
-# func is_player_in_range(player: Node2D) -> bool:
-# 	if not player:
-# 		return false
+func is_player_in_range(player: Node2D) -> bool:
+	if not player:
+		return false
 
-# 	var original_position = ray_cast.target_position
-# 	var start_angle = ray_cast.target_position.angle() - deg_to_rad(fov) / 2
+	var original_position = ray_cast.target_position
+	var start_angle = ray_cast.target_position.angle() - deg_to_rad(fov) / 2
 
-# 	for i in range(fov):
-# 		var angle = start_angle + deg_to_rad(i)
-# 		var new_direction = Vector2(cos(angle), sin(angle))
-# 		ray_cast.target_position = new_direction * ray_cast.target_position.length()
-# 		ray_cast.force_raycast_update()
+	for i in range(fov):
+		var angle = start_angle + deg_to_rad(i)
+		var new_direction = Vector2(cos(angle), sin(angle))
+		ray_cast.target_position = new_direction * ray_cast.target_position.length()
+		ray_cast.force_raycast_update()
 		
-# 		if ray_cast.is_colliding():
-# 			var collider = ray_cast.get_collider()
-# 			if collider.is_in_group("player"):
-# 				ray_cast.target_position = original_position
-# 				return true
-# 	ray_cast.target_position = original_position
-# 	return false
+		if ray_cast.is_colliding():
+			var collider = ray_cast.get_collider()
+			if collider.is_in_group("player"):
+				ray_cast.target_position = original_position
+				return true
+	ray_cast.target_position = original_position
+	return false
 
-# func shoot(player: Node) -> void:
-# 	var proj = Global.PROJECTILE.instantiate()
-# 	proj.direction_proj = (player.global_position - global_position).normalized()  # calculate the direction to the player
-# 	proj.thrower = "enemies"
-# 	proj.target = "player"
-# 	proj.position = position
-# 	proj.type = Data.Projectiles.ENEMIES
-# 	proj.is_shadow = true
-# 	get_parent().add_child(proj)
+func shoot(player: Node) -> void:
+	var proj = Global.PROJECTILE.instantiate()
+	proj.direction_proj = (player.global_position - global_position).normalized()  # calculate the direction to the player
+	proj.thrower = "enemies"
+	proj.target = "player"
+	proj.position = position
+	proj.type = Data.Projectiles.ENEMIES
+	proj.is_shadow = true
+	get_parent().add_child(proj)
 
-# 	shot_cooldown.wait_time = float(Global.rand_range(10, 30)) / 10
-# 	shot_cooldown.start()
-# 	able_to_shoot = false
+	shot_cooldown.wait_time = COOLDOWN_SHOT
+	shot_cooldown.start()
 
-# func aim_player(player: Node, delta: float) -> void:
-# 	var angle : float = sect_look_at.angle_to(player.position - position)
-# 	if abs(angle) > 0.1:
-# 		sect_look_at = sect_look_at.rotated(angle)
-# 	elif able_to_shoot:
-# 		shoot(player)
+func player_in_fov(player: Node, delta: float) -> void:
+	var angle : float = sect_look_at.angle_to(player.position - position)
+	if abs(angle) > 0.1:
+		sect_look_at = sect_look_at.rotated(angle)
+	elif shot_cooldown.is_stopped():
+		shoot(player)
 
-# 	if position.distance_to(player.position) > 25:
-# 		direction = sect_look_at
-# 	else:
-# 		direction = Vector2.ZERO
-# 	velocity += direction * SPEED * delta
+	if position.distance_to(player.position) > 25:
+		direction = sect_look_at
+	else:
+		direction = Vector2.ZERO
+	velocity += direction * SPEED * delta
 
 # func lost_player(delta: float):
 # 	if (last_time_i_saw_him - position).length() < 5:
@@ -191,17 +192,16 @@ func walking(delta: float):
 # 		sect_look_at = direction
 
 func _physics_process(delta: float) -> void:
-	# var player = get_tree().get_first_node_in_group("player")
+	var player = get_tree().get_first_node_in_group("player")
 
-	# if is_player_in_range(player):
-	# 	state = State.ATTACKING
-	# 	mark_sprite.visible = true
-	# 	mark_sprite.texture = load("res://Assets/Items/small_exclamation_mark.png")
-	# elif state == State.ATTACKING:
-	# 	mark_sprite.texture = load("res://Assets/Items/small_interogation_mark.png")
-	# 	state = State.SEARCHING_ESCAPE
+	if is_player_in_range(player):
+		state = State.ATTACKING
+		mark_sprite.visible = true
+		mark_sprite.texture = mark_texture_exclamation
+	elif state == State.ATTACKING:
+		mark_sprite.texture = mark_texture_interogation
+		state = State.SEARCHING_ESCAPE
 	# 	research_cool_down.start()
-	# 	print("fuck lost him in", player.position)
 	# 	last_time_i_saw_him = player.position if player else position # we avoid crash as we could
 
 	velocity = Vector2.ZERO
@@ -210,7 +210,7 @@ func _physics_process(delta: float) -> void:
 
 	match state:
 		State.ATTACKING:
-			# aim_player(player, delta)
+			player_in_fov(player, delta)
 			pass
 		State.SEARCHING_ESCAPE:
 			# lost_player(delta)
@@ -222,18 +222,10 @@ func _physics_process(delta: float) -> void:
 		State.NOTHING:
 			pass
 
-	# if velocity.length() > 0.01:
-	# 	print(velocity)
-
 	move_and_slide()
 
 
-
 #region signlas
-func _on_shot_cooldown_timeout() -> void:
-	# able_to_shoot = true
-	pass
-
 func _on_research_cool_down_timeout() -> void:
 	# state = State.WALKING if is_moving else State.NOTHING
 	mark_sprite.visible = false
