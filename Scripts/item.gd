@@ -31,5 +31,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		var text_animated = Global.ANIMATED_TEXT.instantiate()
 		text_animated.text = str(nmb)
 		text_animated.position = position
-		owner.add_child(text_animated)
+		get_parent().add_child(text_animated)
 		queue_free()

@@ -17,8 +17,6 @@ extends CharacterBody2D
 		linear_movement = v
 		print("linear_movement", linear_movement)
 
-var objective_position : Vector2 ## position to go
-var priority_objective_position := Vector2.ZERO ## position to go, in priority
 
 @export var SPEED := 900.0 ## speed movement
 @export var COOLDOWN_SHOT := 1.0 ## time between each shot
@@ -30,7 +28,10 @@ var percent_path := 0
 var distance_vision := 100
 var fov := 30.0
 var ready_finished := false
-# var able_to_shoot := true # use directly shoot_cooldown
+var objective_position : Vector2 ## position to go
+var priority_objective_position := Vector2.ZERO ## position to go, in priority
+var knockback_velocity = Vector2.ZERO
+var last_time_i_saw_him : Vector2
 
 enum State {
 	WALKING,
@@ -38,6 +39,7 @@ enum State {
 	SEARCHING,
 	NOTHING
 }
+var state : State
 
 enum StateSearching {
 	# escape
@@ -52,13 +54,11 @@ var state_searching : StateSearching
 
 var DISTANCE_TO_COLLISION := 20
 var EACH_FRAME := 1.0 / 60.0
-
-var state : State
-
 var SPEED_ROTATE := 0.02
+
 var sect_look_at = Vector2.RIGHT:
 	set(v):
-		if not ready_finished:
+		if not ready_finished: # set the first time
 			sect_look_at = v
 		if v == Vector2.ZERO:
 			return
@@ -71,8 +71,6 @@ var sect_look_at = Vector2.RIGHT:
 		ray_cast.target_position = sect_look_at * distance_vision
 		$PointLight2D.rotation = sect_look_at.angle() + PI
 
-var knockback_velocity = Vector2.ZERO
-var last_time_i_saw_him : Vector2
 
 # TODO if player very close, he will attack
 # TODO if he gets attacking, he send a signal to clsest enemy to attack the player
@@ -259,4 +257,18 @@ func _on_hitbox_knockback_emit(attack: Attack) -> void:
 		last_time_i_saw_him = attack.position
 		mark_sprite.visible = true
 		mark_sprite.texture = mark_texture_interogation
+
+func _on_health_die(unlocked_weapons) -> void:
+	var item = ITEM.instantiate()
+	item.position = position
+
+	var items_dropabale := []
+	for weapon in unlocked_weapons:
+		if weapon != Data.Weapons.SWORD and unlocked_weapons[weapon] == true:
+			items_dropabale.append(Data.WEAPONS[weapon].ammo)
+	items_dropabale.append(Data.Items.LIFE)
+	item.type = items_dropabale.pick_random()
+
+	get_parent().add_child(item)
+	queue_free()
 #endregion

@@ -89,6 +89,7 @@ wait_time = 5.0
 one_shot = true
 
 [connection signal="knockback_emit" from="Hitbox" to="." method="_on_hitbox_knockback_emit"]
+[connection signal="die" from="Health" to="." method="_on_health_die"]
 [connection signal="life_change" from="Health" to="." method="_on_health_life_change"]
 [connection signal="life_ready" from="Health" to="." method="_on_health_life_ready"]
 [connection signal="timeout" from="ResearchCoolDown" to="." method="_on_research_cool_down_timeout"]

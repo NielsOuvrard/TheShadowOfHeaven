@@ -10,6 +10,8 @@ signal life_ready(value)
 
 signal life_change(value)
 
+signal die(unlocked_weapons)
+
 @export var life := 100:
 	set(value):
 		life_change.emit(value)
@@ -28,6 +30,5 @@ func damage(attack: Attack) -> int:
 	life -= attack.damage
 
 	if life <= 0 and not owner.is_in_group("player"):
-		# TODO put a local function called, to do something special like drop an item
-		owner.queue_free()
+		die.emit(attack.unlocked_weapons)
 	return damage_received
