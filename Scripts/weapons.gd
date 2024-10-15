@@ -24,6 +24,7 @@ func _on_body_entered(body: Node2D) -> void:
 		var text_animated = Global.ANIMATED_TEXT.instantiate()
 		text_animated.text = str(Data.WEAPONS[type].name)
 		text_animated.position = position
+		text_animated.z_index = 2
 		get_parent().add_child(text_animated)
 
 		queue_free()

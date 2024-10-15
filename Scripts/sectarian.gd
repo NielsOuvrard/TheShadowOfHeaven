@@ -76,7 +76,6 @@ var sect_look_at = Vector2.RIGHT:
 # TODO if he gets attacking, he send a signal to clsest enemy to attack the player
 # TODO all_items_dropable.pick_random()
 
-const ITEM = preload("res://Scenes/item.tscn")
 const mark_texture_exclamation = preload("res://Assets/Items/small_exclamation_mark.png")
 const mark_texture_interogation = preload("res://Assets/Items/small_interogation_mark.png")
 
@@ -162,6 +161,8 @@ func shoot(player: Node) -> void:
 	proj.position = position
 	proj.type = Data.Projectiles.ENEMIES
 	proj.is_shadow = true
+	proj.z_index = 1
+	proj.y_sort_enabled = true
 	get_parent().add_child(proj)
 
 	shot_cooldown.wait_time = COOLDOWN_SHOT
@@ -259,16 +260,6 @@ func _on_hitbox_knockback_emit(attack: Attack) -> void:
 		mark_sprite.texture = mark_texture_interogation
 
 func _on_health_die(unlocked_weapons) -> void:
-	var item = ITEM.instantiate()
-	item.position = position
-
-	var items_dropabale := []
-	for weapon in unlocked_weapons:
-		if weapon != Data.Weapons.SWORD and unlocked_weapons[weapon] == true:
-			items_dropabale.append(Data.WEAPONS[weapon].ammo)
-	items_dropabale.append(Data.Items.LIFE)
-	item.type = items_dropabale.pick_random()
-
-	get_parent().add_child(item)
+	Global.drop_random_item(position, get_parent(), unlocked_weapons)
 	queue_free()
 #endregion

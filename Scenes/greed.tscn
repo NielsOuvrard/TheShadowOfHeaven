@@ -4,15 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="3_1socm"]
 [ext_resource type="PackedScene" uid="uid://cy2atdt0bqntm" path="res://Scenes/torch.tscn" id="3_dyfy7"]
 [ext_resource type="PackedScene" uid="uid://ci1y4rydunn2t" path="res://Scenes/sectarian.tscn" id="3_oa1ul"]
+[ext_resource type="PackedScene" uid="uid://b0ckibqpi4lpm" path="res://Scenes/chest.tscn" id="4_kgcaa"]
 [ext_resource type="PackedScene" uid="uid://bcbtjhffrph75" path="res://Scenes/item.tscn" id="5_43vmu"]
 [ext_resource type="PackedScene" uid="uid://edx4h5swy4gu" path="res://Scenes/door.tscn" id="6_6swl3"]
 [ext_resource type="PackedScene" uid="uid://0y06vbi8ods3" path="res://Scenes/player.tscn" id="7_f7bvl"]
-
-[sub_resource type="Curve2D" id="Curve2D_gpe1u"]
-_data = {
-"points": PackedVector2Array(-13.63, 21.1405, 13.63, -21.1405, -565, 16, -28.3727, -25.5911, 28.3727, 25.5911, -277, 41, 15.0209, -18.9151, -15.0209, 18.9151, -260, 101, 0, 0, 0, 0, -353, 125, 19.7496, 6.9541, -19.7496, -6.9541, -450, 123, 10.8484, 12.7955, -10.8484, -12.7955, -458, 69, 23.3658, -15.0209, -23.3658, 15.0209, -494, 67, 0, 0, 0, 0, -520, 111, 48.6787, 11.6829, -48.6787, -11.6829, -583, 121, 0, 0, 0, 0, -565, 16)
-}
-point_count = 10
 
 [node name="Greed" type="Node2D"]
 y_sort_enabled = true
@@ -106,6 +101,11 @@ y_sort_enabled = true
 position = Vector2(568, 128)
 rotation = 3.14159
 
+[node name="Chest" parent="TerrainElements" instance=ExtResource("4_kgcaa")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(-12, 7)
+
 [node name="Sectarians" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -127,9 +127,8 @@ position = Vector2(-96, 344)
 [node name="Sectarian3" parent="Sectarians" instance=ExtResource("3_oa1ul")]
 position = Vector2(466, 294)
 
-[node name="Sectarian4" parent="Sectarians" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_oa1ul")]
+[node name="Sectarian4" parent="Sectarians" instance=ExtResource("3_oa1ul")]
 position = Vector2(162, 285)
-followed_path = NodePath("../../Path2D/PathFollow2D")
 offset_followed_path = 0.5
 
 [node name="Sectarian5" parent="Sectarians" instance=ExtResource("3_oa1ul")]

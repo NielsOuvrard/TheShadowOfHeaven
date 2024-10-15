@@ -115,7 +115,9 @@ func shoot():
 	proj.type = Data.WEAPONS[current_weapon].projectile
 	proj.weapons_unlocked = weapons_unlocked
 	proj.position = position
-	owner.add_child(proj)
+	proj.z_index = 1
+	proj.y_sort_enabled = true
+	get_parent().add_child(proj)
 
 
 func reload():
@@ -229,6 +231,7 @@ func _on_sword_attack_area_entered(area: Area2D) -> void:
 			var text_animated = Global.ANIMATED_TEXT.instantiate()
 			text_animated.text = str(damage_given)
 			text_animated.position = area.get_parent().position
+			text_animated.z_index = 2
 			get_parent().add_child(text_animated)
 
 func _on_health_life_change(value: Variant) -> void:
