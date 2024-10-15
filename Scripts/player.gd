@@ -227,12 +227,6 @@ func _on_sword_attack_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
 		var attack = Attack.new(60, position, 100, weapons_unlocked)
 		var damage_given = area.damage(attack)
-		if not area.get_meta("is_projectile"):
-			var text_animated = Global.ANIMATED_TEXT.instantiate()
-			text_animated.text = str(damage_given)
-			text_animated.position = area.get_parent().position
-			text_animated.z_index = 2
-			get_parent().add_child(text_animated)
 
 func _on_health_life_change(value: Variant) -> void:
 	SignalsHandler.player_life_change.emit(value)

@@ -52,11 +52,6 @@ func _on_area_entered(area: Area2D) -> void:
 		var attack = Attack.new(Data.PROJECTILS[type].damage, position,\
 								Data.PROJECTILS[type].knockback, weapons_unlocked)
 		var damage_given = area.damage(attack)
-		var text_animated = Global.ANIMATED_TEXT.instantiate()
-		text_animated.text = str(damage_given)
-		text_animated.position = position
-		text_animated.z_index = 2
-		get_parent().add_child(text_animated)
 		queue_free()
 	if area.is_in_group("sword_attack"):
 		queue_free()
