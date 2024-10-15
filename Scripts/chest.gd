@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 
 
 func _on_area_range_body_entered(body: Node2D) -> void:
-	if body.is_in_group(&"player"):
+	if body.is_in_group(&"player") and not is_opened:
 		mark.visible = true
 
 func _on_area_range_body_exited(body: Node2D) -> void:

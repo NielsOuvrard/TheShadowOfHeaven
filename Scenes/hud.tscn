@@ -28,7 +28,7 @@ stretch_mode = 4
 position = Vector2(100, 60)
 scale = Vector2(8, 8)
 texture = ExtResource("3_wax87")
-hframes = 2
+hframes = 4
 
 [node name="Right" type="Control" parent="."]
 layout_mode = 3

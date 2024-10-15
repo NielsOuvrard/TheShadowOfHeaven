@@ -1,8 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://b0ckibqpi4lpm"]
+[gd_scene load_steps=15 format=3 uid="uid://b0ckibqpi4lpm"]
 
 [ext_resource type="Texture2D" uid="uid://b7sgoatuqubq5" path="res://Assets/World/Chest.png" id="1_7ub3n"]
 [ext_resource type="Script" path="res://Scripts/chest.gd" id="1_22v10"]
+[ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_1ehsx"]
 [ext_resource type="Texture2D" uid="uid://cyrwox420ubne" path="res://Assets/Items/small_interogation_mark.png" id="2_yic8c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_36rt1"]
+radius = 23.0217
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xaujn"]
+size = Vector2(14, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sqfeo"]
 atlas = ExtResource("1_7ub3n")
@@ -71,16 +78,25 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xaujn"]
-size = Vector2(14, 8)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_36rt1"]
-radius = 23.0217
-
 [node name="Chest" type="StaticBody2D"]
 collision_layer = 16
 collision_mask = 5
 script = ExtResource("1_22v10")
+
+[node name="ShadowSmall" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -2)
+scale = Vector2(2, 1)
+texture = ExtResource("2_1ehsx")
+
+[node name="AreaRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaRange"]
+shape = SubResource("CircleShape2D_36rt1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_xaujn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
@@ -90,20 +106,11 @@ autoplay = "closed"
 frame = 4
 frame_progress = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
-shape = SubResource("RectangleShape2D_xaujn")
-
 [node name="Mark" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -28)
 texture = ExtResource("2_yic8c")
 
-[node name="AreaRange" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaRange"]
-shape = SubResource("CircleShape2D_36rt1")
-
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="AreaRange" to="." method="_on_area_range_body_entered"]
 [connection signal="body_exited" from="AreaRange" to="." method="_on_area_range_body_exited"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
