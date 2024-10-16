@@ -15,7 +15,7 @@ extends CanvasLayer
 @onready var inv_text: Label = $Right/InvText
 
 var current_weapon := Data.Weapons.SWORD
-var hearts := [] # TODO
+var hearts := []
 var hearts_index := []
 
 const PLAYER_FULL_LIFE = 100
@@ -25,16 +25,12 @@ const NUMBER_HALFS_HEARTS = 4 ## 2 hearts, 4 halfs
 func life_to_hearts_list(life: int):
 	var local = int(float(life) / float(PLAYER_FULL_LIFE) * float(HALFS_HEARTS))
 	hearts_index = []
-	print(life, "/", PLAYER_FULL_LIFE, "*", HALFS_HEARTS, "=", life / PLAYER_FULL_LIFE * HALFS_HEARTS)
-	
 	for i in range(HALFS_HEARTS):
 		if local > 0:
 			hearts_index.append(i % 2)
 			local -= 1
 		else:
 			hearts_index.append((i % 2) + 2)
-	print(hearts_index)
-
 
 func update_hearts():
 	hearts.clear()
@@ -63,7 +59,6 @@ func _player_life_change(life):
 	update_hearts()
 
 func _player_change_weapon(new_weapon: Data.Weapons):
-	#print(Data.Weapons[weapon])
 	weapon.type = new_weapon
 	weapon._ready()
 	

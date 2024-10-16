@@ -25,8 +25,6 @@ extends CharacterBody2D
 @export var current_weapon := Data.Weapons.SWORD
 @export var debug := false
 
-# TODO check for _physics_process and _process
-
 var look_direction := Vector2.ZERO
 var last_look_direction_mouse := Vector2.ZERO
 var knockback_velocity := Vector2.ZERO # ? component with this
@@ -190,10 +188,11 @@ func _physics_process(delta):
 		direction_input = direction_input.normalized()
 
 	var direction = direction_input
-	if direction != Vector2.ZERO:
-		# TODO last direction or sth
+	if direction.x != 0:
 		animated_sprite.flip_h = direction.x > 0
 		weapon_sprite.flip_h = direction.x > 0
+
+	if direction != Vector2.ZERO:
 		animation_handler.add_animation(Data.Animations.MOVE)
 	direction = direction.rotated(rotation)
 
@@ -235,7 +234,7 @@ func _physics_process(delta):
 func _on_sword_attack_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
 		var attack = Attack.new(60, position, 100, weapons_unlocked)
-		var damage_given = area.damage(attack)
+		area.damage(attack)
 
 func _on_health_life_change(value: Variant) -> void:
 	SignalsHandler.player_life_change.emit(value)

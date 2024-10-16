@@ -97,8 +97,6 @@ func _ready():
 	mark_sprite.visible = false
 	ready_finished = true
 
-# TODO rotate, and then move
-
 ## State walking
 func walking(delta: float):
 	if followed_path:
