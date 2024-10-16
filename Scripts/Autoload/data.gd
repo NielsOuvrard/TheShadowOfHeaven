@@ -15,21 +15,6 @@ enum Weapons {
 	RAYGUN
 }
 
-enum Items {
-	PISTOL_AMMO,
-	SHOTGUN_AMMO,
-	RAYGUN_AMMO,
-	LIFE
-}
-
-enum Projectiles {
-	PISTOL,
-	SHOTGUN,
-	RAYGUN,
-	ENEMIES,
-	DEATH_BALL,
-}
-
 const WEAPONS = {
 	Weapons.SWORD: {
 		"name": "sword",
@@ -73,6 +58,15 @@ const WEAPONS = {
 	}
 }
 
+enum Projectiles {
+	PISTOL,
+	SHOTGUN,
+	RAYGUN,
+	ENEMIES,
+	DEATH_BALL,
+}
+
+# ? remplace collision data by animationPlayer ?
 const PROJECTILS = {
 	Projectiles.PISTOL: {
 		"animation": "pistol",
@@ -126,6 +120,13 @@ const PROJECTILS = {
 	}
 }
 
+enum Items {
+	PISTOL_AMMO,
+	SHOTGUN_AMMO,
+	RAYGUN_AMMO,
+	LIFE
+}
+
 const ITEMS = {
 	Items.PISTOL_AMMO: {
 		"name": "pistol_ammo",
@@ -155,4 +156,46 @@ const ITEMS = {
 		"n_max": 15,
 		"n_min": 3
 	},
+}
+
+enum Animations {
+	IDLE,
+	MOVE,
+	# RELOAD, # not for now
+	CHANGE_WEAPON,
+	PICK_UP,
+	DASH
+}
+
+const animations_data := {
+	Animations.IDLE: {
+		"name": "idle",
+		"seconds_active": 0.0,
+		"can_be_override": true
+	},
+	Animations.MOVE: {
+		"name": "move",
+		"seconds_active": 0.0,
+		"can_be_override": true
+	},
+	# Animations.RELOAD: {
+	# 	"name": "reload",
+	# 	"seconds_active": 0.6,
+	# 	"can_be_override": false
+	# },
+	Animations.CHANGE_WEAPON: {
+		"name": "change_weapon",
+		"seconds_active": 0.6,
+		"can_be_override": false
+	},
+	Animations.PICK_UP: {
+		"name": "pick_up",
+		"seconds_active": 0.6,
+		"can_be_override": false
+	},
+	Animations.DASH: {
+		"name": "dash",
+		"seconds_active": 0.6,
+		"can_be_override": false
+	}
 }

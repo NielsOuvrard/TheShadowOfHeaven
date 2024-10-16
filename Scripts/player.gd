@@ -15,6 +15,7 @@ extends CharacterBody2D
 @onready var sword_collision: CollisionShape2D = $SwordAttack/Collision
 
 @onready var health: Health = $Health
+@onready var animation_handler: Node = $AnimationHandler
 
 @onready var reload_cooldown: Timer = $ReloadCooldown
 @onready var shoot_cooldown: Timer = $ShotCooldown
@@ -144,7 +145,8 @@ func change_weapon():
 
 	if next_weapon == current_weapon:
 		return
-		
+
+	animation_handler.add_animation(Data.Animations.CHANGE_WEAPON)
 	SignalsHandler.player_change_weapon.emit(next_weapon)
 	
 	# auto reload
@@ -163,6 +165,7 @@ func add_to_inventory(item: Data.Items, number: int):
 		health.life += number
 	else:
 		ammo_inventory[Data.ITEMS[item].weapon] += number
+	animation_handler.add_animation(Data.Animations.PICK_UP)
 
 ## used when the player unlock a new weapon
 func unlock_weapon(weapon: Data.Weapons):
@@ -188,11 +191,10 @@ func _physics_process(delta):
 
 	var direction = direction_input
 	if direction != Vector2.ZERO:
+		# TODO last direction or sth
 		animated_sprite.flip_h = direction.x > 0
 		weapon_sprite.flip_h = direction.x > 0
-		animated_sprite.play("Move")
-	else:
-		animated_sprite.play("Idle")
+		animation_handler.add_animation(Data.Animations.MOVE)
 	direction = direction.rotated(rotation)
 
 	# * Velocity 
@@ -222,6 +224,13 @@ func _physics_process(delta):
 
 		if Input.is_action_pressed('shoot'):
 			shoot()
+		
+		if Input.is_action_pressed('dash'):
+			animation_handler.add_animation(Data.Animations.DASH)
+			# TODO
+	
+	# * Animation
+	animation_handler.actualize_animation()
 
 func _on_sword_attack_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
