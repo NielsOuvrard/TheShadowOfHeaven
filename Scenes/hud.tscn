@@ -28,9 +28,10 @@ stretch_mode = 4
 [node name="HeartParent" type="Node" parent="Left"]
 
 [node name="Heart" type="Sprite2D" parent="Left/HeartParent"]
-position = Vector2(100, 60)
+position = Vector2(112, 88)
 scale = Vector2(8, 8)
 texture = ExtResource("3_wax87")
+offset = Vector2(-3.75, -4.5)
 hframes = 4
 
 [node name="Right" type="Control" parent="."]
