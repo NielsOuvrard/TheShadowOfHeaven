@@ -72,9 +72,9 @@ var sect_look_at = Vector2.RIGHT:
 		$PointLight2D.rotation = sect_look_at.angle() + PI
 
 
+# TODO FIX turn to the great direction when he is attacking
 # TODO if player very close, he will attack
 # TODO if he gets attacking, he send a signal to clsest enemy to attack the player
-# TODO all_items_dropable.pick_random()
 
 const mark_texture_exclamation = preload("res://Assets/Items/small_exclamation_mark.png")
 const mark_texture_interogation = preload("res://Assets/Items/small_interogation_mark.png")
@@ -110,7 +110,7 @@ func walking(delta: float):
 		objective_position = priority_objective_position
 		priority_objective_position = Vector2.ZERO
 	elif linear_movement != Vector2.ZERO:
-		if ray_cast.is_colliding():
+		if ray_cast.is_colliding(): # TODO put here a real raycast analysis
 			var collider = ray_cast.get_collider()
 			if collider.is_in_group("enemies"):
 				return # wait for the other to move
@@ -179,7 +179,7 @@ func player_in_fov(player: Node, delta: float) -> void:
 	else:
 		direction = Vector2.ZERO
 	velocity += direction * SPEED * delta
-
+	
 
 func searching(delta: float):
 	match state_searching:
@@ -238,7 +238,6 @@ func _physics_process(delta: float) -> void:
 
 #region signlas
 func _on_research_cool_down_timeout() -> void:
-	# state = State.WALKING if is_moving else State.NOTHING
 	mark_sprite.visible = false
 
 func _on_health_life_change(new_life: int) -> void:
