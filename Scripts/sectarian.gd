@@ -18,7 +18,7 @@ extends CharacterBody2D
 		print("linear_movement", linear_movement)
 
 
-@export var SPEED := 900.0 ## speed movement
+@export var SPEED := Data.SPEED_PLAYER * 0.5
 @export var COOLDOWN_SHOT := 1.0 ## time between each shot
 
 @export var followed_path : PathFollow2D
@@ -100,7 +100,7 @@ func _ready():
 ## State walking
 func walking(delta: float):
 	if followed_path:
-		followed_path.progress += SPEED * EACH_FRAME * delta
+		followed_path.progress += SPEED
 		objective_position = followed_path.position
 	elif priority_objective_position != Vector2.ZERO and position.distance_to(priority_objective_position) > 1:
 		# set priority objective to ignore the collision while rotating
@@ -127,7 +127,7 @@ func walking(delta: float):
 
 	# walk only if he is not rotating
 	if sect_look_at == new_direction or (followed_path and state == State.WALKING):
-		velocity += new_direction * SPEED * delta
+		velocity += new_direction * SPEED
 
 
 func is_player_in_range(player: Node2D) -> bool:
@@ -178,8 +178,8 @@ func player_in_fov(player: Node, delta: float) -> void:
 		direction = sect_look_at
 	else:
 		direction = Vector2.ZERO
-	velocity += direction * SPEED * delta
-
+	velocity += direction * SPEED
+	
 
 func searching(delta: float):
 	match state_searching:
@@ -196,7 +196,7 @@ func searching(delta: float):
 		StateSearching.GO_TO_POSITION_X:
 			if position.distance_to(last_time_i_saw_him) > 5:
 				var direction = (last_time_i_saw_him - position).normalized()
-				velocity += direction * SPEED * delta
+				velocity += direction * SPEED
 			else:
 				state_searching = StateSearching.ROTATE_ON_HIMSELF
 				research_cool_down.start()

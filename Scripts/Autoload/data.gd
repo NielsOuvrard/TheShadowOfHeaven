@@ -8,6 +8,10 @@
 
 extends Node
 
+
+const TILE_SIZE = 16.0
+const SPEED_PLAYER = TILE_SIZE * 7 ## each seconds
+
 enum Weapons {
 	SWORD,
 	PISTOL,
@@ -70,7 +74,7 @@ enum Projectiles {
 const PROJECTILS = {
 	Projectiles.PISTOL: {
 		"animation": "pistol",
-		"speed": 200,
+		"speed": SPEED_PLAYER * 2,
 		"damage": 20,
 		"knockback": 30.0,
 		"light_color": Color(1, 1, 0, 1),
@@ -80,7 +84,7 @@ const PROJECTILS = {
 	},
 	Projectiles.SHOTGUN: {
 		"animation": "shotgun",
-		"speed": 200,
+		"speed": SPEED_PLAYER * 2.5,
 		"damage": 99,
 		"knockback": 100.0,
 		"light_energy": 1.5,
@@ -90,7 +94,7 @@ const PROJECTILS = {
 	},
 	Projectiles.RAYGUN: {
 		"animation": "raygun", # this one is different, it's a ray
-		"speed": 100,
+		"speed": SPEED_PLAYER * 4,
 		"damage": 40,
 		"knockback": 0.0,
 		"light_energy": 1,
@@ -100,7 +104,7 @@ const PROJECTILS = {
 	},
 	Projectiles.ENEMIES: {
 		"animation": "enemies",
-		"speed": 150,
+		"speed": SPEED_PLAYER * 2,
 		"damage": 30,
 		"knockback": 5.0,
 		"light_energy": 0.5,
@@ -110,7 +114,7 @@ const PROJECTILS = {
 	},
 	Projectiles.DEATH_BALL: {
 		"animation": "death_ball",
-		"speed": 200,
+		"speed": SPEED_PLAYER * 1.2,
 		"damage": 50,
 		"knockback": 0.0,
 		"light_energy": 2,
