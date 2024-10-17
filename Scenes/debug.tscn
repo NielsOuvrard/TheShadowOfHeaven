@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://c14u0rfd784te"]
+
+[ext_resource type="PackedScene" uid="uid://0y06vbi8ods3" path="res://Scenes/player.tscn" id="1_x7mg7"]
+[ext_resource type="PackedScene" uid="uid://cy2atdt0bqntm" path="res://Scenes/torch.tscn" id="3_nxch4"]
+[ext_resource type="PackedScene" uid="uid://ci1y4rydunn2t" path="res://Scenes/sectarian.tscn" id="5_dqq4o"]
+
+[sub_resource type="Curve2D" id="Curve2D_8nsjm"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 50, -11, 0, 0, 0, 0, 50, -66, 0, 0, 0, 0, 65, -12, 0, 0, 0, 0, 73, -68, 0, 0, 0, 0, 83, -12, 0, 0, 0, 0, 92, -69, 0, 0, 0, 0, 119, 14, 0, 0, 0, 0, 72, 64, 0, 0, 0, 0, 31, 42, 0, 0, 0, 0, 50, -11)
+}
+point_count = 10
+
+[node name="Debug" type="Node2D"]
+z_index = 1
+y_sort_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_x7mg7")]
+debug = true
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+z_index = 100
+zoom = Vector2(8, 8)
+position_smoothing_speed = 15.0
+
+[node name="Sectarian2" parent="." instance=ExtResource("5_dqq4o")]
+position = Vector2(1, 29)
+linear_movement = Vector2(-1, 0)
+
+[node name="Sectarian3" parent="." instance=ExtResource("5_dqq4o")]
+position = Vector2(-39, -4)
+linear_movement = Vector2(0, -1)
+
+[node name="Torch" parent="." instance=ExtResource("3_nxch4")]
+position = Vector2(-66, 30)
+
+[node name="Torch3" parent="." instance=ExtResource("3_nxch4")]
+position = Vector2(-41, 72)
+
+[node name="Torch4" parent="." instance=ExtResource("3_nxch4")]
+position = Vector2(-38, -40)
+
+[node name="Torch2" parent="." instance=ExtResource("3_nxch4")]
+position = Vector2(60, 31)
+
+[node name="Sectarian" parent="." node_paths=PackedStringArray("followed_path") instance=ExtResource("5_dqq4o")]
+position = Vector2(-106, -16)
+followed_path = NodePath("../Path2D/PathFollow2D")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_8nsjm")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(50, -11)
+rotation = -1.5708
