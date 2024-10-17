@@ -106,6 +106,7 @@ func shoot():
 		reload()
 		return
 	ammo_current[current_weapon] -= 1
+	SignalsHandler.player_update_ammo_current.emit(ammo_current[current_weapon])
 
 	var proj = Global.PROJECTILE.instantiate()
 	proj.direction_proj = look_direction
@@ -130,6 +131,7 @@ func reload():
 	var ammo_taken = min(ammo_inventory[current_weapon], ammo_max_needed)
 	ammo_current[current_weapon] += ammo_taken
 	ammo_inventory[current_weapon] -= ammo_taken
+	SignalsHandler.player_update_ammo_both.emit(ammo_current[current_weapon], ammo_inventory[current_weapon])
 	
 	reload_cooldown.start()
 
@@ -145,7 +147,9 @@ func change_weapon():
 		return
 
 	animation_handler.add_animation(Data.Animations.CHANGE_WEAPON)
-	SignalsHandler.player_change_weapon.emit(next_weapon)
+	var current_ammo = ammo_current[next_weapon] if next_weapon != Data.Weapons.SWORD else 0
+	var current_inventory = ammo_inventory[next_weapon] if next_weapon != Data.Weapons.SWORD else 0
+	SignalsHandler.player_change_weapon.emit(next_weapon, current_ammo, current_inventory)
 	
 	# auto reload
 	if current_weapon != Data.Weapons.SWORD and ammo_current[current_weapon] == 0 and ammo_inventory[current_weapon] > 0:

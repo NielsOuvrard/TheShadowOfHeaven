@@ -8,9 +8,11 @@ extends Node
 ## * Player signals
 
 signal player_died
-signal player_change_weapon(weapon_type)
+signal player_change_weapon(weapon_type, ammo_current, ammo_inventory)
 signal player_life_change(life)
 signal level_completed
+signal player_update_ammo_current(ammo)
+signal player_update_ammo_both(cur, inv)
 
 
 ## * other signals

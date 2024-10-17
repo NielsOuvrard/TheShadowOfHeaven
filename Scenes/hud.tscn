@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c43q6ncwe5wl0"]
+[gd_scene load_steps=9 format=3 uid="uid://c43q6ncwe5wl0"]
 
 [ext_resource type="Script" path="res://Scripts/hud.gd" id="1_7r4t5"]
 [ext_resource type="Texture2D" uid="uid://di8sp2r62jgrd" path="res://Assets/HUD/Fuego.png" id="1_nn1e5"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://dsvosxxjomnr5" path="res://Assets/Fonts/PixelOperator8.ttf" id="5_3rqoy"]
 [ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="5_s1o24"]
 [ext_resource type="Texture2D" uid="uid://bkyahaeeslbp7" path="res://Assets/HUD/Cursor.png" id="7_1dos8"]
+[ext_resource type="Texture2D" uid="uid://b8ghltpp4c7pq" path="res://Assets/Items/bullets_icons.png" id="7_m66f8"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_7r4t5")
@@ -24,7 +25,9 @@ offset_bottom = 256.0
 texture = ExtResource("2_akymb")
 stretch_mode = 4
 
-[node name="Heart" type="Sprite2D" parent="Left"]
+[node name="HeartParent" type="Node" parent="Left"]
+
+[node name="Heart" type="Sprite2D" parent="Left/HeartParent"]
 position = Vector2(100, 60)
 scale = Vector2(8, 8)
 texture = ExtResource("3_wax87")
@@ -68,21 +71,14 @@ scale = Vector2(4, 4)
 theme_override_fonts/font = ExtResource("5_3rqoy")
 text = "6"
 
-[node name="CurText" type="Label" parent="Right"]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -224.0
-offset_top = 152.0
-offset_right = -210.0
-offset_bottom = 152.0
-grow_horizontal = 0
-grow_vertical = 2
-scale = Vector2(4, 4)
-theme_override_fonts/font = ExtResource("5_3rqoy")
-text = "6"
+[node name="BulletParent" type="Node" parent="Right"]
+
+[node name="Bullet" type="Sprite2D" parent="Right/BulletParent"]
+position = Vector2(1792, 208)
+scale = Vector2(8, 8)
+texture = ExtResource("7_m66f8")
+offset = Vector2(-0.5, -1.5)
+hframes = 3
 
 [node name="Center" type="Control" parent="."]
 visible = false
