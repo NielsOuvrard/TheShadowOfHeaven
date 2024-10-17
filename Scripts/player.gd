@@ -20,7 +20,7 @@ extends CharacterBody2D
 @onready var reload_cooldown: Timer = $ReloadCooldown
 @onready var shoot_cooldown: Timer = $ShotCooldown
 
-@export var SPEED := 5000.0
+@export var SPEED := 16.0 * 7
 @export var ACCELERATION := 0.2
 @export var current_weapon := Data.Weapons.SWORD
 @export var debug := false
@@ -203,12 +203,14 @@ func _physics_process(delta):
 	# * Velocity 
 	var target_velocity = Vector2.ZERO
 	if direction != Vector2.ZERO:
-		target_velocity = delta * direction * SPEED
+		target_velocity = direction * SPEED
 	else:
 		target_velocity = Vector2.ZERO
 	# Use lerp to smoothly transition the velocity
 	velocity = velocity.lerp(target_velocity, ACCELERATION)
 	velocity += knockback_velocity
+	
+	# velocity in pixels per second,
 	knockback_velocity = knockback_velocity.lerp(Vector2.ZERO, 0.1)
 	move_and_slide()
 

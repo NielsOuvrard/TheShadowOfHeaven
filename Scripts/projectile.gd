@@ -22,6 +22,7 @@ const LAYER_PLAYER_ATTACK = 2
 const LAYER_ENEMY = 4
 const LAYER_ENEMY_ATTACK = 8
 
+const EACH_FRAME = 1.0 / 60.0
 
 func _ready():
 	add_to_group("projectiles") # useless for now
@@ -43,8 +44,8 @@ func _ready():
 	self.collision_layer = LAYER_PLAYER_ATTACK if thrower == "player" else LAYER_ENEMY_ATTACK
 	self.collision_mask = 48 + (LAYER_PLAYER if thrower != "player" else LAYER_ENEMY)
 
-func _process(delta):
-	var velocity = direction_proj * Data.PROJECTILS[type].speed * delta
+func _physics_process(delta: float) -> void:
+	var velocity = direction_proj.normalized() * Data.PROJECTILS[type].speed * EACH_FRAME
 	position += velocity
 
 func _on_area_entered(area: Area2D) -> void:
