@@ -15,12 +15,13 @@ extends CanvasLayer
 @onready var heart: Sprite2D = $Left/HeartParent/Heart
 
 @onready var bullet_parent: Node = $Right/BulletParent
-@onready var bullet: Sprite2D = $Right/BulletParent/Bullet
+@onready var bullet_icon: Node2D = $Right/BulletParent/BulletIcon
 
 @onready var inv_text: Label = $Right/InvText
 
 var current_weapon := Data.Weapons.SWORD
 var hearts_index := []
+var bullets := []
 
 const PLAYER_FULL_LIFE = 100
 const HALFS_HEARTS = 6 ## 3 hearts, so 6 halfs ones
@@ -33,12 +34,14 @@ const NUMBER_TYPES_BULLETS = 3
 func bullet_to_ammo_list(ammo: int):
 	for i in range(bullet_parent.get_child_count()):
 		bullet_parent.remove_child(bullet_parent.get_child(0))
+	bullets.clear()
 	for i in range(ammo):
-		var new = bullet.duplicate()
+		var new = bullet_icon.duplicate()
 		# * x2 because we put 1px space between each bullet
-		new.position.x -= (i * 2) * bullet.scale.x * (bullet.texture.get_size().x / NUMBER_TYPES_BULLETS)
+		new.position.x -= (i * 2) * new.scale_sprite.x * (new.size_texture.x / NUMBER_TYPES_BULLETS)
 		new.frame = current_weapon - 1
 		bullet_parent.add_child(new)
+		bullets.append(new)
 
 func life_to_hearts_list(life: int):
 	var local = int(float(life) / float(PLAYER_FULL_LIFE) * float(HALFS_HEARTS))
@@ -75,7 +78,11 @@ func _ready() -> void:
 	bullet_to_ammo_list(0)
 
 func _player_update_ammo_current(ammo):
-	bullet_to_ammo_list(ammo)
+	if ammo == len(bullets) - 1:
+		bullets[-1].play("remove")
+		bullets.pop_back()
+	else:
+		bullet_to_ammo_list(ammo)
 
 func _player_update_ammo_both(cur, inv):
 	inv_text.text = str(inv)
@@ -89,7 +96,6 @@ func _player_change_weapon(new_weapon: Data.Weapons, ammo_current: int, ammo_inv
 	current_weapon = new_weapon
 	weapon.type = new_weapon
 	weapon._ready()
-	print("new weapon:", new_weapon, "ammo_current:", ammo_current, "ammo_inventory:", ammo_inventory)
 	bullet_to_ammo_list(ammo_current)
 	inv_text.text = str(ammo_inventory)
 	
