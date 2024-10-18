@@ -65,17 +65,14 @@ func reverse_door():
 		rotation = rotation_original
 	if people_inside_areas == 0:
 		close()
-		print("reverse_door", state)
 
 func _on_back_body_entered(body: Node2D) -> void:
 	people_inside_areas += 1
-	print("_on_back_body_entered - ", people_inside_areas)
 	if body.is_in_group("player") and state == DoorState.CLOSED:
 		reverse_door()
 
 func _on_back_body_exited(body: Node2D) -> void:
 	people_inside_areas -= 1
-	print("_on_back_body_exited - ", people_inside_areas)
 	if body.is_in_group("player") and state == DoorState.CLOSED:
 		reverse_door()
 	elif people_inside_areas == 0:
@@ -83,12 +80,10 @@ func _on_back_body_exited(body: Node2D) -> void:
 
 func _on_front_body_entered(body: Node2D) -> void:
 	people_inside_areas += 1
-	print("_on_front_body_entered - ", people_inside_areas)
 	if body.is_in_group("player"):
 		open()
 
 func _on_front_body_exited(body: Node2D) -> void:
 	people_inside_areas -= 1
-	print("_on_front_body_exited - ", people_inside_areas)
 	if body.is_in_group("player") and people_inside_areas <= 0:
 		close()

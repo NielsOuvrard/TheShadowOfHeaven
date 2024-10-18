@@ -18,7 +18,7 @@ extends CharacterBody2D
 		print("linear_movement", linear_movement)
 
 
-@export var SPEED := Data.SPEED_PLAYER * 0.5
+@export var SPEED := Data.SPEED_PLAYER * 0.3
 @export var COOLDOWN_SHOT := 1.0 ## time between each shot
 
 @export var followed_path : PathFollow2D
