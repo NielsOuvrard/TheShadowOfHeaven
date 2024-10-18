@@ -7,7 +7,7 @@
 [ext_resource type="FontFile" uid="uid://dsvosxxjomnr5" path="res://Assets/Fonts/PixelOperator8.ttf" id="5_3rqoy"]
 [ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="5_s1o24"]
 [ext_resource type="Texture2D" uid="uid://bkyahaeeslbp7" path="res://Assets/HUD/Cursor.png" id="7_1dos8"]
-[ext_resource type="Texture2D" uid="uid://b8ghltpp4c7pq" path="res://Assets/Items/bullets_icons.png" id="7_m66f8"]
+[ext_resource type="PackedScene" uid="uid://bgpyev64thich" path="res://Scenes/bullet_icon.tscn" id="8_tipkt"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_7r4t5")
@@ -74,12 +74,8 @@ text = "6"
 
 [node name="BulletParent" type="Node" parent="Right"]
 
-[node name="Bullet" type="Sprite2D" parent="Right/BulletParent"]
-position = Vector2(1792, 208)
-scale = Vector2(8, 8)
-texture = ExtResource("7_m66f8")
-offset = Vector2(-0.5, -1.5)
-hframes = 3
+[node name="BulletIcon" parent="Right/BulletParent" instance=ExtResource("8_tipkt")]
+position = Vector2(1788, 196)
 
 [node name="Center" type="Control" parent="."]
 visible = false
