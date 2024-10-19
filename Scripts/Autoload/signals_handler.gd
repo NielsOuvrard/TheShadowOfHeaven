@@ -13,6 +13,7 @@ signal player_life_change(life)
 signal level_completed
 signal player_update_ammo_current(ammo)
 signal player_update_ammo_both(cur, inv)
+signal player_reload(type_weapon)
 
 
 ## * other signals

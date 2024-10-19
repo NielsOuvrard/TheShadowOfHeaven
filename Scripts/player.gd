@@ -132,6 +132,7 @@ func reload():
 	ammo_current[current_weapon] += ammo_taken
 	ammo_inventory[current_weapon] -= ammo_taken
 	SignalsHandler.player_update_ammo_both.emit(ammo_current[current_weapon], ammo_inventory[current_weapon])
+	SignalsHandler.player_reload.emit(current_weapon)
 	
 	reload_cooldown.start()
 

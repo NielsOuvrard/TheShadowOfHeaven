@@ -71,6 +71,7 @@ func _ready() -> void:
 	SignalsHandler.player_update_ammo_current.connect(_player_update_ammo_current)
 	SignalsHandler.player_update_ammo_both.connect(_player_update_ammo_both)
 	SignalsHandler.player_change_controller.connect(_player_change_controller)
+	SignalsHandler.player_reload.connect(_player_reload)
 
 	life_to_hearts_list(PLAYER_FULL_LIFE) # should print 3 full hearts
 	update_hearts()
@@ -98,7 +99,13 @@ func _player_change_weapon(new_weapon: Data.Weapons, ammo_current: int, ammo_inv
 	weapon._ready()
 	bullet_to_ammo_list(ammo_current)
 	inv_text.text = str(ammo_inventory)
-	
+
+func _player_reload(type_weapon):
+	bullet_to_ammo_list(Data.WEAPONS[type_weapon].ammo_max)
+	var time_to_reload = Data.WEAPONS[type_weapon].cooldown_reload
+	for i in range(len(bullets)):
+		bullets[i].disabled((time_to_reload / len(bullets)) * (i + 1))
+
 func _player_change_controller(value):
 	# TODO change visibility of the cursor
 	pass
