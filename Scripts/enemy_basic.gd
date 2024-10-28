@@ -18,7 +18,7 @@ extends CharacterBody2D
 @onready var research_cool_down: Timer = $ResearchCoolDown
 
 # children nodes
-@onready var sprites: AnimatedSprite2D = $Sprites
+@onready var sprites: AnimatedSprite2D = $Sprites # default / attack / move
 @onready var hitbox: Hitbox = $Hitbox
 @onready var health: Health = $Health
 
@@ -29,12 +29,11 @@ extends CharacterBody2D
 		linear_movement = v
 		print("linear_movement", linear_movement)
 
-
-@export var SPEED := Data.SPEED_PLAYER * 0.3
-@export var COOLDOWN_SHOT := 1.0 ## time between each shot
-
 @export var followed_path : PathFollow2D
 @export_range(0, 1, 0.01) var offset_followed_path := 0.0 ## offset of the path, between 0 and 1
+
+var SPEED := Data.SPEED_PLAYER * 0.3
+var COOLDOWN_SHOT := 1.0 ## time between each shot
 
 var percent_path := 0
 var distance_vision := 100
@@ -68,20 +67,20 @@ var DISTANCE_TO_COLLISION := 20
 var EACH_FRAME := 1.0 / 60.0
 var SPEED_ROTATE := 0.02
 
-var sect_look_at = Vector2.RIGHT:
+var enemy_look_at = Vector2.RIGHT:
 	set(v):
 		if not ready_finished: # set the first time
-			sect_look_at = v
+			enemy_look_at = v
 		if v == Vector2.ZERO:
 			return
-		var angle_diff = sect_look_at.angle_to(v)
+		var angle_diff = enemy_look_at.angle_to(v)
 		if abs(angle_diff) > SPEED_ROTATE:
 			angle_diff = sign(angle_diff) * SPEED_ROTATE
-			sect_look_at = sect_look_at.rotated(angle_diff)
+			enemy_look_at = enemy_look_at.rotated(angle_diff)
 		else:
-			sect_look_at = v
-		ray_cast.target_position = sect_look_at * distance_vision
-		$PointLight2D.rotation = sect_look_at.angle() + PI
+			enemy_look_at = v
+		ray_cast.target_position = enemy_look_at * distance_vision
+		$PointLight2D.rotation = enemy_look_at.angle() + PI
 
 # TODO linked to the animated script
 
@@ -98,19 +97,20 @@ func _ready():
 	if linear_movement or followed_path:
 		state = State.WALKING
 		if linear_movement:
-			sect_look_at = linear_movement.normalized()
-			sprites.flip_h = sect_look_at.x > 0
+			enemy_look_at = linear_movement.normalized()
+			sprites.flip_h = enemy_look_at.x > 0
 		elif followed_path:
 			followed_path.progress_ratio = offset_followed_path
 			position = followed_path.position
-			sect_look_at = followed_path.position - position
+			enemy_look_at = followed_path.position - position
 	else:
+		enemy_look_at = Vector2.LEFT
 		state = State.NOTHING
 	
 	$LifeBar.position.y -= sprites.sprite_frames.get_frame_texture("default", 0).get_size().y
 	mark_sprite.position.y = -sprites.sprite_frames.get_frame_texture("default", 0).get_size().y\
 							-(mark_sprite.texture.get_size().y * 0.8)
-	
+
 	mark_sprite.visible = false
 	ready_finished = true
 
@@ -139,12 +139,13 @@ func walking(delta: float):
 		return
 
 	var new_direction = (objective_position - position).normalized()
-	sect_look_at = new_direction
-	sprites.flip_h = sect_look_at.x > 0
+	enemy_look_at = new_direction
+	sprites.flip_h = enemy_look_at.x > 0
 
 	# walk only if he is not rotating
-	if sect_look_at == new_direction or (followed_path and state == State.WALKING):
+	if enemy_look_at == new_direction or (followed_path and state == State.WALKING):
 		velocity += new_direction * SPEED
+		sprites.play("move")
 
 
 func is_player_in_range(player: Node2D) -> bool:
@@ -184,15 +185,16 @@ func shoot(player: Node) -> void:
 	shot_cooldown.start()
 
 func player_in_fov(player: Node, delta: float) -> void:
-	var angle : float = sect_look_at.angle_to(player.position - position)
+	sprites.play("attack")
+	var angle : float = enemy_look_at.angle_to(player.position - position)
 	if abs(angle) > 0.1:
-		sect_look_at = sect_look_at.rotated(angle)
+		enemy_look_at = enemy_look_at.rotated(angle)
 	elif shot_cooldown.is_stopped():
 		shoot(player)
 
 	var direction = Vector2.ZERO
 	if position.distance_to(player.position) > 25:
-		direction = sect_look_at
+		direction = enemy_look_at
 	else:
 		direction = Vector2.ZERO
 	velocity += direction * SPEED
@@ -201,13 +203,13 @@ func player_in_fov(player: Node, delta: float) -> void:
 func searching(delta: float):
 	match state_searching:
 		StateSearching.ROTATE_PI_PLAYER_ESCAPE:
-			if sect_look_at.angle_to(last_time_i_saw_him - position) > 0.1:
-				sect_look_at = sect_look_at.rotated(SPEED_ROTATE)
+			if enemy_look_at.angle_to(last_time_i_saw_him - position) > 0.1:
+				enemy_look_at = enemy_look_at.rotated(SPEED_ROTATE)
 			else:
 				state_searching = StateSearching.GO_TO_POSITION_X
 		StateSearching.ROTATE_ORIGIN_DAMAGE:
-			if sect_look_at.angle_to(last_time_i_saw_him - position) > 0.1:
-				sect_look_at = sect_look_at.rotated(SPEED_ROTATE)
+			if enemy_look_at.angle_to(last_time_i_saw_him - position) > 0.1:
+				enemy_look_at = enemy_look_at.rotated(SPEED_ROTATE)
 			else:
 				state_searching = StateSearching.GO_TO_POSITION_X
 		StateSearching.GO_TO_POSITION_X:
@@ -219,13 +221,13 @@ func searching(delta: float):
 				research_cool_down.start()
 		StateSearching.ROTATE_ON_HIMSELF:
 			if not research_cool_down.is_stopped():
-				sect_look_at = sect_look_at.rotated(-SPEED_ROTATE)
+				enemy_look_at = enemy_look_at.rotated(-SPEED_ROTATE)
 			else:
 				state = State.WALKING
 
 func _physics_process(delta: float) -> void:
 	var player = get_tree().get_first_node_in_group("player")
-
+	sprites.play("default")
 	if is_player_in_range(player):
 		state = State.ATTACKING
 		mark_sprite.visible = true

@@ -28,8 +28,7 @@ const HALFS_HEARTS = 6 ## 3 hearts, so 6 halfs ones
 const NUMBER_HALFS_HEARTS = 4 ## 2 hearts, 4 halfs
 const NUMBER_TYPES_BULLETS = 3
 
-# todo hearts / bullets childe as a scene, and animate them
-# todo add animation when reloading, shooting, and changing weapon
+# todo hearts childe as a scene, and animate them
 
 func bullet_to_ammo_list(ammo: int):
 	for i in range(bullet_parent.get_child_count()):

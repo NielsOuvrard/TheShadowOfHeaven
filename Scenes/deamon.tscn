@@ -132,7 +132,7 @@ position = Vector2(0, -44)
 [node name="Sprites" type="AnimatedSprite2D" parent="." index="2"]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_f268b")
-animation = &"attack"
+autoplay = "default"
 
 [node name="Hitbox" type="Area2D" parent="." index="3"]
 collision_layer = 4
@@ -146,3 +146,8 @@ shape = SubResource("RectangleShape2D_ce0sb")
 [node name="Health" type="Node" parent="." index="4"]
 script = ExtResource("3_8wklb")
 life = 300
+
+[connection signal="knockback_emit" from="Hitbox" to="." method="_on_hitbox_knockback_emit"]
+[connection signal="die" from="Health" to="." method="_on_health_die"]
+[connection signal="life_change" from="Health" to="." method="_on_health_life_change"]
+[connection signal="life_ready" from="Health" to="." method="_on_health_life_ready"]
