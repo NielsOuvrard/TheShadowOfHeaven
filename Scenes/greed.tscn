@@ -3,18 +3,13 @@
 [ext_resource type="TileSet" uid="uid://dm8na3erkiu3q" path="res://TileSet/greed.tres" id="1_coy4n"]
 [ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="3_1socm"]
 [ext_resource type="PackedScene" uid="uid://cy2atdt0bqntm" path="res://Scenes/torch.tscn" id="3_dyfy7"]
-[ext_resource type="PackedScene" uid="uid://ci1y4rydunn2t" path="res://Scenes/sectarian.tscn" id="3_oa1ul"]
 [ext_resource type="PackedScene" uid="uid://b0ckibqpi4lpm" path="res://Scenes/chest.tscn" id="4_kgcaa"]
 [ext_resource type="PackedScene" uid="uid://bcbtjhffrph75" path="res://Scenes/item.tscn" id="5_43vmu"]
 [ext_resource type="PackedScene" uid="uid://dacosqfur2u5l" path="res://Scenes/spikes.tscn" id="5_nt1hc"]
 [ext_resource type="PackedScene" uid="uid://edx4h5swy4gu" path="res://Scenes/door.tscn" id="6_6swl3"]
 [ext_resource type="PackedScene" uid="uid://0y06vbi8ods3" path="res://Scenes/player.tscn" id="7_f7bvl"]
-
-[sub_resource type="Curve2D" id="Curve2D_ddimt"]
-_data = {
-"points": PackedVector2Array(-6.11244, 22.1859, 6.11244, -22.1859, 494, 15, -17.2054, -6.7916, 17.2054, 6.7916, 565, 1, -2.49026, -18.1109, 2.49026, 18.1109, 567, 53, 23.5442, -4.75412, -23.5442, 4.75412, 543, 73, 7.80338, 12.9159, -7.80338, -12.9159, 477, 54, 0, 0, 0, 0, 494, 15)
-}
-point_count = 6
+[ext_resource type="PackedScene" uid="uid://ccr7fpc8pwy60" path="res://Scenes/deamon.tscn" id="9_wmq0k"]
+[ext_resource type="PackedScene" uid="uid://cmfinma8lhai7" path="res://Scenes/ghost.tscn" id="10_jlttf"]
 
 [node name="Greed" type="Node2D"]
 y_sort_enabled = true
@@ -125,31 +120,6 @@ position = Vector2(320, -40)
 [node name="Spikes4" parent="TerrainElements" instance=ExtResource("5_nt1hc")]
 position = Vector2(336, -40)
 
-[node name="Sectarians" type="Node2D" parent="."]
-y_sort_enabled = true
-
-[node name="Path2D" type="Path2D" parent="Sectarians"]
-curve = SubResource("Curve2D_ddimt")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Sectarians/Path2D"]
-position = Vector2(494, 15)
-rotation = -1.30196
-
-[node name="Sectarian2" parent="Sectarians" instance=ExtResource("3_oa1ul")]
-position = Vector2(151, 296)
-
-[node name="Sectarian3" parent="Sectarians" instance=ExtResource("3_oa1ul")]
-position = Vector2(-70, 364)
-linear_movement = Vector2(1, 0)
-
-[node name="Sectarian4" parent="Sectarians" instance=ExtResource("3_oa1ul")]
-position = Vector2(372.9, 298.491)
-linear_movement = Vector2(1, 1)
-
-[node name="Sectarian5" parent="Sectarians" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_oa1ul")]
-position = Vector2(523, -21)
-followed_path = NodePath("../Path2D/PathFollow2D")
-
 [node name="Items" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -221,3 +191,9 @@ z_index = 100
 position = Vector2(-2.08165e-12, -2.08165e-12)
 zoom = Vector2(8, 8)
 position_smoothing_speed = 15.0
+
+[node name="Deamon" parent="." instance=ExtResource("9_wmq0k")]
+position = Vector2(184, 0)
+
+[node name="Ghost" parent="." instance=ExtResource("10_jlttf")]
+position = Vector2(88, 40)

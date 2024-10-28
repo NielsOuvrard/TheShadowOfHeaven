@@ -1,0 +1,77 @@
+[gd_scene load_steps=13 format=3 uid="uid://cmfinma8lhai7"]
+
+[ext_resource type="PackedScene" uid="uid://ci1y4rydunn2t" path="res://Scenes/enemy_basic.tscn" id="1_yqn6d"]
+[ext_resource type="Texture2D" uid="uid://pjtbwgyf56mn" path="res://Assets/Characters/Demon.png" id="3_4pypu"]
+[ext_resource type="Script" path="res://Scripts/Classes/hitbox.gd" id="4_txeha"]
+[ext_resource type="Script" path="res://Scripts/Classes/health.gd" id="5_vrakb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojo1l"]
+atlas = ExtResource("3_4pypu")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiag3"]
+atlas = ExtResource("3_4pypu")
+region = Rect2(32, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fivyy"]
+atlas = ExtResource("3_4pypu")
+region = Rect2(64, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxsfe"]
+atlas = ExtResource("3_4pypu")
+region = Rect2(96, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_um25w"]
+atlas = ExtResource("3_4pypu")
+region = Rect2(128, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2ir7"]
+atlas = ExtResource("3_4pypu")
+region = Rect2(160, 96, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vifcd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojo1l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiag3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fivyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxsfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_um25w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2ir7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2tga"]
+size = Vector2(16, 16)
+
+[node name="Ghost" instance=ExtResource("1_yqn6d")]
+
+[node name="Sprites" type="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_vifcd")
+
+[node name="Hitbox" type="Area2D" parent="." index="3"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("4_txeha")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_y2tga")
+
+[node name="Health" type="Node" parent="." index="4"]
+script = ExtResource("5_vrakb")

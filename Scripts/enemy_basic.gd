@@ -1,4 +1,11 @@
-## Behavior of sectarian enemies.
+## General behavior of enemies.
+## Used for all kind of enemies, boss not inclued
+## 
+## It should not be used directly, but as a base for other enemies
+## All children should have:
+## - a AnimatedSprite2D named "Stprites"
+## - a Hitbox named "Hitbox"
+## - a Health named "Health"
 ##
 ## Author: Sol Rojo[br]Date: 24-09-2024
 ##
@@ -9,6 +16,11 @@ extends CharacterBody2D
 @onready var ray_cast: RayCast2D = $RayCast2D
 @onready var shot_cooldown: Timer = $ShotCooldown
 @onready var research_cool_down: Timer = $ResearchCoolDown
+
+# children nodes
+@onready var sprites: AnimatedSprite2D = $Sprites
+@onready var hitbox: Hitbox = $Hitbox
+@onready var health: Health = $Health
 
 @export var linear_movement := Vector2.ZERO:
 	set(v):
@@ -71,6 +83,7 @@ var sect_look_at = Vector2.RIGHT:
 		ray_cast.target_position = sect_look_at * distance_vision
 		$PointLight2D.rotation = sect_look_at.angle() + PI
 
+# TODO linked to the animated script
 
 # TODO if player very close, he will attack
 # TODO if he gets attacking, he send a signal to clsest enemy to attack the player
@@ -86,13 +99,17 @@ func _ready():
 		state = State.WALKING
 		if linear_movement:
 			sect_look_at = linear_movement.normalized()
-			$Sectarian.flip_h = sect_look_at.x > 0
+			sprites.flip_h = sect_look_at.x > 0
 		elif followed_path:
 			followed_path.progress_ratio = offset_followed_path
 			position = followed_path.position
 			sect_look_at = followed_path.position - position
 	else:
 		state = State.NOTHING
+	
+	$LifeBar.position.y -= sprites.sprite_frames.get_frame_texture("default", 0).get_size().y
+	mark_sprite.position.y = -sprites.sprite_frames.get_frame_texture("default", 0).get_size().y\
+							-(mark_sprite.texture.get_size().y * 0.8)
 	
 	mark_sprite.visible = false
 	ready_finished = true
@@ -123,7 +140,7 @@ func walking(delta: float):
 
 	var new_direction = (objective_position - position).normalized()
 	sect_look_at = new_direction
-	$Sectarian.flip_h = sect_look_at.x > 0
+	sprites.flip_h = sect_look_at.x > 0
 
 	# walk only if he is not rotating
 	if sect_look_at == new_direction or (followed_path and state == State.WALKING):

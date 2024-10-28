@@ -1,0 +1,148 @@
+[gd_scene load_steps=21 format=3 uid="uid://ccr7fpc8pwy60"]
+
+[ext_resource type="PackedScene" uid="uid://ci1y4rydunn2t" path="res://Scenes/enemy_basic.tscn" id="1_cux81"]
+[ext_resource type="Texture2D" uid="uid://pjtbwgyf56mn" path="res://Assets/Characters/Demon.png" id="1_i8b0h"]
+[ext_resource type="Script" path="res://Scripts/Classes/hitbox.gd" id="2_jbbe1"]
+[ext_resource type="Script" path="res://Scripts/Classes/health.gd" id="3_8wklb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4na3"]
+atlas = ExtResource("1_i8b0h")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_culdu"]
+atlas = ExtResource("1_i8b0h")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0nff"]
+atlas = ExtResource("1_i8b0h")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3prrl"]
+atlas = ExtResource("1_i8b0h")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jb6ec"]
+atlas = ExtResource("1_i8b0h")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7q631"]
+atlas = ExtResource("1_i8b0h")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbwxx"]
+atlas = ExtResource("1_i8b0h")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elby0"]
+atlas = ExtResource("1_i8b0h")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_huplh"]
+atlas = ExtResource("1_i8b0h")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwdp8"]
+atlas = ExtResource("1_i8b0h")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2f3q"]
+atlas = ExtResource("1_i8b0h")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_px0am"]
+atlas = ExtResource("1_i8b0h")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygeec"]
+atlas = ExtResource("1_i8b0h")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbmxy"]
+atlas = ExtResource("1_i8b0h")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f268b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4na3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_culdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0nff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3prrl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jb6ec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7q631")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbwxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elby0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_huplh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwdp8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2f3q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_px0am")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygeec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbmxy")
+}],
+"loop": true,
+"name": &"move",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ce0sb"]
+size = Vector2(32, 32)
+
+[node name="Deamon" instance=ExtResource("1_cux81")]
+
+[node name="Mark" parent="." index="0"]
+position = Vector2(0, -44)
+
+[node name="Sprites" type="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_f268b")
+animation = &"attack"
+
+[node name="Hitbox" type="Area2D" parent="." index="3"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_jbbe1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_ce0sb")
+
+[node name="Health" type="Node" parent="." index="4"]
+script = ExtResource("3_8wklb")
+life = 300
