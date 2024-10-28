@@ -39,3 +39,4 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	is_opened = true
 	var random_offset = Vector2(Global.rand_range(-10, 10), Global.rand_range(0, 10))
 	Global.drop_random_item(position + random_offset, get_parent(), player.weapons_unlocked)
+	mark.visible = false
