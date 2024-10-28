@@ -74,8 +74,7 @@ func _ready() -> void:
 
 	life_to_hearts_list(PLAYER_FULL_LIFE) # should print 3 full hearts
 	update_hearts()
-	inv_text.text = "0"
-	bullet_to_ammo_list(0)
+	_player_change_weapon(current_weapon, 0, 0)
 
 func _player_update_ammo_current(ammo):
 	if ammo == len(bullets) - 1:
@@ -97,7 +96,10 @@ func _player_change_weapon(new_weapon: Data.Weapons, ammo_current: int, ammo_inv
 	weapon.type = new_weapon
 	weapon._ready()
 	bullet_to_ammo_list(ammo_current)
-	inv_text.text = str(ammo_inventory)
+	if Data.WEAPONS[new_weapon].ammo_max == 0:
+		inv_text.text = ""
+	else:
+		inv_text.text = str(ammo_inventory)
 
 func _player_reload(type_weapon):
 	bullet_to_ammo_list(Data.WEAPONS[type_weapon].ammo_max)
