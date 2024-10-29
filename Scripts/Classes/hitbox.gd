@@ -11,17 +11,20 @@ class_name Hitbox extends Area2D
 
 signal knockback_emit(value: Attack)
 
+const heart_anim = preload("res://Scenes/heart_lost.tscn")
+
 ## called by the projectiles
 func damage(attack: Attack) -> int:
 	if health_component:
 		if attack.knockback > 0.1:
 			knockback_emit.emit(attack)
 		var damage_given = health_component.damage(attack)
-		var text_animated = Global.ANIMATED_TEXT.instantiate()
-		text_animated.text = str(damage_given)
-		text_animated.position = position
-		text_animated.z_index = 2
-		get_parent().add_child(text_animated)
+
+		for i in range(damage_given):
+			var heart_sprite = heart_anim.instantiate()
+			heart_sprite.z_index = 2
+			get_parent().add_child(heart_sprite)
+
 		return damage_given
 	else:
 		# in case of projectile
