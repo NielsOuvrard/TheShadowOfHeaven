@@ -36,7 +36,7 @@ var SPEED := Data.SPEED_PLAYER * 0.3
 var COOLDOWN_SHOT := 1.0 ## time between each shot
 
 var percent_path := 0
-var distance_vision := 100
+var distance_vision := 70
 var fov := 120.0
 var ready_finished := false
 var objective_position : Vector2 ## position to go
