@@ -131,7 +131,7 @@ func walking(delta: float):
 			var collider = ray_cast.get_collider()
 			if collider.is_in_group("enemies"):
 				return # wait for the other to move
-			elif collider.position.distance_squared_to(position) < pow(DISTANCE_TO_COLLISION, 2):
+			elif ray_cast.get_collision_point().distance_to(position) < DISTANCE_TO_COLLISION:
 				linear_movement = -linear_movement # TODO change also the cast
 				priority_objective_position = position + (linear_movement * 2)
 		objective_position = position + linear_movement
