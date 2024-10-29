@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/enemy_basic.gd" id="1_oxo2l"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_jb6il"]
+[ext_resource type="Texture2D" uid="uid://b41jkcv2ni17t" path="res://Assets/light_120_02.png" id="4_d0wig"]
 [ext_resource type="Texture2D" uid="uid://c77fg4lkdytoa" path="res://Assets/Items/MarkSmallExclamation.png" id="4_fwcav"]
-[ext_resource type="Texture2D" uid="uid://dtwdluqpoaog6" path="res://Assets/light_30_1.8.1.png" id="4_fy6r3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4000s"]
 radius = 9.13998
@@ -40,12 +40,11 @@ target_position = Vector2(-32, 0)
 collision_mask = 53
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-scale = Vector2(0.073, 0.073)
+scale = Vector2(0.2, 0.2)
 color = Color(1, 0, 0, 1)
 energy = 10.0
 shadow_enabled = true
-texture = ExtResource("4_fy6r3")
-offset = Vector2(-540, 0)
+texture = ExtResource("4_d0wig")
 
 [node name="LifeBar" type="ProgressBar" parent="."]
 offset_left = -11.0

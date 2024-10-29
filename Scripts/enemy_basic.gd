@@ -37,7 +37,7 @@ var COOLDOWN_SHOT := 1.0 ## time between each shot
 
 var percent_path := 0
 var distance_vision := 100
-var fov := 30.0
+var fov := 120.0
 var ready_finished := false
 var objective_position : Vector2 ## position to go
 var priority_objective_position := Vector2.ZERO ## position to go, in priority
@@ -65,7 +65,13 @@ var state_searching : StateSearching
 
 var DISTANCE_TO_COLLISION := 20
 var EACH_FRAME := 1.0 / 60.0
-var SPEED_ROTATE := 0.02
+var SPEED_ROTATE := 0.03
+
+
+const LIGHT_PIXELS = 1080.0
+const LIGHT_PROPORTION_IN_IMAGE = 0.5
+const LIGHT_SOFT_EDGE = 0.5
+const LIGHT_SIZE = LIGHT_PIXELS * LIGHT_SOFT_EDGE * LIGHT_SOFT_EDGE
 
 var enemy_look_at = Vector2.RIGHT:
 	set(v):
@@ -80,6 +86,7 @@ var enemy_look_at = Vector2.RIGHT:
 		else:
 			enemy_look_at = v
 		ray_cast.target_position = enemy_look_at * distance_vision
+		$PointLight2D.scale = Vector2(distance_vision / LIGHT_SIZE, distance_vision / LIGHT_SIZE)
 		$PointLight2D.rotation = enemy_look_at.angle() + PI
 
 # TODO linked to the animated script
