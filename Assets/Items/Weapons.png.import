@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyrwox420ubne"
-path="res://.godot/imported/small_interogation_mark.png-ba8a98e33e2827086681fb0fda3bb121.ctex"
+uid="uid://2u0tuliq82gr"
+path="res://.godot/imported/Weapons.png-4d9684a300eca325a2ba4af256ec9495.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Items/small_interogation_mark.png"
-dest_files=["res://.godot/imported/small_interogation_mark.png-ba8a98e33e2827086681fb0fda3bb121.ctex"]
+source_file="res://Assets/Items/Weapons.png"
+dest_files=["res://.godot/imported/Weapons.png-4d9684a300eca325a2ba4af256ec9495.ctex"]
 
 [params]
 

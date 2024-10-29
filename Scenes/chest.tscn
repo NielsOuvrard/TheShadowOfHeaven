@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b7sgoatuqubq5" path="res://Assets/World/Chest.png" id="1_7ub3n"]
 [ext_resource type="Script" path="res://Scripts/chest.gd" id="1_22v10"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_1ehsx"]
-[ext_resource type="Texture2D" uid="uid://cyrwox420ubne" path="res://Assets/Items/small_interogation_mark.png" id="2_yic8c"]
+[ext_resource type="Texture2D" uid="uid://cyrwox420ubne" path="res://Assets/Items/MarkSmallInterogation.png" id="2_yic8c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_36rt1"]
 radius = 23.0217

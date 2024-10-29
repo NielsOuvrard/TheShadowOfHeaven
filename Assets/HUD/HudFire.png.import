@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c77fg4lkdytoa"
-path="res://.godot/imported/small_exclamation_mark.png-798d74e7a56faadb3f9c342b72226b50.ctex"
+uid="uid://di8sp2r62jgrd"
+path="res://.godot/imported/HudFire.png-c461f69673d7ad998f302c301f5ba0a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Items/small_exclamation_mark.png"
-dest_files=["res://.godot/imported/small_exclamation_mark.png-798d74e7a56faadb3f9c342b72226b50.ctex"]
+source_file="res://Assets/HUD/HudFire.png"
+dest_files=["res://.godot/imported/HudFire.png-c461f69673d7ad998f302c301f5ba0a9.ctex"]
 
 [params]
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/enemy_basic.gd" id="1_oxo2l"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_jb6il"]
-[ext_resource type="Texture2D" uid="uid://c77fg4lkdytoa" path="res://Assets/Items/small_exclamation_mark.png" id="4_fwcav"]
+[ext_resource type="Texture2D" uid="uid://c77fg4lkdytoa" path="res://Assets/Items/MarkSmallExclamation.png" id="4_fwcav"]
 [ext_resource type="Texture2D" uid="uid://dtwdluqpoaog6" path="res://Assets/light_30_1.8.1.png" id="4_fy6r3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4000s"]

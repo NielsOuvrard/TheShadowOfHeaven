@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=26 format=3 uid="uid://dm8na3erkiu3q"]
 
-[ext_resource type="Texture2D" uid="uid://lcycf61bkenf" path="res://Assets/World/TileSet_Greed02.png" id="1_deog3"]
+[ext_resource type="Texture2D" uid="uid://lcycf61bkenf" path="res://Assets/World/TileSet.png" id="1_1lu86"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ribe0"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -73,7 +73,7 @@ polygon = PackedVector2Array(8, -8, 8, -3.06045, 7.00781, -3.03906, 6.97163, -0.
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qrtt7"]
 resource_name = "GreedFloor"
-texture = ExtResource("1_deog3")
+texture = ExtResource("1_1lu86")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_ribe0")

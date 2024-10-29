@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0mwunnp724o3"
-path="res://.godot/imported/Puerta.png-e3c0d1cafc4c11c9d739071f5728e95c.ctex"
+uid="uid://b8ghltpp4c7pq"
+path="res://.godot/imported/BulletsIcons.png-60d381ddff4c41df4fe7c85e62315dd2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/World/Puerta.png"
-dest_files=["res://.godot/imported/Puerta.png-e3c0d1cafc4c11c9d739071f5728e95c.ctex"]
+source_file="res://Assets/Items/BulletsIcons.png"
+dest_files=["res://.godot/imported/BulletsIcons.png-60d381ddff4c41df4fe7c85e62315dd2.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di8sp2r62jgrd"
-path="res://.godot/imported/Fuego.png-f9ea418bfd34a1bb600bb53d00b14274.ctex"
+uid="uid://xopwsyp6u5xh"
+path="res://.godot/imported/HudWing.png-c636fa3d127c9544562c78cf3ed6a551.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/HUD/Fuego.png"
-dest_files=["res://.godot/imported/Fuego.png-f9ea418bfd34a1bb600bb53d00b14274.ctex"]
+source_file="res://Assets/HUD/HudWing.png"
+dest_files=["res://.godot/imported/HudWing.png-c636fa3d127c9544562c78cf3ed6a551.ctex"]
 
 [params]
 

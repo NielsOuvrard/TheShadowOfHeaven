@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://iurnteuwp7yk"
-path="res://.godot/imported/Sectario.png-5c5c28cd1a8ac32fb9eedf75c07ffc12.ctex"
+uid="uid://ehqnl2cfejpk"
+path="res://.godot/imported/MarkExclamation.png-ddc42d8d7d9b79ce6439e18e8e9284a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Sectario.png"
-dest_files=["res://.godot/imported/Sectario.png-5c5c28cd1a8ac32fb9eedf75c07ffc12.ctex"]
+source_file="res://Assets/Items/MarkExclamation.png"
+dest_files=["res://.godot/imported/MarkExclamation.png-ddc42d8d7d9b79ce6439e18e8e9284a3.ctex"]
 
 [params]
 

@@ -88,8 +88,8 @@ var enemy_look_at = Vector2.RIGHT:
 # TODO if he gets attacking, he send a signal to clsest enemy to attack the player
 # TODO all_items_dropable.pick_random()
 
-const mark_texture_exclamation = preload("res://Assets/Items/small_exclamation_mark.png")
-const mark_texture_interogation = preload("res://Assets/Items/small_interogation_mark.png")
+const mark_texture_exclamation = preload("res://Assets/Items/MarkSmallExclamation.png")
+const mark_texture_interogation = preload("res://Assets/Items/MarkSmallInterogation.png")
 
 func _ready():
 	add_to_group("enemies")

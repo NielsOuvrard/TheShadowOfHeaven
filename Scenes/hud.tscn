@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://c43q6ncwe5wl0"]
 
 [ext_resource type="Script" path="res://Scripts/hud.gd" id="1_7r4t5"]
-[ext_resource type="Texture2D" uid="uid://di8sp2r62jgrd" path="res://Assets/HUD/Fuego.png" id="1_nn1e5"]
-[ext_resource type="Texture2D" uid="uid://xopwsyp6u5xh" path="res://Assets/HUD/Pluma.png" id="2_akymb"]
-[ext_resource type="Texture2D" uid="uid://bwtf2mxsu1471" path="res://Assets/HUD/Corazones.png" id="3_wax87"]
+[ext_resource type="Texture2D" uid="uid://di8sp2r62jgrd" path="res://Assets/HUD/HudFire.png" id="1_nn1e5"]
+[ext_resource type="Texture2D" uid="uid://xopwsyp6u5xh" path="res://Assets/HUD/HudWing.png" id="2_akymb"]
+[ext_resource type="Texture2D" uid="uid://bwtf2mxsu1471" path="res://Assets/HUD/Hearts.png" id="3_wax87"]
 [ext_resource type="FontFile" uid="uid://dsvosxxjomnr5" path="res://Assets/Fonts/PixelOperator8.ttf" id="5_3rqoy"]
 [ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="5_s1o24"]
 [ext_resource type="Texture2D" uid="uid://bkyahaeeslbp7" path="res://Assets/HUD/Cursor.png" id="7_1dos8"]

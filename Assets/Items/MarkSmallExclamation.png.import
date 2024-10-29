@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xopwsyp6u5xh"
-path="res://.godot/imported/Pluma.png-c641b1c6c6afc2a4dedeef92bdbecdc8.ctex"
+uid="uid://c77fg4lkdytoa"
+path="res://.godot/imported/MarkSmallExclamation.png-b4f83c4e0fe6b28e1517622b97283f72.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/HUD/Pluma.png"
-dest_files=["res://.godot/imported/Pluma.png-c641b1c6c6afc2a4dedeef92bdbecdc8.ctex"]
+source_file="res://Assets/Items/MarkSmallExclamation.png"
+dest_files=["res://.godot/imported/MarkSmallExclamation.png-b4f83c4e0fe6b28e1517622b97283f72.ctex"]
 
 [params]
 

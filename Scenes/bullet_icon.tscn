@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bgpyev64thich"]
 
-[ext_resource type="Texture2D" uid="uid://b8ghltpp4c7pq" path="res://Assets/Items/bullets_icons.png" id="1_3eqp3"]
+[ext_resource type="Texture2D" uid="uid://b8ghltpp4c7pq" path="res://Assets/Items/BulletsIcons.png" id="1_3eqp3"]
 [ext_resource type="Script" path="res://Scripts/bullet_icon.gd" id="1_noct5"]
 
 [sub_resource type="Animation" id="Animation_hegmi"]
