@@ -240,7 +240,7 @@ func _physics_process(delta):
 
 func _on_sword_attack_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
-		var attack = Attack.new(60, position, 100, weapons_unlocked)
+		var attack = Attack.new(1, position, 100, weapons_unlocked)
 		area.damage(attack)
 
 func _on_health_life_change(value: Variant) -> void:

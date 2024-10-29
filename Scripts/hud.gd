@@ -23,7 +23,7 @@ var current_weapon := Data.Weapons.SWORD
 var hearts_index := []
 var bullets := []
 
-const PLAYER_FULL_LIFE = 100
+const PLAYER_FULL_LIFE = 6
 const HALFS_HEARTS = 6 ## 3 hearts, so 6 halfs ones
 const NUMBER_HALFS_HEARTS = 4 ## 2 hearts, 4 halfs
 const NUMBER_TYPES_BULLETS = 3

@@ -145,7 +145,7 @@ shape = SubResource("RectangleShape2D_ce0sb")
 
 [node name="Health" type="Node" parent="." index="4"]
 script = ExtResource("3_8wklb")
-life = 300
+life = 16
 
 [connection signal="knockback_emit" from="Hitbox" to="." method="_on_hitbox_knockback_emit"]
 [connection signal="die" from="Health" to="." method="_on_health_die"]

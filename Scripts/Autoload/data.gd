@@ -75,7 +75,7 @@ const PROJECTILS = {
 	Projectiles.PISTOL: {
 		"animation": "pistol",
 		"speed": SPEED_PLAYER * 2,
-		"damage": 20,
+		"damage": 1,
 		"knockback": 30.0,
 		"light_color": Color(1, 1, 0, 1),
 		"light_energy": 1,
@@ -85,7 +85,7 @@ const PROJECTILS = {
 	Projectiles.SHOTGUN: {
 		"animation": "shotgun",
 		"speed": SPEED_PLAYER * 2.5,
-		"damage": 99,
+		"damage": 5,
 		"knockback": 100.0,
 		"light_energy": 1.5,
 		"light_color": Color(1, 1, 0, 1),
@@ -95,7 +95,7 @@ const PROJECTILS = {
 	Projectiles.RAYGUN: {
 		"animation": "raygun", # this one is different, it's a ray
 		"speed": SPEED_PLAYER * 4,
-		"damage": 40,
+		"damage": 2,
 		"knockback": 0.0,
 		"light_energy": 1,
 		"light_color": Color(0, 1, 1, 1),
@@ -105,7 +105,7 @@ const PROJECTILS = {
 	Projectiles.ENEMIES: {
 		"animation": "enemies",
 		"speed": SPEED_PLAYER * 2,
-		"damage": 30,
+		"damage": 2,
 		"knockback": 5.0,
 		"light_energy": 0.5,
 		"light_color": Color(1, 0.5, 0, 1),
@@ -115,7 +115,7 @@ const PROJECTILS = {
 	Projectiles.DEATH_BALL: {
 		"animation": "death_ball",
 		"speed": SPEED_PLAYER * 1.2,
-		"damage": 50,
+		"damage": 3,
 		"knockback": 0.0,
 		"light_energy": 2,
 		"light_color": Color(1, 0, 1, 1),
@@ -157,8 +157,8 @@ const ITEMS = {
 		"name": "life",
 		"frame": 7,
 		"weapon": null,
-		"n_max": 15,
-		"n_min": 3
+		"n_max": 6,
+		"n_min": 1
 	},
 }
 

@@ -245,6 +245,7 @@ shape = SubResource("RectangleShape2D_casbx")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("5_0t1cm")
+life = 6
 
 [node name="AnimationHandler" type="Node" parent="." node_paths=PackedStringArray("animated_sprite")]
 script = ExtResource("9_64uq1")
