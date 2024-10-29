@@ -34,8 +34,8 @@ const WEAPONS = {
 		"name": "pistol",
 		"texture": "res://Assets/Items/Gun.png",
 		"item_frame": 0,
-		"cooldown_shot": 0.2,
-		"cooldown_reload": 0.5,
+		"cooldown_shot": 0.1,
+		"cooldown_reload": 0.2,
 		"ammo_max": 6,
 		"projectile": Projectiles.PISTOL,
 		"ammo": Items.PISTOL_AMMO,
@@ -45,7 +45,7 @@ const WEAPONS = {
 		"texture": "res://Assets/Items/Shotgun.png",
 		"item_frame": 1,
 		"cooldown_shot": 0.5,
-		"cooldown_reload": 3.0,
+		"cooldown_reload": 1.5,
 		"ammo_max": 2,
 		"projectile": Projectiles.SHOTGUN,
 		"ammo": Items.SHOTGUN_AMMO,
@@ -55,8 +55,8 @@ const WEAPONS = {
 		"texture": "res://Assets/Items/RayGun.png",
 		"item_frame": 2,
 		"cooldown_shot": 0.1,
-		"cooldown_reload": 3.0,
-		"ammo_max": 3,
+		"cooldown_reload": 1.3,
+		"ammo_max": 4,
 		"projectile": Projectiles.RAYGUN,
 		"ammo": Items.RAYGUN_AMMO,
 	}
@@ -137,7 +137,7 @@ const ITEMS = {
 		"frame": 4,
 		"weapon": Weapons.PISTOL,
 		"n_max": 6,
-		"n_min": 1
+		"n_min": 3
 	},
 	Items.SHOTGUN_AMMO: {
 		"name": "shotgun_ammo",
@@ -150,14 +150,14 @@ const ITEMS = {
 		"name": "raygun_ammo",
 		"frame": 6,
 		"weapon": Weapons.RAYGUN,
-		"n_max": 2,
-		"n_min": 1
+		"n_max": 4,
+		"n_min": 2
 	},
 	Items.LIFE: {
 		"name": "life",
 		"frame": 7,
 		"weapon": null,
-		"n_max": 6,
+		"n_max": 2,
 		"n_min": 1
 	},
 }
