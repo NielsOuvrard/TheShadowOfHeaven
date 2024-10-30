@@ -63,6 +63,8 @@ size = Vector2(16, 16)
 [node name="Sprites" type="AnimatedSprite2D" parent="." index="2"]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_vifcd")
+frame = 4
+frame_progress = 0.185412
 
 [node name="Hitbox" type="Area2D" parent="." index="3"]
 collision_layer = 4
