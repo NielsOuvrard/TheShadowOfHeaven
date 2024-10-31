@@ -19,3 +19,9 @@ mono_crash.*.json
 
 # Addons
 addons/
+
+# export
+exports/
+
+# other
+todo

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bcbtjhffrph75"]
 
-[ext_resource type="Script" path="res://scripts/item.gd" id="1_tbm5b"]
+[ext_resource type="Script" path="res://Scripts/item.gd" id="1_tbm5b"]
 [ext_resource type="Texture2D" uid="uid://2u0tuliq82gr" path="res://Assets/Items/Weapons.png" id="2_2fo4k"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_rcabs"]
 

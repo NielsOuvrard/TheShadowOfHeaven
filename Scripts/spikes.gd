@@ -6,7 +6,7 @@
 extends Area2D
 
 var damage_given := false
-var DAMAGE := 20
+var DAMAGE := 1
 
 func _process(delta: float) -> void:
 	var bodies = $DamageZone.get_overlapping_bodies()

@@ -9,21 +9,12 @@ y_sort_enabled = true
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="Control" type="Control" parent="CanvasLayer2"]
-z_index = -1
-layout_mode = 3
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer2/Control"]
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
 color = Color(0.117227, 3.39021e-06, 0.0957673, 1)
 
 [node name="Greed" parent="." instance=ExtResource("3_bncwm")]

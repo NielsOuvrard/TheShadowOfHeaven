@@ -10,7 +10,7 @@ extends Node
 func rand_range(min_value: int, max_value: int) -> int:
 	return randi() % (max_value - min_value) + min_value
 
-const PROJECTILE = preload("res://scenes/projectile.tscn")
+const PROJECTILE = preload("res://Scenes/projectile.tscn")
 const ANIMATED_TEXT = preload("res://Scenes/text_animated.tscn")
 const ITEM = preload("res://Scenes/item.tscn")
 

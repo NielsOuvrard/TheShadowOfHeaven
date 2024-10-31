@@ -74,6 +74,7 @@ position = Vector2(1783, 600)
 rotation = 1.5708
 
 [node name="ENEMIES" type="Node2D" parent="."]
+z_index = 1
 y_sort_enabled = true
 
 [node name="Ghost2" parent="ENEMIES" instance=ExtResource("10_jlttf")]
