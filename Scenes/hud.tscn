@@ -78,7 +78,6 @@ text = "6"
 position = Vector2(1788, 196)
 
 [node name="Center" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -93,7 +92,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Cursor" type="Sprite2D" parent="Center"]
-visible = false
 position = Vector2(20, 20)
 scale = Vector2(8, 8)
 texture = ExtResource("7_1dos8")

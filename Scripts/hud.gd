@@ -69,7 +69,8 @@ func _ready() -> void:
 	SignalsHandler.player_change_weapon.connect(_player_change_weapon)
 	SignalsHandler.player_update_ammo_current.connect(_player_update_ammo_current)
 	SignalsHandler.player_update_ammo_both.connect(_player_update_ammo_both)
-	SignalsHandler.player_change_controller.connect(_player_change_controller)
+	SignalsHandler.player_use_controller.connect(_player_use_controller)
+	SignalsHandler.player_look_direction.connect(_player_look_direction)
 	SignalsHandler.player_reload.connect(_player_reload)
 
 	life_to_hearts_list(PLAYER_FULL_LIFE) # should print 3 full hearts
@@ -107,6 +108,9 @@ func _player_reload(type_weapon):
 	for i in range(len(bullets)):
 		bullets[i].disabled((time_to_reload / len(bullets)) * (i + 1))
 
-func _player_change_controller(value):
-	# TODO change visibility of the cursor
-	pass
+func _player_use_controller(value):
+	print("_player_use_controller ", value)
+	cursor.visible = value
+
+func _player_look_direction(direction: Vector2):
+	cursor.rotation = direction.angle()

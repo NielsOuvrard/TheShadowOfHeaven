@@ -80,7 +80,7 @@ func look_player():
 	if direction_input != Vector2.ZERO:
 		local_playing_controller = true
 		look_direction = direction_input.normalized()
-		return
+		SignalsHandler.player_look_direction.emit(look_direction)
 
 	# * if we are using the mouse
 	var window_size = get_viewport().get_visible_rect().size
@@ -91,7 +91,7 @@ func look_player():
 		last_look_direction_mouse = mouse_position.normalized()
 	
 	if local_playing_controller != is_playing_controller:
-		SignalsHandler.player_change_controller.emit(local_playing_controller)
+		SignalsHandler.player_use_controller.emit(local_playing_controller)
 		is_playing_controller = local_playing_controller
 
 func shoot():

@@ -14,8 +14,9 @@ signal level_completed
 signal player_update_ammo_current(ammo)
 signal player_update_ammo_both(cur, inv)
 signal player_reload(type_weapon)
+signal player_use_controller(value: bool)
+signal player_look_direction(direction: Vector2)
 
 
 ## * other signals
 
-signal player_change_controller(value)
