@@ -1,0 +1,82 @@
+name: "godot-ci export"
+on:
+  push:
+    branches:
+      - main
+
+env:
+  GODOT_VERSION: 4.3
+  EXPORT_NAME: TheShadowOfHeaven
+  PROJECT_PATH: "."
+
+jobs:
+  export-web:
+    name: Web Export
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:4.3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+      - name: Web Build
+        run: |
+          mkdir -v -p build/web
+          EXPORT_DIR="$(readlink -f build)"
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web
+          path: build/web
+
+  sync:
+    needs: export-web
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Current Repo
+        uses: actions/checkout@v4
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: web
+          path: build/web
+
+      - name: Setup SSH Key
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.REPO_SSH_KEY }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "${{ secrets.REPO_EMAIL }}"
+          git config --global user.name "${{ secrets.REPO_NAME }}"
+
+      - name: Clone To Github Pages Repo
+        run: |
+          git clone git@github.com:NielsOuvrard/NielsOuvrard.github.io.git page
+        env:
+          GIT_SSH_COMMAND: ssh -o StrictHostKeyChecking=no
+
+      - name: Remove last build, and copy new one
+        run: |
+          mkdir empty_dir
+          rsync -a --delete --exclude='.git' empty_dir/ page/
+          rmdir empty_dir
+          rsync -av --delete --exclude='.git' build/web/ page/
+
+      - name: Commit and Push Changes
+        run: |
+          last_commit_message=$(git log -1 --pretty=%B)
+          cd page
+          git add .
+          git commit -m "$last_commit_message"
+          git push origin main -f
