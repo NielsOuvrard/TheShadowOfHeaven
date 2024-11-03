@@ -31,6 +31,7 @@ tile_set = ExtResource("1_73fo5")
 z_index = 2
 y_sort_enabled = true
 position = Vector2(-33, 776)
+debug = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 z_index = 100
