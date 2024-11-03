@@ -222,7 +222,7 @@ texture = ExtResource("2_8qbm6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("3_u43qn")
-animation = &"pick_up"
+animation = &"idle"
 autoplay = "idle"
 offset = Vector2(0, -8)
 
