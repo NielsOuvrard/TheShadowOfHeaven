@@ -20,12 +20,12 @@ enum Weapons {
 }
 
 const WEAPONS = {
-	Weapons.SWORD: {
+	Weapons.SWORD: {	
 		"name": "sword",
 		"texture": "res://Assets/Items/Sword.png",
 		"item_frame": 3,
 		"cooldown_shot": 0.5,
-		"cooldown_reload": 0.01,
+		"cooldown_reload": 0.03,
 		"ammo_max": 0,
 		"projectile": null,
 		"ammo": null,
@@ -35,7 +35,7 @@ const WEAPONS = {
 		"texture": "res://Assets/Items/Gun.png",
 		"item_frame": 0,
 		"cooldown_shot": 0.1,
-		"cooldown_reload": 0.2,
+		"cooldown_reload": 0.5,
 		"ammo_max": 6,
 		"projectile": Projectiles.PISTOL,
 		"ammo": Items.PISTOL_AMMO,
@@ -45,7 +45,7 @@ const WEAPONS = {
 		"texture": "res://Assets/Items/Shotgun.png",
 		"item_frame": 1,
 		"cooldown_shot": 0.5,
-		"cooldown_reload": 1.5,
+		"cooldown_reload": 1,
 		"ammo_max": 2,
 		"projectile": Projectiles.SHOTGUN,
 		"ammo": Items.SHOTGUN_AMMO,
@@ -55,7 +55,7 @@ const WEAPONS = {
 		"texture": "res://Assets/Items/RayGun.png",
 		"item_frame": 2,
 		"cooldown_shot": 0.1,
-		"cooldown_reload": 1.3,
+		"cooldown_reload": 1,
 		"ammo_max": 4,
 		"projectile": Projectiles.RAYGUN,
 		"ammo": Items.RAYGUN_AMMO,

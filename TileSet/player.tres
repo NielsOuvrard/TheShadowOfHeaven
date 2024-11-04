@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=24 format=3 uid="uid://ckdgo5jwfioc5"]
+[gd_resource type="SpriteFrames" load_steps=22 format=3 uid="uid://ckdgo5jwfioc5"]
 
 [ext_resource type="Texture2D" uid="uid://rhxx7fe8qg4m" path="res://Assets/Characters/AngelSprite.png" id="1_t2y18"]
 
@@ -58,6 +58,10 @@ region = Rect2(64, 0, 16, 16)
 atlas = ExtResource("1_t2y18")
 region = Rect2(80, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nvb6"]
+atlas = ExtResource("1_t2y18")
+region = Rect2(0, 16, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_f828j"]
 atlas = ExtResource("1_t2y18")
 region = Rect2(16, 16, 16, 16)
@@ -101,7 +105,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"change_weapon",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -124,7 +128,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"dash",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -138,16 +142,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4o4px")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ydw0p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_stf1b")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -170,7 +168,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"move",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -181,5 +179,5 @@ animations = [{
 }],
 "loop": false,
 "name": &"pick_up",
-"speed": 5.0
+"speed": 12.0
 }]

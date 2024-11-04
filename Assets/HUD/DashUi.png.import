@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0m65emvdtvdt"
-path="res://.godot/imported/HudDashPoints.png-034cd4446b4c33a3e894c628b858f228.ctex"
+uid="uid://cjsswxp6adadx"
+path="res://.godot/imported/DashUi.png-4e5d7750f19bd9bb6da9d9f5e8f28ec7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/HUD/HudDashPoints.png"
-dest_files=["res://.godot/imported/HudDashPoints.png-034cd4446b4c33a3e894c628b858f228.ctex"]
+source_file="res://Assets/HUD/DashUi.png"
+dest_files=["res://.godot/imported/DashUi.png-4e5d7750f19bd9bb6da9d9f5e8f28ec7.ctex"]
 
 [params]
 
