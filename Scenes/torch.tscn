@@ -60,10 +60,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_13b74"]
-custom_solver_bias = 0.33
-radius = 4.0
-height = 38.2979
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtgb4"]
+size = Vector2(8, 34.0426)
 
 [node name="Torch" type="StaticBody2D"]
 collision_layer = 16
@@ -84,4 +82,4 @@ texture = ExtResource("2_ftp3d")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 scale = Vector2(1, 0.47)
-shape = SubResource("CapsuleShape2D_13b74")
+shape = SubResource("RectangleShape2D_mtgb4")

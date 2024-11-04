@@ -244,6 +244,9 @@ func _on_sword_attack_area_entered(area: Area2D) -> void:
 		area.damage(attack)
 
 func _on_health_life_change(value: Variant) -> void:
+	if value <= 0:
+		get_tree().reload_current_scene()
+		return
 	SignalsHandler.player_life_change.emit(value)
 
 #region debug

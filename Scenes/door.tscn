@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://edx4h5swy4gu"]
+[gd_scene load_steps=23 format=3 uid="uid://edx4h5swy4gu"]
 
 [ext_resource type="Script" path="res://Scripts/door.gd" id="1_82spt"]
 [ext_resource type="Texture2D" uid="uid://c0mwunnp724o3" path="res://Assets/World/Doors.png" id="1_odcv0"]
@@ -360,6 +360,9 @@ size = Vector2(42, 48)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0l2ra"]
 polygon = PackedVector2Array(16, -2.99996, 7.62939e-06, -3, -7.62939e-06, 3, 16, 3.00004)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_6l7ui"]
+radius = 6.08276
+
 [node name="Door" type="StaticBody2D"]
 collision_layer = 16
 collision_mask = 5
@@ -375,6 +378,7 @@ position = Vector2(16, 0)
 scale = Vector2(1, 3.36)
 shape = SubResource("SegmentShape2D_g6wil")
 one_way_collision_margin = 0.0
+debug_color = Color(4.81308e-08, 0.644067, 0.288163, 0.42)
 
 [node name="CollisionLeft" type="CollisionShape2D" parent="."]
 position = Vector2(-16, 0)
@@ -382,6 +386,7 @@ rotation = 3.14159
 scale = Vector2(1, 3.36)
 shape = SubResource("SegmentShape2D_g6wil")
 one_way_collision_margin = 0.0
+debug_color = Color(0, 0.643137, 0.286275, 0.419608)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -412,6 +417,16 @@ occluder = SubResource("OccluderPolygon2D_0l2ra")
 [node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
 position = Vector2(-16, 0)
 occluder = SubResource("OccluderPolygon2D_0l2ra")
+
+[node name="CircleRight" type="CollisionShape2D" parent="."]
+position = Vector2(18, 0)
+shape = SubResource("CircleShape2D_6l7ui")
+debug_color = Color(0.905531, 0, 0.46141, 0.42)
+
+[node name="CircleLeft" type="CollisionShape2D" parent="."]
+position = Vector2(-18, 0)
+shape = SubResource("CircleShape2D_6l7ui")
+debug_color = Color(0.905531, 0, 0.46141, 0.42)
 
 [connection signal="body_entered" from="Front" to="." method="_on_front_body_entered"]
 [connection signal="body_exited" from="Front" to="." method="_on_front_body_exited"]
