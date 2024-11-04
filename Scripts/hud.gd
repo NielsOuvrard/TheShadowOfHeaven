@@ -65,6 +65,8 @@ func _ready() -> void:
 	weapon.type = Data.Weapons.SWORD
 	weapon._ready()
 	
+	cursor.visible = false
+	
 	SignalsHandler.player_life_change.connect(_player_life_change)
 	SignalsHandler.player_change_weapon.connect(_player_change_weapon)
 	SignalsHandler.player_update_ammo_current.connect(_player_update_ammo_current)

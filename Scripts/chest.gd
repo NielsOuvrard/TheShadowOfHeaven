@@ -7,12 +7,14 @@ extends StaticBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $AreaRange/CollisionShape2D
-@onready var mark: Sprite2D = $Mark
+@onready var key: Sprite2D = $Key
 
 var is_opened = false
 
 func _ready() -> void:
-	mark.visible = false
+	key.visible = false
+	
+	SignalsHandler.player_use_controller.connect(_player_use_controller)
 
 func _process(delta: float) -> void:
 	var player = get_tree().get_first_node_in_group(&"player")
@@ -26,11 +28,11 @@ func _process(delta: float) -> void:
 
 func _on_area_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group(&"player") and not is_opened:
-		mark.visible = true
+		key.visible = true
 
 func _on_area_range_body_exited(body: Node2D) -> void:
 	if body.is_in_group(&"player"):
-		mark.visible = false
+		key.visible = false
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	var player = get_tree().get_first_node_in_group(&"player")
@@ -39,4 +41,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	is_opened = true
 	var random_offset = Vector2(Global.rand_range(-10, 10), Global.rand_range(0, 10))
 	Global.drop_random_item(position + random_offset, get_parent(), player.weapons_unlocked)
-	mark.visible = false
+	key.visible = false
+
+func _player_use_controller(value):
+	key.frame = value
