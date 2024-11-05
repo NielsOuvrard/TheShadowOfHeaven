@@ -21,7 +21,7 @@ extends CharacterBody2D
 @onready var shoot_cooldown: Timer = $ShotCooldown
 
 @export var SPEED := 16.0 * 7
-@export var ACCELERATION := 0.2
+@export var ACCELERATION := 0.9
 @export var current_weapon := Data.Weapons.SWORD
 @export var debug := false
 
