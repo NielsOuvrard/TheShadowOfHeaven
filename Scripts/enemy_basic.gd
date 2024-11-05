@@ -276,7 +276,7 @@ func _on_health_life_ready(value: int) -> void:
 
 func _on_hitbox_knockback_emit(attack: Attack) -> void:
 	knockback_velocity = (position - attack.position).normalized() * attack.knockback
-	if state == State.WALKING:
+	if state == State.WALKING or state == State.NOTHING:
 		state = State.SEARCHING
 		state_searching = StateSearching.ROTATE_ORIGIN_DAMAGE
 		last_time_i_saw_him = attack.position

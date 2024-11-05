@@ -107,6 +107,7 @@ frame = 4
 frame_progress = 1.0
 
 [node name="Key" type="Sprite2D" parent="."]
+z_index = 2
 position = Vector2(0, -28)
 texture = ExtResource("4_5acnk")
 vframes = 2

@@ -221,10 +221,12 @@ func _physics_process(delta):
 	# * Actions
 	if shoot_cooldown.is_stopped():
 		if Input.is_action_pressed('reload'):
+			shoot_cooldown.wait_time = 0.2 # TODO reload cooldown
 			shoot_cooldown.start()
 			reload()
 
 		if Input.is_action_pressed('change_weapon'):
+			shoot_cooldown.wait_time = 0.2  # TODO change weapon cooldown
 			shoot_cooldown.start()
 			change_weapon()
 
@@ -232,6 +234,7 @@ func _physics_process(delta):
 			shoot()
 		
 		if Input.is_action_pressed('dash'):
+			shoot_cooldown.wait_time = 0.2 # TODO dash cooldown
 			animation_handler.add_animation(Data.Animations.DASH)
 			# TODO
 	

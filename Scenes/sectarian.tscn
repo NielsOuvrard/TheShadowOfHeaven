@@ -100,7 +100,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bvl7t")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 5.0
 }, {
@@ -117,7 +117,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tm7tk")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -151,7 +151,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gwa7y")
 }],
-"loop": true,
+"loop": false,
 "name": &"hit",
 "speed": 5.0
 }, {
@@ -184,7 +184,7 @@ visible = true
 [node name="Sprites" type="AnimatedSprite2D" parent="." index="2"]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_rc5ba")
-animation = &"move"
+autoplay = "default"
 
 [node name="Hitbox" type="Area2D" parent="." index="3"]
 collision_layer = 4
