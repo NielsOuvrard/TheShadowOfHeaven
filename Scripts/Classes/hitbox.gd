@@ -16,8 +16,7 @@ const heart_anim = preload("res://Scenes/heart_lost.tscn")
 ## called by the projectiles
 func damage(attack: Attack) -> int:
 	if health_component:
-		if attack.knockback > 0.1:
-			knockback_emit.emit(attack)
+		knockback_emit.emit(attack)
 		var damage_given = health_component.damage(attack)
 
 		for i in range(damage_given):
