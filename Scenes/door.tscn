@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://edx4h5swy4gu"]
+[gd_scene load_steps=25 format=3 uid="uid://edx4h5swy4gu"]
 
 [ext_resource type="Script" path="res://Scripts/door.gd" id="1_82spt"]
 [ext_resource type="Texture2D" uid="uid://c0mwunnp724o3" path="res://Assets/World/Doors.png" id="1_odcv0"]
@@ -360,8 +360,9 @@ size = Vector2(42, 48)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0l2ra"]
 polygon = PackedVector2Array(16, -2.99996, 7.62939e-06, -3, -7.62939e-06, 3, 16, 3.00004)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6l7ui"]
-radius = 6.08276
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5orvd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81bn0"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fxs7p"]
 polygon = PackedVector2Array(-14, -3, -26, -3, -26, 3, -14, 3)
@@ -421,14 +422,16 @@ occluder = SubResource("OccluderPolygon2D_0l2ra")
 position = Vector2(-16, 0)
 occluder = SubResource("OccluderPolygon2D_0l2ra")
 
-[node name="CircleRight" type="CollisionShape2D" parent="."]
-position = Vector2(18, 0)
-shape = SubResource("CircleShape2D_6l7ui")
+[node name="SquareRight" type="CollisionShape2D" parent="."]
+position = Vector2(25, 0)
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_5orvd")
 debug_color = Color(0.905531, 0, 0.46141, 0.42)
 
-[node name="CircleLeft" type="CollisionShape2D" parent="."]
-position = Vector2(-18, 0)
-shape = SubResource("CircleShape2D_6l7ui")
+[node name="SquareLeft" type="CollisionShape2D" parent="."]
+position = Vector2(-25, 0)
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_81bn0")
 debug_color = Color(0.905531, 0, 0.46141, 0.42)
 
 [node name="LightOccluder2D3" type="LightOccluder2D" parent="."]
