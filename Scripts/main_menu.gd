@@ -4,7 +4,7 @@ extends CanvasLayer
 @onready var letters: Sprite2D = $Letters
 @onready var timer: Timer = $Timer
 
-const SCREEN_X_SIZE = 256
+const SCREEN_X_SIZE = 240
 const NUMBER_NIVELS = 3
 
 var selected = 0:

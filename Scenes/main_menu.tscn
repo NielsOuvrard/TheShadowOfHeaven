@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://g4pqx40sl7c2" path="res://Assets/LevelSelector/SelectorLetters.png" id="5_eb2uc"]
 
 [node name="MainMenu" type="CanvasLayer"]
-scale = Vector2(7, 7)
-transform = Transform2D(7, 0, 0, 7, 0, 0)
+scale = Vector2(8, 8)
+transform = Transform2D(8, 0, 0, 8, 0, 0)
 script = ExtResource("1_tl73e")
 
 [node name="BackControl" type="Control" parent="."]
@@ -17,13 +17,13 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1665.0
-offset_bottom = -936.0
+offset_right = -1680.0
+offset_bottom = -945.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SelectorBackground" type="Sprite2D" parent="BackControl"]
-position = Vector2(128, 72)
+position = Vector2(120, 67)
 texture = ExtResource("1_rhggr")
 
 [node name="Title" type="Sprite2D" parent="."]
@@ -33,18 +33,20 @@ texture = ExtResource("2_cx4l0")
 vframes = 4
 
 [node name="Portraits" type="Sprite2D" parent="."]
-position = Vector2(128, 71)
+position = Vector2(120, 60)
 texture = ExtResource("3_8aw0s")
 
 [node name="PortraitsSelected" type="Sprite2D" parent="."]
-position = Vector2(128, 71)
+position = Vector2(120, 60)
 texture = ExtResource("4_crv7d")
 hframes = 3
 frame = 1
 
 [node name="Level" type="Sprite2D" parent="."]
-position = Vector2(128, 73)
+position = Vector2(120, 100.25)
 texture = ExtResource("5_eb2uc")
+vframes = 2
+frame = 1
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
