@@ -24,6 +24,7 @@ extends CharacterBody2D
 @export var ACCELERATION := 0.9
 @export var current_weapon := Data.Weapons.SWORD
 @export var debug := false
+@export var push_force = 80.0
 
 var look_direction := Vector2.ZERO
 var last_look_direction_mouse := Vector2.ZERO
@@ -174,6 +175,21 @@ func add_to_inventory(item: Data.Items, number: int):
 func unlock_weapon(weapon: Data.Weapons):
 	weapons_unlocked[weapon] = true
 
+func avoid_collision_with_other_bodies(delta: float):
+	# Handle collision with other bodies
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		if collider is CharacterBody2D:  # or CharacterBody3D
+			
+			# push the other body
+			if collider.has_node_and_resource("Hitbox"):
+				var area = collider.get_node("Hitbox")
+				var attack = Attack.new(0, global_position, push_force)
+				area.damage(attack)
+				print("Player send knockback to enemy")
+
 func _physics_process(delta):
 	# * Direction
 	var direction_input = Vector2.ZERO
@@ -213,6 +229,9 @@ func _physics_process(delta):
 	
 	# velocity in pixels per second,
 	knockback_velocity = knockback_velocity.lerp(Vector2.ZERO, 0.1)
+
+	avoid_collision_with_other_bodies(delta)
+
 	move_and_slide()
 
 	# * Look

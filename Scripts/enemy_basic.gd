@@ -29,6 +29,7 @@ extends CharacterBody2D
 		linear_movement = v
 		print("linear_movement", linear_movement)
 
+@export var push_force = 5.0
 @export var followed_path : PathFollow2D
 @export_range(0, 1, 0.01) var offset_followed_path := 0.0 ## offset of the path, between 0 and 1
 
@@ -155,6 +156,26 @@ func walking(delta: float):
 		sprites.play("move")
 
 
+func avoid_collision_with_other_bodies(delta: float):
+	# Handle collision with other bodies
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		if collider is CharacterBody2D:  # or CharacterBody3D
+			# Calculate push direction
+			var push_direction = (global_position - collider.global_position).normalized()
+			
+			# Apply push force
+			velocity += push_direction * push_force
+			
+			# Also push the other body
+			if collider.has_node_and_resource("Hitbox"):
+				var area = collider.get_node("Hitbox")
+				var attack = Attack.new(0, global_position, push_force)
+				area.damage(attack)
+				print("Enemy send knockback to sth")
+
 func is_player_in_range(player: Node2D) -> bool:
 	if not player:
 		return false
@@ -258,6 +279,8 @@ func _physics_process(delta: float) -> void:
 			walking(delta)
 		State.NOTHING:
 			pass
+
+	avoid_collision_with_other_bodies(delta)
 
 	move_and_slide()
 
