@@ -190,7 +190,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_xmvl5")
 }],
 "loop": false,
-"name": &"death",
+"name": &"die",
 "speed": 12.0
 }, {
 "frames": [{

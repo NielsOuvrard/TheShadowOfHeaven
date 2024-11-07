@@ -168,7 +168,8 @@ enum Animations {
 	# RELOAD, # not for now
 	CHANGE_WEAPON,
 	PICK_UP,
-	DASH
+	DASH,
+	DIE
 }
 
 const animations_data := {
@@ -200,6 +201,11 @@ const animations_data := {
 	Animations.DASH: {
 		"name": "dash",
 		"seconds_active": 0.6,
+		"can_be_override": false
+	},
+	Animations.DIE: {
+		"name": "die",
+		"seconds_active": 999.0,
 		"can_be_override": false
 	}
 }

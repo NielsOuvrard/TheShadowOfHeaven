@@ -248,7 +248,9 @@ func _on_sword_attack_area_entered(area: Area2D) -> void:
 
 func _on_health_life_change(value: Variant) -> void:
 	if value <= 0:
-		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+		animation_handler.add_animation(Data.Animations.DIE)
+		# TODO put a animation node, and put this in the end of the animation
+		# get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 		return
 	SignalsHandler.player_life_change.emit(value)
 
