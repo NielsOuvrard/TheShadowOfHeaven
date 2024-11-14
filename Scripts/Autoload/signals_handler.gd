@@ -19,4 +19,3 @@ signal player_look_direction(direction: Vector2)
 
 
 ## * other signals
-

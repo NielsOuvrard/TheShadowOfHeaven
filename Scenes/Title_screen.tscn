@@ -1,0 +1,109 @@
+[gd_scene load_steps=12 format=3 uid="uid://b6jtg1sbxeduy"]
+
+[ext_resource type="Texture2D" uid="uid://dp0uwqsv72oo7" path="res://Assets/MainMenu/MainMenu.png" id="1_6ebhc"]
+[ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_pnk5d"]
+[ext_resource type="Texture2D" uid="uid://bp8s2jyubxpfj" path="res://Assets/MainMenu/PlayBoton.png" id="3_37dpg"]
+[ext_resource type="Texture2D" uid="uid://b1hxl2lfc1iy0" path="res://Assets/MainMenu/PlayBotonS.png" id="4_emaxm"]
+[ext_resource type="Texture2D" uid="uid://c6bjmlbysw05x" path="res://Assets/MainMenu/  NivBoton.png" id="5_535ik"]
+[ext_resource type="Texture2D" uid="uid://vfcvpu0irgph" path="res://Assets/MainMenu/NivBotonesS.png" id="6_hyp23"]
+[ext_resource type="Texture2D" uid="uid://d4my3tmnkhhkr" path="res://Assets/MainMenu/ConfBoton.png" id="7_awq8p"]
+[ext_resource type="Texture2D" uid="uid://7s156vn6jhp6" path="res://Assets/MainMenu/ConfBotonesS.png" id="8_bsg3x"]
+[ext_resource type="Texture2D" uid="uid://ct1tk2syu5ev4" path="res://Assets/MainMenu/ExitBoton.png" id="9_hc86o"]
+[ext_resource type="Texture2D" uid="uid://cehir2xng3r0a" path="res://Assets/MainMenu/ExitBotonS.png" id="10_mrw85"]
+[ext_resource type="AudioStream" uid="uid://bxx6my6krp8pu" path="res://Assets/Sounds/Music/AudioMain.mp3" id="11_o4foo"]
+
+[node name="TitleScreen" type="CanvasLayer"]
+script = ExtResource("1_pnk5d")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="titleBackground" type="Sprite2D" parent="Control"]
+position = Vector2(959.5, 539.5)
+scale = Vector2(7.50391, 7.52083)
+texture = ExtResource("1_6ebhc")
+
+[node name="ControlPlayboton" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 193.0
+offset_top = 500.0
+offset_right = 386.0
+offset_bottom = 602.0
+
+[node name="Playboton" type="Sprite2D" parent="ControlPlayboton"]
+position = Vector2(99, 51)
+scale = Vector2(5.51389, 9.17308)
+texture = ExtResource("3_37dpg")
+
+[node name="PlaybotonS" type="Sprite2D" parent="ControlPlayboton/Playboton"]
+visible = false
+scale = Vector2(0.997481, 1.00629)
+texture = ExtResource("4_emaxm")
+
+[node name="ControlLevelBoton" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 195.0
+offset_top = 614.0
+offset_right = 384.0
+offset_bottom = 706.0
+
+[node name="Levelboton" type="Sprite2D" parent="ControlLevelBoton"]
+position = Vector2(96, 46)
+scale = Vector2(4.38636, 8.30769)
+texture = ExtResource("5_535ik")
+
+[node name="LevelbotonS" type="Sprite2D" parent="ControlLevelBoton/Levelboton"]
+visible = false
+position = Vector2(-7.62939e-06, 0)
+texture = ExtResource("6_hyp23")
+
+[node name="ControlConfigBoton" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 196.0
+offset_top = 714.0
+offset_right = 507.0
+offset_bottom = 806.0
+
+[node name="Configboton" type="Sprite2D" parent="ControlConfigBoton"]
+position = Vector2(157, 46)
+scale = Vector2(3.98101, 8.3077)
+texture = ExtResource("7_awq8p")
+
+[node name="ConfigbotonS" type="Sprite2D" parent="ControlConfigBoton/Configboton"]
+visible = false
+position = Vector2(-0.565186, 0)
+texture = ExtResource("8_bsg3x")
+
+[node name="ControlExitboton" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 192.0
+offset_top = 814.0
+offset_right = 386.0
+offset_bottom = 916.0
+
+[node name="Exitboton" type="Sprite2D" parent="ControlExitboton"]
+position = Vector2(100, 50.9999)
+scale = Vector2(6.09091, 9.23077)
+texture = ExtResource("9_hc86o")
+
+[node name="ExitbotonS" type="Sprite2D" parent="ControlExitboton/Exitboton"]
+visible = false
+position = Vector2(-5.01035e-06, 6.61214e-06)
+texture = ExtResource("10_mrw85")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AudioTitle" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_o4foo")
+volume_db = 2.0
+autoplay = true
+parameters/looping = true

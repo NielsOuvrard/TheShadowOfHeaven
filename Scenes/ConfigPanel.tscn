@@ -1,0 +1,96 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxspjmrxaufen"]
+
+[ext_resource type="Texture2D" uid="uid://cqi8u3nvojiy4" path="res://Assets/LevelSelector/SelectorBackground.png" id="1_3ushk"]
+[ext_resource type="Script" path="res://Scripts/config_panel.gd" id="1_yn2af"]
+
+[sub_resource type="GDScript" id="GDScript_dpqtq"]
+script/source = "extends HSlider
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="ConfigPanel" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yn2af")
+
+[node name="BgConfig" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(963, 543.75)
+scale = Vector2(8.01667, 8.04815)
+texture = ExtResource("1_3ushk")
+
+[node name="VColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -10.0
+offset_top = 337.0
+offset_right = 1926.0
+offset_bottom = 782.0
+color = Color(0.467192, 0.540956, 0.999995, 0.52549)
+
+[node name="VolumeSlider" type="HSlider" parent="VColorRect"]
+z_index = 1
+layout_mode = 0
+offset_left = 355.0
+offset_top = -1.0
+offset_right = 1678.0
+offset_bottom = 442.0
+script = SubResource("GDScript_dpqtq")
+
+[node name="VolLabel" type="Label" parent="VColorRect"]
+layout_mode = 0
+offset_left = 844.0
+offset_top = 24.0
+offset_right = 1176.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 76
+text = "Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenuButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 694.0
+offset_top = 639.0
+offset_right = 922.0
+offset_bottom = 733.0
+
+[node name="MLabel" type="Label" parent="MainMenuButton"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 228.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 37
+text = "Main menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1093.0
+offset_top = 639.0
+offset_right = 1321.0
+offset_bottom = 733.0
+
+[node name="CLabel" type="Label" parent="CloseButton"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 229.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 37
+text = "Close"
+horizontal_alignment = 1
+vertical_alignment = 1

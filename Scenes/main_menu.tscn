@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://i3ykfveqetl4"]
+[gd_scene load_steps=6 format=3 uid="uid://i3ykfveqetl4"]
 
 [ext_resource type="Texture2D" uid="uid://cqi8u3nvojiy4" path="res://Assets/LevelSelector/SelectorBackground.png" id="1_rhggr"]
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_tl73e"]
-[ext_resource type="Texture2D" uid="uid://dt4xedgqmtwv3" path="res://Assets/LevelSelector/SelectorText.png" id="2_cx4l0"]
 [ext_resource type="Texture2D" uid="uid://cpt418es6sb5l" path="res://Assets/LevelSelector/SelectorPortraits.png" id="3_8aw0s"]
 [ext_resource type="Texture2D" uid="uid://bhoho7e10rr2a" path="res://Assets/LevelSelector/SelectorPortraitsSelected.png" id="4_crv7d"]
 [ext_resource type="Texture2D" uid="uid://g4pqx40sl7c2" path="res://Assets/LevelSelector/SelectorLetters.png" id="5_eb2uc"]
@@ -27,9 +26,7 @@ position = Vector2(120, 67)
 texture = ExtResource("1_rhggr")
 
 [node name="Title" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(128, 8)
-texture = ExtResource("2_cx4l0")
 vframes = 4
 
 [node name="Portraits" type="Sprite2D" parent="."]

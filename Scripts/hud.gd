@@ -18,6 +18,8 @@ extends CanvasLayer
 @onready var bullet_icon: Node2D = $Right/BulletParent/BulletIcon
 
 @onready var inv_text: Label = $Right/InvText
+@export var config_panel_path = "res://Scenes/ConfigPanel.tscn"
+var config_panel_instance: Panel = null
 
 var current_weapon := Data.Weapons.SWORD
 var hearts_index := []
@@ -79,6 +81,7 @@ func _ready() -> void:
 	update_hearts()
 	_player_change_weapon(current_weapon, 0, 0)
 
+
 func _player_update_ammo_current(ammo):
 	if ammo == len(bullets) - 1:
 		bullets[-1].play("remove")
@@ -116,3 +119,19 @@ func _player_use_controller(value):
 
 func _player_look_direction(direction: Vector2):
 	cursor.rotation = direction.angle()
+
+func toggle_config_panel():
+	if config_panel_instance == null:
+		# Instancia y muestra el panel de configuración si no está ya abierto
+		config_panel_instance = load(config_panel_path).instantiate()
+		config_panel_instance.background_music = $GamePlayAudio
+		add_child(config_panel_instance)
+	else:
+		# Cierra el panel si ya está abierto
+		config_panel_instance.queue_free()
+		config_panel_instance = null
+		
+func _input(event):
+	if Input.is_action_just_pressed("Open_config"):
+		toggle_config_panel()
+		
