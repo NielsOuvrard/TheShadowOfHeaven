@@ -213,6 +213,7 @@ _data = {
 radius = 13.0
 
 [node name="Player" type="CharacterBody2D"]
+process_mode = 3
 collision_mask = 52
 script = ExtResource("1_flqv2")
 metadata/is_player = true
@@ -280,6 +281,7 @@ one_shot = true
 [node name="ShotCooldown" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="life_change" from="Health" to="." method="_on_health_life_change"]
 [connection signal="area_entered" from="SwordAttack" to="." method="_on_sword_attack_area_entered"]
 [connection signal="body_entered" from="SwordAttack" to="." method="_on_sword_attack_body_entered"]

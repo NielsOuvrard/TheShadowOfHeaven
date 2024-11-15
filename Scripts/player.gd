@@ -191,6 +191,9 @@ func avoid_collision_with_other_bodies(delta: float):
 				print("Player send knockback to enemy")
 
 func _physics_process(delta):
+	if get_tree().paused:
+		animation_handler.actualize_animation()
+		return
 	# * Direction
 	var direction_input = Vector2.ZERO
 
@@ -268,9 +271,7 @@ func _on_sword_attack_area_entered(area: Area2D) -> void:
 func _on_health_life_change(value: Variant) -> void:
 	if value <= 0:
 		animation_handler.add_animation(Data.Animations.DIE)
-		# TODO put a animation node, and put this in the end of the animation
-		# get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
-		return
+		get_tree().paused = true
 	SignalsHandler.player_life_change.emit(value)
 
 #region debug
@@ -291,3 +292,10 @@ func debug_weapons():
 	for weapon in ammo_inventory:
 		ammo_inventory[weapon] = 99
 #endregion
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if get_tree().paused:
+		await get_tree().create_timer(1).timeout
+		get_tree().paused = false
+		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

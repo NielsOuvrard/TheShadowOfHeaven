@@ -24,6 +24,7 @@ color = Color(0.117227, 3.39021e-06, 0.0957673, 1)
 [node name="Greed" parent="." instance=ExtResource("3_bncwm")]
 
 [node name="GamePlayAudio" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 stream = ExtResource("3_0lt7v")
 autoplay = true
 
