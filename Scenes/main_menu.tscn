@@ -1,45 +1,50 @@
 [gd_scene load_steps=6 format=3 uid="uid://i3ykfveqetl4"]
 
-[ext_resource type="Texture2D" uid="uid://cqi8u3nvojiy4" path="res://Assets/LevelSelector/SelectorBackground.png" id="1_rhggr"]
-[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_tl73e"]
-[ext_resource type="Texture2D" uid="uid://cpt418es6sb5l" path="res://Assets/LevelSelector/SelectorPortraits.png" id="3_8aw0s"]
-[ext_resource type="Texture2D" uid="uid://bhoho7e10rr2a" path="res://Assets/LevelSelector/SelectorPortraitsSelected.png" id="4_crv7d"]
-[ext_resource type="Texture2D" uid="uid://g4pqx40sl7c2" path="res://Assets/LevelSelector/SelectorLetters.png" id="5_eb2uc"]
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_ywcby"]
+[ext_resource type="Texture2D" uid="uid://dp0uwqsv72oo7" path="res://Assets/MainMenu/MainMenu.png" id="2_fe0g3"]
+[ext_resource type="AudioStream" uid="uid://bxx6my6krp8pu" path="res://Assets/Sounds/Music/AudioMain.mp3" id="3_02vt3"]
+[ext_resource type="Texture2D" uid="uid://c7kt4n44dxfnf" path="res://Assets/MainMenu/Buttons.png" id="4_1gwcj"]
+[ext_resource type="PackedScene" uid="uid://smk6r6ygbleh" path="res://Scenes/ConfigPanel.tscn" id="5_fquun"]
 
 [node name="MainMenu" type="CanvasLayer"]
-scale = Vector2(8, 8)
-transform = Transform2D(8, 0, 0, 8, 0, 0)
-script = ExtResource("1_tl73e")
+script = ExtResource("1_ywcby")
 
-[node name="BackControl" type="Control" parent="."]
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1680.0
-offset_bottom = -945.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SelectorBackground" type="Sprite2D" parent="BackControl"]
-position = Vector2(120, 67)
-texture = ExtResource("1_rhggr")
-
-[node name="Portraits" type="Sprite2D" parent="."]
-position = Vector2(120, 60)
-texture = ExtResource("3_8aw0s")
-
-[node name="PortraitsSelected" type="Sprite2D" parent="."]
-position = Vector2(120, 60)
-texture = ExtResource("4_crv7d")
-hframes = 3
-frame = 1
-
-[node name="Level" type="Sprite2D" parent="."]
-position = Vector2(120, 100.25)
-texture = ExtResource("5_eb2uc")
-vframes = 2
-frame = 1
+[node name="MainMenu" type="Sprite2D" parent="Control"]
+position = Vector2(959.5, 539.5)
+scale = Vector2(7.50391, 7.52083)
+texture = ExtResource("2_fe0g3")
 
 [node name="Timer" type="Timer" parent="."]
-one_shot = true
+
+[node name="AudioTitle" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_02vt3")
+volume_db = 2.0
+autoplay = true
+parameters/looping = true
+
+[node name="Buttons" type="Sprite2D" parent="."]
+position = Vector2(216, 420)
+scale = Vector2(7.72727, 7.72727)
+texture = ExtResource("4_1gwcj")
+centered = false
+hframes = 2
+
+[node name="ButtonSelected" type="Sprite2D" parent="Buttons"]
+texture = ExtResource("4_1gwcj")
+centered = false
+hframes = 2
+vframes = 5
+
+[node name="ConfigPanel" parent="." node_paths=PackedStringArray("background_music") instance=ExtResource("5_fquun")]
+visible = false
+background_music = NodePath("../AudioTitle")
+
+[connection signal="closed" from="ConfigPanel" to="." method="_on_config_panel_closed"]
