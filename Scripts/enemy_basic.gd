@@ -309,4 +309,5 @@ func _on_hitbox_knockback_emit(attack: Attack) -> void:
 func _on_health_die(unlocked_weapons) -> void:
 	Global.drop_random_item(position, get_parent(), unlocked_weapons)
 	queue_free()
+	SignalsHandler.enemy_has_die.emit()
 #endregion
