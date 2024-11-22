@@ -9,6 +9,15 @@ extends CharacterBody2D
 @onready var player_body: CharacterBody2D = $"."
 @onready var weapon_sprite: Sprite2D = $Weapon
 
+# * Sounds
+@onready var reload_sound: AudioStreamPlayer2D = $Reload
+@onready var weapons_sounds := {
+	Data.Weapons.SWORD: $SwordSwing,
+	Data.Weapons.PISTOL: $GunSoundArcade,
+	Data.Weapons.SHOTGUN: $ShotGunSound,
+	Data.Weapons.RAYGUN: $LaserSound
+}
+
 # * SWORD (Another scene ?)
 @onready var sword_attack: Area2D = $SwordAttack
 @onready var sword_attack_animation: AnimationPlayer = $SwordAttack/Animation
@@ -90,7 +99,7 @@ func look_player():
 		look_direction = mouse_position.normalized()
 		local_playing_controller = false
 		last_look_direction_mouse = mouse_position.normalized()
-	
+
 	if local_playing_controller != is_playing_controller:
 		SignalsHandler.player_use_controller.emit(local_playing_controller)
 		is_playing_controller = local_playing_controller
@@ -102,12 +111,14 @@ func shoot():
 	if current_weapon == Data.Weapons.SWORD:
 		sword_attack_animation.play("sword_attack")
 		sword_attack.rotation = look_direction.angle() + (3.0 / 4.0 * PI)
+		weapons_sounds[current_weapon].play()
 		return
 	if ammo_current[current_weapon] == 0:
 		reload()
 		return
 	ammo_current[current_weapon] -= 1
 	SignalsHandler.player_update_ammo_current.emit(ammo_current[current_weapon])
+	weapons_sounds[current_weapon].play()
 
 	var proj = Global.PROJECTILE.instantiate()
 	proj.direction_proj = look_direction
@@ -134,8 +145,9 @@ func reload():
 	ammo_inventory[current_weapon] -= ammo_taken
 	SignalsHandler.player_update_ammo_both.emit(ammo_current[current_weapon], ammo_inventory[current_weapon])
 	SignalsHandler.player_reload.emit(current_weapon)
-	
+
 	reload_cooldown.start()
+	reload_sound.play()
 
 func change_weapon():
 	var next_weapon = (current_weapon + 1) % Data.WEAPONS.size()

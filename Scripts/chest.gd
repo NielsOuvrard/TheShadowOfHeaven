@@ -8,6 +8,7 @@ extends StaticBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $AreaRange/CollisionShape2D
 @onready var key: Sprite2D = $Key
+@onready var open_chest: AudioStreamPlayer2D = $OpenChest
 
 var is_opened = false
 
@@ -24,6 +25,7 @@ func _process(delta: float) -> void:
 	not is_opened and\
 	position.distance_to(player.position) < collision_shape_2d.shape.radius:
 		animated_sprite_2d.play(&"opening")
+		open_chest.play()
 
 
 func _on_area_range_body_entered(body: Node2D) -> void:

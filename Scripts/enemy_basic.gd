@@ -16,6 +16,8 @@ extends CharacterBody2D
 @onready var ray_cast: RayCast2D = $RayCast2D
 @onready var shot_cooldown: Timer = $ShotCooldown
 @onready var research_cool_down: Timer = $ResearchCoolDown
+@onready var sound_takes_damage: AudioStreamPlayer2D = $TakesDamage
+@onready var sound_alert: AudioStreamPlayer2D = $Alert
 
 # children nodes
 @onready var sprites: AnimatedSprite2D = $Sprites # default / attack / move
@@ -259,6 +261,8 @@ func _physics_process(delta: float) -> void:
 	if is_player_in_range(player):
 		state = State.ATTACKING
 		mark_sprite.visible = true
+		if not sound_alert.playing:
+			sound_alert.play()
 		mark_sprite.texture = mark_texture_exclamation
 	elif state == State.ATTACKING:
 		mark_sprite.texture = mark_texture_interogation
@@ -304,6 +308,8 @@ func _on_hitbox_knockback_emit(attack: Attack) -> void:
 		state_searching = StateSearching.ROTATE_ORIGIN_DAMAGE
 		last_time_i_saw_him = attack.position + ((attack.position - position).normalized() * distance_vision)
 		mark_sprite.visible = true
+		if not sound_alert.playing:
+			sound_alert.play()
 		mark_sprite.texture = mark_texture_interogation
 
 func _on_health_die(unlocked_weapons) -> void:

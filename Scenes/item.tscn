@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcbtjhffrph75"]
+[gd_scene load_steps=9 format=3 uid="uid://bcbtjhffrph75"]
 
 [ext_resource type="Script" path="res://Scripts/item.gd" id="1_tbm5b"]
 [ext_resource type="Texture2D" uid="uid://2u0tuliq82gr" path="res://Assets/Items/Weapons.png" id="2_2fo4k"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_rcabs"]
+[ext_resource type="AudioStream" uid="uid://l6o6e5pkwaix" path="res://Assets/Sounds/TakeItem.mp3" id="4_smby3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uytgi"]
 radius = 8.0
@@ -31,6 +32,18 @@ tracks/1/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TakeItem:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_yi4ad"]
@@ -93,5 +106,13 @@ libraries = {
 "": SubResource("AnimationLibrary_7cuq4")
 }
 
+[node name="TakeItem" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_smby3")
+volume_db = 5.0
+
+[node name="DestroyCooldown" type="Timer" parent="."]
+wait_time = 0.4
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="DestroyCooldown" to="." method="_on_timer_timeout"]

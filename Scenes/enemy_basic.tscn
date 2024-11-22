@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ci1y4rydunn2t"]
+[gd_scene load_steps=10 format=3 uid="uid://ci1y4rydunn2t"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_basic.gd" id="1_oxo2l"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_jb6il"]
 [ext_resource type="Texture2D" uid="uid://b41jkcv2ni17t" path="res://Assets/light_120_02.png" id="4_d0wig"]
 [ext_resource type="Texture2D" uid="uid://c77fg4lkdytoa" path="res://Assets/Items/MarkSmallExclamation.png" id="4_fwcav"]
+[ext_resource type="AudioStream" uid="uid://cpo553ivas11u" path="res://Assets/Sounds/Enemigos/TakesDamage.mp3" id="5_f3bvs"]
+[ext_resource type="AudioStream" uid="uid://cbbhvr4uljiid" path="res://Assets/Sounds/Enemigos/Alert.wav" id="6_qktdn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4000s"]
 radius = 9.13998
@@ -64,5 +66,12 @@ autostart = true
 [node name="ResearchCoolDown" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="TakesDamage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_f3bvs")
+volume_db = 5.0
+
+[node name="Alert" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_qktdn")
 
 [connection signal="timeout" from="ResearchCoolDown" to="." method="_on_research_cool_down_timeout"]

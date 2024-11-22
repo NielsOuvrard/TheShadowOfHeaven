@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://0y06vbi8ods3"]
+[gd_scene load_steps=26 format=3 uid="uid://0y06vbi8ods3"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_flqv2"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_8qbm6"]
@@ -9,6 +9,11 @@
 [ext_resource type="Script" path="res://Scripts/sword_attack.gd" id="5_rnjnq"]
 [ext_resource type="Texture2D" uid="uid://btn2i18uvt7qf" path="res://Assets/Characters/SwordAttack.png" id="5_y8fcm"]
 [ext_resource type="Script" path="res://Scripts/animation_handler.gd" id="9_64uq1"]
+[ext_resource type="AudioStream" uid="uid://chtbd7wr6fc8o" path="res://Assets/Sounds/Weapons/SwordSwing.wav" id="10_53l0g"]
+[ext_resource type="AudioStream" uid="uid://dmu2mwi681mhx" path="res://Assets/Sounds/Weapons/GunSoundArcade.wav" id="11_1p0jy"]
+[ext_resource type="AudioStream" uid="uid://ru30lj0524bq" path="res://Assets/Sounds/Weapons/LaserSound.mp3" id="12_2hym6"]
+[ext_resource type="AudioStream" uid="uid://b7doukyxg8uxy" path="res://Assets/Sounds/Weapons/Reload.wav" id="13_lre3j"]
+[ext_resource type="AudioStream" uid="uid://bqc04pd6vpkjc" path="res://Assets/Sounds/Weapons/ShotGunSound.mp3" id="14_keksx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkcmj"]
 
@@ -280,6 +285,21 @@ one_shot = true
 
 [node name="ShotCooldown" type="Timer" parent="."]
 one_shot = true
+
+[node name="SwordSwing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_53l0g")
+
+[node name="GunSoundArcade" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_1p0jy")
+
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_2hym6")
+
+[node name="Reload" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_lre3j")
+
+[node name="ShotGunSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_keksx")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="life_change" from="Health" to="." method="_on_health_life_change"]
