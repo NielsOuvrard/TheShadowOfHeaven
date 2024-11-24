@@ -1,8 +1,12 @@
 extends Node2D
 
 @onready var room_1: Node2D = $ROOM_1
+@onready var room_2: Node2D = $ROOM_2
+@onready var room_3: Node2D = $ROOM_3
 @onready var rooms = [
-	room_1
+	room_1,
+	room_2,
+	room_3
 	# ...
 ]
 
