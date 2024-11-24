@@ -45,7 +45,7 @@ const WEAPONS = {
 		"texture": "res://Assets/Items/Shotgun.png",
 		"item_frame": 1,
 		"cooldown_shot": 0.5,
-		"cooldown_reload": 1,
+		"cooldown_reload": 0.8,
 		"ammo_max": 2,
 		"projectile": Projectiles.SHOTGUN,
 		"ammo": Items.SHOTGUN_AMMO,
@@ -56,7 +56,7 @@ const WEAPONS = {
 		"item_frame": 2,
 		"cooldown_shot": 0.1,
 		"cooldown_reload": 1,
-		"ammo_max": 4,
+		"ammo_max": 6,
 		"projectile": Projectiles.RAYGUN,
 		"ammo": Items.RAYGUN_AMMO,
 	}
@@ -96,31 +96,31 @@ const PROJECTILS = {
 		"animation": "raygun", # this one is different, it's a ray
 		"speed": SPEED_PLAYER * 4,
 		"damage": 2,
-		"knockback": 0.0,
-		"light_energy": 1,
+		"knockback": 10.0,
+		"light_energy": 2,
 		"light_color": Color(0, 1, 1, 1),
 		"collision_scale": Vector2(1, 1),
 		"collision_radius": 5.83
 	},
 	Projectiles.ENEMIES: {
 		"animation": "enemies",
-		"speed": SPEED_PLAYER * 2,
+		"speed": SPEED_PLAYER * 0.8,
 		"damage": 2,
 		"knockback": 5.0,
 		"light_energy": 0.5,
 		"light_color": Color(1, 0.5, 0, 1),
-		"collision_scale": Vector2(1.2, 0.7),
-		"collision_radius": 5.83
+		"collision_scale": Vector2(1, 1),
+		"collision_radius": 5
 	},
 	Projectiles.SKULL: {
 		"animation": "skull",
-		"speed": SPEED_PLAYER * 1.2,
-		"damage": 3,
+		"speed": SPEED_PLAYER * 0.85,
+		"damage": 1,
 		"knockback": 0.0,
 		"light_energy": 5,
 		"light_color": Color(1, 0, 1, 1),
-		"collision_scale": Vector2(1.2, 0.6),
-		"collision_radius": 13.33
+		"collision_scale": Vector2(1, 1),
+		"collision_radius": 7
 	}
 }
 
@@ -150,7 +150,7 @@ const ITEMS = {
 		"name": "raygun_ammo",
 		"frame": 6,
 		"weapon": Weapons.RAYGUN,
-		"n_max": 4,
+		"n_max": 5,
 		"n_min": 2
 	},
 	Items.LIFE: {

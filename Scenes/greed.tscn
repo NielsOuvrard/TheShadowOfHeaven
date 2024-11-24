@@ -34,7 +34,6 @@ tile_set = ExtResource("1_73fo5")
 z_index = 2
 y_sort_enabled = true
 position = Vector2(-33, 776)
-debug = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 z_index = 100
@@ -125,15 +124,6 @@ position = Vector2(1691, 600)
 rotation = 1.5708
 openable = false
 
-[node name="Ghost5" parent="ROOM_3" instance=ExtResource("10_jlttf")]
-position = Vector2(1134, 862)
-
-[node name="Ghost6" parent="ROOM_3" instance=ExtResource("10_jlttf")]
-position = Vector2(1279, 860)
-
-[node name="Ghost7" parent="ROOM_3" instance=ExtResource("10_jlttf")]
-position = Vector2(1284, 746)
-
 [node name="Deamon4" parent="ROOM_3" instance=ExtResource("9_wmq0k")]
 position = Vector2(1264, 798)
 
@@ -166,7 +156,6 @@ position = Vector2(372, 776)
 texture = ExtResource("11_4kwqn")
 
 [node name="SPIKES" type="Node2D" parent="."]
-z_index = 1
 y_sort_enabled = true
 position = Vector2(315, 872)
 
@@ -384,161 +373,194 @@ y_sort_enabled = true
 z_index = 1
 y_sort_enabled = true
 position = Vector2(34, 732)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch2" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(32, 820)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch3" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(257, 702)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch4" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(258, 851)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch5" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(415, 820)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch6" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(415, 740)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch7" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(545, 684)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch8" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(640, 685)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch9" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(638, 870)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch10" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(545, 868)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch11" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(785, 820)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch12" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(887, 820)
+color = Color(0.945098, 0.870588, 0, 1)
+metadata/_edit_group_ = true
 
 [node name="Torch13" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1007, 820)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch14" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(783, 638)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch15" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(885, 637)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch16" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(992, 638)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch17" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1104, 900)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch18" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1344, 899)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch19" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1214, 901)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch20" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1232, 901)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch21" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1089, 708)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch22" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1385, 675)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch23" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1379, 525)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch24" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1518, 676)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch25" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1514, 525)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch26" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1663, 572)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch27" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1663, 631)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch28" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1359, 747)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch29" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1210, 525)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch30" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1088, 594)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch31" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1809, 554)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch32" parent="TORCHES" instance=ExtResource("8_of5e7")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(1809, 663)
+color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="CHESTS" type="Node2D" parent="."]
 z_index = 1
