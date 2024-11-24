@@ -3,7 +3,7 @@ extends Panel
 signal closed
 
 # order of the elements in the menu
-@onready var volume_slider: HSlider = $VColorRect/VolumeSlider
+@onready var volume_slider: HSlider = $VolumeSlider
 @onready var main_menu_button: Button = $MainMenuButton
 @onready var close_button: Button = $CloseButton
 @onready var menu_items := [volume_slider, main_menu_button, close_button]
