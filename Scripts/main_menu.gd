@@ -14,7 +14,7 @@ const NUMBER_BUTTONS = 5
 
 var buttons_callbacks = [
 	func (): get_tree().change_scene_to_file("res://Scenes/gameplay.tscn"),
-	func (): get_tree().change_scene_to_file("res://Scenes/main_menu.tscn"),
+	func (): get_tree().change_scene_to_file("res://Scenes/level_selector.tscn"),
 	func (): config_panel_open(),
 	func (): get_tree().quit(),
 	func (): return # TODO remove the 5th button on the picture
