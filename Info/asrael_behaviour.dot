@@ -1,0 +1,41 @@
+# dot -Tpng -Gdpi=300 sectarian_behaviour.dot -o sectarian_behaviour.png
+
+digraph AsraelBehaviour {
+    label="Asrael Behaviour";
+    color=gray;
+    fontname="Arial";
+
+    Default [label="Default", shape=diamond, color=gold, fillcolor=yellow, fontcolor=black, fontsize=20, style=filled, penwidth=3]
+
+    Skull [label="Skull", shape=circle, color=lightblue, fontname="Arial"];
+    Rays [label="Rays", shape=circle, color=lightblue, fontname="Arial"];
+    Sword [label="Sword", shape=circle, color=lightblue, fontname="Arial"];
+
+    Skull2 [label="phase 2", shape=rectangle, color=greenyellow, fontname="Arial"];
+    Rays2 [label="phase 3", shape=rectangle, color=greenyellow, fontname="Arial"];
+
+    Default -> Skull [label="", color=black];
+    Skull -> Skull2 [label="life <= ASRAEL_FULL_LIFE * 0.8\nand current_level == 0", color=black];
+    Skull2 -> Rays [label="life <= ASRAEL_FULL_LIFE * 0.6\nand current_level == 1", color=black];
+    Rays -> Rays2 [label="life <= ASRAEL_FULL_LIFE * 0.4\nand current_level == 2", color=black];
+    Rays2 -> Sword [label="life <= ASRAEL_FULL_LIFE * 0.2\nand current_level == 3", color=black];
+
+    subgraph cluster_Skull {
+        label="Skull";
+        color=red;
+        fontname="Arial";
+
+        Skull
+        Skull2
+    }
+
+    subgraph cluster_Rays {
+        label="Rays";
+        color=red;
+        fontname="Arial";
+
+        Rays
+        Rays2
+    }
+
+}

@@ -1,7 +1,7 @@
 # dot -Tpng -Gdpi=300 sectarian_behaviour.dot -o sectarian_behaviour.png
 
-digraph SectarianBehaviour {
-    label="Sectarian Behaviour";
+digraph EnemiesBehaviour {
+    label="Enemies Behaviour";
     color=gray;
     fontname="Arial";
 

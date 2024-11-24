@@ -72,12 +72,11 @@ Find lava floors
 
 ## Enemies
 
-The game's main enemies are sectarians and demons, each with a specific attack pattern and direct threat.
+The game's main enemies are sectarians, ghosts and demons, with a specific attack pattern.
 
 ### Sectarians
 
-![Sectarian](Assets/Characters/Sectario.png)
-![IA of sectarian](Info/sectarian_behaviour.png)
+![Enemies](Assets/Characters/Sectariens.PNG)
 
 **Revolver Sectarian:**
 Fires one bullet at a time
@@ -89,9 +88,15 @@ The player can dodge the bullet with his sword
 Damage when they hit the player
 Dequiring to avoid them, can't be destroyed
 
+![Ghosts and Deamons](Assets/Characters/Demon.png)
+
+![IA of sectarian](Info/enemies_behaviour.png)
+
 ## Final Boss: Asrael
 
 In the final tower, the player faces Asrael, the fallen angel, in a multi-phase battle.
+
+![IA of final boss](Info/asrael_behaviour.png)
 
 ### Battle Phases:
 
