@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cl2bfax75pt7d"]
+[gd_scene load_steps=5 format=3 uid="uid://cl2bfax75pt7d"]
 
 [ext_resource type="PackedScene" uid="uid://c43q6ncwe5wl0" path="res://Scenes/hud.tscn" id="1_4fvy5"]
 [ext_resource type="Script" path="res://Scripts/gameplay.gd" id="1_wtfop"]
 [ext_resource type="AudioStream" uid="uid://bxx6my6krp8pu" path="res://Assets/Sounds/MusicOld/AudioMain.mp3" id="3_0lt7v"]
-[ext_resource type="PackedScene" uid="uid://f7hotqo1373f" path="res://Scenes/greed.tscn" id="3_bncwm"]
 [ext_resource type="PackedScene" uid="uid://smk6r6ygbleh" path="res://Scenes/ConfigPanel.tscn" id="4_rxlm5"]
 
 [node name="Gameplay" type="Node2D"]
@@ -20,8 +19,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.117227, 3.39021e-06, 0.0957673, 1)
-
-[node name="Greed" parent="." instance=ExtResource("3_bncwm")]
 
 [node name="GamePlayAudio" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3

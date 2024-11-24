@@ -28,3 +28,5 @@ func drop_random_item(position: Vector2, parent: Node2D, unlocked_weapons: Dicti
 	item.type = items_dropabale.pick_random()
 
 	parent.add_child(item)
+
+var level_selected := 0
