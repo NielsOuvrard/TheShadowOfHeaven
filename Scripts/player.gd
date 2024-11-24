@@ -28,12 +28,15 @@ extends CharacterBody2D
 
 @onready var reload_cooldown: Timer = $ReloadCooldown
 @onready var shoot_cooldown: Timer = $ShotCooldown
+@onready var dash_cooldown: Timer = $DashCooldown
 
 @export var SPEED := 16.0 * 7
 @export var ACCELERATION := 0.9
 @export var current_weapon := Data.Weapons.SWORD
 @export var debug := false
 @export var push_force = 80.0
+
+const DASH_STRENGTH = 80.0
 
 var look_direction := Vector2.ZERO
 var last_look_direction_mouse := Vector2.ZERO
@@ -164,7 +167,7 @@ func change_weapon():
 	var current_ammo = ammo_current[next_weapon] if next_weapon != Data.Weapons.SWORD else 0
 	var current_inventory = ammo_inventory[next_weapon] if next_weapon != Data.Weapons.SWORD else 0
 	SignalsHandler.player_change_weapon.emit(next_weapon, current_ammo, current_inventory)
-	
+
 	# auto reload
 	if current_weapon != Data.Weapons.SWORD and ammo_current[current_weapon] == 0 and ammo_inventory[current_weapon] > 0:
 		reload()
@@ -192,9 +195,9 @@ func avoid_collision_with_other_bodies(delta: float):
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
-		
+
 		if collider is CharacterBody2D:  # or CharacterBody3D
-			
+
 			# push the other body
 			if collider.has_node_and_resource("Hitbox"):
 				var area = collider.get_node("Hitbox")
@@ -232,7 +235,7 @@ func _physics_process(delta):
 		animation_handler.add_animation(Data.Animations.MOVE)
 	direction = direction.rotated(rotation)
 
-	# * Velocity 
+	# * Velocity
 	var target_velocity = Vector2.ZERO
 	if direction != Vector2.ZERO:
 		target_velocity = direction * SPEED
@@ -241,7 +244,7 @@ func _physics_process(delta):
 	# Use lerp to smoothly transition the velocity
 	velocity = velocity.lerp(target_velocity, ACCELERATION)
 	velocity += knockback_velocity
-	
+
 	# velocity in pixels per second,
 	knockback_velocity = knockback_velocity.lerp(Vector2.ZERO, 0.1)
 
@@ -266,12 +269,13 @@ func _physics_process(delta):
 
 		if Input.is_action_pressed('shoot'):
 			shoot()
-		
-		if Input.is_action_pressed('dash'):
+
+		if Input.is_action_just_pressed('dash') and dash_cooldown.is_stopped():
 			shoot_cooldown.wait_time = 0.2 # TODO dash cooldown
 			animation_handler.add_animation(Data.Animations.DASH)
-			# TODO
-	
+			position = position.lerp(position + velocity.normalized() * DASH_STRENGTH, 0.5)
+			dash_cooldown.start()
+
 	# * Animation
 	animation_handler.actualize_animation()
 

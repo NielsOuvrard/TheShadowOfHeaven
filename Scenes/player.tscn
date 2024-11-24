@@ -283,6 +283,9 @@ disabled = true
 [node name="ReloadCooldown" type="Timer" parent="."]
 one_shot = true
 
+[node name="DashCooldown" type="Timer" parent="."]
+one_shot = true
+
 [node name="ShotCooldown" type="Timer" parent="."]
 one_shot = true
 
