@@ -14,6 +14,8 @@ const PROJECTILE = preload("res://Scenes/projectile.tscn")
 const ANIMATED_TEXT = preload("res://Scenes/text_animated.tscn")
 const ITEM = preload("res://Scenes/item.tscn")
 
+var level_selected := 0
+
 func drop_random_item(position: Vector2, parent: Node2D, unlocked_weapons: Dictionary) -> void:
 	var item = ITEM.instantiate()
 	item.position = position
@@ -29,4 +31,29 @@ func drop_random_item(position: Vector2, parent: Node2D, unlocked_weapons: Dicti
 
 	parent.add_child(item)
 
-var level_selected := 0
+# * Save and load game
+
+const SAVE_PATH = "user://data.save"
+
+func save_game() -> void:
+	var player = get_tree().get_first_node_in_group("player")
+
+	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	file.store_var(player.ammo_current)
+	file.store_var(player.weapons_unlocked)
+	file.store_var(player.ammo_inventory)
+
+	file.close()
+
+func load_game() -> void:
+	var player = get_tree().get_first_node_in_group("player")
+
+	if not FileAccess.file_exists(SAVE_PATH):
+		return
+
+	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	player.ammo_current = file.get_var()
+	player.weapons_unlocked = file.get_var()
+	player.ammo_inventory = file.get_var()
+
+	file.close()

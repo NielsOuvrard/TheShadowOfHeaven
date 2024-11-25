@@ -9,6 +9,8 @@ extends StaticBody2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+signal opening
+
 @export var openable = true
 
 enum DoorState {
@@ -50,6 +52,7 @@ func open():
 	if state == DoorState.CLOSED or state == DoorState.CLOSING:
 		state = DoorState.OPENING
 		animation_player.play("opening")
+		opening.emit()
 
 func close():
 	if state == DoorState.OPENED or state == DoorState.OPENING:
