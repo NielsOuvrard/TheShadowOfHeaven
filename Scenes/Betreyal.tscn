@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=4 uid="uid://crvpqpbodxy84"]
+[gd_scene load_steps=12 format=4 uid="uid://cpy64553owegh"]
 
 [ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://Tres/greed2.tres" id="1_63g51"]
+[ext_resource type="Script" path="res://Scripts/betreyal.gd" id="1_282fw"]
 [ext_resource type="PackedScene" uid="uid://0y06vbi8ods3" path="res://Scenes/player.tscn" id="2_6sxn2"]
 [ext_resource type="PackedScene" uid="uid://cy2atdt0bqntm" path="res://Scenes/torch.tscn" id="3_ktdvi"]
 [ext_resource type="PackedScene" uid="uid://dacosqfur2u5l" path="res://Scenes/spikes.tscn" id="4_hr44c"]
@@ -12,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="10_54dm5"]
 
 [node name="Betreyal" type="Node2D"]
+script = ExtResource("1_282fw")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.82503, 0.519048, 0.715841, 1)
@@ -444,82 +446,7 @@ position = Vector2(0.0385952, 56)
 [node name="Door3" parent="DOORS" instance=ExtResource("5_85jd0")]
 position = Vector2(0.209524, 304)
 
-[node name="Door4" parent="DOORS" instance=ExtResource("5_85jd0")]
-position = Vector2(0.281202, 408)
-
-[node name="Door5" parent="DOORS" instance=ExtResource("5_85jd0")]
-position = Vector2(-207.548, 656.143)
-
-[node name="Door6" parent="DOORS" instance=ExtResource("5_85jd0")]
-position = Vector2(-207.482, 752.143)
-
-[node name="Door7" parent="DOORS" instance=ExtResource("5_85jd0")]
-position = Vector2(-207.327, 976.143)
-
-[node name="Door8" parent="DOORS" instance=ExtResource("5_85jd0")]
-position = Vector2(-399.101, 1304.28)
-
-[node name="Door9" parent="DOORS" instance=ExtResource("5_85jd0")]
-position = Vector2(-398.991, 1464.28)
-
-[node name="Door10" parent="DOORS" instance=ExtResource("5_85jd0")]
-position = Vector2(-398.721, 1856.28)
-
 [node name="ENEMIES" type="Node2D" parent="."]
-
-[node name="EnemyBasic" parent="ENEMIES" instance=ExtResource("6_y1xmd")]
-position = Vector2(688, 48)
-
-[node name="EnemyBasic2" parent="ENEMIES" instance=ExtResource("6_y1xmd")]
-position = Vector2(808, 48)
-
-[node name="EnemyBasic3" parent="ENEMIES" instance=ExtResource("6_y1xmd")]
-position = Vector2(808, 136)
-
-[node name="EnemyBasic4" parent="ENEMIES" instance=ExtResource("6_y1xmd")]
-position = Vector2(680, 136)
-
-[node name="EnemyBasic5" parent="ENEMIES" instance=ExtResource("6_y1xmd")]
-position = Vector2(656, 224)
-
-[node name="EnemyBasic6" parent="ENEMIES" instance=ExtResource("6_y1xmd")]
-position = Vector2(1448, 312)
-
-[node name="EnemyBasic7" parent="ENEMIES" instance=ExtResource("6_y1xmd")]
-position = Vector2(1320, 344)
-
-[node name="EnemyBasic8" parent="ENEMIES" instance=ExtResource("6_y1xmd")]
-position = Vector2(1368, 432)
-
-[node name="EnemyBasic9" parent="ENEMIES" instance=ExtResource("6_y1xmd")]
-position = Vector2(1800, 328)
-
-[node name="EnemyBasic10" parent="ENEMIES" instance=ExtResource("6_y1xmd")]
-position = Vector2(1800, 464)
-
-[node name="EnemyBasic11" parent="ENEMIES" instance=ExtResource("6_y1xmd")]
-position = Vector2(1928, 352)
-
-[node name="EnemyBasic12" parent="ENEMIES" instance=ExtResource("6_y1xmd")]
-position = Vector2(1784, 520)
-
-[node name="Deamon" parent="ENEMIES" instance=ExtResource("7_xwsag")]
-position = Vector2(1032, 200)
-
-[node name="Deamon2" parent="ENEMIES" instance=ExtResource("7_xwsag")]
-position = Vector2(1056, 280)
-
-[node name="Deamon3" parent="ENEMIES" instance=ExtResource("7_xwsag")]
-position = Vector2(1376, 256)
-
-[node name="Deamon4" parent="ENEMIES" instance=ExtResource("7_xwsag")]
-position = Vector2(1800, 424)
-
-[node name="Deamon5" parent="ENEMIES" instance=ExtResource("7_xwsag")]
-position = Vector2(1920, 504)
-
-[node name="Deamon6" parent="ENEMIES" instance=ExtResource("7_xwsag")]
-position = Vector2(1704, 512)
 
 [node name="Chest" parent="ENEMIES" instance=ExtResource("8_bco7m")]
 position = Vector2(304, 0)
@@ -581,3 +508,97 @@ type = 3
 [node name="Weapon" parent="." instance=ExtResource("10_54dm5")]
 position = Vector2(328, 40)
 type = 2
+
+[node name="ROOM_1" type="Node2D" parent="."]
+
+[node name="Door4" parent="ROOM_1" instance=ExtResource("5_85jd0")]
+position = Vector2(552, 23.9988)
+rotation = -1.57011
+
+[node name="Door5" parent="ROOM_1" instance=ExtResource("5_85jd0")]
+position = Vector2(800, 231.998)
+rotation = -1.57011
+openable = false
+
+[node name="EnemyBasic" parent="ROOM_1" instance=ExtResource("6_y1xmd")]
+position = Vector2(688, 48)
+
+[node name="EnemyBasic2" parent="ROOM_1" instance=ExtResource("6_y1xmd")]
+position = Vector2(808, 48)
+
+[node name="EnemyBasic3" parent="ROOM_1" instance=ExtResource("6_y1xmd")]
+position = Vector2(808, 136)
+
+[node name="EnemyBasic4" parent="ROOM_1" instance=ExtResource("6_y1xmd")]
+position = Vector2(680, 136)
+
+[node name="EnemyBasic5" parent="ROOM_1" instance=ExtResource("6_y1xmd")]
+position = Vector2(656, 224)
+
+[node name="ROOM_2" type="Node2D" parent="."]
+
+[node name="Door6" parent="ROOM_2" instance=ExtResource("5_85jd0")]
+position = Vector2(896, 231.998)
+rotation = -1.57011
+
+[node name="Door7" parent="ROOM_2" instance=ExtResource("5_85jd0")]
+position = Vector2(1120, 231.997)
+rotation = -1.57011
+openable = false
+
+[node name="Deamon" parent="ROOM_2" instance=ExtResource("7_xwsag")]
+position = Vector2(1032, 200)
+
+[node name="Deamon2" parent="ROOM_2" instance=ExtResource("7_xwsag")]
+position = Vector2(1056, 280)
+
+[node name="ROOM_3" type="Node2D" parent="."]
+
+[node name="Door8" parent="ROOM_3" instance=ExtResource("5_85jd0")]
+position = Vector2(1448.01, 423.996)
+rotation = -1.57011
+openable = false
+
+[node name="Deamon3" parent="ROOM_3" instance=ExtResource("7_xwsag")]
+position = Vector2(1376, 256)
+
+[node name="EnemyBasic6" parent="ROOM_3" instance=ExtResource("6_y1xmd")]
+position = Vector2(1448, 312)
+
+[node name="EnemyBasic7" parent="ROOM_3" instance=ExtResource("6_y1xmd")]
+position = Vector2(1320, 344)
+
+[node name="EnemyBasic8" parent="ROOM_3" instance=ExtResource("6_y1xmd")]
+position = Vector2(1368, 432)
+
+[node name="ROOM_4" type="Node2D" parent="."]
+
+[node name="Door9" parent="ROOM_4" instance=ExtResource("5_85jd0")]
+position = Vector2(1608.01, 423.996)
+rotation = -1.57011
+
+[node name="Door10" parent="ROOM_4" instance=ExtResource("5_85jd0")]
+position = Vector2(2000.01, 423.995)
+rotation = -1.57011
+openable = false
+
+[node name="Deamon4" parent="ROOM_4" instance=ExtResource("7_xwsag")]
+position = Vector2(1800, 424)
+
+[node name="Deamon5" parent="ROOM_4" instance=ExtResource("7_xwsag")]
+position = Vector2(1920, 504)
+
+[node name="Deamon6" parent="ROOM_4" instance=ExtResource("7_xwsag")]
+position = Vector2(1704, 512)
+
+[node name="EnemyBasic9" parent="ROOM_4" instance=ExtResource("6_y1xmd")]
+position = Vector2(1800, 328)
+
+[node name="EnemyBasic10" parent="ROOM_4" instance=ExtResource("6_y1xmd")]
+position = Vector2(1800, 464)
+
+[node name="EnemyBasic11" parent="ROOM_4" instance=ExtResource("6_y1xmd")]
+position = Vector2(1928, 352)
+
+[node name="EnemyBasic12" parent="ROOM_4" instance=ExtResource("6_y1xmd")]
+position = Vector2(1784, 520)
