@@ -1,11 +1,11 @@
-extends Panel
+extends CanvasLayer
 
 signal closed
 
 # order of the elements in the menu
-@onready var volume_slider: HSlider = $VolumeSlider
-@onready var main_menu_button: Button = $MainMenuButton
-@onready var close_button: Button = $CloseButton
+@onready var volume_slider: HSlider = $Control/SliderMusic
+@onready var main_menu_button: Button = $Control/MainMenuButton
+@onready var close_button: Button = $Control/CloseButton
 @onready var menu_items := [volume_slider, main_menu_button, close_button]
 
 @export var background_music: AudioStreamPlayer2D
