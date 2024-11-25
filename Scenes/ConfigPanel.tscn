@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://smk6r6ygbleh"]
+[gd_scene load_steps=10 format=3 uid="uid://smk6r6ygbleh"]
 
 [ext_resource type="Script" path="res://Scripts/config_panel.gd" id="1_yn2af"]
 [ext_resource type="Texture2D" uid="uid://ofmvnbw5c2bt" path="res://Assets/ConfigMenu/VolumeMenu.png" id="2_invmd"]
@@ -7,6 +7,7 @@
 [ext_resource type="StyleBox" path="res://Tres/button_pressed.tres" id="6_mia2y"]
 [ext_resource type="StyleBox" path="res://Tres/button_hover.tres" id="7_kclps"]
 [ext_resource type="StyleBox" path="res://Tres/button_normal.tres" id="8_lo4eq"]
+[ext_resource type="FontFile" uid="uid://dsvosxxjomnr5" path="res://Assets/Fonts/PixelOperator8.ttf" id="8_vno2w"]
 
 [sub_resource type="GDScript" id="GDScript_dpqtq"]
 script/source = "extends HSlider
@@ -22,61 +23,107 @@ func _process(delta: float) -> void:
 	pass
 "
 
-[node name="ConfigPanel" type="Panel"]
+[node name="ConfigPanel" type="CanvasLayer"]
 process_mode = 2
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("1_yn2af")
 
-[node name="BgConfig" type="Sprite2D" parent="."]
-position = Vector2(963, 543.75)
-scale = Vector2(11, 11)
-texture = ExtResource("2_invmd")
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 95.0
 
-[node name="VolumeSlider" type="HSlider" parent="."]
+[node name="BgConfig" type="Sprite2D" parent="Control"]
+texture = ExtResource("2_invmd")
+centered = false
+
+[node name="MainMenuButton" type="Button" parent="Control"]
+offset_left = 4.0
+offset_top = 70.0
+offset_right = 79.0
+offset_bottom = 85.0
+theme_override_styles/hover_pressed_mirrored = ExtResource("6_mia2y")
+theme_override_styles/hover = ExtResource("7_kclps")
+theme_override_styles/normal = ExtResource("8_lo4eq")
+
+[node name="TextureRect" type="TextureRect" parent="Control/MainMenuButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.5
+offset_top = -6.5
+offset_right = 31.5
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ke423")
+
+[node name="CloseButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = 22.5
+offset_right = 76.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover_pressed_mirrored = ExtResource("6_mia2y")
+theme_override_styles/hover = ExtResource("7_kclps")
+theme_override_styles/normal = ExtResource("8_lo4eq")
+
+[node name="TextureRect" type="TextureRect" parent="Control/CloseButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.5
+offset_top = -6.5
+offset_right = 18.5
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_f0hoq")
+
+[node name="SliderMusic" type="HSlider" parent="Control"]
 z_index = 1
-layout_mode = 0
-offset_left = 326.0
-offset_top = 379.0
-offset_right = 652.0
-offset_bottom = 449.0
-scale = Vector2(4, 4)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -7.5
+offset_right = 55.0
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
 editable = false
 script = SubResource("GDScript_dpqtq")
 
-[node name="MainMenuButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 500.0
-offset_top = 700.0
-offset_right = 800.0
-offset_bottom = 800.0
-theme_override_styles/hover_pressed_mirrored = ExtResource("6_mia2y")
-theme_override_styles/hover = ExtResource("7_kclps")
-theme_override_styles/normal = ExtResource("8_lo4eq")
+[node name="Label" type="Label" parent="Control/SliderMusic"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.0
+offset_right = 35.0
+offset_bottom = 16.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("8_vno2w")
+text = "Music"
+horizontal_alignment = 1
 
-[node name="MainMenu" type="Sprite2D" parent="MainMenuButton"]
-scale = Vector2(4, 4)
-texture = ExtResource("3_ke423")
-offset = Vector2(37, 12)
-
-[node name="CloseButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1120.0
-offset_top = 700.0
-offset_right = 1420.0
-offset_bottom = 800.0
-theme_override_styles/hover_pressed_mirrored = ExtResource("6_mia2y")
-theme_override_styles/hover = ExtResource("7_kclps")
-theme_override_styles/normal = ExtResource("8_lo4eq")
-
-[node name="Close" type="Sprite2D" parent="CloseButton"]
-scale = Vector2(4, 4)
-texture = ExtResource("4_f0hoq")
-offset = Vector2(37, 12)
-
-[connection signal="drag_ended" from="VolumeSlider" to="." method="_on_volume_slider_drag_ended"]
-[connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]
-[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="Control/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Control/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="drag_ended" from="Control/SliderMusic" to="." method="_on_volume_slider_drag_ended"]
