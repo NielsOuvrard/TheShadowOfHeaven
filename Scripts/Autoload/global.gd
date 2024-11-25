@@ -14,6 +14,8 @@ const PROJECTILE = preload("res://Scenes/projectile.tscn")
 const ANIMATED_TEXT = preload("res://Scenes/text_animated.tscn")
 const ITEM = preload("res://Scenes/item.tscn")
 
+const LEVEL_SIDE = preload("res://Scripts/level_side.gd")
+
 var level_selected := 0
 var level_unlocked := 0 # from 0 to 2, the first level is already unlocked
 
