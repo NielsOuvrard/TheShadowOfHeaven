@@ -67,7 +67,7 @@ enum Projectiles {
 	SHOTGUN,
 	RAYGUN,
 	ENEMIES,
-	DEATH_BALL,
+	SKULL,
 }
 
 # ? remplace collision data by animationPlayer ?
@@ -112,12 +112,12 @@ const PROJECTILS = {
 		"collision_scale": Vector2(1.2, 0.7),
 		"collision_radius": 5.83
 	},
-	Projectiles.DEATH_BALL: {
-		"animation": "death_ball",
+	Projectiles.SKULL: {
+		"animation": "skull",
 		"speed": SPEED_PLAYER * 1.2,
 		"damage": 3,
 		"knockback": 0.0,
-		"light_energy": 2,
+		"light_energy": 5,
 		"light_color": Color(1, 0, 1, 1),
 		"collision_scale": Vector2(1.2, 0.6),
 		"collision_radius": 13.33

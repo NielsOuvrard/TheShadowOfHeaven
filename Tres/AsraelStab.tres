@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://dnjc0nnox370g"]
+
+[ext_resource type="Texture2D" uid="uid://c0devj3cdltde" path="res://Assets/Asrael/AsraelMelee.png" id="1_kyg82"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nat7b"]
+atlas = ExtResource("1_kyg82")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67irk"]
+atlas = ExtResource("1_kyg82")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ai72y"]
+atlas = ExtResource("1_kyg82")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgfx2"]
+atlas = ExtResource("1_kyg82")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlltk"]
+atlas = ExtResource("1_kyg82")
+region = Rect2(384, 0, 96, 96)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nat7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67irk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ai72y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgfx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlltk")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]

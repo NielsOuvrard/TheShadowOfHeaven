@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_flqv2"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_8qbm6"]
-[ext_resource type="SpriteFrames" uid="uid://ckdgo5jwfioc5" path="res://TileSet/player.tres" id="3_u43qn"]
+[ext_resource type="SpriteFrames" uid="uid://ckdgo5jwfioc5" path="res://Tres/player.tres" id="3_u43qn"]
 [ext_resource type="Texture2D" uid="uid://ddh0hbfsxf05q" path="res://Assets/Items/Sword.png" id="4_12yd1"]
 [ext_resource type="Script" path="res://Scripts/Classes/health.gd" id="5_0t1cm"]
 [ext_resource type="Script" path="res://Scripts/Classes/hitbox.gd" id="5_j0n03"]

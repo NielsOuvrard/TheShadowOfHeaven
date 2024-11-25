@@ -12,7 +12,7 @@ signal life_change(value)
 
 signal die(unlocked_weapons)
 
-@export var life := 100:
+@export var life := 5:
 	set(value):
 		life_change.emit(value)
 		life = value

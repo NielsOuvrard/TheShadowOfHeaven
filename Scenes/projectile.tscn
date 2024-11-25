@@ -5,30 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://khoheu8iu4pt" path="res://Assets/Items/Bullets.png" id="3_1rx5r"]
 [ext_resource type="Texture2D" uid="uid://b0606qmktrjkd" path="res://Assets/light_halo.png" id="4_qdkcl"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8kqn0"]
-atlas = ExtResource("3_1rx5r")
-region = Rect2(0, 48, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_quts4"]
-atlas = ExtResource("3_1rx5r")
-region = Rect2(32, 48, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ik7t"]
-atlas = ExtResource("3_1rx5r")
-region = Rect2(64, 48, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mrs2e"]
-atlas = ExtResource("3_1rx5r")
-region = Rect2(96, 48, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_78cuv"]
-atlas = ExtResource("3_1rx5r")
-region = Rect2(128, 48, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2f5eb"]
-atlas = ExtResource("3_1rx5r")
-region = Rect2(160, 48, 32, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_fxoiy"]
 atlas = ExtResource("3_1rx5r")
 region = Rect2(0, 64, 16, 16)
@@ -125,31 +101,32 @@ region = Rect2(128, 32, 16, 16)
 atlas = ExtResource("3_1rx5r")
 region = Rect2(160, 32, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kqn0"]
+atlas = ExtResource("3_1rx5r")
+region = Rect2(0, 48, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quts4"]
+atlas = ExtResource("3_1rx5r")
+region = Rect2(32, 48, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ik7t"]
+atlas = ExtResource("3_1rx5r")
+region = Rect2(64, 48, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrs2e"]
+atlas = ExtResource("3_1rx5r")
+region = Rect2(96, 48, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78cuv"]
+atlas = ExtResource("3_1rx5r")
+region = Rect2(128, 48, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2f5eb"]
+atlas = ExtResource("3_1rx5r")
+region = Rect2(160, 48, 32, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_5qtxd"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8kqn0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_quts4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7ik7t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mrs2e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_78cuv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2f5eb")
-}],
-"loop": true,
-"name": &"deadball",
-"speed": 10.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fxoiy")
@@ -241,6 +218,29 @@ animations = [{
 "loop": true,
 "name": &"shotgun",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kqn0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_quts4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ik7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrs2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78cuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2f5eb")
+}],
+"loop": true,
+"name": &"skull",
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c5o76"]
@@ -255,9 +255,10 @@ script = ExtResource("1_bj1lh")
 texture = ExtResource("2_kw1xr")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_5qtxd")
-animation = &"shotgun"
+animation = &"skull"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(0.037037, 0.037037)

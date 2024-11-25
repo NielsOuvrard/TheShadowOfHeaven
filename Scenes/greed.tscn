@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=4 uid="uid://f7hotqo1373f"]
 
-[ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://TileSet/greed2.tres" id="1_73fo5"]
+[ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://Tres/greed2.tres" id="1_73fo5"]
 [ext_resource type="Script" path="res://Scripts/greed.gd" id="1_w82pv"]
 [ext_resource type="PackedScene" uid="uid://d0mrqonelihta" path="res://Scenes/sectarian.tscn" id="3_bkeho"]
 [ext_resource type="PackedScene" uid="uid://dacosqfur2u5l" path="res://Scenes/spikes.tscn" id="5_nt1hc"]

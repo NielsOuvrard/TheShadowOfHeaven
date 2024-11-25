@@ -1,0 +1,136 @@
+[gd_scene load_steps=17 format=3 uid="uid://c5i2bxdxwfk3y"]
+
+[ext_resource type="Texture2D" uid="uid://ddg2g0ilhdsfy" path="res://Assets/Asrael/AsraelLaser.png" id="1_4fs2r"]
+[ext_resource type="Script" path="res://Scripts/asrael_ray.gd" id="2_xyyeg"]
+[ext_resource type="AudioStream" uid="uid://b76ooip2m3hww" path="res://Assets/Sounds/Enemigos/AsraelRay.mp3" id="3_eqvbr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nglg"]
+atlas = ExtResource("1_4fs2r")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddelo"]
+atlas = ExtResource("1_4fs2r")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8b6k"]
+atlas = ExtResource("1_4fs2r")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23e5t"]
+atlas = ExtResource("1_4fs2r")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqd1a"]
+atlas = ExtResource("1_4fs2r")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otvwv"]
+atlas = ExtResource("1_4fs2r")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_da14i"]
+atlas = ExtResource("1_4fs2r")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3wqe"]
+atlas = ExtResource("1_4fs2r")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57p78"]
+atlas = ExtResource("1_4fs2r")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7ksq"]
+atlas = ExtResource("1_4fs2r")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48ow2"]
+atlas = ExtResource("1_4fs2r")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fho4g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nglg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddelo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8b6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23e5t")
+}],
+"loop": false,
+"name": &"laser",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqd1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otvwv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_da14i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otvwv")
+}],
+"loop": false,
+"name": &"laser_pre",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3wqe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57p78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7ksq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48ow2")
+}],
+"loop": false,
+"name": &"top",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yb5wn"]
+size = Vector2(6, 174)
+
+[node name="Laser" type="AnimatedSprite2D"]
+z_index = 2
+sprite_frames = SubResource("SpriteFrames_fho4g")
+animation = &"laser_pre"
+script = ExtResource("2_xyyeg")
+
+[node name="TopLaser" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_fho4g")
+animation = &"top"
+frame = 3
+frame_progress = 1.0
+
+[node name="LaserDamageZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaserDamageZone"]
+position = Vector2(0, -87)
+shape = SubResource("RectangleShape2D_yb5wn")
+disabled = true
+
+[node name="Cooldown" type="Timer" parent="."]
+
+[node name="AsraelRay" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_eqvbr")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
+[connection signal="animation_finished" from="TopLaser" to="." method="_on_top_laser_animation_finished"]
+[connection signal="area_entered" from="LaserDamageZone" to="." method="_on_laser_damage_zone_area_entered"]
