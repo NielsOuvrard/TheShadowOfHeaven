@@ -65,6 +65,8 @@ animations = [{
 size = Vector2(8, 34.0426)
 
 [node name="Torch" type="StaticBody2D"]
+z_index = 1
+y_sort_enabled = true
 collision_layer = 16
 collision_mask = 5
 script = ExtResource("1_twvyy")

@@ -207,8 +207,6 @@ func shoot(player: Node) -> void:
 	proj.position = position
 	proj.type = Data.Projectiles.ENEMIES
 	proj.is_shadow = true
-	proj.z_index = 1
-	proj.y_sort_enabled = true
 	get_parent().add_child(proj)
 
 	shot_cooldown.wait_time = COOLDOWN_SHOT

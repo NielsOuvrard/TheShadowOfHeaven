@@ -22,8 +22,6 @@ var level_unlocked := Data.Level.GREED
 func drop_random_item(position: Vector2, parent: Node2D, unlocked_weapons: Dictionary) -> void:
 	var item = ITEM.instantiate()
 	item.position = position
-	item.z_index = 1
-	item.y_sort_enabled = true
 
 	var items_dropabale := []
 	for weapon in unlocked_weapons:

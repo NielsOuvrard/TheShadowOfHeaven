@@ -16,6 +16,4 @@ func _ready() -> void:
 	proj.position = position
 	proj.type = Data.Projectiles.SKULL
 	proj.is_shadow = true
-	proj.z_index = 1
-	proj.y_sort_enabled = true
 	get_parent().add_child(proj)

@@ -219,6 +219,8 @@ radius = 13.0
 
 [node name="Player" type="CharacterBody2D"]
 process_mode = 3
+z_index = 1
+y_sort_enabled = true
 collision_mask = 52
 script = ExtResource("1_flqv2")
 metadata/is_player = true

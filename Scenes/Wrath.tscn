@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://k1nxlv42ukb" path="res://Scenes/asrael.tscn" id="13_gc3or"]
 
 [node name="Wrath" type="Node2D"]
+z_index = 1
+y_sort_enabled = true
 script = ExtResource("1_57gg5")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -41,8 +43,12 @@ zoom = Vector2(8, 8)
 position_smoothing_speed = 15.0
 
 [node name="ROOMS" type="Node2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 
 [node name="ROOM_1" type="Node2D" parent="ROOMS"]
+y_sort_enabled = true
+position = Vector2(7, 0)
 
 [node name="Door" parent="ROOMS/ROOM_1" instance=ExtResource("2_fetld")]
 position = Vector2(-1037, -11)
@@ -58,22 +64,6 @@ position = Vector2(-896, -33)
 [node name="Chest2" parent="ROOMS/ROOM_1" instance=ExtResource("3_13s5j")]
 position = Vector2(-896, 29)
 
-[node name="Item" parent="ROOMS/ROOM_1" instance=ExtResource("4_e0epq")]
-position = Vector2(-934, -9)
-type = 2
-
-[node name="Item2" parent="ROOMS/ROOM_1" instance=ExtResource("4_e0epq")]
-position = Vector2(-932, -30)
-type = 3
-
-[node name="Item3" parent="ROOMS/ROOM_1" instance=ExtResource("4_e0epq")]
-position = Vector2(-931, 12)
-type = 3
-
-[node name="Weapon" parent="ROOMS/ROOM_1" instance=ExtResource("5_hxng6")]
-position = Vector2(-952, -10)
-type = 3
-
 [node name="Torch" parent="ROOMS/ROOM_1" instance=ExtResource("8_qlv8h")]
 position = Vector2(-992, -68)
 
@@ -86,7 +76,28 @@ position = Vector2(-832, 50)
 [node name="Torch4" parent="ROOMS/ROOM_1" instance=ExtResource("8_qlv8h")]
 position = Vector2(-832, -70)
 
+[node name="Item" parent="ROOMS/ROOM_1" instance=ExtResource("4_e0epq")]
+z_index = 0
+position = Vector2(-934, -9)
+type = 2
+
+[node name="Item2" parent="ROOMS/ROOM_1" instance=ExtResource("4_e0epq")]
+z_index = 0
+position = Vector2(-932, -30)
+type = 3
+
+[node name="Item3" parent="ROOMS/ROOM_1" instance=ExtResource("4_e0epq")]
+z_index = 0
+position = Vector2(-931, 12)
+type = 3
+
+[node name="Weapon" parent="ROOMS/ROOM_1" instance=ExtResource("5_hxng6")]
+z_index = 0
+position = Vector2(-952, -10)
+type = 3
+
 [node name="ROOM_2" type="Node2D" parent="ROOMS"]
+y_sort_enabled = true
 
 [node name="Door3" parent="ROOMS/ROOM_2" instance=ExtResource("2_fetld")]
 position = Vector2(-667, -10)
@@ -99,55 +110,81 @@ openable = false
 
 [node name="EnemyBasic" parent="ROOMS/ROOM_2" instance=ExtResource("6_kv2rs")]
 position = Vector2(-542, -38)
+linear_movement = Vector2(1, 0)
 
 [node name="EnemyBasic2" parent="ROOMS/ROOM_2" instance=ExtResource("6_kv2rs")]
 position = Vector2(-540, 38)
+linear_movement = Vector2(1, 0)
 
 [node name="Obstacle2" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
 position = Vector2(-568, -8)
 user_frame = 3
 
 [node name="Obstacle5" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
 position = Vector2(-584, -8)
 user_frame = 3
 
 [node name="Obstacle6" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
 position = Vector2(-552, 8)
 user_frame = 3
 
 [node name="Obstacle7" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
 position = Vector2(-584, -40)
 user_frame = 3
 
 [node name="Obstacle8" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
 position = Vector2(-568, -40)
 user_frame = 3
 
 [node name="Obstacle9" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
 position = Vector2(-624, -64)
 user_frame = 3
 
 [node name="Obstacle10" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
 position = Vector2(-608, -72)
 user_frame = 3
 
 [node name="Obstacle11" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
 position = Vector2(-592, -72)
 user_frame = 3
 
 [node name="Obstacle12" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
 position = Vector2(-640, -48)
 user_frame = 3
 
 [node name="Obstacle" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
 position = Vector2(-568, -24)
 user_frame = 3
 
 [node name="Obstacle3" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
 position = Vector2(-568, 8)
 user_frame = 3
 
 [node name="Obstacle4" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
 position = Vector2(-568, 24)
 user_frame = 3
 
@@ -165,11 +202,13 @@ position = Vector2(-592, -96)
 
 [node name="Ghost" parent="ROOMS/ROOM_2" instance=ExtResource("9_f3ewg")]
 position = Vector2(-536, 72)
+linear_movement = Vector2(1, 0)
 
 [node name="Chest" parent="ROOMS/ROOM_2" instance=ExtResource("3_13s5j")]
 position = Vector2(-552, -8)
 
 [node name="ROOM_3" type="Node2D" parent="ROOMS"]
+y_sort_enabled = true
 
 [node name="Door5" parent="ROOMS/ROOM_3" instance=ExtResource("2_fetld")]
 position = Vector2(-314, -10)
@@ -270,102 +309,6 @@ position = Vector2(-69, -109)
 [node name="Obstacle22" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
 position = Vector2(-36, -93)
 
-[node name="Spikes" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-208, 86)
-
-[node name="Spikes2" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-192, 86)
-
-[node name="Spikes3" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-208, 70)
-
-[node name="Spikes4" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-192, 70)
-
-[node name="Spikes5" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-208, 54)
-
-[node name="Spikes6" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-192, 54)
-
-[node name="Spikes7" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-208, 38)
-
-[node name="Spikes8" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-192, 38)
-
-[node name="Spikes9" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-208, 22)
-
-[node name="Spikes10" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-192, 22)
-
-[node name="Spikes11" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-208, 6)
-
-[node name="Spikes12" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-192, 6)
-
-[node name="Spikes13" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-208, -10)
-
-[node name="Spikes14" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-192, -10)
-
-[node name="Spikes15" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-208, -26)
-
-[node name="Spikes16" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-192, -26)
-
-[node name="Spikes17" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-208, -42)
-
-[node name="Spikes18" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-192, -42)
-
-[node name="Spikes19" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-208, -58)
-
-[node name="Spikes20" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-192, -58)
-
-[node name="Spikes21" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-208, -74)
-
-[node name="Spikes22" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-192, -74)
-
-[node name="Spikes23" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-208, -90)
-
-[node name="Spikes25" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-144, -10)
-
-[node name="Spikes26" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-144, 6)
-
-[node name="Spikes27" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-144, 22)
-
-[node name="Spikes28" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-144, -26)
-
-[node name="Spikes29" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-144, -42)
-
-[node name="Spikes30" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-144, 38)
-
-[node name="Spikes31" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-128, 53)
-
-[node name="Spikes32" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-129, -57)
-
-[node name="Spikes24" parent="ROOMS/ROOM_3" instance=ExtResource("10_dh6ff")]
-position = Vector2(-192, -90)
-
 [node name="EnemyBasic" parent="ROOMS/ROOM_3" instance=ExtResource("6_kv2rs")]
 position = Vector2(-96, 16)
 
@@ -376,6 +319,7 @@ position = Vector2(-72, -24)
 position = Vector2(-112, -24)
 
 [node name="ROOM_4" type="Node2D" parent="ROOMS"]
+y_sort_enabled = true
 
 [node name="Door7" parent="ROOMS/ROOM_4" instance=ExtResource("2_fetld")]
 position = Vector2(230, -10)
@@ -476,67 +420,8 @@ position = Vector2(256, -32)
 [node name="Obstacle42" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
 position = Vector2(256, 24)
 
-[node name="Spikes33" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(256, 70)
-
-[node name="Spikes34" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(272, 70)
-
-[node name="Spikes35" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(272, 86)
-
-[node name="Spikes36" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(288, 86)
-
-[node name="Spikes37" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(256, 54)
-
-[node name="Spikes38" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(256, -58)
-
-[node name="Spikes39" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(256, -74)
-
-[node name="Spikes40" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(272, -74)
-
-[node name="Spikes41" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(272, -90)
-
-[node name="Spikes42" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(288, -90)
-
-[node name="Spikes43" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(512, -90)
-
-[node name="Spikes44" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(496, -90)
-
-[node name="Spikes45" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(512, -74)
-
-[node name="Spikes46" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(528, -74)
-
-[node name="Spikes47" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(528, -58)
-
-[node name="Spikes48" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(528, 70)
-
-[node name="Spikes49" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(512, 70)
-
-[node name="Spikes50" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(512, 86)
-
-[node name="Spikes51" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(496, 88)
-
-[node name="Spikes52" parent="ROOMS/ROOM_4" instance=ExtResource("10_dh6ff")]
-position = Vector2(496, 86)
-
 [node name="ROOM_5" type="Node2D" parent="ROOMS"]
+y_sort_enabled = true
 
 [node name="Door9" parent="ROOMS/ROOM_5" instance=ExtResource("2_fetld")]
 position = Vector2(756, -10)
@@ -644,6 +529,7 @@ position = Vector2(832, -88)
 position = Vector2(872, -24)
 
 [node name="ROOM_6" type="Node2D" parent="ROOMS"]
+y_sort_enabled = true
 
 [node name="Torch" parent="ROOMS/ROOM_6" instance=ExtResource("8_qlv8h")]
 position = Vector2(1296, 24)
@@ -658,10 +544,12 @@ position = Vector2(1456, -40)
 position = Vector2(1296, -40)
 
 [node name="Obstacle" parent="ROOMS/ROOM_6" instance=ExtResource("7_ijylg")]
+z_index = 0
 position = Vector2(1336, -80)
 user_frame = 5
 
 [node name="Obstacle2" parent="ROOMS/ROOM_6" instance=ExtResource("7_ijylg")]
+z_index = 0
 position = Vector2(1416, -80)
 user_frame = 5
 
@@ -675,21 +563,26 @@ position = Vector2(1344, -24)
 position = Vector2(1392, -24)
 
 [node name="Item" parent="ROOMS/ROOM_6" instance=ExtResource("4_e0epq")]
+z_index = 0
 position = Vector2(1352, 8)
 
 [node name="Item2" parent="ROOMS/ROOM_6" instance=ExtResource("4_e0epq")]
+z_index = 0
 position = Vector2(1368, 8)
 type = 2
 
 [node name="Item3" parent="ROOMS/ROOM_6" instance=ExtResource("4_e0epq")]
+z_index = 0
 position = Vector2(1384, 8)
 type = 1
 
 [node name="Item4" parent="ROOMS/ROOM_6" instance=ExtResource("4_e0epq")]
+z_index = 0
 position = Vector2(1360, 24)
 type = 3
 
 [node name="Item5" parent="ROOMS/ROOM_6" instance=ExtResource("4_e0epq")]
+z_index = 0
 position = Vector2(1376, 24)
 
 [node name="Door11" parent="ROOMS/ROOM_6" instance=ExtResource("2_fetld")]
@@ -701,6 +594,8 @@ position = Vector2(1486, -10)
 rotation = 1.5708
 
 [node name="Hall1" type="Node2D" parent="ROOMS"]
+z_index = 1
+y_sort_enabled = true
 
 [node name="Torch" parent="ROOMS/Hall1" instance=ExtResource("8_qlv8h")]
 position = Vector2(1600, 32)
@@ -725,6 +620,8 @@ position = Vector2(2074, -10)
 rotation = 1.5708
 
 [node name="RoomFinal" type="Node2D" parent="ROOMS"]
+z_index = 1
+y_sort_enabled = true
 
 [node name="Torch" parent="ROOMS/RoomFinal" instance=ExtResource("8_qlv8h")]
 position = Vector2(2288, 24)
@@ -756,5 +653,167 @@ rotation = 1.5708
 
 [node name="Asrael" parent="ROOMS/RoomFinal" instance=ExtResource("13_gc3or")]
 position = Vector2(2453.14, -10.6928)
+
+[node name="SPIKES" type="Node2D" parent="."]
+
+[node name="ROOM_3" type="Node2D" parent="SPIKES"]
+
+[node name="Spikes" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-208, 86)
+
+[node name="Spikes2" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-192, 86)
+
+[node name="Spikes3" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-208, 70)
+
+[node name="Spikes4" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-192, 70)
+
+[node name="Spikes5" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-208, 54)
+
+[node name="Spikes6" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-192, 54)
+
+[node name="Spikes7" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-208, 38)
+
+[node name="Spikes8" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-192, 38)
+
+[node name="Spikes9" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-208, 22)
+
+[node name="Spikes10" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-192, 22)
+
+[node name="Spikes11" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-208, 6)
+
+[node name="Spikes12" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-192, 6)
+
+[node name="Spikes13" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-208, -10)
+
+[node name="Spikes14" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-192, -10)
+
+[node name="Spikes15" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-208, -26)
+
+[node name="Spikes16" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-192, -26)
+
+[node name="Spikes17" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-208, -42)
+
+[node name="Spikes18" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-192, -42)
+
+[node name="Spikes19" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-208, -58)
+
+[node name="Spikes20" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-192, -58)
+
+[node name="Spikes21" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-208, -74)
+
+[node name="Spikes22" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-192, -74)
+
+[node name="Spikes23" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-208, -90)
+
+[node name="Spikes25" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-144, -10)
+
+[node name="Spikes26" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-144, 6)
+
+[node name="Spikes27" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-144, 22)
+
+[node name="Spikes28" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-144, -26)
+
+[node name="Spikes29" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-144, -42)
+
+[node name="Spikes30" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-144, 38)
+
+[node name="Spikes31" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-128, 53)
+
+[node name="Spikes32" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-129, -57)
+
+[node name="Spikes24" parent="SPIKES/ROOM_3" instance=ExtResource("10_dh6ff")]
+position = Vector2(-192, -90)
+
+[node name="ROOM_4" type="Node2D" parent="SPIKES"]
+
+[node name="Spikes33" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(256, 70)
+
+[node name="Spikes34" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(272, 70)
+
+[node name="Spikes35" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(272, 86)
+
+[node name="Spikes36" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(288, 86)
+
+[node name="Spikes37" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(256, 54)
+
+[node name="Spikes38" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(256, -58)
+
+[node name="Spikes39" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(256, -74)
+
+[node name="Spikes40" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(272, -74)
+
+[node name="Spikes41" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(272, -90)
+
+[node name="Spikes42" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(288, -90)
+
+[node name="Spikes43" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(512, -90)
+
+[node name="Spikes44" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(496, -90)
+
+[node name="Spikes45" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(512, -74)
+
+[node name="Spikes46" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(528, -74)
+
+[node name="Spikes47" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(528, -58)
+
+[node name="Spikes48" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(528, 70)
+
+[node name="Spikes49" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(512, 70)
+
+[node name="Spikes50" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(512, 86)
+
+[node name="Spikes51" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(496, 88)
+
+[node name="Spikes52" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
+position = Vector2(496, 86)
 
 [connection signal="asrael_die" from="ROOMS/RoomFinal/Asrael" to="." method="_on_asrael_asrael_die"]

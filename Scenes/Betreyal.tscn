@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="10_54dm5"]
 
 [node name="Betreyal" type="Node2D"]
+z_index = 1
+y_sort_enabled = true
 script = ExtResource("1_282fw")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -30,7 +32,6 @@ tile_set = ExtResource("1_63g51")
 
 [node name="Player" parent="." instance=ExtResource("2_6sxn2")]
 z_index = 2
-y_sort_enabled = true
 position = Vector2(31, 6)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -40,6 +41,8 @@ zoom = Vector2(8, 8)
 position_smoothing_speed = 15.0
 
 [node name="TORCHES" type="Node2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 
 [node name="Torch" parent="TORCHES" instance=ExtResource("3_ktdvi")]
 position = Vector2(-8, -16)
@@ -450,70 +453,90 @@ position = Vector2(0.0385952, 56)
 [node name="Door3" parent="ROOM_1" instance=ExtResource("5_85jd0")]
 position = Vector2(0.209524, 304)
 
-[node name="ENEMIES" type="Node2D" parent="."]
+[node name="ITEMS_&_CHESTS" type="Node2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 
-[node name="Chest" parent="ENEMIES" instance=ExtResource("8_bco7m")]
+[node name="Chest" parent="ITEMS_&_CHESTS" instance=ExtResource("8_bco7m")]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(304, 0)
 
-[node name="Chest2" parent="ENEMIES" instance=ExtResource("8_bco7m")]
+[node name="Chest2" parent="ITEMS_&_CHESTS" instance=ExtResource("8_bco7m")]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(360, 0)
 
-[node name="Chest3" parent="ENEMIES" instance=ExtResource("8_bco7m")]
+[node name="Chest3" parent="ITEMS_&_CHESTS" instance=ExtResource("8_bco7m")]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(528, 184)
 
-[node name="Chest4" parent="ENEMIES" instance=ExtResource("8_bco7m")]
+[node name="Chest4" parent="ITEMS_&_CHESTS" instance=ExtResource("8_bco7m")]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(832, 88)
 
-[node name="Chest5" parent="ENEMIES" instance=ExtResource("8_bco7m")]
+[node name="Chest5" parent="ITEMS_&_CHESTS" instance=ExtResource("8_bco7m")]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(960, 192)
 
-[node name="Chest6" parent="ENEMIES" instance=ExtResource("8_bco7m")]
+[node name="Chest6" parent="ITEMS_&_CHESTS" instance=ExtResource("8_bco7m")]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(1448, 248)
 
-[node name="Chest7" parent="ENEMIES" instance=ExtResource("8_bco7m")]
+[node name="Chest7" parent="ITEMS_&_CHESTS" instance=ExtResource("8_bco7m")]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(1224, 344)
 
-[node name="Chest8" parent="ENEMIES" instance=ExtResource("8_bco7m")]
+[node name="Chest8" parent="ITEMS_&_CHESTS" instance=ExtResource("8_bco7m")]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(1792, 376)
 
-[node name="Chest9" parent="ENEMIES" instance=ExtResource("8_bco7m")]
+[node name="Chest9" parent="ITEMS_&_CHESTS" instance=ExtResource("8_bco7m")]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(1808, 376)
 
-[node name="Item" parent="ENEMIES" instance=ExtResource("9_wjwrd")]
+[node name="Item" parent="ITEMS_&_CHESTS" instance=ExtResource("9_wjwrd")]
 position = Vector2(1512, 424)
 type = 3
 
-[node name="Item2" parent="ENEMIES" instance=ExtResource("9_wjwrd")]
+[node name="Item2" parent="ITEMS_&_CHESTS" instance=ExtResource("9_wjwrd")]
 position = Vector2(1552, 424)
 type = 3
 
-[node name="Item3" parent="ENEMIES" instance=ExtResource("9_wjwrd")]
+[node name="Item3" parent="ITEMS_&_CHESTS" instance=ExtResource("9_wjwrd")]
 position = Vector2(1200, 232)
 type = 3
 
-[node name="Item4" parent="ENEMIES" instance=ExtResource("9_wjwrd")]
+[node name="Item4" parent="ITEMS_&_CHESTS" instance=ExtResource("9_wjwrd")]
 position = Vector2(848, 232)
 type = 3
 
-[node name="Item5" parent="ENEMIES" instance=ExtResource("9_wjwrd")]
+[node name="Item5" parent="ITEMS_&_CHESTS" instance=ExtResource("9_wjwrd")]
 position = Vector2(304, 24)
 type = 3
 
-[node name="Item6" parent="ENEMIES" instance=ExtResource("9_wjwrd")]
+[node name="Item6" parent="ITEMS_&_CHESTS" instance=ExtResource("9_wjwrd")]
 position = Vector2(352, 24)
 type = 3
 
-[node name="Item7" parent="ENEMIES" instance=ExtResource("9_wjwrd")]
+[node name="Item7" parent="ITEMS_&_CHESTS" instance=ExtResource("9_wjwrd")]
 position = Vector2(328, 16)
 type = 3
-
-[node name="ITEMS" type="Node2D" parent="."]
 
 [node name="Weapon" parent="." instance=ExtResource("10_54dm5")]
 position = Vector2(328, 40)
 type = 2
 
 [node name="ROOM_2" type="Node2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 
 [node name="Door4" parent="ROOM_2" instance=ExtResource("5_85jd0")]
 position = Vector2(552, 23.9988)
@@ -540,6 +563,8 @@ position = Vector2(680, 136)
 position = Vector2(656, 224)
 
 [node name="ROOM_3" type="Node2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 
 [node name="Door6" parent="ROOM_3" instance=ExtResource("5_85jd0")]
 position = Vector2(896, 231.998)
@@ -557,6 +582,8 @@ position = Vector2(1032, 200)
 position = Vector2(1056, 280)
 
 [node name="ROOM_4" type="Node2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 
 [node name="Door8" parent="ROOM_4" instance=ExtResource("5_85jd0")]
 position = Vector2(1448.01, 423.996)
@@ -576,6 +603,8 @@ position = Vector2(1320, 344)
 position = Vector2(1368, 432)
 
 [node name="ROOM_5" type="Node2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 
 [node name="Door9" parent="ROOM_5" instance=ExtResource("5_85jd0")]
 position = Vector2(1608.01, 423.996)

@@ -130,8 +130,6 @@ func shoot():
 	proj.type = Data.WEAPONS[current_weapon].projectile
 	proj.weapons_unlocked = weapons_unlocked
 	proj.position = position
-	proj.z_index = 1
-	proj.y_sort_enabled = true
 	get_parent().add_child(proj)
 
 
