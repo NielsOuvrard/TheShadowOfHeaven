@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://byi5vsfpb4asy"]
+[gd_scene load_steps=15 format=4 uid="uid://bnpnxeknwollu"]
 
 [ext_resource type="Script" path="res://Scripts/wrath.gd" id="1_57gg5"]
 [ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://Tres/greed2.tres" id="1_gcgya"]
@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cmfinma8lhai7" path="res://Scenes/ghost.tscn" id="9_f3ewg"]
 [ext_resource type="PackedScene" uid="uid://dacosqfur2u5l" path="res://Scenes/spikes.tscn" id="10_dh6ff"]
 [ext_resource type="PackedScene" uid="uid://ccr7fpc8pwy60" path="res://Scenes/deamon.tscn" id="11_024px"]
-[ext_resource type="PackedScene" path="res://Scenes/asrael.tscn" id="13_gc3or"]
+[ext_resource type="PackedScene" uid="uid://k1nxlv42ukb" path="res://Scenes/asrael.tscn" id="13_gc3or"]
 
 [node name="Wrath" type="Node2D"]
 script = ExtResource("1_57gg5")
@@ -756,3 +756,5 @@ rotation = 1.5708
 
 [node name="Asrael" parent="ROOMS/RoomFinal" instance=ExtResource("13_gc3or")]
 position = Vector2(2453.14, -10.6928)
+
+[connection signal="asrael_die" from="ROOMS/RoomFinal/Asrael" to="." method="_on_asrael_asrael_die"]

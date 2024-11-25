@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://dq62xq5njmvb7"]
+
+[ext_resource type="Texture2D" uid="uid://cqi8u3nvojiy4" path="res://Assets/LevelSelector/SelectorBackground.png" id="1_g27q6"]
+[ext_resource type="Script" path="res://Scripts/credits.gd" id="1_nvn45"]
+[ext_resource type="FontFile" uid="uid://dsvosxxjomnr5" path="res://Assets/Fonts/PixelOperator8.ttf" id="2_3gxch"]
+
+[node name="Credits" type="CanvasLayer"]
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, 0)
+script = ExtResource("1_nvn45")
+
+[node name="BackControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1440.0
+offset_bottom = -810.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SelectorBackground" type="Sprite2D" parent="BackControl"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_g27q6")
+centered = false
+
+[node name="Label" type="Label" parent="BackControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = -46.0
+offset_right = 168.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_3gxch")
+text = "Design and development by:
+
+Carlos Jiménez
+Eduardo Moreno
+Fernanda Mena
+Niels Ouvrard"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="BackControl"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -31.0
+offset_right = 48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_3gxch")
+text = "Main Menu"
+
+[connection signal="pressed" from="BackControl/Button" to="." method="_on_button_pressed"]

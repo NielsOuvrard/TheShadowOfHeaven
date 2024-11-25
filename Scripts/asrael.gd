@@ -11,6 +11,8 @@ extends CharacterBody2D
 @onready var stab_sprites: AnimatedSprite2D = $AnimatedSprite2D2
 @onready var stab_collision: CollisionShape2D = $AnimatedSprite2D2/StabDamageZone/CollisionShape2D
 
+signal asrael_die
+
 const ASRAEL_RAY = preload("res://Scenes/AsraelRay.tscn")
 const ASRAEL_SKULLS = preload("res://Scenes/AsraelSkulls.tscn")
 
@@ -192,6 +194,7 @@ func _on_attack_moment_timeout() -> void:
 
 
 func _on_health_die(unlocked_weapons: Variant) -> void:
+	asrael_die.emit()
 	queue_free()
 
 
