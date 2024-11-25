@@ -17,7 +17,7 @@ It has several animations:
 - Move
 - Attack
 - Reload
-- Dash (not implemented yet)
+- Dash
 
 And it has a weapon that can be found and equipped:
 
@@ -44,6 +44,7 @@ And it has a weapon that can be found and equipped:
 ### Exploration
 
 Can explore the map, find hidden paths, and secret rooms.
+(Hidden paths and secret rooms are not implemented yet)
 
 ### Combat
 
@@ -65,6 +66,7 @@ Find spikes
 ### Tower of Betrayal
 
 Find self-closing doors
+(not implemented yet)
 
 ### Tower of Wrath
 
@@ -73,6 +75,11 @@ Find lava floors
 ## Enemies
 
 The game's main enemies are sectarians, ghosts and demons, with a specific attack pattern.
+
+### Ghosts
+
+**Melee Ghost:** Attacks the player with a melee attack
+The player can dodge the attack with his sword
 
 ### Sectarians
 
@@ -100,9 +107,9 @@ In the final tower, the player faces Asrael, the fallen angel, in a multi-phase 
 
 ### Battle Phases:
 
-1. **Clones:** Asrael creates clones that must be destroyed before he can be harmed, hiding in the last one struck.
-2. **Evil Light Thrower:** He unleashes dark orbs in a spiral pattern, filling the arena with deadly projectiles.
-3. **Magic Light Rays:** Asrael fires beams of energy across the battlefield. After each attack, he becomes briefly vulnerable, allowing the player to strike.
+1. **Skulls Bullet Hell:** Asrael summons skulls in half-circles, which the player must dodge.
+2. **Rays of Light:** Asrael fires beams of energy in half-circles around the player. The player must dodge them.
+3. **Sword Fight:** Asrael engages in a sword fight with the player. The player must attack and dodge Asrael's attacks.
 
 ## Bonus Achievements
 
