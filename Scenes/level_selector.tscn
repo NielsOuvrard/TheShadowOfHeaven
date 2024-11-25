@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://i3ykfveqetl4"]
+[gd_scene load_steps=7 format=3 uid="uid://i3ykfveqetl4"]
 
 [ext_resource type="Script" path="res://Scripts/level_selector.gd" id="1_4p460"]
 [ext_resource type="Texture2D" uid="uid://cqi8u3nvojiy4" path="res://Assets/LevelSelector/SelectorBackground.png" id="2_5sv25"]
 [ext_resource type="Texture2D" uid="uid://cpt418es6sb5l" path="res://Assets/LevelSelector/SelectorPortraits.png" id="3_ll71g"]
 [ext_resource type="Texture2D" uid="uid://bhoho7e10rr2a" path="res://Assets/LevelSelector/SelectorPortraitsSelected.png" id="4_3rinr"]
+[ext_resource type="Texture2D" uid="uid://j7b5ylk6v8ny" path="res://Assets/LevelSelector/SelectorLocked.png" id="5_87ky6"]
 [ext_resource type="Texture2D" uid="uid://g4pqx40sl7c2" path="res://Assets/LevelSelector/SelectorLetters.png" id="5_t80g8"]
 
 [node name="LevelSelector" type="CanvasLayer"]
@@ -35,10 +36,17 @@ texture = ExtResource("4_3rinr")
 hframes = 3
 frame = 1
 
-[node name="Level" type="Sprite2D" parent="."]
-position = Vector2(120, 100.25)
+[node name="PortraitsLocked" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(120, 60)
+texture = ExtResource("5_87ky6")
+hframes = 3
+frame = 1
+
+[node name="LevelText" type="Sprite2D" parent="."]
+position = Vector2(120, 125)
 texture = ExtResource("5_t80g8")
-vframes = 2
+hframes = 3
 frame = 1
 
 [node name="Timer" type="Timer" parent="."]

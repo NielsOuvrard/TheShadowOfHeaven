@@ -15,6 +15,7 @@ const ANIMATED_TEXT = preload("res://Scenes/text_animated.tscn")
 const ITEM = preload("res://Scenes/item.tscn")
 
 var level_selected := 0
+var level_unlocked := 0 # from 0 to 2, the first level is already unlocked
 
 func drop_random_item(position: Vector2, parent: Node2D, unlocked_weapons: Dictionary) -> void:
 	var item = ITEM.instantiate()
