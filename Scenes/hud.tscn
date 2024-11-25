@@ -72,10 +72,14 @@ scale = Vector2(4, 4)
 theme_override_fonts/font = ExtResource("5_3rqoy")
 text = "6"
 
-[node name="BulletParent" type="Node" parent="Right"]
+[node name="BulletParent" type="Control" parent="Right"]
+anchors_preset = 0
+offset_left = -100.0
+offset_top = 200.0
+offset_right = -100.0
+offset_bottom = 200.0
 
 [node name="BulletIcon" parent="Right/BulletParent" instance=ExtResource("8_tipkt")]
-position = Vector2(1788, 196)
 
 [node name="Center" type="Control" parent="."]
 layout_mode = 3

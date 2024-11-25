@@ -14,7 +14,7 @@ extends CanvasLayer
 @onready var heart_parent: Node = $Left/HeartParent
 @onready var heart: Sprite2D = $Left/HeartParent/Heart
 
-@onready var bullet_parent: Node = $Right/BulletParent
+@onready var bullet_parent: Control = $Right/BulletParent
 @onready var bullet_icon: Node2D = $Right/BulletParent/BulletIcon
 
 @onready var inv_text: Label = $Right/InvText
