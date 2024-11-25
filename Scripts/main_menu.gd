@@ -6,34 +6,51 @@
 extends CanvasLayer
 
 @onready var background_music: AudioStreamPlayer2D = $AudioTitle
-@onready var button_selected_sprite: Sprite2D = $Buttons/ButtonSelected
 @onready var buttons_sprite: Sprite2D = $Buttons
 @onready var timer: Timer = $Timer
 
-const NUMBER_BUTTONS = 5
+const NUMBER_BUTTONS = 4
+const SPACE_BETWEEN_EACH = 1.5
 
 var buttons_callbacks = [
 	func (): get_tree().change_scene_to_file("res://Scenes/gameplay.tscn"),
 	func (): get_tree().change_scene_to_file("res://Scenes/level_selector.tscn"),
 	func (): config_panel_open(),
-	func (): get_tree().quit(),
-	func (): return # TODO remove the 5th button on the picture
+	func (): get_tree().quit()
 ]
 var PART_HEIGHT := 0
-var pos_y_original := 0
+var POS_Y_ORIGINAL := 0
+
 var button_selected := 0
+var list_buttons := []
 
 func _ready() -> void:
 	background_music.play()
 	PART_HEIGHT = buttons_sprite.texture.get_height() / NUMBER_BUTTONS
-	pos_y_original = button_selected_sprite.position.y
+	POS_Y_ORIGINAL = buttons_sprite.position.y
 
-func change_selected(direction: int) -> void:
-	button_selected = (button_selected + direction) % NUMBER_BUTTONS
-	if button_selected < 0: # Godot doesn't have a modulo that works with negative numbers
-		button_selected += NUMBER_BUTTONS
-	button_selected_sprite.frame = button_selected * 2 + 1
-	button_selected_sprite.position.y = pos_y_original + button_selected * PART_HEIGHT
+	list_buttons.append(buttons_sprite)
+	for i in range(1, NUMBER_BUTTONS):
+		var duped = buttons_sprite.duplicate()
+		duped.frame_coords.y = i
+		duped.position.y += i * PART_HEIGHT * SPACE_BETWEEN_EACH * buttons_sprite.scale.y
+		var selected = duped.get_child(0)
+		selected.visible = false
+		selected.frame_coords.y = i
+		add_child(duped)
+		list_buttons.append(duped)
+
+func change_selected(value: int) -> void:
+	var new_button_selected = value % NUMBER_BUTTONS
+	if new_button_selected < 0: # Godot doesn't have a modulo that works with negative numbers
+		new_button_selected = NUMBER_BUTTONS - 1
+
+	if new_button_selected == button_selected:
+		return
+	list_buttons[button_selected].get_child(0).visible = false
+	button_selected = new_button_selected
+	list_buttons[button_selected].get_child(0).visible = true
+
 
 func config_panel_open():
 	get_tree().paused = true
@@ -42,21 +59,18 @@ func config_panel_open():
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_down"):
-		change_selected(1)
+		change_selected(button_selected + 1)
 	elif Input.is_action_just_pressed("ui_up"):
-		change_selected(-1)
+		change_selected(button_selected - 1)
 	elif Input.is_action_just_pressed("interact"):
 		buttons_callbacks[button_selected].call()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		if buttons_sprite.get_rect().has_point(buttons_sprite.to_local(event.position)):
-			var local_pos = buttons_sprite.to_local(event.position)
-			var part = int(local_pos.y / PART_HEIGHT)
-			button_selected = part
-			button_selected_sprite.position.y = pos_y_original + part * PART_HEIGHT
-			# 2 frames per height, +1 because right frame is the selected one
-			button_selected_sprite.frame = part * 2 + 1
+		for i in NUMBER_BUTTONS:
+			if list_buttons[i].get_rect().has_point(list_buttons[i].to_local(event.position)):
+				change_selected(i)
+				break
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		buttons_callbacks[button_selected].call()
 

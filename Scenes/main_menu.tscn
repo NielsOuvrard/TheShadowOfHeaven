@@ -36,15 +36,18 @@ scale = Vector2(7.72727, 7.72727)
 texture = ExtResource("4_1gwcj")
 centered = false
 hframes = 2
+vframes = 4
 
 [node name="ButtonSelected" type="Sprite2D" parent="Buttons"]
 texture = ExtResource("4_1gwcj")
 centered = false
 hframes = 2
-vframes = 5
+vframes = 4
+frame = 1
 
 [node name="ConfigPanel" parent="." node_paths=PackedStringArray("background_music") instance=ExtResource("5_fquun")]
 visible = false
+z_index = 1
 background_music = NodePath("../AudioTitle")
 
 [connection signal="closed" from="ConfigPanel" to="." method="_on_config_panel_closed"]

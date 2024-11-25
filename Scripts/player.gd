@@ -181,7 +181,7 @@ func change_weapon():
 ## called by the item itself to add it to the player inventory
 func add_to_inventory(item: Data.Items, number: int):
 	if item == Data.Items.LIFE:
-		health.life += number
+		health.life = min(health.life + number, health.max_life)
 	else:
 		ammo_inventory[Data.ITEMS[item].weapon] += number
 	animation_handler.add_animation(Data.Animations.PICK_UP)
