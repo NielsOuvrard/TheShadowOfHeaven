@@ -12,6 +12,12 @@ extends Node
 const TILE_SIZE = 16.0
 const SPEED_PLAYER = TILE_SIZE * 7 ## each seconds
 
+enum Level {
+	GREED,
+	BETRAYAL,
+	WRATH
+}
+
 enum Weapons {
 	SWORD,
 	PISTOL,
@@ -20,7 +26,7 @@ enum Weapons {
 }
 
 const WEAPONS = {
-	Weapons.SWORD: {	
+	Weapons.SWORD: {
 		"name": "sword",
 		"texture": "res://Assets/Items/Sword.png",
 		"item_frame": 3,

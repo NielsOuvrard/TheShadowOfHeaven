@@ -21,6 +21,15 @@ func open_all_doors(room_id: int):
 
 func enemy_has_die():
 	if not is_enemy_remaning(room_index):
-		print("All enemies are dead in room", room_index)
 		open_all_doors(room_index)
 		room_index += 1 if room_index < rooms.size() - 1 else rooms.size() - 1
+
+func debug_force_open_all_doors():
+	for i in range(rooms.size()):
+		open_all_doors(i)
+
+func debug_force_kill_all_enemies():
+	for i in range(rooms.size()):
+		for node in rooms[i].get_children():
+			if node.is_in_group("enemies"):
+				node.queue_free()

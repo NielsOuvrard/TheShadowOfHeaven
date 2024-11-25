@@ -24,3 +24,9 @@ func _ready() -> void:
 # This function is called when an enemy dies
 func _enemy_has_die():
 	level_class.enemy_has_die()
+
+
+func _on_door_10_opening() -> void:
+	Global.level_unlocked = Data.Level.WRATH if Global.level_unlocked == Data.Level.BETRAYAL else Global.level_unlocked
+	Global.save_game()
+	get_tree().change_scene_to_file("res://Scenes/level_selector.tscn")

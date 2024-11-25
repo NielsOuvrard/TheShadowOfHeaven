@@ -12,7 +12,7 @@ var image_size_x : int
 
 var locked_portraits := []
 
-var selected := 0:
+var selected := Global.level_unlocked:
 	set(value):
 		print(value)
 		selected = value % (1 + Global.level_unlocked)

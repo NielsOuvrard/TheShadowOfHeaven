@@ -606,3 +606,5 @@ position = Vector2(1928, 352)
 
 [node name="EnemyBasic12" parent="ROOM_5" instance=ExtResource("6_y1xmd")]
 position = Vector2(1784, 520)
+
+[connection signal="opening" from="ROOM_5/Door10" to="." method="_on_door_10_opening"]

@@ -16,8 +16,8 @@ const ITEM = preload("res://Scenes/item.tscn")
 
 const LEVEL_SIDE = preload("res://Scripts/level_side.gd")
 
-var level_selected := 0
-var level_unlocked := 0 # from 0 to 2, the first level is already unlocked
+var level_selected := Data.Level.GREED
+var level_unlocked := Data.Level.GREED
 
 func drop_random_item(position: Vector2, parent: Node2D, unlocked_weapons: Dictionary) -> void:
 	var item = ITEM.instantiate()
@@ -45,6 +45,7 @@ func save_game() -> void:
 	file.store_var(player.ammo_current)
 	file.store_var(player.weapons_unlocked)
 	file.store_var(player.ammo_inventory)
+	file.store_var(level_unlocked)
 
 	file.close()
 
@@ -58,5 +59,6 @@ func load_game() -> void:
 	player.ammo_current = file.get_var()
 	player.weapons_unlocked = file.get_var()
 	player.ammo_inventory = file.get_var()
+	level_unlocked = file.get_var()
 
 	file.close()

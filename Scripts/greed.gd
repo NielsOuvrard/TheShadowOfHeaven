@@ -27,6 +27,6 @@ func _save_game() -> void:
 	Global.save_game()
 
 func _on_door_9_opening() -> void:
+	Global.level_unlocked = Data.Level.BETRAYAL if Global.level_unlocked == Data.Level.GREED else Global.level_unlocked
 	Global.save_game()
-	Global.level_unlocked = 1 if Global.level_unlocked == 0 else Global.level_unlocked
 	get_tree().change_scene_to_file("res://Scenes/level_selector.tscn")
