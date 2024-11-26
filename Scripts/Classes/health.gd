@@ -18,12 +18,15 @@ signal die(unlocked_weapons)
 		life = value
 
 var max_life : int
+var is_invicible := false
 
 func _ready() -> void:
 	max_life = life
 	life_ready.emit(life)
 
 func damage(attack: Attack) -> int:
+	if is_invicible:
+		return 0
 	var damage_received = min(attack.damage, life)
 	if life <= 0:
 		damage_received = 0

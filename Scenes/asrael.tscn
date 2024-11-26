@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://k1nxlv42ukb"]
+[gd_scene load_steps=49 format=3 uid="uid://k1nxlv42ukb"]
 
 [ext_resource type="Texture2D" uid="uid://blub6yqrxtdf0" path="res://Assets/Asrael/AsraelSpriteSheet.png" id="1_7b88j"]
 [ext_resource type="Script" path="res://Scripts/asrael.gd" id="1_k205k"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ba0mtb21gyvh3" path="res://Assets/Asrael/Hearts.png" id="5_x3fhy"]
 [ext_resource type="Script" path="res://Scripts/Classes/health.gd" id="6_bi4xx"]
 [ext_resource type="SpriteFrames" uid="uid://dnjc0nnox370g" path="res://Tres/AsraelStab.tres" id="6_fcfmp"]
+[ext_resource type="Texture2D" uid="uid://diy851nj4f0ft" path="res://Assets/Asrael/Shield.png" id="7_lxjk6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8jbiv"]
 atlas = ExtResource("1_7b88j")
@@ -343,9 +344,12 @@ life = 20
 one_shot = true
 
 [node name="AttackCooldown" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 3.5
 one_shot = true
 autostart = true
+
+[node name="ShieldCooldown" type="Timer" parent="."]
+one_shot = true
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 4
@@ -368,10 +372,15 @@ position = Vector2(-8, 8)
 shape = SubResource("RectangleShape2D_0kci4")
 disabled = true
 
+[node name="Shield" type="Sprite2D" parent="."]
+position = Vector2(0, -23)
+texture = ExtResource("7_lxjk6")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="die" from="Health" to="." method="_on_health_die"]
 [connection signal="life_change" from="Health" to="." method="_on_health_life_change"]
 [connection signal="timeout" from="AttackMoment" to="." method="_on_attack_moment_timeout"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="ShieldCooldown" to="." method="_on_shield_cooldown_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite2D2" to="." method="_on_animated_sprite_2d_2_animation_finished"]
 [connection signal="area_entered" from="AnimatedSprite2D2/StabDamageZone" to="." method="_on_stab_damage_zone_area_entered"]

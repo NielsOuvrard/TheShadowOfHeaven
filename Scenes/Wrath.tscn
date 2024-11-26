@@ -652,7 +652,7 @@ position = Vector2(2260, -10)
 rotation = 1.5708
 
 [node name="Asrael" parent="ROOMS/RoomFinal" instance=ExtResource("13_gc3or")]
-position = Vector2(2453.14, -10.6928)
+position = Vector2(2465, -85)
 
 [node name="SPIKES" type="Node2D" parent="."]
 

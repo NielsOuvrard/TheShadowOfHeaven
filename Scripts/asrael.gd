@@ -7,9 +7,11 @@ extends CharacterBody2D
 @onready var health: Health = $Health
 @onready var attack_moment: Timer = $AttackMoment
 @onready var attack_cooldown: Timer = $AttackCooldown
+@onready var shield_cooldown: Timer = $ShieldCooldown
 
 @onready var stab_sprites: AnimatedSprite2D = $AnimatedSprite2D2
 @onready var stab_collision: CollisionShape2D = $AnimatedSprite2D2/StabDamageZone/CollisionShape2D
+@onready var shield: Sprite2D = $Shield
 
 signal asrael_die
 
@@ -30,9 +32,11 @@ const INITIAL_RAYS_NUMBER = 5
 const FRAME_RAY_ATTACK = 5
 const INITIAL_RAYS_INTERVAL = 0.35
 const RAY_CIRCLE_RADIUS = 40
+const SPREAD_RAYS_X = 1.2
 var number_rays := INITIAL_RAYS_NUMBER
 var rays_interval := INITIAL_RAYS_INTERVAL
 var rays_circle_radius := RAY_CIRCLE_RADIUS
+var spread_rays_x := SPREAD_RAYS_X
 
 # * Stab attack
 const FRAME_STAB_ATTACK = 5
@@ -44,7 +48,18 @@ var position_stab_colis_x: float = -8.0
 const FRAME_SKULL_ATTACK = 5
 const REPEAT_PRE_SKULL = 4
 const INITIAL_SKULLS_NUMBER = 5
+const TIME_BETWEEN_SKULLS = 0.15
+const TIME_BETWEEN_WAVE = 0.5
 var number_skulls := INITIAL_SKULLS_NUMBER
+
+# * Shield
+const TIME_SHIELD_ON = 5.0
+const TIME_SHIELD_OFF = 3.0
+const TIME_SHIELD_BLINK = 2.0
+var clockwise := false
+var step_rotation_shield := 0
+var step_blink_shield := 0
+var about_to_unshield := false
 
 enum AsraelPhase {
 	PHASE_SKULL,
@@ -61,6 +76,7 @@ enum AttackType {
 
 var current_phase := AsraelPhase.PHASE_SKULL
 var current_level := 0
+var is_angry := false
 
 var animations := {
 	AsraelPhase.PHASE_SKULL: skull_attack_animation,
@@ -94,14 +110,37 @@ func update_hearts():
 
 # Attack ***************************************************************************************************
 
+func new_skull(circle_rotation, i, offset = 0):
+	var skull = ASRAEL_SKULLS.instantiate()
+	var radian = (circle_rotation * i + offset) * (PI / 180.0)
+	skull.direction = Vector2(cos(radian), sin(radian))
+	skull.position = self.position
+	return skull
+
 func skull_attack():
 	var circle_rotation = 180.0 / (number_skulls - 1)
 	for i in range(number_skulls):
-		var skull = ASRAEL_SKULLS.instantiate()
-		var radian = circle_rotation * i * (PI / 180.0)
-		skull.direction = Vector2(cos(radian), sin(radian))
-		skull.position = self.position
-		skull.time_to_wait = i * 0.15
+		var skull = new_skull(circle_rotation, i)
+		if clockwise:
+			skull.time_to_wait = i * TIME_BETWEEN_SKULLS
+		else:
+			skull.time_to_wait = (number_skulls - i - 1) * TIME_BETWEEN_SKULLS
+		get_parent().add_child(skull)
+	clockwise = not clockwise
+
+func skull_duble_wave():
+	var circle_rotation = 180.0 / (number_skulls - 1)
+
+	# first wave
+	for i in range(number_skulls):
+		var skull = new_skull(circle_rotation, i)
+		skull.time_to_wait = 0
+		get_parent().add_child(skull)
+
+	# second wave
+	for i in range(number_skulls - 1):
+		var skull = new_skull(circle_rotation, i, circle_rotation / 2)
+		skull.time_to_wait = TIME_BETWEEN_WAVE
 		get_parent().add_child(skull)
 
 func ray_attack():
@@ -111,7 +150,7 @@ func ray_attack():
 		var ray = ASRAEL_RAY.instantiate()
 		ray.time_to_wait = i * rays_interval
 		var radian = circle_rotation * i * (PI / 180.0)
-		ray.position = player.position + Vector2(cos(radian) * 1.2, sin(radian)) * rays_circle_radius
+		ray.position = player.position + Vector2(cos(radian) * spread_rays_x, sin(radian)) * rays_circle_radius
 		get_parent().add_child(ray)
 
 func stab_attack():
@@ -167,6 +206,12 @@ func _ready() -> void:
 	life_to_hearts_list(ASRAEL_FULL_LIFE)
 	update_hearts()
 
+	# just set to begin by a shield
+	shield.visible = false
+	about_to_unshield = true
+	shield_cooldown.wait_time = 0.0
+	shield_cooldown.start()
+
 	attack_cooldown.start()
 
 
@@ -197,29 +242,38 @@ func _on_health_die(unlocked_weapons: Variant) -> void:
 	asrael_die.emit()
 	queue_free()
 
+func begin_angry_mode():
+	is_angry = true
+	shield.visible = true
+	shield.modulate.a = 1
+	health.is_invicible = true
+	shield_cooldown.wait_time = TIME_SHIELD_ON
+	shield_cooldown.start()
+	about_to_unshield = false
 
 func _on_health_life_change(life: Variant) -> void:
 	life_to_hearts_list(life)
 	update_hearts()
 
 	if life <= ASRAEL_FULL_LIFE * 0.8 and current_level == 0:
+		begin_angry_mode()
 		current_level += 1
 		number_skulls *= 2
-		print(current_level)
 	elif life <= ASRAEL_FULL_LIFE * 0.6 and current_level == 1:
+		begin_angry_mode()
 		current_level += 1
 		current_phase = AsraelPhase.PHASE_LASER
-		print(current_level)
 	elif life <= ASRAEL_FULL_LIFE * 0.4 and current_level == 2:
+		begin_angry_mode()
 		current_level += 1
 		number_rays *= 1.8
 		rays_interval /= 2
-		rays_circle_radius *= 2
-		print(current_level)
+		rays_circle_radius *= 0.7
+		spread_rays_x *= 2.3
 	elif life <= ASRAEL_FULL_LIFE * 0.2 and current_level == 3:
+		begin_angry_mode()
 		current_level += 1
 		current_phase = AsraelPhase.PHASE_STAB
-		print(current_level)
 
 
 func _on_stab_damage_zone_area_entered(area: Area2D) -> void:
@@ -234,5 +288,38 @@ func _on_animated_sprite_2d_2_animation_finished() -> void:
 
 
 func _on_attack_cooldown_timeout() -> void:
-	animations[current_phase].call()
 	attack_cooldown.start()
+	if is_angry:
+		skull_duble_wave()
+		is_angry = false
+		return
+	animations[current_phase].call()
+
+# Shield event ***************************************************************************************************
+
+func _process(delta: float) -> void:
+	if health.is_invicible:
+		step_rotation_shield += 1
+		shield.rotation = sin(step_rotation_shield * 0.015)
+		var scale = 1.0 + cos(step_rotation_shield * 0.025) * 0.1
+		shield.scale = Vector2(scale, scale)
+
+		if about_to_unshield:
+			step_blink_shield += 1
+			shield.modulate.a = sign(sin(step_blink_shield * 0.1))
+
+func _on_shield_cooldown_timeout() -> void:
+	if not about_to_unshield:
+		shield_cooldown.wait_time = TIME_SHIELD_BLINK
+		shield_cooldown.start()
+		about_to_unshield = true
+		step_blink_shield = 0
+		return
+
+	shield.visible = not shield.visible
+	shield.modulate.a = 1
+	health.is_invicible = not health.is_invicible
+	about_to_unshield = false
+
+	shield_cooldown.wait_time = TIME_SHIELD_ON if health.is_invicible else TIME_SHIELD_OFF
+	shield_cooldown.start()
