@@ -290,7 +290,7 @@ func _on_research_cool_down_timeout() -> void:
 	# state = State.WALKING if is_moving else State.NOTHING
 	mark_sprite.visible = false
 
-func _on_health_life_change(new_life: int) -> void:
+func _on_health_life_change(_old, new_life: int) -> void:
 	$LifeBar.value = new_life
 
 func _on_health_life_ready(value: int) -> void:
