@@ -31,8 +31,5 @@ autoplay = true
 
 [node name="CanvasPanel" type="CanvasLayer" parent="."]
 
-[node name="ConfigPanel" parent="CanvasPanel" node_paths=PackedStringArray("background_music") instance=ExtResource("4_rxlm5")]
+[node name="ConfigPanel" parent="CanvasPanel" instance=ExtResource("4_rxlm5")]
 visible = false
-background_music = NodePath("../../GamePlayAudio")
-
-[connection signal="closed" from="CanvasPanel/ConfigPanel" to="." method="_on_config_panel_closed"]

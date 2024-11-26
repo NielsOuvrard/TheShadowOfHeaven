@@ -17,7 +17,10 @@ const ITEM = preload("res://Scenes/item.tscn")
 const LEVEL_SIDE = preload("res://Scripts/level_side.gd")
 
 var level_selected := Data.Level.GREED
-var level_unlocked := Data.Level.GREED
+var level_unlocked := Data.Level.WRATH
+
+var volume_music := 100
+var volume_sfx := 100
 
 func drop_random_item(position: Vector2, parent: Node2D, unlocked_weapons: Dictionary) -> void:
 	var item = ITEM.instantiate()
@@ -32,7 +35,7 @@ func drop_random_item(position: Vector2, parent: Node2D, unlocked_weapons: Dicti
 
 	parent.add_child(item)
 
-# * Save and load game
+# * Save and load game **********************************************************************************************
 
 const SAVE_PATH = "user://data.save"
 

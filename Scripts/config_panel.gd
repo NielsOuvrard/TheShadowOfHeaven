@@ -8,11 +8,7 @@ signal closed
 @onready var close_button: Button = $Control/CloseButton
 @onready var menu_items := [volume_slider, main_menu_button, close_button]
 
-@export var background_music: AudioStreamPlayer2D
-
-# In Godot, the volume in dB typically ranges from
-# -80 dB (silence) to 0 dB (maximum volume)
-const VOLUME_MIN = -80
+var master_bus = AudioServer.get_bus_index("Master")
 
 var selected_index := 0
 var callbacks = [
@@ -25,8 +21,8 @@ var callbacks = [
 
 
 func _ready():
-	volume_slider.value = (background_music.volume_db + abs(VOLUME_MIN)) / abs(VOLUME_MIN) * 100
-	
+	# volume_slider.value = 100 # (background_music.volume_db + abs(VOLUME_MIN)) / abs(VOLUME_MIN) * 100
+
 	# Unable the elements for a moment to avoid unwanted clicks
 	await get_tree().create_timer(0.1).timeout
 	volume_slider.editable = true
@@ -59,17 +55,17 @@ func _process(_delta):
 	elif Input.is_action_just_pressed("interact"):
 		callbacks[selected_index].call()
 
-	if menu_items[selected_index] is HSlider:
-		if Input.is_action_pressed("ui_left"):
-			volume_slider.value -= 1
-		elif Input.is_action_pressed("ui_right"):
-			volume_slider.value += 1
-	else:
-		if Input.is_action_just_pressed("ui_left") and not is_next_slider(-1):
-			change_selected(-1)
-		elif Input.is_action_just_pressed("ui_right") and not is_next_slider(1):
-			change_selected(1)
-	
+	# if menu_items[selected_index] is HSlider:
+	# 	if Input.is_action_pressed("ui_left"):
+	# 		volume_slider.value -= 1
+	# 	elif Input.is_action_pressed("ui_right"):
+	# 		volume_slider.value += 1
+	# else:
+	if Input.is_action_just_pressed("ui_left") and not is_next_slider(-1):
+		change_selected(-1)
+	elif Input.is_action_just_pressed("ui_right") and not is_next_slider(1):
+		change_selected(1)
+
 func _on_close_button_pressed():
 	closed.emit()
 
@@ -77,5 +73,10 @@ func _on_main_menu_button_pressed():
 	closed.emit()
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
-func _on_volume_slider_drag_ended(_value_changed: bool) -> void:
-	background_music.volume_db = VOLUME_MIN + (volume_slider.value / 100 * abs(VOLUME_MIN))
+func _on_volume_slider_drag_ended(value_changed: bool) -> void:
+	AudioServer.set_bus_volume_db(master_bus, volume_slider.value)
+
+	if volume_slider.value == -30:
+		AudioServer.set_bus_mute(master_bus, true)
+	elif volume_slider.value == 0:
+		AudioServer.set_bus_mute(master_bus, false)

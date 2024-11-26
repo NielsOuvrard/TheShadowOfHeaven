@@ -21,3 +21,5 @@ signal player_update_dash(value)
 
 ## * other signals
 signal enemy_has_die
+signal volume_music_changed
+signal volume_sfx_changed
