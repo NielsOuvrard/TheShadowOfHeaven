@@ -29,6 +29,7 @@ extends CharacterBody2D
 @onready var reload_cooldown: Timer = $ReloadCooldown
 @onready var shoot_cooldown: Timer = $ShotCooldown
 @onready var dash_cooldown: Timer = $DashCooldown
+@onready var invincibility_cooldown: Timer = $InvincibilityCooldown
 
 @export var SPEED := 16.0 * 7
 @export var ACCELERATION := 0.9
@@ -39,6 +40,7 @@ extends CharacterBody2D
 const DASH_STRENGTH = 80.0
 const MAX_NMB_DASH = 3
 var dash_remaining := MAX_NMB_DASH
+var invincibylity_step := 0
 
 var look_direction := Vector2.ZERO
 var last_look_direction_mouse := Vector2.ZERO
@@ -279,6 +281,12 @@ func _physics_process(delta):
 	# * Animation
 	animation_handler.actualize_animation()
 
+func _process(delta: float) -> void:
+	if not health.is_invicible:
+		return
+	invincibylity_step += 1
+	animated_sprite.modulate.a = 0.5 + 0.5 * sin(invincibylity_step * 0.1)
+
 func _on_sword_attack_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
 		var attack = Attack.new(1, position, 100, weapons_unlocked)
@@ -289,6 +297,8 @@ func _on_health_life_change(value: Variant) -> void:
 		animation_handler.add_animation(Data.Animations.DIE)
 		get_tree().paused = true
 	SignalsHandler.player_life_change.emit(value)
+	invincibility_cooldown.start()
+	health.is_invicible = true
 
 #region debug
 func debug_inventory():
@@ -322,3 +332,8 @@ func _on_dash_cooldown_timeout() -> void:
 	SignalsHandler.player_update_dash.emit(dash_remaining)
 	if dash_remaining < MAX_NMB_DASH:
 		dash_cooldown.start()
+
+
+func _on_invincibility_cooldown_timeout() -> void:
+	health.is_invicible = false
+	animated_sprite.modulate.a = 1

@@ -292,6 +292,10 @@ one_shot = true
 [node name="ShotCooldown" type="Timer" parent="."]
 one_shot = true
 
+[node name="InvincibilityCooldown" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [node name="SwordSwing" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_53l0g")
 
@@ -312,3 +316,4 @@ stream = ExtResource("14_keksx")
 [connection signal="area_entered" from="SwordAttack" to="." method="_on_sword_attack_area_entered"]
 [connection signal="body_entered" from="SwordAttack" to="." method="_on_sword_attack_body_entered"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
+[connection signal="timeout" from="InvincibilityCooldown" to="." method="_on_invincibility_cooldown_timeout"]
