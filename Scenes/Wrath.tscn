@@ -44,7 +44,6 @@ zoom = Vector2(8, 8)
 position_smoothing_speed = 15.0
 
 [node name="ROOMS" type="Node2D" parent="."]
-z_index = 1
 y_sort_enabled = true
 
 [node name="ROOM_1" type="Node2D" parent="ROOMS"]
