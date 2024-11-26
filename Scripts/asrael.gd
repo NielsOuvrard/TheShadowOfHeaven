@@ -32,7 +32,7 @@ const THRESHOLDS_PHASES_ATTACK = [
 	{
 		"threshold": 0.8,
 		"level": 0,
-		"phase": AsraelPhase.PHASE_SKULL
+		"new_phase": AsraelPhase.PHASE_SKULL
 	},
 	{
 		"threshold": 0.6,
@@ -41,7 +41,7 @@ const THRESHOLDS_PHASES_ATTACK = [
 	{
 		"threshold": 0.4,
 		"level": 2,
-		"phase": AsraelPhase.PHASE_RAYS
+		"new_phase": AsraelPhase.PHASE_RAYS
 	},
 	{
 		"threshold": 0.2,
@@ -281,11 +281,11 @@ func _on_health_life_change(life: Variant) -> void:
 	life_to_hearts_list(life)
 	update_hearts()
 
-	for threshold in THRESHOLDS_PHASES_ATTACK:
-		if life <= ASRAEL_FULL_LIFE * threshold.threshold and current_level == threshold.level:
+	for phase in THRESHOLDS_PHASES_ATTACK:
+		if life <= ASRAEL_FULL_LIFE * phase.threshold and current_level == phase.level:
 			next_process_get_angry = true
-			if "phase" in threshold:
-				current_phase = threshold.phase
+			if "new_phase" in phase:
+				current_phase = phase.new_phase
 			match current_level:
 				2:
 					number_skulls *= 2
