@@ -292,13 +292,14 @@ func _on_sword_attack_area_entered(area: Area2D) -> void:
 		var attack = Attack.new(1, position, 100, weapons_unlocked)
 		area.damage(attack)
 
-func _on_health_life_change(value: Variant) -> void:
-	if value <= 0:
+func _on_health_life_change(old, new_life: Variant) -> void:
+	if new_life <= 0:
 		animation_handler.add_animation(Data.Animations.DIE)
 		get_tree().paused = true
-	SignalsHandler.player_life_change.emit(value)
+	SignalsHandler.player_life_change.emit(new_life)
 	invincibility_cooldown.start()
-	health.is_invicible = true
+	if old > new_life:
+		health.is_invicible = true
 
 #region debug
 func debug_inventory():

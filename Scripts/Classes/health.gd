@@ -8,13 +8,13 @@ class_name Health extends Node
 ## emitted to know the initial life, and then the max life of an entity
 signal life_ready(value)
 
-signal life_change(value)
+signal life_change(old, new)
 
 signal die(unlocked_weapons)
 
 @export var life := 5:
 	set(value):
-		life_change.emit(value)
+		life_change.emit(life, value)
 		life = value
 
 var max_life : int
