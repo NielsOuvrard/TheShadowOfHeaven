@@ -205,7 +205,7 @@ position = Vector2(-536, 72)
 linear_movement = Vector2(1, 0)
 
 [node name="Chest" parent="ROOMS/ROOM_2" instance=ExtResource("3_13s5j")]
-position = Vector2(-552, -8)
+position = Vector2(-536, -96)
 
 [node name="ROOM_3" type="Node2D" parent="ROOMS"]
 y_sort_enabled = true
