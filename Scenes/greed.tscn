@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://f7hotqo1373f"]
+[gd_scene load_steps=16 format=4 uid="uid://f7hotqo1373f"]
 
 [ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://Tres/greed2.tres" id="1_73fo5"]
 [ext_resource type="Script" path="res://Scripts/greed.gd" id="1_w82pv"]
@@ -13,6 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://b0ckibqpi4lpm" path="res://Scenes/chest.tscn" id="10_bqy8t"]
 [ext_resource type="PackedScene" uid="uid://cmfinma8lhai7" path="res://Scenes/ghost.tscn" id="10_jlttf"]
 [ext_resource type="Texture2D" uid="uid://bxlaox66kqmyw" path="res://Assets/World/ControlCofre.png" id="11_4kwqn"]
+[ext_resource type="PackedScene" uid="uid://vhb7evsmr8le" path="res://Scenes/dead_zone.tscn" id="14_3klr8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_isq8c"]
+size = Vector2(2489, 536)
 
 [node name="Greed" type="Node2D"]
 y_sort_enabled = true
@@ -513,6 +517,12 @@ color = Color(0.945098, 0.870588, 0, 1)
 [node name="Torch32" parent="TORCHES" instance=ExtResource("8_of5e7")]
 position = Vector2(1809, 663)
 color = Color(0.945098, 0.870588, 0, 1)
+
+[node name="DeadZone" parent="." instance=ExtResource("14_3klr8")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadZone"]
+position = Vector2(1043.5, 692)
+shape = SubResource("RectangleShape2D_isq8c")
 
 [connection signal="opening" from="ROOM_2/Door3" to="." method="_save_game"]
 [connection signal="opening" from="ROOM_5/Door9" to="." method="_on_door_9_opening"]

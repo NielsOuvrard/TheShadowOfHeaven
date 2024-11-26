@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://crvpqpbodxy84"]
+[gd_scene load_steps=14 format=4 uid="uid://crvpqpbodxy84"]
 
 [ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://Tres/greed2.tres" id="1_63g51"]
 [ext_resource type="Script" path="res://Scripts/betreyal.gd" id="1_282fw"]
@@ -11,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://b0ckibqpi4lpm" path="res://Scenes/chest.tscn" id="8_bco7m"]
 [ext_resource type="PackedScene" uid="uid://bcbtjhffrph75" path="res://Scenes/item.tscn" id="9_wjwrd"]
 [ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="10_54dm5"]
+[ext_resource type="PackedScene" uid="uid://vhb7evsmr8le" path="res://Scenes/dead_zone.tscn" id="12_adeqh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ieoft"]
+size = Vector2(2560, 912)
 
 [node name="Betreyal" type="Node2D"]
 z_index = 1
@@ -635,5 +639,11 @@ position = Vector2(1928, 352)
 
 [node name="EnemyBasic12" parent="ROOM_5" instance=ExtResource("6_y1xmd")]
 position = Vector2(1784, 520)
+
+[node name="DeadZone" parent="." instance=ExtResource("12_adeqh")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadZone"]
+position = Vector2(1080, 280)
+shape = SubResource("RectangleShape2D_ieoft")
 
 [connection signal="opening" from="ROOM_5/Door10" to="." method="_on_door_10_opening"]

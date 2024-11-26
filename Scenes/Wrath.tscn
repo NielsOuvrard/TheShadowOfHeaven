@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://bnpnxeknwollu"]
+[gd_scene load_steps=17 format=4 uid="uid://bnpnxeknwollu"]
 
 [ext_resource type="Script" path="res://Scripts/wrath.gd" id="1_57gg5"]
 [ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://Tres/greed2.tres" id="1_gcgya"]
@@ -14,6 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://dacosqfur2u5l" path="res://Scenes/spikes.tscn" id="10_dh6ff"]
 [ext_resource type="PackedScene" uid="uid://ccr7fpc8pwy60" path="res://Scenes/deamon.tscn" id="11_024px"]
 [ext_resource type="PackedScene" uid="uid://k1nxlv42ukb" path="res://Scenes/asrael.tscn" id="13_gc3or"]
+[ext_resource type="PackedScene" uid="uid://vhb7evsmr8le" path="res://Scenes/dead_zone.tscn" id="15_it2ej"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lch2i"]
+size = Vector2(4777.5, 569)
 
 [node name="Wrath" type="Node2D"]
 z_index = 1
@@ -815,5 +819,11 @@ position = Vector2(496, 88)
 
 [node name="Spikes52" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
 position = Vector2(496, 86)
+
+[node name="DeadZone" parent="." instance=ExtResource("15_it2ej")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadZone"]
+position = Vector2(353.25, 4)
+shape = SubResource("RectangleShape2D_lch2i")
 
 [connection signal="asrael_die" from="ROOMS/RoomFinal/Asrael" to="." method="_on_asrael_asrael_die"]
