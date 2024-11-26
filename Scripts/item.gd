@@ -28,17 +28,18 @@ func _ready() -> void:
 		item_sprite.frame = 15
 	if not is_static:
 		animation_player.play("floating")
-		
+
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") and item_sprite.visible:
 		body.add_to_inventory(type, nmb)
 
-		var text_animated = Global.ANIMATED_TEXT.instantiate()
-		text_animated.text = str(nmb)
-		text_animated.z_index = 2
-		text_animated.position = position
-		get_parent().add_child(text_animated)
+		if type != Data.Items.LIFE:
+			var text_animated = Global.ANIMATED_TEXT.instantiate()
+			text_animated.text = str(nmb)
+			text_animated.z_index = 2
+			text_animated.position = position
+			get_parent().add_child(text_animated)
 		item_sprite.visible = false
 		destroy_cooldown.start()
 		sound_take_item.play()
