@@ -44,6 +44,8 @@ offset_top = 379.0
 offset_right = 652.0
 offset_bottom = 449.0
 scale = Vector2(4, 4)
+min_value = -30.0
+max_value = 0.0
 editable = false
 script = SubResource("GDScript_dpqtq")
 

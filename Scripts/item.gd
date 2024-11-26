@@ -9,6 +9,7 @@ extends Node2D
 @onready var item_sprite: Sprite2D = $ItemSprite
 @onready var sound_take_item: AudioStreamPlayer2D = $TakeItem
 @onready var destroy_cooldown: Timer = $DestroyCooldown
+@onready var shadow_small: Sprite2D = $ShadowSmall
 
 @export var type := Data.Items.PISTOL_AMMO
 @export var is_static := false
@@ -41,6 +42,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			text_animated.position = position
 			get_parent().add_child(text_animated)
 		item_sprite.visible = false
+		shadow_small.visible = false
 		destroy_cooldown.start()
 		sound_take_item.play()
 

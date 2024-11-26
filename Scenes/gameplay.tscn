@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cl2bfax75pt7d"]
+[gd_scene load_steps=4 format=3 uid="uid://cl2bfax75pt7d"]
 
 [ext_resource type="PackedScene" uid="uid://c43q6ncwe5wl0" path="res://Scenes/hud.tscn" id="1_4fvy5"]
 [ext_resource type="Script" path="res://Scripts/gameplay.gd" id="1_wtfop"]
-[ext_resource type="AudioStream" uid="uid://bxx6my6krp8pu" path="res://Assets/Sounds/MusicOld/AudioMain.mp3" id="3_0lt7v"]
 [ext_resource type="PackedScene" uid="uid://smk6r6ygbleh" path="res://Scenes/ConfigPanel.tscn" id="4_rxlm5"]
 
 [node name="Gameplay" type="Node2D"]
@@ -20,19 +19,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.117227, 3.39021e-06, 0.0957673, 1)
 
-[node name="GamePlayAudio" type="AudioStreamPlayer2D" parent="."]
-process_mode = 3
-stream = ExtResource("3_0lt7v")
-autoplay = true
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("1_4fvy5")]
 
 [node name="CanvasPanel" type="CanvasLayer" parent="."]
 
-[node name="ConfigPanel" parent="CanvasPanel" node_paths=PackedStringArray("background_music") instance=ExtResource("4_rxlm5")]
+[node name="ConfigPanel" parent="CanvasPanel" instance=ExtResource("4_rxlm5")]
 visible = false
-background_music = NodePath("../../GamePlayAudio")
 
 [connection signal="closed" from="CanvasPanel/ConfigPanel" to="." method="_on_config_panel_closed"]

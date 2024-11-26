@@ -8,7 +8,7 @@ signal closed
 @onready var close_button: Button = $CloseButton
 @onready var menu_items := [volume_slider, main_menu_button, close_button]
 
-@export var background_music: AudioStreamPlayer2D
+#@export var background_music: AudioStreamPlayer2D
 
 # In Godot, the volume in dB typically ranges from
 # -80 dB (silence) to 0 dB (maximum volume)
@@ -22,10 +22,10 @@ var callbacks = [
 		closed.emit()
 		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 ]
-
+var master_bus = AudioServer.get_bus_index("Master")
 
 func _ready():
-	volume_slider.value = (background_music.volume_db + abs(VOLUME_MIN)) / abs(VOLUME_MIN) * 100
+	#volume_slider.value = (background_music.volume_db + abs(VOLUME_MIN)) / abs(VOLUME_MIN) * 100
 	
 	# Unable the elements for a moment to avoid unwanted clicks
 	await get_tree().create_timer(0.1).timeout
@@ -78,4 +78,11 @@ func _on_main_menu_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func _on_volume_slider_drag_ended(_value_changed: bool) -> void:
-	background_music.volume_db = VOLUME_MIN + (volume_slider.value / 100 * abs(VOLUME_MIN))
+	#background_music.volume_db = VOLUME_MIN + (volume_slider.value / 100 * abs(VOLUME_MIN))
+
+	AudioServer.set_bus_volume_db(master_bus, volume_slider.value)
+
+	if volume_slider.value == -30:
+		AudioServer.set_bus_mute(master_bus, true)
+	elif volume_slider.value == 0:
+		AudioServer.set_bus_mute(master_bus, false)

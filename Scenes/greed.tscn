@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://f7hotqo1373f"]
+[gd_scene load_steps=15 format=4 uid="uid://f7hotqo1373f"]
 
 [ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://Tres/greed2.tres" id="1_73fo5"]
 [ext_resource type="Script" path="res://Scripts/greed.gd" id="1_w82pv"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b0ckibqpi4lpm" path="res://Scenes/chest.tscn" id="10_bqy8t"]
 [ext_resource type="PackedScene" uid="uid://cmfinma8lhai7" path="res://Scenes/ghost.tscn" id="10_jlttf"]
 [ext_resource type="Texture2D" uid="uid://bxlaox66kqmyw" path="res://Assets/World/ControlCofre.png" id="11_4kwqn"]
+[ext_resource type="AudioStream" uid="uid://1qa1eme11s70" path="res://Assets/Sounds/Music/Level1.mp3" id="14_kaa8g"]
 
 [node name="Greed" type="Node2D"]
 y_sort_enabled = true
@@ -513,6 +514,11 @@ color = Color(0.945098, 0.870588, 0, 1)
 [node name="Torch32" parent="TORCHES" instance=ExtResource("8_of5e7")]
 position = Vector2(1809, 663)
 color = Color(0.945098, 0.870588, 0, 1)
+
+[node name="Level1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_kaa8g")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="opening" from="ROOM_2/Door3" to="." method="_save_game"]
 [connection signal="opening" from="ROOM_5/Door9" to="." method="_on_door_9_opening"]

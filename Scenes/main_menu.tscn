@@ -45,9 +45,8 @@ hframes = 2
 vframes = 4
 frame = 1
 
-[node name="ConfigPanel" parent="." node_paths=PackedStringArray("background_music") instance=ExtResource("5_fquun")]
+[node name="ConfigPanel" parent="." instance=ExtResource("5_fquun")]
 visible = false
 z_index = 1
-background_music = NodePath("../AudioTitle")
 
 [connection signal="closed" from="ConfigPanel" to="." method="_on_config_panel_closed"]
