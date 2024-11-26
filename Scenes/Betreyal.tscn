@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bcbtjhffrph75" path="res://Scenes/item.tscn" id="9_wjwrd"]
 [ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="10_54dm5"]
 [ext_resource type="AudioStream" uid="uid://fxx1qh8n6sve" path="res://Assets/Sounds/Music/Level2.mp3" id="12_k2vvb"]
+[ext_resource type="PackedScene" uid="uid://b2o724kx74abe" path="res://Scenes/obstacle.tscn" id="12_dnag6"]
 
 [node name="Betreyal" type="Node2D"]
 z_index = 1
@@ -163,7 +164,7 @@ position = Vector2(400, -32)
 color = Color(0.5, 0.2, 1, 1)
 
 [node name="Torch11" parent="TORCHES" instance=ExtResource("3_ktdvi")]
-position = Vector2(256, -32)
+position = Vector2(256, -12)
 color = Color(0.5, 0.2, 1, 1)
 
 [node name="Torch13" parent="TORCHES" instance=ExtResource("3_ktdvi")]
@@ -641,5 +642,130 @@ position = Vector2(1784, 520)
 stream = ExtResource("12_k2vvb")
 volume_db = -15.0
 autoplay = true
+[node name="OBSTACLES" type="Node2D" parent="."]
+
+[node name="Obstacle" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(280, 80)
+user_frame = 2
+
+[node name="Obstacle2" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(376, 80)
+user_frame = 2
+
+[node name="Obstacle3" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(592, 64)
+user_frame = 5
+
+[node name="Obstacle4" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(656, 16)
+user_frame = 5
+
+[node name="Obstacle5" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(656, 32)
+user_frame = 5
+
+[node name="Obstacle6" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(752, 64)
+user_frame = 5
+
+[node name="Obstacle7" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(752, 48)
+user_frame = 5
+
+[node name="Obstacle8" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(752, 112)
+user_frame = 5
+
+[node name="Obstacle9" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(752, 128)
+user_frame = 5
+
+[node name="Obstacle10" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1000, 240)
+user_frame = 5
+
+[node name="Obstacle11" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1000, 224)
+user_frame = 5
+
+[node name="Obstacle12" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1000, 208)
+user_frame = 5
+
+[node name="Obstacle13" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1000, 256)
+user_frame = 5
+
+[node name="Obstacle14" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1328, 240)
+user_frame = 5
+
+[node name="Obstacle15" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1312, 224)
+user_frame = 5
+
+[node name="Obstacle16" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1368, 320)
+user_frame = 5
+
+[node name="Obstacle17" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1368, 336)
+user_frame = 5
+
+[node name="Obstacle18" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1424, 368)
+user_frame = 5
+
+[node name="Obstacle19" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1272, 320)
+user_frame = 5
+
+[node name="Obstacle20" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1256, 448)
+user_frame = 5
+
+[node name="Obstacle21" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1712, 472)
+user_frame = 5
+
+[node name="Obstacle22" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1696, 472)
+user_frame = 5
+
+[node name="Obstacle23" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1680, 472)
+user_frame = 5
+
+[node name="Obstacle24" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1664, 472)
+user_frame = 5
+
+[node name="Obstacle25" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1744, 320)
+user_frame = 5
+
+[node name="Obstacle26" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1744, 336)
+user_frame = 5
+
+[node name="Obstacle27" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1760, 352)
+user_frame = 5
+
+[node name="Obstacle28" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1800, 304)
+user_frame = 2
+
+[node name="Obstacle29" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1800, 544)
+user_frame = 2
+
+[node name="Obstacle30" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1888, 368)
+user_frame = 2
+
+[node name="Obstacle31" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1888, 488)
+user_frame = 2
 
 [connection signal="opening" from="ROOM_5/Door10" to="." method="_on_door_10_opening"]

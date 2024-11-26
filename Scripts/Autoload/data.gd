@@ -40,8 +40,8 @@ const WEAPONS = {
 		"name": "pistol",
 		"texture": "res://Assets/Items/Gun.png",
 		"item_frame": 0,
-		"cooldown_shot": 0.1,
-		"cooldown_reload": 0.5,
+		"cooldown_shot": 0.2,
+		"cooldown_reload": 0.6,
 		"ammo_max": 6,
 		"projectile": Projectiles.PISTOL,
 		"ammo": Items.PISTOL_AMMO,
@@ -111,7 +111,7 @@ const PROJECTILS = {
 	Projectiles.ENEMIES: {
 		"animation": "enemies",
 		"speed": SPEED_PLAYER * 0.8,
-		"damage": 2,
+		"damage": 1,
 		"knockback": 5.0,
 		"light_energy": 0.5,
 		"light_color": Color(1, 0.5, 0, 1),
@@ -142,22 +142,22 @@ const ITEMS = {
 		"name": "pistol_ammo",
 		"frame": 4,
 		"weapon": Weapons.PISTOL,
-		"n_max": 6,
-		"n_min": 3
+		"n_max": 24,
+		"n_min": 12
 	},
 	Items.SHOTGUN_AMMO: {
 		"name": "shotgun_ammo",
 		"frame": 5,
 		"weapon": Weapons.SHOTGUN,
-		"n_max": 4,
-		"n_min": 1
+		"n_max": 8,
+		"n_min": 4
 	},
 	Items.RAYGUN_AMMO: {
 		"name": "raygun_ammo",
 		"frame": 6,
 		"weapon": Weapons.RAYGUN,
-		"n_max": 5,
-		"n_min": 2
+		"n_max": 15,
+		"n_min": 10
 	},
 	Items.LIFE: {
 		"name": "life",
