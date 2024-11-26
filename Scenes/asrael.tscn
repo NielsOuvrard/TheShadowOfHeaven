@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://k1nxlv42ukb"]
+[gd_scene load_steps=50 format=3 uid="uid://k1nxlv42ukb"]
 
 [ext_resource type="Texture2D" uid="uid://blub6yqrxtdf0" path="res://Assets/Asrael/AsraelSpriteSheet.png" id="1_7b88j"]
 [ext_resource type="Script" path="res://Scripts/asrael.gd" id="1_k205k"]
@@ -308,6 +308,10 @@ height = 32.02
 radius = 15.0
 height = 46.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3orbd"]
+resource_local_to_scene = true
+radius = 41.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0kci4"]
 size = Vector2(76.5, 79.5)
 
@@ -356,9 +360,15 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("5_rbh43")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="AsraelCollision" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -23)
 shape = SubResource("CapsuleShape2D_05qx8")
+
+[node name="ShieldCollison" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -23)
+shape = SubResource("CircleShape2D_3orbd")
+disabled = true
+debug_color = Color(0.917, 0.287, 0, 0.218)
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 visible = false
