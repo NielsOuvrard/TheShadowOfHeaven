@@ -277,7 +277,7 @@ func begin_angry_mode():
 	shield_cooldown.start()
 	about_to_unshield = false
 
-func _on_health_life_change(life: Variant) -> void:
+func _on_health_life_change(_old, life: Variant) -> void:
 	life_to_hearts_list(life)
 	update_hearts()
 
