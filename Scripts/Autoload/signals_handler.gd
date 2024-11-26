@@ -16,6 +16,7 @@ signal player_update_ammo_both(cur, inv)
 signal player_reload(type_weapon)
 signal player_use_controller(value: bool)
 signal player_look_direction(direction: Vector2)
+signal player_update_dash(value)
 
 
 ## * other signals

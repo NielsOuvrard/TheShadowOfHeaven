@@ -37,6 +37,8 @@ extends CharacterBody2D
 @export var push_force = 80.0
 
 const DASH_STRENGTH = 80.0
+const MAX_NMB_DASH = 3
+var dash_remaining := MAX_NMB_DASH
 
 var look_direction := Vector2.ZERO
 var last_look_direction_mouse := Vector2.ZERO
@@ -266,11 +268,13 @@ func _physics_process(delta):
 		if Input.is_action_pressed('shoot'):
 			shoot()
 
-		if Input.is_action_just_pressed('dash') and dash_cooldown.is_stopped():
+		if Input.is_action_just_pressed('dash') and dash_remaining > 0:
 			shoot_cooldown.wait_time = 0.2 # TODO dash cooldown
 			animation_handler.add_animation(Data.Animations.DASH)
 			position = position.lerp(position + velocity.normalized() * DASH_STRENGTH, 0.5)
 			dash_cooldown.start()
+			dash_remaining -= 1
+			SignalsHandler.player_update_dash.emit(dash_remaining)
 
 	# * Animation
 	animation_handler.actualize_animation()
@@ -311,3 +315,10 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		await get_tree().create_timer(1).timeout
 		get_tree().paused = false
 		get_tree().change_scene_to_file("res://Scenes/death_screen.tscn")
+
+
+func _on_dash_cooldown_timeout() -> void:
+	dash_remaining = min(dash_remaining + 1, MAX_NMB_DASH)
+	SignalsHandler.player_update_dash.emit(dash_remaining)
+	if dash_remaining < MAX_NMB_DASH:
+		dash_cooldown.start()

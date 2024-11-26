@@ -17,18 +17,31 @@ extends CanvasLayer
 @onready var bullet_parent: Control = $Right/BulletParent
 @onready var bullet_icon: Node2D = $Right/BulletParent/BulletIcon
 
+@onready var dash_parent: Node = $Left/DashParent
+@onready var dash: AnimatedSprite2D = $Left/DashParent/Dash
+
 @onready var inv_text: Label = $Right/InvText
 
-var current_weapon := Data.Weapons.SWORD
-var hearts_index := []
-var bullets := []
-
+# hearts
 const PLAYER_FULL_LIFE = 6
 const HALFS_HEARTS = 6 ## 3 hearts, so 6 halfs ones
 const NUMBER_HALFS_HEARTS = 4 ## 2 hearts, 4 halfs
-const NUMBER_TYPES_BULLETS = 3
+var hearts_index := []
 
-# todo hearts childe as a scene, and animate them
+# Bullets & weapons
+const NUMBER_TYPES_BULLETS = 3
+var current_weapon := Data.Weapons.SWORD
+var bullets := []
+
+# * dash
+const MAX_NMB_DASH = 3
+const SIZE_DASH_POINT = 13
+var dash_list := []
+var nmb_dash_on := 3
+var last_dash_modified : int
+
+
+# todo hearts animated
 
 func bullet_to_ammo_list(ammo: int):
 	for i in range(bullet_parent.get_child_count()):
@@ -64,9 +77,9 @@ func update_hearts():
 func _ready() -> void:
 	weapon.type = Data.Weapons.SWORD
 	weapon._ready()
-	
+
 	cursor.visible = false
-	
+
 	SignalsHandler.player_life_change.connect(_player_life_change)
 	SignalsHandler.player_change_weapon.connect(_player_change_weapon)
 	SignalsHandler.player_update_ammo_current.connect(_player_update_ammo_current)
@@ -74,10 +87,18 @@ func _ready() -> void:
 	SignalsHandler.player_use_controller.connect(_player_use_controller)
 	SignalsHandler.player_look_direction.connect(_player_look_direction)
 	SignalsHandler.player_reload.connect(_player_reload)
+	SignalsHandler.player_update_dash.connect(_player_update_dash)
 
 	life_to_hearts_list(PLAYER_FULL_LIFE) # should print 3 full hearts
 	update_hearts()
 	_player_change_weapon(current_weapon, 0, 0)
+
+	dash_list.append(dash)
+	for i in range(1, 3): # 2 and 3
+		var new_dash = dash.duplicate()
+		new_dash.position.x += SIZE_DASH_POINT * i * 5.5
+		dash_list.append(new_dash)
+		dash_parent.add_child(new_dash)
 
 func _player_update_ammo_current(ammo):
 	if ammo == len(bullets) - 1:
@@ -115,3 +136,23 @@ func _player_use_controller(value):
 
 func _player_look_direction(direction: Vector2):
 	cursor.rotation = direction.angle()
+
+func _player_update_dash(value: int):
+	if not abs(value - nmb_dash_on) == 1 or value == nmb_dash_on:
+		assert("Error: Dash value is not correct")
+
+	if nmb_dash_on > value:
+		last_dash_modified = nmb_dash_on - 1
+		dash_list[last_dash_modified].play("loss")
+	else:
+		last_dash_modified = value - 1
+		dash_list[last_dash_modified].play("gain")
+
+	nmb_dash_on = value
+
+
+func _on_dash_animation_finished() -> void:
+	if dash_list[last_dash_modified].animation == "loss":
+		dash_list[last_dash_modified].play("off")
+	elif dash_list[last_dash_modified].animation == "gain":
+		dash_list[last_dash_modified].play("on")

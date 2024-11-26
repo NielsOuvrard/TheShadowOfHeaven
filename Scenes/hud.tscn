@@ -1,13 +1,86 @@
-[gd_scene load_steps=9 format=3 uid="uid://c43q6ncwe5wl0"]
+[gd_scene load_steps=18 format=3 uid="uid://c43q6ncwe5wl0"]
 
 [ext_resource type="Script" path="res://Scripts/hud.gd" id="1_7r4t5"]
 [ext_resource type="Texture2D" uid="uid://di8sp2r62jgrd" path="res://Assets/HUD/HudFire.png" id="1_nn1e5"]
 [ext_resource type="Texture2D" uid="uid://xopwsyp6u5xh" path="res://Assets/HUD/HudWing.png" id="2_akymb"]
 [ext_resource type="Texture2D" uid="uid://bwtf2mxsu1471" path="res://Assets/HUD/Hearts.png" id="3_wax87"]
+[ext_resource type="Texture2D" uid="uid://cjsswxp6adadx" path="res://Assets/HUD/DashUi.png" id="4_k50br"]
 [ext_resource type="FontFile" uid="uid://dsvosxxjomnr5" path="res://Assets/Fonts/PixelOperator8.ttf" id="5_3rqoy"]
 [ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="5_s1o24"]
 [ext_resource type="Texture2D" uid="uid://bkyahaeeslbp7" path="res://Assets/HUD/Cursor.png" id="7_1dos8"]
 [ext_resource type="PackedScene" uid="uid://bgpyev64thich" path="res://Scenes/bullet_icon.tscn" id="8_tipkt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6y6y"]
+atlas = ExtResource("4_k50br")
+region = Rect2(0, 15, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gh64d"]
+atlas = ExtResource("4_k50br")
+region = Rect2(15, 15, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqi5b"]
+atlas = ExtResource("4_k50br")
+region = Rect2(30, 15, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr5bp"]
+atlas = ExtResource("4_k50br")
+region = Rect2(0, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gk24m"]
+atlas = ExtResource("4_k50br")
+region = Rect2(15, 0, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbbrb"]
+atlas = ExtResource("4_k50br")
+region = Rect2(15, 30, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfudv"]
+atlas = ExtResource("4_k50br")
+region = Rect2(0, 30, 15, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hbrgq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6y6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gh64d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqi5b")
+}],
+"loop": false,
+"name": &"gain",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qr5bp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gk24m")
+}],
+"loop": false,
+"name": &"loss",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbbrb")
+}],
+"loop": false,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfudv")
+}],
+"loop": false,
+"name": &"on",
+"speed": 5.0
+}]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_7r4t5")
@@ -33,6 +106,15 @@ scale = Vector2(8, 8)
 texture = ExtResource("3_wax87")
 offset = Vector2(-3.75, -4.5)
 hframes = 4
+
+[node name="DashParent" type="Node" parent="Left"]
+
+[node name="Dash" type="AnimatedSprite2D" parent="Left/DashParent"]
+position = Vector2(40, 56)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_hbrgq")
+animation = &"on"
+centered = false
 
 [node name="Right" type="Control" parent="."]
 layout_mode = 3
@@ -101,3 +183,5 @@ position = Vector2(20, 20)
 scale = Vector2(8, 8)
 texture = ExtResource("7_1dos8")
 offset = Vector2(40, 0)
+
+[connection signal="animation_finished" from="Left/DashParent/Dash" to="." method="_on_dash_animation_finished"]
