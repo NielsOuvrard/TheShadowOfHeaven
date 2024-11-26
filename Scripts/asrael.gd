@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var stab_sprites: AnimatedSprite2D = $AnimatedSprite2D2
 @onready var stab_collision: CollisionShape2D = $AnimatedSprite2D2/StabDamageZone/CollisionShape2D
 @onready var shield: Sprite2D = $Shield
+@onready var shield_collison: CollisionShape2D = $Hitbox/ShieldCollison
 
 signal asrael_die
 
@@ -26,6 +27,27 @@ const ASRAEL_FULL_LIFE = 20
 const NMB_HEARTS = 2
 const HEART_FULL = 0 # according to the frame in the sprite
 const HEART_EMPTY = 1
+
+const THRESHOLDS_PHASES_ATTACK = [
+	{
+		"threshold": 0.8,
+		"level": 0,
+		"new_phase": AsraelPhase.PHASE_SKULL
+	},
+	{
+		"threshold": 0.6,
+		"level": 1
+	},
+	{
+		"threshold": 0.4,
+		"level": 2,
+		"new_phase": AsraelPhase.PHASE_RAYS
+	},
+	{
+		"threshold": 0.2,
+		"level": 3
+	}
+]
 
 # * Ray attack
 const INITIAL_RAYS_NUMBER = 5
@@ -56,6 +78,7 @@ var number_skulls := INITIAL_SKULLS_NUMBER
 const TIME_SHIELD_ON = 5.0
 const TIME_SHIELD_OFF = 3.0
 const TIME_SHIELD_BLINK = 2.0
+const SHIELD_RADIUS = 41
 var clockwise := false
 var step_rotation_shield := 0
 var step_blink_shield := 0
@@ -63,7 +86,7 @@ var about_to_unshield := false
 
 enum AsraelPhase {
 	PHASE_SKULL,
-	PHASE_LASER,
+	PHASE_RAYS,
 	PHASE_STAB
 }
 
@@ -74,13 +97,14 @@ enum AttackType {
 	RAY
 }
 
-var current_phase := AsraelPhase.PHASE_SKULL
+var current_phase := AsraelPhase.PHASE_STAB
 var current_level := 0
 var is_angry := false
+var next_process_get_angry = false # because Godot wtf collision does not works otherwise
 
 var animations := {
 	AsraelPhase.PHASE_SKULL: skull_attack_animation,
-	AsraelPhase.PHASE_LASER: ray_attack_animation,
+	AsraelPhase.PHASE_RAYS: ray_attack_animation,
 	AsraelPhase.PHASE_STAB: stab_attack_animation
 }
 
@@ -109,6 +133,12 @@ func update_hearts():
 		hearts_parent.add_child(new)
 
 # Attack ***************************************************************************************************
+
+var attack_moments = {
+	AttackType.STAB: stab_attack,
+	AttackType.SKULL: skull_attack,
+	AttackType.RAY: ray_attack
+}
 
 func new_skull(circle_rotation, i, offset = 0):
 	var skull = ASRAEL_SKULLS.instantiate()
@@ -152,6 +182,9 @@ func ray_attack():
 		var radian = circle_rotation * i * (PI / 180.0)
 		ray.position = player.position + Vector2(cos(radian) * spread_rays_x, sin(radian)) * rays_circle_radius
 		get_parent().add_child(ray)
+
+	# also skull attack
+	skull_attack()
 
 func stab_attack():
 	var player = get_tree().get_first_node_in_group("player")
@@ -226,15 +259,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 
 func _on_attack_moment_timeout() -> void:
-	match current_attack:
-		AttackType.STAB:
-			stab_attack()
-		AttackType.SKULL:
-			skull_attack()
-		AttackType.RAY:
-			ray_attack()
-		_:
-			pass
+	attack_moments[current_attack].call()
 	current_attack = AttackType.NONE
 
 
@@ -245,6 +270,7 @@ func _on_health_die(unlocked_weapons: Variant) -> void:
 func begin_angry_mode():
 	is_angry = true
 	shield.visible = true
+	shield_collison.disabled = false
 	shield.modulate.a = 1
 	health.is_invicible = true
 	shield_cooldown.wait_time = TIME_SHIELD_ON
@@ -255,25 +281,20 @@ func _on_health_life_change(life: Variant) -> void:
 	life_to_hearts_list(life)
 	update_hearts()
 
-	if life <= ASRAEL_FULL_LIFE * 0.8 and current_level == 0:
-		begin_angry_mode()
-		current_level += 1
-		number_skulls *= 2
-	elif life <= ASRAEL_FULL_LIFE * 0.6 and current_level == 1:
-		begin_angry_mode()
-		current_level += 1
-		current_phase = AsraelPhase.PHASE_LASER
-	elif life <= ASRAEL_FULL_LIFE * 0.4 and current_level == 2:
-		begin_angry_mode()
-		current_level += 1
-		number_rays *= 1.8
-		rays_interval /= 2
-		rays_circle_radius *= 0.7
-		spread_rays_x *= 2.3
-	elif life <= ASRAEL_FULL_LIFE * 0.2 and current_level == 3:
-		begin_angry_mode()
-		current_level += 1
-		current_phase = AsraelPhase.PHASE_STAB
+	for phase in THRESHOLDS_PHASES_ATTACK:
+		if life <= ASRAEL_FULL_LIFE * phase.threshold and current_level == phase.level:
+			next_process_get_angry = true
+			if "new_phase" in phase:
+				current_phase = phase.new_phase
+			match current_level:
+				2:
+					number_skulls *= 2
+				4:
+					number_rays *= 1.8
+					rays_interval /= 2
+					rays_circle_radius *= 0.7
+					spread_rays_x *= 2.3
+			current_level += 1
 
 
 func _on_stab_damage_zone_area_entered(area: Area2D) -> void:
@@ -298,11 +319,15 @@ func _on_attack_cooldown_timeout() -> void:
 # Shield event ***************************************************************************************************
 
 func _process(delta: float) -> void:
+	if next_process_get_angry:
+		next_process_get_angry = false
+		begin_angry_mode()
 	if health.is_invicible:
 		step_rotation_shield += 1
 		shield.rotation = sin(step_rotation_shield * 0.015)
 		var scale = 1.0 + cos(step_rotation_shield * 0.025) * 0.1
 		shield.scale = Vector2(scale, scale)
+		shield_collison.shape.radius = SHIELD_RADIUS * scale
 
 		if about_to_unshield:
 			step_blink_shield += 1
@@ -317,6 +342,7 @@ func _on_shield_cooldown_timeout() -> void:
 		return
 
 	shield.visible = not shield.visible
+	shield_collison.disabled = not shield.visible
 	shield.modulate.a = 1
 	health.is_invicible = not health.is_invicible
 	about_to_unshield = false
