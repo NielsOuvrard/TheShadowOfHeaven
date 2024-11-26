@@ -14,7 +14,6 @@ var locked_portraits := []
 
 var selected := Global.level_unlocked:
 	set(value):
-		print(value)
 		selected = value % (1 + Global.level_unlocked)
 		if selected < 0:
 			selected = Global.level_unlocked

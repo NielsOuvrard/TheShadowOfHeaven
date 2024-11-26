@@ -61,7 +61,6 @@ var weapons_unlocked := {
 }
 
 func _ready():
-	print_tree_pretty()
 	add_to_group("player")
 
 	# * Cooldowns
@@ -201,7 +200,6 @@ func avoid_collision_with_other_bodies(delta: float):
 				var area = collider.get_node("Hitbox")
 				var attack = Attack.new(0, global_position, push_force)
 				area.damage(attack)
-				print("Player send knockback to enemy")
 
 func _physics_process(delta):
 	if get_tree().paused:

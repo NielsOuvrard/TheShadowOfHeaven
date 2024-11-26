@@ -28,7 +28,6 @@ func actualize_animation():
 	# * if exist animation that can override the current one, play it
 	for anim in all_animations:
 		if animations_queue.has(anim) and current_animation < anim:
-			# print("override by animation: " + str(Data.animations_data[anim].name))
 			current_animation = anim
 			animated_sprite.play(Data.animations_data[current_animation].name)
 			break
@@ -39,7 +38,6 @@ func actualize_animation():
 			if animations_queue.has(anim):
 				if current_animation != anim:
 					current_animation = anim
-					# print("time out by animation: " + str(Data.animations_data[current_animation].name))
 					animated_sprite.play(Data.animations_data[current_animation].name)
 				break
 
@@ -48,4 +46,3 @@ func actualize_animation():
 	for anim in animations_queue.keys():
 		if animations_queue[anim] < current_time and anim != Data.Animations.IDLE:
 			animations_queue.erase(anim)
-			# print("remove animation: " + str(Data.animations_data[anim].name))

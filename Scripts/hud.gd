@@ -111,7 +111,6 @@ func _player_reload(type_weapon):
 		bullets[i].disabled((time_to_reload / len(bullets)) * (i + 1))
 
 func _player_use_controller(value):
-	print("_player_use_controller ", value)
 	cursor.visible = value
 
 func _player_look_direction(direction: Vector2):

@@ -16,7 +16,6 @@ func _process(delta: float) -> void:
 			if body.is_in_group("player") and hitbox and hitbox is Hitbox:
 				damage_given = true
 				hitbox.damage(Attack.new(DAMAGE, position, 0, {}))
-				print("damage given")
 
 func _on_body_entered(body: Node2D) -> void:
 	$AnimationPlayer.play("run")

@@ -29,7 +29,6 @@ extends CharacterBody2D
 		if v != Vector2.ZERO:
 			v.normalized()
 		linear_movement = v
-		print("linear_movement", linear_movement)
 
 @export var push_force = 5.0
 @export var followed_path : PathFollow2D
@@ -116,7 +115,7 @@ func _ready():
 	else:
 		enemy_look_at = Vector2.LEFT
 		state = State.NOTHING
-	
+
 	$LifeBar.position.y -= sprites.sprite_frames.get_frame_texture("default", 0).get_size().y
 	mark_sprite.position.y = -sprites.sprite_frames.get_frame_texture("default", 0).get_size().y\
 							-(mark_sprite.texture.get_size().y * 0.8)
@@ -163,20 +162,19 @@ func avoid_collision_with_other_bodies(delta: float):
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
-		
+
 		if collider is CharacterBody2D:  # or CharacterBody3D
 			# Calculate push direction
 			var push_direction = (global_position - collider.global_position).normalized()
-			
+
 			# Apply push force
 			velocity += push_direction * push_force
-			
+
 			# Also push the other body
 			if collider.has_node_and_resource("Hitbox"):
 				var area = collider.get_node("Hitbox")
 				var attack = Attack.new(0, global_position, push_force)
 				area.damage(attack)
-				print("Enemy send knockback to sth")
 
 func is_player_in_range(player: Node2D) -> bool:
 	if not player:
@@ -190,7 +188,7 @@ func is_player_in_range(player: Node2D) -> bool:
 		var new_direction = Vector2(cos(angle), sin(angle))
 		ray_cast.target_position = new_direction * ray_cast.target_position.length()
 		ray_cast.force_raycast_update()
-		
+
 		if ray_cast.is_colliding():
 			var collider = ray_cast.get_collider()
 			if collider.is_in_group("player"):
@@ -226,7 +224,7 @@ func player_in_fov(player: Node, delta: float) -> void:
 	else:
 		direction = Vector2.ZERO
 	velocity += direction * SPEED
-	
+
 
 func searching(delta: float):
 	match state_searching:
