@@ -652,7 +652,12 @@ position = Vector2(2260, -10)
 rotation = 1.5708
 
 [node name="Asrael" parent="ROOMS/RoomFinal" instance=ExtResource("13_gc3or")]
-position = Vector2(2465, -85)
+position = Vector2(2455, -72)
+
+[node name="Camera2D" type="Camera2D" parent="ROOMS/RoomFinal/Asrael"]
+position = Vector2(0, 58)
+enabled = false
+zoom = Vector2(4, 4)
 
 [node name="SPIKES" type="Node2D" parent="."]
 
@@ -816,4 +821,5 @@ position = Vector2(496, 88)
 [node name="Spikes52" parent="SPIKES/ROOM_4" instance=ExtResource("10_dh6ff")]
 position = Vector2(496, 86)
 
+[connection signal="opening" from="ROOMS/RoomFinal/Door14" to="." method="_on_door_14_opening"]
 [connection signal="asrael_die" from="ROOMS/RoomFinal/Asrael" to="." method="_on_asrael_asrael_die"]

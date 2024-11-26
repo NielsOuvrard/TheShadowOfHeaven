@@ -1,4 +1,6 @@
 extends Node2D
+@onready var camera_asrael: Camera2D = $ROOMS/RoomFinal/Asrael/Camera2D
+@onready var camera_player: Camera2D = $Player/Camera2D
 
 @onready var room_1: Node2D = $ROOMS/ROOM_2
 @onready var room_2: Node2D = $ROOMS/ROOM_3
@@ -13,6 +15,8 @@ extends Node2D
 	# ...
 ]
 
+const LERP = 0.05
+var camera_transition := false
 var level_class = Global.LEVEL_SIDE.new()
 
 func _ready() -> void:
@@ -28,3 +32,16 @@ func _enemy_has_die():
 func _on_asrael_asrael_die() -> void:
 	Global.save_game()
 	get_tree().change_scene_to_file("res://Scenes/credits.tscn")
+
+func _process(delta: float) -> void:
+	if camera_transition:
+		camera_player.zoom = camera_player.zoom.lerp(camera_asrael.zoom, LERP)
+		camera_player.global_position = camera_player.global_position.lerp(camera_asrael.global_position, LERP)
+		print("pos: ", camera_player.global_position.distance_to(camera_asrael.global_position))
+		if camera_player.global_position.distance_to(camera_asrael.global_position) < 1:
+			camera_transition = false
+			camera_player.enabled = false
+			camera_asrael.enabled = true
+
+func _on_door_14_opening() -> void:
+	camera_transition = true
