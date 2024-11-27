@@ -91,7 +91,7 @@ const PROJECTILS = {
 	Projectiles.SHOTGUN: {
 		"animation": "shotgun",
 		"speed": SPEED_PLAYER * 2.5,
-		"damage": 5,
+		"damage": 3,
 		"knockback": 100.0,
 		"light_energy": 1.5,
 		"light_color": Color(1, 1, 0, 1),
@@ -121,7 +121,7 @@ const PROJECTILS = {
 	Projectiles.SKULL: {
 		"animation": "skull",
 		"speed": SPEED_PLAYER * 0.85,
-		"damage": 1,
+		"damage": 3,
 		"knockback": 0.0,
 		"light_energy": 5,
 		"light_color": Color(1, 0, 1, 1),

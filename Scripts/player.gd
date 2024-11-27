@@ -74,7 +74,7 @@ func _ready():
 	shoot_cooldown.wait_time = Data.WEAPONS[current_weapon].cooldown_shot
 	if debug:
 		debug_weapons()
-	
+
 	SignalsHandler.camera_change.connect(_camera_change)
 
 func _camera_change(new_camera_position: Vector2):
@@ -118,6 +118,16 @@ func look_player():
 		SignalsHandler.player_use_controller.emit(local_playing_controller)
 		is_playing_controller = local_playing_controller
 
+func single_projectile(direction_proj: Vector2):
+	var proj = Global.PROJECTILE.instantiate()
+	proj.direction_proj = direction_proj
+	proj.thrower = "player"
+	proj.target = "enemies"
+	proj.type = Data.WEAPONS[current_weapon].projectile
+	proj.weapons_unlocked = weapons_unlocked
+	proj.position = position
+	get_parent().add_child(proj)
+
 func shoot():
 	if not reload_cooldown.is_stopped():
 		return
@@ -131,24 +141,27 @@ func shoot():
 		reload()
 		return
 	ammo_current[current_weapon] -= 1
-	SignalsHandler.player_update_ammo_current.emit(ammo_current[current_weapon])
 	weapons_sounds[current_weapon].play()
 
-	var proj = Global.PROJECTILE.instantiate()
+	var local_look_direction : Vector2
 	if shoot_according_to_direction or is_playing_controller:
-		proj.direction_proj = look_direction
+		local_look_direction = look_direction
 	else:
 		var screen_size = get_viewport().get_visible_rect().size
 		var mouse_position = (get_viewport().get_mouse_position() - screen_size / 2) / 4
 		var player_pos_on_screen = global_position - camera_position
-		proj.direction_proj = (mouse_position - player_pos_on_screen).normalized()
+		local_look_direction = (mouse_position - player_pos_on_screen).normalized()
 
-	proj.thrower = "player"
-	proj.target = "enemies"
-	proj.type = Data.WEAPONS[current_weapon].projectile
-	proj.weapons_unlocked = weapons_unlocked
-	proj.position = position
-	get_parent().add_child(proj)
+	single_projectile(local_look_direction)
+	if current_weapon == Data.Weapons.SHOTGUN:
+		var angle_offset = deg_to_rad(15)
+		single_projectile(local_look_direction.rotated(angle_offset))
+		single_projectile(local_look_direction.rotated(-angle_offset))
+
+	if ammo_current[current_weapon] == 0:
+		reload()
+	else:
+		SignalsHandler.player_update_ammo_current.emit(ammo_current[current_weapon])
 
 
 func reload():
