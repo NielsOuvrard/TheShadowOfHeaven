@@ -39,14 +39,10 @@ func _ready() -> void:
 
 	if Global.easy_mode:
 		level_class.kill_half_enemies()
-
+	
 # This function is called when an enemy dies
 func _enemy_has_die():
 	level_class.enemy_has_die()
-
-func _on_asrael_asrael_die() -> void:
-	Global.save_game()
-	get_tree().change_scene_to_file("res://Scenes/credits.tscn")
 
 func _process(delta: float) -> void:
 	if camera_transition:
@@ -78,3 +74,8 @@ func _projectile_skull_spawn():
 func _projectile_skull_despawn():
 	if shake_strength < 1:
 		shake_strength = 1.5
+
+
+func _on_asrael_asrael_die_for_good() -> void:
+	Global.save_game()
+	get_tree().change_scene_to_file("res://Scenes/credits.tscn")

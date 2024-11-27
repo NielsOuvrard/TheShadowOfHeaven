@@ -24,3 +24,4 @@ signal enemy_has_die
 signal projectile_skull_spawn
 signal projectile_skull_despawn
 signal camera_change(camera_position: Vector2)
+signal asrael_die

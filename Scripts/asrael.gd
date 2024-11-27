@@ -8,14 +8,15 @@ extends CharacterBody2D
 @onready var attack_moment: Timer = $AttackMoment
 @onready var attack_cooldown: Timer = $AttackCooldown
 @onready var shield_cooldown: Timer = $ShieldCooldown
+@onready var die_cooldown: Timer = $DieCooldown
 
 @onready var stab_sprites: AnimatedSprite2D = $AnimatedSprite2D2
 @onready var stab_collision: CollisionShape2D = $AnimatedSprite2D2/StabDamageZone/CollisionShape2D
 @onready var shield: Sprite2D = $Shield
 @onready var shield_collison: CollisionShape2D = $Hitbox/ShieldCollison
 
-signal asrael_die
 signal asrael_attack(strenth)
+signal asrael_die_for_good
 
 const ASRAEL_RAY = preload("res://Scenes/AsraelRay.tscn")
 const ASRAEL_SKULLS = preload("res://Scenes/AsraelSkulls.tscn")
@@ -174,11 +175,24 @@ func skull_duble_wave():
 		get_parent().add_child(skull)
 	asrael_attack.emit(15)
 
+	if current_level < 2:
+		return
+
 	# second wave
 	for i in range(local_number_skulls - 1):
 		var skull = new_skull(circle_rotation, i, circle_rotation / 2)
 		skull.time_to_wait = TIME_BETWEEN_WAVE
 		get_parent().add_child(skull)
+
+	if current_level < 3:
+		return
+
+	# third wave
+	for i in range(local_number_skulls):
+		var skull = new_skull(circle_rotation, i)
+		skull.time_to_wait = TIME_BETWEEN_WAVE * 2
+		get_parent().add_child(skull)
+
 
 func ray_attack():
 	var circle_rotation = 180.0 / (number_rays - 1)
@@ -272,7 +286,19 @@ func _on_attack_moment_timeout() -> void:
 
 
 func _on_health_die(unlocked_weapons: Variant) -> void:
-	asrael_die.emit()
+	SignalsHandler.asrael_die.emit()
+	var sound_tmp = Global.SOUND_AND_FREE.instantiate()
+	sound_tmp.path_sound = "res://Assets/Sounds/Enemigos/AsraelDie.mp3"
+	get_parent().add_child(sound_tmp)
+	attack_cooldown.stop()
+	shield_cooldown.stop()
+	animated_sprite.modulate = Color(0, 0, 0, 1)
+	next_process_get_angry = true # to make shield disappear
+	shield_collison.disabled = false
+	die_cooldown.start()
+
+func _on_die_cooldown_timeout() -> void:
+	asrael_die_for_good.emit()
 	queue_free()
 
 func begin_angry_mode():
@@ -300,7 +326,7 @@ func _on_health_life_change(_old, life: Variant) -> void:
 				1:
 					number_skulls *= 1.5
 				2: # rays
-					number_skulls = INITIAL_SKULLS_NUMBER
+					number_skulls = INITIAL_SKULLS_NUMBER * 2.5
 				3:
 					number_skulls *= 1.5
 					number_rays *= 1.8
@@ -340,6 +366,9 @@ func _on_attack_cooldown_timeout() -> void:
 # Shield event ***************************************************************************************************
 
 func _process(delta: float) -> void:
+	if next_process_get_angry and health.life == 0:
+		shield.visible = false
+		return
 	if next_process_get_angry:
 		next_process_get_angry = false
 		begin_angry_mode()

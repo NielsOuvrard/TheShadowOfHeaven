@@ -355,6 +355,10 @@ autostart = true
 [node name="ShieldCooldown" type="Timer" parent="."]
 one_shot = true
 
+[node name="DieCooldown" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 2
@@ -392,5 +396,6 @@ texture = ExtResource("7_lxjk6")
 [connection signal="timeout" from="AttackMoment" to="." method="_on_attack_moment_timeout"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="ShieldCooldown" to="." method="_on_shield_cooldown_timeout"]
+[connection signal="timeout" from="DieCooldown" to="." method="_on_die_cooldown_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite2D2" to="." method="_on_animated_sprite_2d_2_animation_finished"]
 [connection signal="area_entered" from="AnimatedSprite2D2/StabDamageZone" to="." method="_on_stab_damage_zone_area_entered"]

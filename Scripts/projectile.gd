@@ -24,6 +24,8 @@ const LAYER_ENEMY_ATTACK = 8
 
 const EACH_FRAME = 1.0 / 60.0
 
+var next_process_free := false
+
 func _ready():
 	add_to_group("projectiles") # useless for now
 	point_light.color = Data.PROJECTILS[type].light_color
@@ -47,9 +49,18 @@ func _ready():
 	self.collision_layer = LAYER_PLAYER_ATTACK if thrower == "player" else LAYER_ENEMY_ATTACK
 	self.collision_mask = 48 + (LAYER_PLAYER if thrower != "player" else LAYER_ENEMY)
 
+	SignalsHandler.asrael_die.connect(now_next_process_free)
+
+func now_next_process_free():
+	print("free now")
+	next_process_free = true
+
 func _physics_process(delta: float) -> void:
 	var velocity = direction_proj.normalized() * Data.PROJECTILS[type].speed * EACH_FRAME
 	position += velocity
+
+	if next_process_free:
+		emit_and_free()
 
 func emit_and_free():
 	if type == Data.Projectiles.SKULL:
