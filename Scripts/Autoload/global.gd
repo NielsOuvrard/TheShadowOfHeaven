@@ -13,6 +13,7 @@ func rand_range(min_value: int, max_value: int) -> int:
 const PROJECTILE = preload("res://Scenes/projectile.tscn")
 const ANIMATED_TEXT = preload("res://Scenes/text_animated.tscn")
 const ITEM = preload("res://Scenes/item.tscn")
+const SOUND_AND_FREE = preload("res://Scenes/sound_and_free.tscn")
 
 const LEVEL_SIDE = preload("res://Scripts/level_side.gd")
 

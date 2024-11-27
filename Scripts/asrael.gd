@@ -15,10 +15,12 @@ extends CharacterBody2D
 @onready var shield_collison: CollisionShape2D = $Hitbox/ShieldCollison
 
 signal asrael_die
+signal asrael_attack(strenth)
 
 const ASRAEL_RAY = preload("res://Scenes/AsraelRay.tscn")
 const ASRAEL_SKULLS = preload("res://Scenes/AsraelSkulls.tscn")
 
+const ATTACK_COOLDOWN = 3.5
 const TIME_ONE_FRAME = 1.0 / 12.0 # 12 frames per second
 const NMB_PRE_FRAME = 2
 const NUMBER_HEARTS = 2
@@ -32,7 +34,6 @@ const THRESHOLDS_PHASES_ATTACK = [
 	{
 		"threshold": 0.8,
 		"level": 0,
-		"new_phase": AsraelPhase.PHASE_SKULL
 	},
 	{
 		"threshold": 0.6,
@@ -72,6 +73,8 @@ const REPEAT_PRE_SKULL = 4
 const INITIAL_SKULLS_NUMBER = 5
 const TIME_BETWEEN_SKULLS = 0.15
 const TIME_BETWEEN_WAVE = 0.5
+const MAX_SKULLS_DOUBLE_WAVE = INITIAL_SKULLS_NUMBER * 2
+
 var number_skulls := INITIAL_SKULLS_NUMBER
 
 # * Shield
@@ -97,7 +100,8 @@ enum AttackType {
 	RAY
 }
 
-var current_phase := AsraelPhase.PHASE_STAB
+var player
+var current_phase := AsraelPhase.PHASE_SKULL
 var current_level := 0
 var is_angry := false
 var next_process_get_angry = false # because Godot wtf collision does not works otherwise
@@ -157,24 +161,26 @@ func skull_attack():
 			skull.time_to_wait = (number_skulls - i - 1) * TIME_BETWEEN_SKULLS
 		get_parent().add_child(skull)
 	clockwise = not clockwise
+	asrael_attack.emit(5)
 
 func skull_duble_wave():
-	var circle_rotation = 180.0 / (number_skulls - 1)
+	var local_number_skulls = min(number_skulls, MAX_SKULLS_DOUBLE_WAVE)
+	var circle_rotation = 180.0 / (local_number_skulls - 1)
 
 	# first wave
-	for i in range(number_skulls):
+	for i in range(local_number_skulls):
 		var skull = new_skull(circle_rotation, i)
 		skull.time_to_wait = 0
 		get_parent().add_child(skull)
+	asrael_attack.emit(15)
 
 	# second wave
-	for i in range(number_skulls - 1):
+	for i in range(local_number_skulls - 1):
 		var skull = new_skull(circle_rotation, i, circle_rotation / 2)
 		skull.time_to_wait = TIME_BETWEEN_WAVE
 		get_parent().add_child(skull)
 
 func ray_attack():
-	var player = get_tree().get_first_node_in_group("player")
 	var circle_rotation = 180.0 / (number_rays - 1)
 	for i in range(number_rays):
 		var ray = ASRAEL_RAY.instantiate()
@@ -182,12 +188,12 @@ func ray_attack():
 		var radian = circle_rotation * i * (PI / 180.0)
 		ray.position = player.position + Vector2(cos(radian) * spread_rays_x, sin(radian)) * rays_circle_radius
 		get_parent().add_child(ray)
+	asrael_attack.emit()
 
 	# also skull attack
 	skull_attack()
 
 func stab_attack():
-	var player = get_tree().get_first_node_in_group("player")
 	stab_collision.disabled = false
 	if player.position.x > position.x:
 		stab_sprites.flip_h = true
@@ -233,6 +239,7 @@ func stab_attack_animation():
 
 func _ready() -> void:
 	add_to_group(&"enemies")
+	player = get_tree().get_first_node_in_group("player")
 	stab_sprites.visible = false
 	hearts.position.x = -((hearts.texture.get_size().x / NUMBER_HEARTS) * (health.max_life / 2.0))
 
@@ -287,13 +294,19 @@ func _on_health_life_change(_old, life: Variant) -> void:
 			if "new_phase" in phase:
 				current_phase = phase.new_phase
 			match current_level:
-				2:
+				0:
 					number_skulls *= 2
-				4:
+				1:
+					number_skulls *= 1.5
+				2: # rays
+					number_skulls = INITIAL_SKULLS_NUMBER
+				3:
+					number_skulls *= 1.5
 					number_rays *= 1.8
 					rays_interval /= 2
 					rays_circle_radius *= 0.7
 					spread_rays_x *= 2.3
+			print("current_level", current_level)
 			current_level += 1
 
 
@@ -309,12 +322,19 @@ func _on_animated_sprite_2d_2_animation_finished() -> void:
 
 
 func _on_attack_cooldown_timeout() -> void:
+	attack_cooldown.wait_time = ATTACK_COOLDOWN
 	attack_cooldown.start()
 	if is_angry:
 		skull_duble_wave()
 		is_angry = false
 		return
-	animations[current_phase].call()
+	if player.position.distance_to(position) < 75.0:
+		attack_cooldown.wait_time = 2.0
+		attack_cooldown.start()
+
+		stab_attack_animation()
+	else:
+		animations[current_phase].call()
 
 # Shield event ***************************************************************************************************
 

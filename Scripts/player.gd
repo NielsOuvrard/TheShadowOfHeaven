@@ -46,6 +46,8 @@ var look_direction := Vector2.ZERO
 var last_look_direction_mouse := Vector2.ZERO
 var knockback_velocity := Vector2.ZERO # ? component with this
 var is_playing_controller := false
+var shoot_according_to_direction := true
+var camera_position := Vector2.ZERO
 
 var ammo_inventory := {
 	Data.Weapons.PISTOL: 0,
@@ -72,6 +74,12 @@ func _ready():
 	shoot_cooldown.wait_time = Data.WEAPONS[current_weapon].cooldown_shot
 	if debug:
 		debug_weapons()
+	
+	SignalsHandler.camera_change.connect(_camera_change)
+
+func _camera_change(new_camera_position: Vector2):
+	shoot_according_to_direction = false
+	camera_position = new_camera_position
 
 func change_radius_sword_collision(value: float):
 	sword_collision.shape.radius = value
@@ -127,7 +135,14 @@ func shoot():
 	weapons_sounds[current_weapon].play()
 
 	var proj = Global.PROJECTILE.instantiate()
-	proj.direction_proj = look_direction
+	if shoot_according_to_direction or is_playing_controller:
+		proj.direction_proj = look_direction
+	else:
+		var screen_size = get_viewport().get_visible_rect().size
+		var mouse_position = (get_viewport().get_mouse_position() - screen_size / 2) / 4
+		var player_pos_on_screen = global_position - camera_position
+		proj.direction_proj = (mouse_position - player_pos_on_screen).normalized()
+
 	proj.thrower = "player"
 	proj.target = "enemies"
 	proj.type = Data.WEAPONS[current_weapon].projectile

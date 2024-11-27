@@ -827,4 +827,5 @@ volume_db = -10.0
 autoplay = true
 
 [connection signal="opening" from="ROOMS/RoomFinal/Door14" to="." method="_on_door_14_opening"]
+[connection signal="asrael_attack" from="ROOMS/RoomFinal/Asrael" to="." method="_on_asrael_asrael_attack"]
 [connection signal="asrael_die" from="ROOMS/RoomFinal/Asrael" to="." method="_on_asrael_asrael_die"]

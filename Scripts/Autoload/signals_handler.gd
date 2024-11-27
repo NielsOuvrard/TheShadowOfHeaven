@@ -21,3 +21,6 @@ signal player_update_dash(value)
 
 ## * other signals
 signal enemy_has_die
+signal projectile_skull_spawn
+signal projectile_skull_despawn
+signal camera_change(camera_position: Vector2)
