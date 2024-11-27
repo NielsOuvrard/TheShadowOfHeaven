@@ -251,12 +251,10 @@ func stab_attack_animation():
 
 # Physics ***************************************************************************************************
 
-func _ready() -> void:
-	add_to_group(&"enemies")
-	add_to_group(&"boss")
+func _wake_up():
+	print("_wake_up")
 	player = get_tree().get_first_node_in_group("player")
 	stab_sprites.visible = false
-	hearts.position.x = -((hearts.texture.get_size().x / NUMBER_HEARTS) * (health.max_life / 2.0))
 
 	life_to_hearts_list(ASRAEL_FULL_LIFE)
 	update_hearts()
@@ -268,6 +266,13 @@ func _ready() -> void:
 	shield_cooldown.start()
 
 	attack_cooldown.start()
+
+func _ready() -> void:
+	add_to_group(&"enemies")
+	add_to_group(&"boss")
+	hearts.position.x = -((hearts.texture.get_size().x / NUMBER_HEARTS) * (health.max_life / 2.0))
+
+	SignalsHandler.asrael_wake_up.connect(_wake_up)
 
 
 # Signals ***************************************************************************************************

@@ -61,6 +61,7 @@ func _process(delta: float) -> void:
 
 func _on_door_14_opening() -> void:
 	camera_transition = true
+	SignalsHandler.asrael_wake_up.emit()
 
 func _on_asrael_asrael_attack(strenth: float) -> void:
 	shake_strength = strenth
