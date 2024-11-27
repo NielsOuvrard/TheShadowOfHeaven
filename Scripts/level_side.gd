@@ -3,7 +3,7 @@ extends Resource
 var room_index = 0
 var rooms = []
 
-func is_enemy_remaning(room_id: int):
+func is_enemy_remaning():
 	var enemies_founds = 0
 	for node in rooms[room_index].get_children():
 		if node.is_in_group("enemies"):
@@ -20,9 +20,9 @@ func open_all_doors(room_id: int):
 			node.openable = true
 
 func enemy_has_die():
-	if not is_enemy_remaning(room_index):
+	if not is_enemy_remaning():
 		open_all_doors(room_index)
-		room_index += 1 if room_index < rooms.size() - 1 else rooms.size() - 1
+		room_index = room_index + 1 if room_index < rooms.size() - 1 else rooms.size() - 1
 
 func debug_force_open_all_doors():
 	for i in range(rooms.size()):

@@ -3,8 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://cqg1iesn6t17a" path="res://Assets/World/Obstacles.png" id="1_fddb0"]
 [ext_resource type="Script" path="res://Scripts/obstacles.gd" id="2_36d8p"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qfokl"]
-size = Vector2(16, 14)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ut2pr"]
+radius = 4.99997
+height = 16.0136
 
 [node name="Obstacle" type="StaticBody2D"]
 z_index = 1
@@ -21,5 +22,6 @@ hframes = 2
 vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
-shape = SubResource("RectangleShape2D_qfokl")
+position = Vector2(0, -4)
+rotation = -1.57421
+shape = SubResource("CapsuleShape2D_ut2pr")
