@@ -33,3 +33,12 @@ func debug_force_kill_all_enemies():
 		for node in rooms[i].get_children():
 			if node.is_in_group("enemies"):
 				node.queue_free()
+
+func kill_half_enemies():
+	for room in rooms:
+		var enemies = []
+		for node in room.get_children():
+			if node.is_in_group("enemies") and not node.is_in_group("boss"):
+				enemies.append(node)
+		for i in range(round(enemies.size() / 2)):
+			enemies[i].queue_free()

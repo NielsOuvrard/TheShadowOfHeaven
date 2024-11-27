@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://crvpqpbodxy84"]
+[gd_scene load_steps=14 format=4 uid="uid://crvpqpbodxy84"]
 
 [ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://Tres/greed2.tres" id="1_63g51"]
 [ext_resource type="Script" path="res://Scripts/betreyal.gd" id="1_282fw"]
@@ -11,8 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://b0ckibqpi4lpm" path="res://Scenes/chest.tscn" id="8_bco7m"]
 [ext_resource type="PackedScene" uid="uid://bcbtjhffrph75" path="res://Scenes/item.tscn" id="9_wjwrd"]
 [ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="10_54dm5"]
-[ext_resource type="AudioStream" uid="uid://fxx1qh8n6sve" path="res://Assets/Sounds/Music/Level2.mp3" id="12_k2vvb"]
 [ext_resource type="PackedScene" uid="uid://b2o724kx74abe" path="res://Scenes/obstacle.tscn" id="12_dnag6"]
+[ext_resource type="AudioStream" uid="uid://fxx1qh8n6sve" path="res://Assets/Sounds/Music/Level2.mp3" id="12_k2vvb"]
 
 [node name="Betreyal" type="Node2D"]
 z_index = 1
@@ -642,6 +642,7 @@ position = Vector2(1784, 520)
 stream = ExtResource("12_k2vvb")
 volume_db = -15.0
 autoplay = true
+
 [node name="OBSTACLES" type="Node2D" parent="."]
 
 [node name="Obstacle" parent="OBSTACLES" instance=ExtResource("12_dnag6")]

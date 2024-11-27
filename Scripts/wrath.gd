@@ -37,6 +37,9 @@ func _ready() -> void:
 	SignalsHandler.projectile_skull_despawn.connect(_projectile_skull_despawn)
 	SignalsHandler.projectile_skull_spawn.connect(_projectile_skull_spawn)
 
+	if Global.easy_mode:
+		level_class.kill_half_enemies()
+
 # This function is called when an enemy dies
 func _enemy_has_die():
 	level_class.enemy_has_die()

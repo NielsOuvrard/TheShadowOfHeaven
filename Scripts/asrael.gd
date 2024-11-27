@@ -239,6 +239,7 @@ func stab_attack_animation():
 
 func _ready() -> void:
 	add_to_group(&"enemies")
+	add_to_group(&"boss")
 	player = get_tree().get_first_node_in_group("player")
 	stab_sprites.visible = false
 	hearts.position.x = -((hearts.texture.get_size().x / NUMBER_HEARTS) * (health.max_life / 2.0))

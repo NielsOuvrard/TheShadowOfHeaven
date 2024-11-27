@@ -86,3 +86,8 @@ func _on_volume_slider_drag_ended(_value_changed: bool) -> void:
 		AudioServer.set_bus_mute(master_bus, true)
 	elif volume_slider.value == 0:
 		AudioServer.set_bus_mute(master_bus, false)
+
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	Global.easy_mode = toggled_on
+	print("toggled_on = ", toggled_on)

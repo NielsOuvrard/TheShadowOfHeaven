@@ -79,6 +79,14 @@ scale = Vector2(4, 4)
 texture = ExtResource("4_f0hoq")
 offset = Vector2(37, 12)
 
+[node name="CheckButton" type="CheckButton" parent="."]
+offset_left = 1456.0
+offset_top = 744.0
+offset_right = 1500.0
+offset_bottom = 768.0
+scale = Vector2(8, 8)
+
 [connection signal="drag_ended" from="VolumeSlider" to="." method="_on_volume_slider_drag_ended"]
 [connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]

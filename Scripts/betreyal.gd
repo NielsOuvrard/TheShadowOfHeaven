@@ -21,6 +21,9 @@ func _ready() -> void:
 	Global.load_game()
 	level_class.rooms = rooms
 
+	if Global.easy_mode:
+		level_class.kill_half_enemies()
+
 # This function is called when an enemy dies
 func _enemy_has_die():
 	level_class.enemy_has_die()

@@ -20,6 +20,8 @@ const LEVEL_SIDE = preload("res://Scripts/level_side.gd")
 var level_selected := Data.Level.GREED
 var level_unlocked := Data.Level.GREED
 
+var easy_mode := false
+
 func drop_random_item(position: Vector2, parent: Node2D, unlocked_weapons: Dictionary) -> void:
 	var item = ITEM.instantiate()
 	item.position = position
