@@ -7,8 +7,9 @@ var time_to_wait: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SignalsHandler.asrael_die.connect(queue_free)
 	await get_tree().create_timer(time_to_wait).timeout
-	
+
 	var proj = Global.PROJECTILE.instantiate()
 	proj.direction_proj = direction
 	proj.thrower = "enemies"

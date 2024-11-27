@@ -13,6 +13,7 @@ var laser_queue := []
 var time_to_wait
 
 func _ready() -> void:
+	SignalsHandler.asrael_die.connect(queue_free)
 	self.visible = false
 	await get_tree().create_timer(time_to_wait).timeout
 	self.visible = true
