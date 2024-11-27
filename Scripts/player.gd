@@ -200,6 +200,8 @@ func add_to_inventory(item: Data.Items, number: int):
 		health.life = min(health.life + number, health.max_life)
 	else:
 		ammo_inventory[Data.ITEMS[item].weapon] += number
+		if Data.WEAPONS[current_weapon].ammo == item:
+			SignalsHandler.player_update_ammo_both.emit(ammo_current[current_weapon], ammo_inventory[current_weapon])
 	animation_handler.add_animation(Data.Animations.PICK_UP)
 
 ## used when the player unlock a new weapon
