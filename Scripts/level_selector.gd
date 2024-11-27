@@ -58,6 +58,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed('move_left'):
 		change_selected_level(-1)
 
+	if Input.is_action_just_pressed('open_config'):
+		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+
 	if Input.is_action_just_pressed("shoot"):
 		Global.level_selected = selected
 		get_tree().change_scene_to_file("res://Scenes/gameplay.tscn")
