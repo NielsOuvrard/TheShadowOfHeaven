@@ -154,7 +154,8 @@ func walking(delta: float):
 	# walk only if he is not rotating
 	if enemy_look_at == new_direction or (followed_path and state == State.WALKING):
 		velocity += new_direction * SPEED
-		sprites.play("move")
+		if sprites.animation != "move" or !sprites.is_playing():
+			sprites.play("move")
 
 
 func avoid_collision_with_other_bodies(delta: float):
@@ -211,7 +212,8 @@ func shoot(player: Node) -> void:
 	shot_cooldown.start()
 
 func player_in_fov(player: Node, delta: float) -> void:
-	sprites.play("attack")
+	if sprites.animation != "attack" or !sprites.is_playing():
+		sprites.play("attack")
 	var angle : float = enemy_look_at.angle_to(player.position - position)
 	if abs(angle) > 0.1:
 		enemy_look_at = enemy_look_at.rotated(angle)
@@ -253,7 +255,8 @@ func searching(delta: float):
 
 func _physics_process(delta: float) -> void:
 	var player = get_tree().get_first_node_in_group("player")
-	sprites.play("default")
+	if state != State.ATTACKING:
+		sprites.play("default")
 	if is_player_in_range(player):
 		state = State.ATTACKING
 		mark_sprite.visible = true
