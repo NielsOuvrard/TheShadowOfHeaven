@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://0y06vbi8ods3" path="res://Scenes/player.tscn" id="7_f7bvl"]
 [ext_resource type="PackedScene" uid="uid://cy2atdt0bqntm" path="res://Scenes/torch.tscn" id="8_of5e7"]
 [ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="9_ikai7"]
-[ext_resource type="PackedScene" uid="uid://dhsyf6vmve3jf" path="res://Scenes/lava.tscn" id="9_m28jr"]
+[ext_resource type="PackedScene" path="res://Scenes/lava.tscn" id="9_m28jr"]
 [ext_resource type="PackedScene" uid="uid://b0ckibqpi4lpm" path="res://Scenes/chest.tscn" id="10_bqy8t"]
 [ext_resource type="PackedScene" uid="uid://cmfinma8lhai7" path="res://Scenes/ghost.tscn" id="10_jlttf"]
 [ext_resource type="Texture2D" uid="uid://bxlaox66kqmyw" path="res://Assets/World/ControlCofre.png" id="11_4kwqn"]
@@ -36,7 +36,7 @@ tile_set = ExtResource("1_73fo5")
 
 [node name="Player" parent="." instance=ExtResource("7_f7bvl")]
 z_index = 2
-position = Vector2(-33, 776)
+position = Vector2(468, 780)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 z_index = 100
@@ -168,13 +168,16 @@ position = Vector2(694, 776)
 rotation = 1.5708
 openable = false
 
-[node name="Sectarian" parent="ROOM_2" instance=ExtResource("3_bkeho")]
+[node name="Sectarian" parent="ROOM_2" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_bkeho")]
 position = Vector2(648, 776)
 linear_movement = Vector2(1, 0)
+followed_path = NodePath("")
+offset_followed_path = 0.5
 
-[node name="Sectarian2" parent="ROOM_2" instance=ExtResource("3_bkeho")]
+[node name="Sectarian2" parent="ROOM_2" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_bkeho")]
 position = Vector2(624, 736)
 linear_movement = Vector2(1, 0)
+followed_path = NodePath("")
 
 [node name="SPIKES" type="Node2D" parent="ROOM_2"]
 y_sort_enabled = true
@@ -891,14 +894,6 @@ color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch30" parent="TORCHES" instance=ExtResource("8_of5e7")]
 position = Vector2(1088, 594)
-color = Color(0.945098, 0.870588, 0, 1)
-
-[node name="Torch31" parent="TORCHES" instance=ExtResource("8_of5e7")]
-position = Vector2(1809, 554)
-color = Color(0.945098, 0.870588, 0, 1)
-
-[node name="Torch32" parent="TORCHES" instance=ExtResource("8_of5e7")]
-position = Vector2(1809, 663)
 color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Item" parent="." instance=ExtResource("15_2xedr")]
