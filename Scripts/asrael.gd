@@ -65,7 +65,7 @@ var spread_rays_x := SPREAD_RAYS_X
 
 # * Stab attack
 const FRAME_STAB_ATTACK = 5
-const REPEAT_PRE_STAB = 4
+const REPEAT_PRE_STAB = 3
 var position_stab_sprit_x: float = -17.0
 var position_stab_colis_x: float = -8.0
 

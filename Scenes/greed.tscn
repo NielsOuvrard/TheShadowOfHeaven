@@ -893,14 +893,6 @@ color = Color(0.945098, 0.870588, 0, 1)
 position = Vector2(1088, 594)
 color = Color(0.945098, 0.870588, 0, 1)
 
-[node name="Torch31" parent="TORCHES" instance=ExtResource("8_of5e7")]
-position = Vector2(1809, 554)
-color = Color(0.945098, 0.870588, 0, 1)
-
-[node name="Torch32" parent="TORCHES" instance=ExtResource("8_of5e7")]
-position = Vector2(1809, 663)
-color = Color(0.945098, 0.870588, 0, 1)
-
 [node name="Item" parent="." instance=ExtResource("15_2xedr")]
 position = Vector2(1104, 768)
 type = 3
