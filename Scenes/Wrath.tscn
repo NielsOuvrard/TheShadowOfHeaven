@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bnpnxeknwollu"]
+[gd_scene load_steps=17 format=4 uid="uid://bnpnxeknwollu"]
 
 [ext_resource type="Script" path="res://Scripts/wrath.gd" id="1_57gg5"]
 [ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://Tres/greed2.tres" id="1_gcgya"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dacosqfur2u5l" path="res://Scenes/spikes.tscn" id="10_dh6ff"]
 [ext_resource type="PackedScene" uid="uid://ccr7fpc8pwy60" path="res://Scenes/deamon.tscn" id="11_024px"]
 [ext_resource type="PackedScene" uid="uid://k1nxlv42ukb" path="res://Scenes/asrael.tscn" id="13_gc3or"]
+[ext_resource type="PackedScene" uid="uid://dhsyf6vmve3jf" path="res://Scenes/lava.tscn" id="14_hpxsy"]
 [ext_resource type="AudioStream" uid="uid://d3qf3qynlej2j" path="res://Assets/Sounds/Music/Level3.mp3" id="15_0t1d0"]
 
 [node name="Wrath" type="Node2D"]
@@ -630,10 +631,10 @@ position = Vector2(2288, 24)
 position = Vector2(2288, -40)
 
 [node name="Torch3" parent="ROOMS/RoomFinal" instance=ExtResource("8_qlv8h")]
-position = Vector2(2400, -112)
+position = Vector2(2403, -112)
 
 [node name="Torch4" parent="ROOMS/RoomFinal" instance=ExtResource("8_qlv8h")]
-position = Vector2(2528, -112)
+position = Vector2(2512, -112)
 
 [node name="Torch5" parent="ROOMS/RoomFinal" instance=ExtResource("8_qlv8h")]
 position = Vector2(2528, 96)
@@ -642,22 +643,216 @@ position = Vector2(2528, 96)
 position = Vector2(2400, 96)
 
 [node name="Torch7" parent="ROOMS/RoomFinal" instance=ExtResource("8_qlv8h")]
-position = Vector2(2624, -64)
+position = Vector2(2624, -40)
 
 [node name="Torch8" parent="ROOMS/RoomFinal" instance=ExtResource("8_qlv8h")]
-position = Vector2(2624, 56)
+position = Vector2(2623, 26)
 
 [node name="Door14" parent="ROOMS/RoomFinal" instance=ExtResource("2_fetld")]
 position = Vector2(2260, -10)
 rotation = 1.5708
 
 [node name="Asrael" parent="ROOMS/RoomFinal" instance=ExtResource("13_gc3or")]
-position = Vector2(2455, -72)
+position = Vector2(2456, -72)
 
 [node name="Camera2D" type="Camera2D" parent="ROOMS/RoomFinal/Asrael"]
-position = Vector2(0, 58)
+position = Vector2(1, 68)
 enabled = false
 zoom = Vector2(4, 4)
+
+[node name="LAVA" type="Node2D" parent="ROOMS/RoomFinal"]
+
+[node name="Lava" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2288, -114)
+
+[node name="Lava2" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2288, -98)
+
+[node name="Lava3" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2288, -82)
+
+[node name="Lava4" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2304, -114)
+
+[node name="Lava5" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2304, -98)
+
+[node name="Lava6" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2304, -82)
+
+[node name="Lava7" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2320, -114)
+
+[node name="Lava8" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2320, -98)
+
+[node name="Lava9" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2320, -82)
+
+[node name="Lava10" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2336, -114)
+
+[node name="Lava11" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2336, -98)
+
+[node name="Lava12" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2336, -82)
+
+[node name="Lava13" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2352, -114)
+
+[node name="Lava14" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2352, -98)
+
+[node name="Lava15" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2352, -82)
+
+[node name="Lava16" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2368, -114)
+
+[node name="Lava17" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2368, -98)
+
+[node name="Lava18" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2368, -82)
+
+[node name="Lava19" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2384, -114)
+
+[node name="Lava20" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2384, -98)
+
+[node name="Lava22" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2624, -114)
+
+[node name="Lava23" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2624, -98)
+
+[node name="Lava24" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2624, -82)
+
+[node name="Lava25" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2608, -114)
+
+[node name="Lava26" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2608, -98)
+
+[node name="Lava27" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2608, -82)
+
+[node name="Lava28" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2592, -114)
+
+[node name="Lava29" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2592, -98)
+
+[node name="Lava30" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2592, -82)
+
+[node name="Lava31" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2576, -114)
+
+[node name="Lava32" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2576, -98)
+
+[node name="Lava33" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2576, -82)
+
+[node name="Lava34" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2560, -114)
+
+[node name="Lava35" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2560, -98)
+
+[node name="Lava36" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2560, -82)
+
+[node name="Lava37" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2544, -114)
+
+[node name="Lava64" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2528, -114)
+
+[node name="Lava65" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2528, -98)
+
+[node name="Lava38" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2544, -98)
+
+[node name="Lava39" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2544, -82)
+
+[node name="Lava40" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2288, 94)
+
+[node name="Lava41" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2288, 78)
+
+[node name="Lava42" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2288, 62)
+
+[node name="Lava43" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2288, 46)
+
+[node name="Lava44" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2304, 62)
+
+[node name="Lava45" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2304, 78)
+
+[node name="Lava46" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2304, 94)
+
+[node name="Lava47" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2320, 94)
+
+[node name="Lava48" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2320, 78)
+
+[node name="Lava49" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2336, 94)
+
+[node name="Lava50" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2288, -66)
+
+[node name="Lava51" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2304, -66)
+
+[node name="Lava52" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2608, -66)
+
+[node name="Lava63" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2624, -66)
+
+[node name="Lava53" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2624, 94)
+
+[node name="Lava54" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2608, 94)
+
+[node name="Lava55" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2592, 94)
+
+[node name="Lava56" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2576, 94)
+
+[node name="Lava57" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2592, 78)
+
+[node name="Lava58" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2608, 78)
+
+[node name="Lava59" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2624, 78)
+
+[node name="Lava60" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2624, 62)
+
+[node name="Lava61" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2608, 62)
+
+[node name="Lava62" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
+position = Vector2(2624, 46)
 
 [node name="SPIKES" type="Node2D" parent="."]
 
