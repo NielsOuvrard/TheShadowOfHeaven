@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hearts_parent: Node = $HeartsParent
-@onready var hearts: Sprite2D = $HeartsParent/Hearts
+@onready var hearts: Sprite2D = $Hearts
+@onready var die_light: PointLight2D = $PointLight2D
 
 @onready var health: Health = $Health
 @onready var attack_moment: Timer = $AttackMoment
@@ -26,7 +27,7 @@ const TIME_ONE_FRAME = 1.0 / 12.0 # 12 frames per second
 const NMB_PRE_FRAME = 2
 const NUMBER_HEARTS = 2
 
-const ASRAEL_FULL_LIFE = 20
+const ASRAEL_FULL_LIFE = 40
 const NMB_HEARTS = 2
 const HEART_FULL = 0 # according to the frame in the sprite
 const HEART_EMPTY = 1
@@ -38,12 +39,12 @@ const THRESHOLDS_PHASES_ATTACK = [
 	},
 	{
 		"threshold": 0.6,
-		"level": 1
+		"level": 1,
+		"new_phase": AsraelPhase.PHASE_RAYS
 	},
 	{
 		"threshold": 0.4,
-		"level": 2,
-		"new_phase": AsraelPhase.PHASE_RAYS
+		"level": 2
 	},
 	{
 		"threshold": 0.2,
@@ -127,15 +128,16 @@ func life_to_hearts_list(life: int):
 func update_hearts():
 	for i in range(hearts_parent.get_child_count()):
 		hearts_parent.remove_child(hearts_parent.get_child(0))
-
+	hearts.visible = true
 	var hearts_size = (hearts.texture.get_size().x / NMB_HEARTS)
 	var inirial_heart_position = -(hearts_size) * (ASRAEL_FULL_LIFE / 2.0) + (hearts_size / 2.0)
 	for i in range(ASRAEL_FULL_LIFE):
 		var new = hearts.duplicate()
-		new.position.x = position.x + (i * hearts_size + inirial_heart_position)
 		new.frame = hearts_list[i]
 		new.z_index = 2
+		new.position.x += i * hearts_size
 		hearts_parent.add_child(new)
+	hearts.visible = false
 
 # Attack ***************************************************************************************************
 
@@ -270,6 +272,7 @@ func _wake_up():
 func _ready() -> void:
 	add_to_group(&"enemies")
 	add_to_group(&"boss")
+	hearts.position.y = -70 # fuck it
 	hearts.position.x = -((hearts.texture.get_size().x / NUMBER_HEARTS) * (health.max_life / 2.0))
 
 	SignalsHandler.asrael_wake_up.connect(_wake_up)
@@ -301,6 +304,8 @@ func _on_health_die(unlocked_weapons: Variant) -> void:
 	next_process_get_angry = true # to make shield disappear
 	shield_collison.disabled = false
 	die_cooldown.start()
+	die_light.enabled = true
+	die_light.energy = 0
 
 func _on_die_cooldown_timeout() -> void:
 	asrael_die_for_good.emit()
@@ -328,16 +333,19 @@ func _on_health_life_change(_old, life: Variant) -> void:
 			match current_level:
 				0:
 					number_skulls *= 2
-				1:
+				1: # rays
 					number_skulls *= 1.5
-				2: # rays
+				2:
 					number_skulls = INITIAL_SKULLS_NUMBER * 2.5
+					number_rays *= 1.4
+					rays_interval /= 1.5
+					spread_rays_x *= 1.8
 				3:
 					number_skulls *= 1.5
-					number_rays *= 1.8
-					rays_interval /= 2
+					number_rays *= 1.4
+					rays_interval /= 1.5
+					spread_rays_x *= 1.8
 					rays_circle_radius *= 0.7
-					spread_rays_x *= 2.3
 			print("current_level", current_level)
 			current_level += 1
 
@@ -371,6 +379,8 @@ func _on_attack_cooldown_timeout() -> void:
 # Shield event ***************************************************************************************************
 
 func _process(delta: float) -> void:
+	if die_light.enabled:
+		die_light.energy += 0.02
 	if next_process_get_angry and health.life == 0:
 		shield.visible = false
 		return

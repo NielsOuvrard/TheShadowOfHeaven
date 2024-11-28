@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://k1nxlv42ukb"]
+[gd_scene load_steps=51 format=3 uid="uid://k1nxlv42ukb"]
 
 [ext_resource type="Texture2D" uid="uid://blub6yqrxtdf0" path="res://Assets/Asrael/AsraelSpriteSheet.png" id="1_7b88j"]
 [ext_resource type="Script" path="res://Scripts/asrael.gd" id="1_k205k"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Classes/health.gd" id="6_bi4xx"]
 [ext_resource type="SpriteFrames" uid="uid://dnjc0nnox370g" path="res://Tres/AsraelStab.tres" id="6_fcfmp"]
 [ext_resource type="Texture2D" uid="uid://diy851nj4f0ft" path="res://Assets/Asrael/Shield.png" id="7_lxjk6"]
+[ext_resource type="Texture2D" uid="uid://b0606qmktrjkd" path="res://Assets/light_halo.png" id="8_88br5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8jbiv"]
 atlas = ExtResource("1_7b88j")
@@ -333,16 +334,18 @@ position = Vector2(0, -6)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_00ovm")
 
-[node name="HeartsParent" type="Node" parent="."]
-
-[node name="Hearts" type="Sprite2D" parent="HeartsParent"]
+[node name="Hearts" type="Sprite2D" parent="."]
+visible = false
+z_index = 3
 position = Vector2(0, -56)
 texture = ExtResource("5_x3fhy")
 hframes = 2
 
+[node name="HeartsParent" type="Node2D" parent="."]
+
 [node name="Health" type="Node" parent="."]
 script = ExtResource("6_bi4xx")
-life = 20
+life = 40
 
 [node name="AttackMoment" type="Timer" parent="."]
 one_shot = true
@@ -388,6 +391,11 @@ disabled = true
 [node name="Shield" type="Sprite2D" parent="."]
 position = Vector2(0, -23)
 texture = ExtResource("7_lxjk6")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -24)
+enabled = false
+texture = ExtResource("8_88br5")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="die" from="Health" to="." method="_on_health_die"]
