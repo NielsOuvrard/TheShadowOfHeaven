@@ -37,10 +37,13 @@ extends CharacterBody2D
 @export var debug := false
 @export var push_force = 80.0
 
-const DASH_STRENGTH = 80.0
+const DASH_COOLDOWN := 3.0
 const MAX_NMB_DASH = 3
 var dash_remaining := MAX_NMB_DASH
 var invincibylity_step := 0
+
+var dash_active := false
+var speed := SPEED
 
 var look_direction := Vector2.ZERO
 var last_look_direction_mouse := Vector2.ZERO
@@ -274,7 +277,7 @@ func _physics_process(delta):
 	# * Velocity
 	var target_velocity = Vector2.ZERO
 	if direction != Vector2.ZERO:
-		target_velocity = direction * SPEED
+		target_velocity = direction * speed
 	else:
 		target_velocity = Vector2.ZERO
 	# Use lerp to smoothly transition the velocity
@@ -307,9 +310,12 @@ func _physics_process(delta):
 			shoot()
 
 		if Input.is_action_just_pressed('dash') and dash_remaining > 0:
+			dash_active = true
 			shoot_cooldown.wait_time = 0.2 # TODO dash cooldown
+			health.is_invicible = true
 			animation_handler.add_animation(Data.Animations.DASH)
-			position = position.lerp(position + velocity.normalized() * DASH_STRENGTH, 0.5)
+			speed = SPEED * 5
+			dash_cooldown.wait_time = 0.1
 			dash_cooldown.start()
 			dash_remaining -= 1
 			SignalsHandler.player_update_dash.emit(dash_remaining)
@@ -365,6 +371,15 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 
 func _on_dash_cooldown_timeout() -> void:
+	if dash_active:
+		dash_active = false
+		health.is_invicible = false
+		dash_cooldown.wait_time = DASH_COOLDOWN - dash_cooldown.wait_time
+		dash_cooldown.start()
+		speed = SPEED
+		animated_sprite.modulate.a = 1
+		return
+
 	dash_remaining = min(dash_remaining + 1, MAX_NMB_DASH)
 	SignalsHandler.player_update_dash.emit(dash_remaining)
 	if dash_remaining < MAX_NMB_DASH:
