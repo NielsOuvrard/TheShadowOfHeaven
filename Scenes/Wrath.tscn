@@ -66,7 +66,7 @@ tile_map_data = PackedByteArray("AAD8/24AAAABAA4AAAD8/20AAAABAA4AAAD7/24AAAABAA4
 tile_set = ExtResource("1_gcgya")
 
 [node name="Player" parent="." instance=ExtResource("2_tf1b3")]
-position = Vector2(828.321, 47.4904)
+position = Vector2(-990, -9)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 z_index = 100
