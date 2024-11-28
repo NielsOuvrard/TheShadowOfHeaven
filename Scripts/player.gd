@@ -192,6 +192,10 @@ func change_weapon():
 	if next_weapon == current_weapon:
 		return
 
+	change_to_weapon(next_weapon)
+
+
+func change_to_weapon(next_weapon: Data.Weapons):
 	animation_handler.add_animation(Data.Animations.CHANGE_WEAPON)
 	var current_ammo = ammo_current[next_weapon] if next_weapon != Data.Weapons.SWORD else 0
 	var current_inventory = ammo_inventory[next_weapon] if next_weapon != Data.Weapons.SWORD else 0
@@ -220,6 +224,8 @@ func add_to_inventory(item: Data.Items, number: int):
 ## used when the player unlock a new weapon
 func unlock_weapon(weapon: Data.Weapons):
 	weapons_unlocked[weapon] = true
+	change_to_weapon(weapon)
+
 
 func avoid_collision_with_other_bodies(delta: float):
 	# Handle collision with other bodies
