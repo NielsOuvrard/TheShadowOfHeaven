@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://0y06vbi8ods3" path="res://Scenes/player.tscn" id="7_f7bvl"]
 [ext_resource type="PackedScene" uid="uid://cy2atdt0bqntm" path="res://Scenes/torch.tscn" id="8_of5e7"]
 [ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="9_ikai7"]
-[ext_resource type="PackedScene" uid="uid://dhsyf6vmve3jf" path="res://Scenes/lava.tscn" id="9_m28jr"]
+[ext_resource type="PackedScene" path="res://Scenes/lava.tscn" id="9_m28jr"]
 [ext_resource type="PackedScene" uid="uid://b0ckibqpi4lpm" path="res://Scenes/chest.tscn" id="10_bqy8t"]
 [ext_resource type="PackedScene" uid="uid://cmfinma8lhai7" path="res://Scenes/ghost.tscn" id="10_jlttf"]
 [ext_resource type="Texture2D" uid="uid://bxlaox66kqmyw" path="res://Assets/World/ControlCofre.png" id="11_4kwqn"]
@@ -42,7 +42,7 @@ tile_set = ExtResource("1_73fo5")
 
 [node name="Player" parent="." instance=ExtResource("7_f7bvl")]
 z_index = 2
-position = Vector2(-33, 776)
+position = Vector2(468, 780)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 z_index = 100
