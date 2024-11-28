@@ -126,7 +126,7 @@ func _ready():
 ## State walking
 func walking(delta: float):
 	if followed_path:
-		followed_path.progress += SPEED
+		followed_path.progress += SPEED * delta
 		objective_position = followed_path.position
 	elif priority_objective_position != Vector2.ZERO and position.distance_to(priority_objective_position) > 1:
 		# set priority objective to ignore the collision while rotating

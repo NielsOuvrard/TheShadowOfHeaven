@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://f7hotqo1373f"]
+[gd_scene load_steps=18 format=4 uid="uid://f7hotqo1373f"]
 
 [ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://Tres/greed2.tres" id="1_73fo5"]
 [ext_resource type="Script" path="res://Scripts/greed.gd" id="1_w82pv"]
@@ -16,6 +16,12 @@
 [ext_resource type="PackedScene" uid="uid://b2o724kx74abe" path="res://Scenes/obstacle.tscn" id="13_hrug7"]
 [ext_resource type="AudioStream" uid="uid://1qa1eme11s70" path="res://Assets/Sounds/Music/Level1.mp3" id="14_kaa8g"]
 [ext_resource type="PackedScene" uid="uid://bcbtjhffrph75" path="res://Scenes/item.tscn" id="15_2xedr"]
+
+[sub_resource type="Curve2D" id="Curve2D_llkya"]
+_data = {
+"points": PackedVector2Array(21.9248, -3.20249, -21.9248, 3.20249, 581, 714, 5.17326, -14.6576, -5.17326, 14.6576, 543, 745, -5.05009, -12.81, 5.05009, 12.81, 539, 800, -18.5991, 1.60125, 18.5991, -1.60125, 582, 831, -3.07932, 11.0856, 3.07932, -11.0856, 637, 807, 8.37575, 16.2588, -8.37575, -16.2588, 641, 747, 24.1419, 0.86221, -24.1419, -0.86221, 581, 714)
+}
+point_count = 7
 
 [node name="Greed" type="Node2D"]
 y_sort_enabled = true
@@ -168,13 +174,14 @@ position = Vector2(694, 776)
 rotation = 1.5708
 openable = false
 
-[node name="Sectarian" parent="ROOM_2" instance=ExtResource("3_bkeho")]
-position = Vector2(648, 776)
-linear_movement = Vector2(1, 0)
+[node name="Sectarian" parent="ROOM_2" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_bkeho")]
+position = Vector2(586, 720)
+followed_path = NodePath("../Path2D/PathFollow2D")
 
-[node name="Sectarian2" parent="ROOM_2" instance=ExtResource("3_bkeho")]
-position = Vector2(624, 736)
-linear_movement = Vector2(1, 0)
+[node name="Sectarian2" parent="ROOM_2" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_bkeho")]
+position = Vector2(584, 833)
+followed_path = NodePath("../Path2D/PathFollow2D2")
+offset_followed_path = 0.5
 
 [node name="SPIKES" type="Node2D" parent="ROOM_2"]
 y_sort_enabled = true
@@ -220,6 +227,18 @@ position = Vector2(357, -176)
 z_index = 1
 y_sort_enabled = true
 position = Vector2(589, 782)
+
+[node name="Path2D" type="Path2D" parent="ROOM_2"]
+curve = SubResource("Curve2D_llkya")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOM_2/Path2D"]
+position = Vector2(581, 714)
+rotation = 2.99655
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="ROOM_2/Path2D"]
+position = Vector2(596.942, 828.397)
+rotation = -0.238785
+progress = 178.909
 
 [node name="ROOM_3" type="Node2D" parent="."]
 
