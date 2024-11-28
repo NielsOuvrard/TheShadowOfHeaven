@@ -184,6 +184,7 @@ visible = true
 [node name="Sprites" type="AnimatedSprite2D" parent="." index="2"]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_rc5ba")
+animation = &"attack"
 autoplay = "default"
 
 [node name="Hitbox" type="Area2D" parent="." index="3"]
