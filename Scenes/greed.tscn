@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://f7hotqo1373f"]
+[gd_scene load_steps=19 format=4 uid="uid://f7hotqo1373f"]
 
 [ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://Tres/greed2.tres" id="1_73fo5"]
 [ext_resource type="Script" path="res://Scripts/greed.gd" id="1_w82pv"]
@@ -9,8 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://0y06vbi8ods3" path="res://Scenes/player.tscn" id="7_f7bvl"]
 [ext_resource type="PackedScene" uid="uid://cy2atdt0bqntm" path="res://Scenes/torch.tscn" id="8_of5e7"]
 [ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="9_ikai7"]
-[ext_resource type="PackedScene" path="res://Scenes/lava.tscn" id="9_m28jr"]
-[ext_resource type="PackedScene" path="res://Scenes/lava.tscn" id="9_m28jr"]
+[ext_resource type="PackedScene" uid="uid://dhsyf6vmve3jf" path="res://Scenes/lava.tscn" id="9_m28jr"]
 [ext_resource type="PackedScene" uid="uid://b0ckibqpi4lpm" path="res://Scenes/chest.tscn" id="10_bqy8t"]
 [ext_resource type="PackedScene" uid="uid://cmfinma8lhai7" path="res://Scenes/ghost.tscn" id="10_jlttf"]
 [ext_resource type="Texture2D" uid="uid://bxlaox66kqmyw" path="res://Assets/World/ControlCofre.png" id="11_4kwqn"]
@@ -23,6 +22,12 @@ _data = {
 "points": PackedVector2Array(21.9248, -3.20249, -21.9248, 3.20249, 581, 714, 5.17326, -14.6576, -5.17326, 14.6576, 543, 745, -5.05009, -12.81, 5.05009, 12.81, 539, 800, -18.5991, 1.60125, 18.5991, -1.60125, 582, 831, -3.07932, 11.0856, 3.07932, -11.0856, 637, 807, 8.37575, 16.2588, -8.37575, -16.2588, 641, 747, 24.1419, 0.86221, -24.1419, -0.86221, 581, 714)
 }
 point_count = 7
+
+[sub_resource type="Curve2D" id="Curve2D_kmeyd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 925, 775, 0, 0, 0, 0, 987, 774, 0, 0, 0, 0, 988, 667, 0, 0, 0, 0, 924, 664, 0, 0, 0, 0, 925, 775)
+}
+point_count = 5
 
 [node name="Greed" type="Node2D"]
 y_sort_enabled = true
@@ -43,8 +48,7 @@ tile_set = ExtResource("1_73fo5")
 
 [node name="Player" parent="." instance=ExtResource("7_f7bvl")]
 z_index = 2
-position = Vector2(468, 780)
-position = Vector2(468, 780)
+position = Vector2(2025, 602)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 z_index = 100
@@ -239,7 +243,7 @@ rotation = 2.99655
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="ROOM_2/Path2D"]
 position = Vector2(596.942, 828.397)
-rotation = -0.238785
+rotation = -0.238787
 progress = 178.909
 
 [node name="ROOM_3" type="Node2D" parent="."]
@@ -255,14 +259,17 @@ position = Vector2(1029, 776)
 rotation = 1.5708
 openable = false
 
-[node name="Ghost4" parent="ROOM_3" instance=ExtResource("10_jlttf")]
+[node name="Ghost4" parent="ROOM_3" node_paths=PackedStringArray("followed_path") instance=ExtResource("10_jlttf")]
 position = Vector2(912, 672)
+followed_path = NodePath("../Path2D/PathFollow2D3")
 
-[node name="EnemyBasic" parent="ROOM_3" instance=ExtResource("3_bkeho")]
+[node name="EnemyBasic" parent="ROOM_3" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_bkeho")]
 position = Vector2(920, 744)
+followed_path = NodePath("../Path2D/PathFollow2D2")
 
-[node name="EnemyBasic2" parent="ROOM_3" instance=ExtResource("3_bkeho")]
+[node name="EnemyBasic2" parent="ROOM_3" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_bkeho")]
 position = Vector2(952, 800)
+followed_path = NodePath("../Path2D/PathFollow2D")
 
 [node name="Obstacle" parent="ROOM_3" instance=ExtResource("13_hrug7")]
 position = Vector2(840, 824)
@@ -323,6 +330,23 @@ user_frame = 0
 [node name="Obstacle15" parent="ROOM_3" instance=ExtResource("13_hrug7")]
 position = Vector2(800, 720)
 user_frame = 0
+
+[node name="Path2D" type="Path2D" parent="ROOM_3"]
+curve = SubResource("Curve2D_kmeyd")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOM_3/Path2D"]
+position = Vector2(925, 775)
+rotation = -0.0161276
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="ROOM_3/Path2D"]
+position = Vector2(987.385, 732.796)
+rotation = -1.56145
+progress = 103.226
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="ROOM_3/Path2D"]
+position = Vector2(950.599, 665.247)
+rotation = -3.09475
+progress = 206.452
 
 [node name="ROOM_4" type="Node2D" parent="."]
 
