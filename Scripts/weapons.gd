@@ -15,7 +15,7 @@ func _ready() -> void:
 	weapon_sprite.frame = Data.WEAPONS[type].item_frame
 	if not is_static:
 		animation_player.play("floating")
-		
+
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
@@ -27,4 +27,7 @@ func _on_body_entered(body: Node2D) -> void:
 		text_animated.z_index = 2
 		get_parent().add_child(text_animated)
 
+		var sound = Global.SOUND_AND_FREE.instantiate()
+		sound.path_sound = "res://Assets/Sounds/Weapons/UnlockWeapon.mp3"
+		get_parent().add_child(sound)
 		queue_free()
