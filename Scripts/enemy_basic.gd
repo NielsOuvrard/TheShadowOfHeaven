@@ -67,7 +67,7 @@ var state_searching : StateSearching
 
 var DISTANCE_TO_COLLISION := 20
 var EACH_FRAME := 1.0 / 60.0
-var SPEED_ROTATE := 0.03
+var SPEED_ROTATE := 0.04
 
 
 const LIGHT_PIXELS = 1080.0
