@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://bnpnxeknwollu"]
+[gd_scene load_steps=18 format=4 uid="uid://bnpnxeknwollu"]
 
 [ext_resource type="Script" path="res://Scripts/wrath.gd" id="1_57gg5"]
 [ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://Tres/greed2.tres" id="1_gcgya"]
@@ -16,6 +16,12 @@
 [ext_resource type="PackedScene" uid="uid://k1nxlv42ukb" path="res://Scenes/asrael.tscn" id="13_gc3or"]
 [ext_resource type="PackedScene" uid="uid://dhsyf6vmve3jf" path="res://Scenes/lava.tscn" id="14_hpxsy"]
 [ext_resource type="AudioStream" uid="uid://d3qf3qynlej2j" path="res://Assets/Sounds/Music/Level3.mp3" id="15_0t1d0"]
+
+[sub_resource type="Curve2D" id="Curve2D_bggox"]
+_data = {
+"points": PackedVector2Array(21.635, 20.1788, -21.635, -20.1788, 481, -31, 18.5146, 6.24086, -18.5146, -6.24086, 425, -63, 23.0912, -2.28832, -23.0912, 2.28832, 364, -69, 0, 0, 0, 0, 307, -49, 2.70437, -28.916, -2.70437, 28.916, 291, -9, -12.4817, -11.4416, 12.4817, 11.4416, 317, 47, 0, 0, 0, 0, 402, 53, 0, 0, 0, 0, 461, 44, -1.24817, 29.7481, 1.24817, -29.7481, 497, 8, 0, 0, 0, 0, 481, -31)
+}
+point_count = 10
 
 [node name="Wrath" type="Node2D"]
 z_index = 1
@@ -331,95 +337,36 @@ position = Vector2(554, -10)
 rotation = 1.5708
 openable = false
 
-[node name="Deamon3" parent="ROOMS/ROOM_4" instance=ExtResource("11_024px")]
-position = Vector2(464, 8)
+[node name="Deamon3" parent="ROOMS/ROOM_4" node_paths=PackedStringArray("followed_path") instance=ExtResource("11_024px")]
+position = Vector2(481, -30)
+followed_path = NodePath("../Path2D/PathFollow2D")
 
-[node name="Deamon4" parent="ROOMS/ROOM_4" instance=ExtResource("11_024px")]
-position = Vector2(424, -56)
+[node name="Deamon4" parent="ROOMS/ROOM_4" node_paths=PackedStringArray("followed_path") instance=ExtResource("11_024px")]
+position = Vector2(304, -44)
+followed_path = NodePath("../Path2D/PathFollow2D2")
+offset_followed_path = 0.33
 
-[node name="Deamon5" parent="ROOMS/ROOM_4" instance=ExtResource("11_024px")]
-position = Vector2(432, 48)
+[node name="Deamon5" parent="ROOMS/ROOM_4" node_paths=PackedStringArray("followed_path") instance=ExtResource("11_024px")]
+position = Vector2(406, 52)
+followed_path = NodePath("../Path2D/PathFollow2D3")
+offset_followed_path = 0.66
 
-[node name="Obstacle23" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(352, 8)
+[node name="Path2D" type="Path2D" parent="ROOMS/ROOM_4"]
+curve = SubResource("Curve2D_bggox")
 
-[node name="Obstacle27" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(368, -24)
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOMS/ROOM_4/Path2D"]
+position = Vector2(481, -31)
+rotation = -2.39101
 
-[node name="Obstacle28" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(368, -40)
+[node name="PathFollow2D2" type="PathFollow2D" parent="ROOMS/ROOM_4/Path2D"]
+position = Vector2(315.156, -52.9858)
+rotation = 2.70431
+progress = 178.501
 
-[node name="Obstacle24" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(352, 24)
-
-[node name="Obstacle25" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(360, -8)
-
-[node name="Obstacle26" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(368, 8)
-
-[node name="Torch9" parent="ROOMS/ROOM_4" instance=ExtResource("8_qlv8h")]
-position = Vector2(256, 32)
-
-[node name="Torch10" parent="ROOMS/ROOM_4" instance=ExtResource("8_qlv8h")]
-position = Vector2(256, -48)
-
-[node name="Torch11" parent="ROOMS/ROOM_4" instance=ExtResource("8_qlv8h")]
-position = Vector2(400, -101)
-
-[node name="Torch12" parent="ROOMS/ROOM_4" instance=ExtResource("8_qlv8h")]
-position = Vector2(400, 80)
-
-[node name="Torch13" parent="ROOMS/ROOM_4" instance=ExtResource("8_qlv8h")]
-position = Vector2(528, 32)
-
-[node name="Torch14" parent="ROOMS/ROOM_4" instance=ExtResource("8_qlv8h")]
-position = Vector2(528, 32)
-
-[node name="Torch15" parent="ROOMS/ROOM_4" instance=ExtResource("8_qlv8h")]
-position = Vector2(528, -48)
-
-[node name="Obstacle29" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(384, 85)
-
-[node name="Obstacle30" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(368, 85)
-
-[node name="Obstacle31" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(352, 85)
-
-[node name="Obstacle32" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(416, 85)
-
-[node name="Obstacle33" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(432, 85)
-
-[node name="Obstacle34" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(448, 85)
-
-[node name="Obstacle35" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(448, -93)
-
-[node name="Obstacle36" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(432, -93)
-
-[node name="Obstacle37" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(416, -93)
-
-[node name="Obstacle38" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(384, -93)
-
-[node name="Obstacle39" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(368, -93)
-
-[node name="Obstacle40" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(352, -93)
-
-[node name="Obstacle41" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(256, -32)
-
-[node name="Obstacle42" parent="ROOMS/ROOM_4" instance=ExtResource("7_ijylg")]
-position = Vector2(256, 24)
+[node name="PathFollow2D3" type="PathFollow2D" parent="ROOMS/ROOM_4/Path2D"]
+position = Vector2(376.861, 54.1566)
+rotation = -0.023408
+progress = 357.002
 
 [node name="ROOM_5" type="Node2D" parent="ROOMS"]
 y_sort_enabled = true
@@ -1020,6 +967,90 @@ position = Vector2(496, 86)
 stream = ExtResource("15_0t1d0")
 volume_db = -10.0
 autoplay = true
+
+[node name="ObjectsRoom4" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Obstacle23" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(352, 8)
+
+[node name="Obstacle27" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(368, -24)
+
+[node name="Obstacle28" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(368, -40)
+
+[node name="Obstacle24" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(352, 24)
+
+[node name="Obstacle25" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(360, -8)
+
+[node name="Obstacle26" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(368, 8)
+
+[node name="Torch9" parent="ObjectsRoom4" instance=ExtResource("8_qlv8h")]
+position = Vector2(256, 32)
+
+[node name="Torch10" parent="ObjectsRoom4" instance=ExtResource("8_qlv8h")]
+position = Vector2(256, -48)
+
+[node name="Torch11" parent="ObjectsRoom4" instance=ExtResource("8_qlv8h")]
+position = Vector2(400, -101)
+
+[node name="Torch12" parent="ObjectsRoom4" instance=ExtResource("8_qlv8h")]
+position = Vector2(400, 80)
+
+[node name="Torch13" parent="ObjectsRoom4" instance=ExtResource("8_qlv8h")]
+position = Vector2(528, 32)
+
+[node name="Torch14" parent="ObjectsRoom4" instance=ExtResource("8_qlv8h")]
+position = Vector2(528, 32)
+
+[node name="Torch15" parent="ObjectsRoom4" instance=ExtResource("8_qlv8h")]
+position = Vector2(528, -48)
+
+[node name="Obstacle29" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(384, 85)
+
+[node name="Obstacle30" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(368, 85)
+
+[node name="Obstacle31" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(352, 85)
+
+[node name="Obstacle32" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(416, 85)
+
+[node name="Obstacle33" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(432, 85)
+
+[node name="Obstacle34" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(448, 85)
+
+[node name="Obstacle35" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(448, -93)
+
+[node name="Obstacle36" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(432, -93)
+
+[node name="Obstacle37" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(416, -93)
+
+[node name="Obstacle38" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(384, -93)
+
+[node name="Obstacle39" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(368, -93)
+
+[node name="Obstacle40" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(352, -93)
+
+[node name="Obstacle41" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(256, -32)
+
+[node name="Obstacle42" parent="ObjectsRoom4" instance=ExtResource("7_ijylg")]
+position = Vector2(256, 24)
 
 [connection signal="opening" from="ROOMS/RoomFinal/Door14" to="." method="_on_door_14_opening"]
 [connection signal="asrael_attack" from="ROOMS/RoomFinal/Asrael" to="." method="_on_asrael_asrael_attack"]
