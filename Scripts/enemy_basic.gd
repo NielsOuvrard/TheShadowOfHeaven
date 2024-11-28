@@ -308,8 +308,12 @@ func _on_hitbox_knockback_emit(attack: Attack) -> void:
 			sound_alert.play()
 		mark_sprite.texture = mark_texture_interogation
 
+var has_already_drop := false
 func _on_health_die(unlocked_weapons) -> void:
-	Global.drop_random_item(position, get_parent(), unlocked_weapons)
+	if not has_already_drop:
+		# avoid double drop with weapons like shotgun
+		Global.drop_random_item(position, get_parent(), unlocked_weapons)
+		has_already_drop = true
 	queue_free()
 	SignalsHandler.enemy_has_die.emit()
 #endregion
