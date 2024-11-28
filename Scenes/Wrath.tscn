@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://bnpnxeknwollu"]
+[gd_scene load_steps=22 format=4 uid="uid://bnpnxeknwollu"]
 
 [ext_resource type="Script" path="res://Scripts/wrath.gd" id="1_57gg5"]
 [ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://Tres/greed2.tres" id="1_gcgya"]
@@ -23,11 +23,29 @@ _data = {
 }
 point_count = 8
 
+[sub_resource type="Curve2D" id="Curve2D_cgsjg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -26, -48, 0, 0, 0, 0, -114, -53, 0, 0, 0, 0, -120, 17, 0, 0, 0, 0, -76, 33, 0, 0, 0, 0, -42, -1, 0, 0, 0, 0, -26, -48)
+}
+point_count = 6
+
 [sub_resource type="Curve2D" id="Curve2D_bggox"]
 _data = {
 "points": PackedVector2Array(21.635, 20.1788, -21.635, -20.1788, 481, -31, 18.5146, 6.24086, -18.5146, -6.24086, 425, -63, 23.0912, -2.28832, -23.0912, 2.28832, 364, -69, 0, 0, 0, 0, 307, -49, 2.70437, -28.916, -2.70437, 28.916, 291, -9, -12.4817, -11.4416, 12.4817, 11.4416, 317, 47, 0, 0, 0, 0, 402, 53, 0, 0, 0, 0, 461, 44, -1.24817, 29.7481, 1.24817, -29.7481, 497, 8, 0, 0, 0, 0, 481, -31)
 }
 point_count = 10
+
+[sub_resource type="Curve2D" id="Curve2D_dgd4i"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 909, 49, 0, 0, 0, 0, 937, 36, 0, 0, 0, 0, 935, -3, 0, 0, 0, 0, 933, -85, 0, 0, 0, 0, 912, -94, 0, 0, 0, 0, 890, -88, 0, 0, 0, 0, 890, 33, 0, 0, 0, 0, 909, 49)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_idqxe"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 986, 79, 0, 0, 0, 0, 1000, 80, 0, 0, 0, 0, 1004, -65, 0, 0, 0, 0, 986, -61, 0, 0, 0, 0, 986, 79)
+}
+point_count = 5
 
 [node name="Wrath" type="Node2D"]
 z_index = 1
@@ -133,98 +151,6 @@ linear_movement = Vector2(1, 0)
 followed_path = NodePath("../Path2D/PathFollow2D2")
 offset_followed_path = 0.33
 
-[node name="Obstacle2" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
-z_index = 0
-y_sort_enabled = false
-position = Vector2(-568, -8)
-user_frame = 3
-
-[node name="Obstacle5" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
-z_index = 0
-y_sort_enabled = false
-position = Vector2(-584, -8)
-user_frame = 3
-
-[node name="Obstacle6" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
-z_index = 0
-y_sort_enabled = false
-position = Vector2(-552, 8)
-user_frame = 3
-
-[node name="Obstacle7" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
-z_index = 0
-y_sort_enabled = false
-position = Vector2(-584, -40)
-user_frame = 3
-
-[node name="Obstacle8" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
-z_index = 0
-y_sort_enabled = false
-position = Vector2(-568, -40)
-user_frame = 3
-
-[node name="Obstacle9" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
-z_index = 0
-y_sort_enabled = false
-position = Vector2(-624, -64)
-user_frame = 3
-
-[node name="Obstacle10" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
-z_index = 0
-y_sort_enabled = false
-position = Vector2(-608, -72)
-user_frame = 3
-
-[node name="Obstacle11" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
-z_index = 0
-y_sort_enabled = false
-position = Vector2(-592, -72)
-user_frame = 3
-
-[node name="Obstacle12" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
-z_index = 0
-y_sort_enabled = false
-position = Vector2(-640, -48)
-user_frame = 3
-
-[node name="Obstacle" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
-z_index = 0
-y_sort_enabled = false
-position = Vector2(-568, -24)
-user_frame = 3
-
-[node name="Obstacle3" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
-z_index = 0
-y_sort_enabled = false
-position = Vector2(-568, 8)
-user_frame = 3
-
-[node name="Obstacle4" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
-z_index = 0
-y_sort_enabled = false
-position = Vector2(-568, 24)
-user_frame = 3
-
-[node name="Torch" parent="ROOMS/ROOM_2" instance=ExtResource("8_qlv8h")]
-position = Vector2(-592, 80)
-
-[node name="Torch2" parent="ROOMS/ROOM_2" instance=ExtResource("8_qlv8h")]
-position = Vector2(-496, 64)
-
-[node name="Torch3" parent="ROOMS/ROOM_2" instance=ExtResource("8_qlv8h")]
-position = Vector2(-496, -72)
-
-[node name="Torch4" parent="ROOMS/ROOM_2" instance=ExtResource("8_qlv8h")]
-position = Vector2(-592, -96)
-
-[node name="Ghost" parent="ROOMS/ROOM_2" node_paths=PackedStringArray("followed_path") instance=ExtResource("9_f3ewg")]
-position = Vector2(-620, -20)
-linear_movement = Vector2(1, 0)
-followed_path = NodePath("../Path2D/PathFollow2D")
-
-[node name="Chest" parent="ROOMS/ROOM_2" instance=ExtResource("3_13s5j")]
-position = Vector2(-536, -96)
-
 [node name="Path2D" type="Path2D" parent="ROOMS/ROOM_2"]
 position = Vector2(-1, -1)
 curve = SubResource("Curve2D_2v15e")
@@ -234,14 +160,108 @@ position = Vector2(-621, -21)
 rotation = -1.61463
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="ROOMS/ROOM_2/Path2D"]
-position = Vector2(-525.226, -44.6809)
-rotation = 0.721233
+position = Vector2(-525.226, -44.6807)
+rotation = 0.721237
 progress = 122.677
 
 [node name="PathFollow2D3" type="PathFollow2D" parent="ROOMS/ROOM_2/Path2D"]
-position = Vector2(-543.426, 63.4343)
-rotation = 2.59398
+position = Vector2(-543.427, 63.4346)
+rotation = 2.594
 progress = 245.354
+
+[node name="Obstacles and torches" type="Node2D" parent="ROOMS/ROOM_2"]
+
+[node name="Obstacle2" parent="ROOMS/ROOM_2/Obstacles and torches" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
+position = Vector2(-568, -8)
+user_frame = 3
+
+[node name="Obstacle5" parent="ROOMS/ROOM_2/Obstacles and torches" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
+position = Vector2(-584, -8)
+user_frame = 3
+
+[node name="Obstacle6" parent="ROOMS/ROOM_2/Obstacles and torches" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
+position = Vector2(-552, 8)
+user_frame = 3
+
+[node name="Obstacle7" parent="ROOMS/ROOM_2/Obstacles and torches" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
+position = Vector2(-584, -40)
+user_frame = 3
+
+[node name="Obstacle8" parent="ROOMS/ROOM_2/Obstacles and torches" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
+position = Vector2(-568, -40)
+user_frame = 3
+
+[node name="Obstacle9" parent="ROOMS/ROOM_2/Obstacles and torches" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
+position = Vector2(-624, -64)
+user_frame = 3
+
+[node name="Obstacle10" parent="ROOMS/ROOM_2/Obstacles and torches" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
+position = Vector2(-608, -72)
+user_frame = 3
+
+[node name="Obstacle11" parent="ROOMS/ROOM_2/Obstacles and torches" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
+position = Vector2(-592, -72)
+user_frame = 3
+
+[node name="Obstacle12" parent="ROOMS/ROOM_2/Obstacles and torches" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
+position = Vector2(-640, -48)
+user_frame = 3
+
+[node name="Obstacle" parent="ROOMS/ROOM_2/Obstacles and torches" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
+position = Vector2(-568, -24)
+user_frame = 3
+
+[node name="Obstacle3" parent="ROOMS/ROOM_2/Obstacles and torches" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
+position = Vector2(-568, 8)
+user_frame = 3
+
+[node name="Obstacle4" parent="ROOMS/ROOM_2/Obstacles and torches" instance=ExtResource("7_ijylg")]
+z_index = 0
+y_sort_enabled = false
+position = Vector2(-568, 24)
+user_frame = 3
+
+[node name="Torch" parent="ROOMS/ROOM_2/Obstacles and torches" instance=ExtResource("8_qlv8h")]
+position = Vector2(-592, 80)
+
+[node name="Torch2" parent="ROOMS/ROOM_2/Obstacles and torches" instance=ExtResource("8_qlv8h")]
+position = Vector2(-496, 64)
+
+[node name="Torch3" parent="ROOMS/ROOM_2/Obstacles and torches" instance=ExtResource("8_qlv8h")]
+position = Vector2(-496, -72)
+
+[node name="Torch4" parent="ROOMS/ROOM_2/Obstacles and torches" instance=ExtResource("8_qlv8h")]
+position = Vector2(-592, -96)
+
+[node name="Ghost" parent="ROOMS/ROOM_2/Obstacles and torches" node_paths=PackedStringArray("followed_path") instance=ExtResource("9_f3ewg")]
+position = Vector2(-620, -20)
+linear_movement = Vector2(1, 0)
+followed_path = NodePath("../../Path2D/PathFollow2D")
+
+[node name="Chest" parent="ROOMS/ROOM_2/Obstacles and torches" instance=ExtResource("3_13s5j")]
+position = Vector2(-536, -96)
 
 [node name="ROOM_3" type="Node2D" parent="ROOMS"]
 y_sort_enabled = true
@@ -255,104 +275,129 @@ position = Vector2(43, -10)
 rotation = 1.5708
 openable = false
 
-[node name="Torch" parent="ROOMS/ROOM_3" instance=ExtResource("8_qlv8h")]
+[node name="EnemyBasic" parent="ROOMS/ROOM_3" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_kv2rs")]
+position = Vector2(-96, 30)
+followed_path = NodePath("../Path2D/PathFollow2D3")
+offset_followed_path = 0.66
+
+[node name="EnemyBasic2" parent="ROOMS/ROOM_3" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_kv2rs")]
+position = Vector2(-122, -40)
+followed_path = NodePath("../Path2D/PathFollow2D2")
+offset_followed_path = 0.33
+
+[node name="EnemyBasic3" parent="ROOMS/ROOM_3" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_kv2rs")]
+position = Vector2(-29, -42)
+followed_path = NodePath("../Path2D/PathFollow2D")
+
+[node name="OBSTACLES AND TORCHES" type="Node2D" parent="ROOMS/ROOM_3"]
+
+[node name="Torch" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("8_qlv8h")]
 position = Vector2(-272, 96)
 
-[node name="Torch2" parent="ROOMS/ROOM_3" instance=ExtResource("8_qlv8h")]
+[node name="Torch2" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("8_qlv8h")]
 position = Vector2(0, 96)
 
-[node name="Torch3" parent="ROOMS/ROOM_3" instance=ExtResource("8_qlv8h")]
+[node name="Torch3" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("8_qlv8h")]
 position = Vector2(0, -112)
 
-[node name="Torch4" parent="ROOMS/ROOM_3" instance=ExtResource("8_qlv8h")]
+[node name="Torch4" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("8_qlv8h")]
 position = Vector2(-272, -112)
 
-[node name="Torch5" parent="ROOMS/ROOM_3" instance=ExtResource("8_qlv8h")]
+[node name="Torch5" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("8_qlv8h")]
 position = Vector2(-136, -112)
 
-[node name="Torch6" parent="ROOMS/ROOM_3" instance=ExtResource("8_qlv8h")]
+[node name="Torch6" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("8_qlv8h")]
 position = Vector2(-136, 96)
 
-[node name="Torch7" parent="ROOMS/ROOM_3" instance=ExtResource("8_qlv8h")]
+[node name="Torch7" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("8_qlv8h")]
 position = Vector2(16, -40)
 
-[node name="Torch8" parent="ROOMS/ROOM_3" instance=ExtResource("8_qlv8h")]
+[node name="Torch8" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("8_qlv8h")]
 position = Vector2(16, 24)
 
-[node name="Obstacle" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-255, -109)
 
-[node name="Obstacle2" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle2" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-239, -109)
 
-[node name="Obstacle3" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle3" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-223, -109)
 
-[node name="Obstacle4" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle4" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-207, -109)
 
-[node name="Obstacle5" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle5" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-191, -109)
 
-[node name="Obstacle6" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle6" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-175, -109)
 
-[node name="Obstacle7" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle7" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-159, -109)
 
-[node name="Obstacle8" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle8" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-255, 100)
 
-[node name="Obstacle9" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle9" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-239, 100)
 
-[node name="Obstacle10" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle10" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-223, 100)
 
-[node name="Obstacle11" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle11" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-207, 100)
 
-[node name="Obstacle12" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle12" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-191, 100)
 
-[node name="Obstacle13" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle13" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-175, 100)
 
-[node name="Obstacle14" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle14" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-159, 100)
 
-[node name="Obstacle15" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle15" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-288, -44)
 
-[node name="Obstacle16" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle16" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-288, 33)
 
-[node name="Obstacle17" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle17" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-67, 100)
 
-[node name="Obstacle18" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle18" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-50, 100)
 
-[node name="Obstacle19" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle19" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-33, 85)
 
-[node name="Obstacle20" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle20" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-52, -109)
 
-[node name="Obstacle21" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle21" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-69, -109)
 
-[node name="Obstacle22" parent="ROOMS/ROOM_3" instance=ExtResource("7_ijylg")]
+[node name="Obstacle22" parent="ROOMS/ROOM_3/OBSTACLES AND TORCHES" instance=ExtResource("7_ijylg")]
 position = Vector2(-36, -93)
 
-[node name="EnemyBasic" parent="ROOMS/ROOM_3" instance=ExtResource("6_kv2rs")]
-position = Vector2(-96, 16)
+[node name="Path2D" type="Path2D" parent="ROOMS/ROOM_3"]
+position = Vector2(-5, -1)
+curve = SubResource("Curve2D_cgsjg")
 
-[node name="EnemyBasic2" parent="ROOMS/ROOM_3" instance=ExtResource("6_kv2rs")]
-position = Vector2(-72, -24)
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOMS/ROOM_3/Path2D"]
+position = Vector2(-26, -48)
+rotation = -3.08484
 
-[node name="EnemyBasic3" parent="ROOMS/ROOM_3" instance=ExtResource("6_kv2rs")]
-position = Vector2(-112, -24)
+[node name="PathFollow2D2" type="PathFollow2D" parent="ROOMS/ROOM_3/Path2D"]
+position = Vector2(-115.022, -41.0764)
+rotation = 1.6563
+progress = 99.9733
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="ROOMS/ROOM_3/Path2D"]
+position = Vector2(-80.8877, 31.2227)
+rotation = 0.348771
+progress = 199.947
 
 [node name="ROOM_4" type="Node2D" parent="ROOMS"]
 y_sort_enabled = true
@@ -397,6 +442,114 @@ position = Vector2(376.861, 54.1567)
 rotation = -0.023408
 progress = 357.002
 
+[node name="Lava" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(392, -2)
+
+[node name="Lava2" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(392, -18)
+
+[node name="Lava3" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(408, -18)
+
+[node name="Lava4" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(408, -2)
+
+[node name="Lava5" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(424, -2)
+
+[node name="Lava6" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(424, -18)
+
+[node name="Lava7" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(392, -34)
+
+[node name="Lava8" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(408, -34)
+
+[node name="Lava9" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(424, -34)
+
+[node name="Lava10" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(408, -50)
+
+[node name="Lava11" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(440, -18)
+
+[node name="Lava12" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(408, 14)
+
+[node name="Lava13" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(336, 78)
+
+[node name="Lava14" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(336, -98)
+
+[node name="Lava15" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(320, -98)
+
+[node name="Lava16" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(320, 78)
+
+[node name="Lava17" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(464, 78)
+
+[node name="Lava18" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(464, -98)
+
+[node name="Lava19" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(392, -2)
+
+[node name="Lava20" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(392, -18)
+
+[node name="Lava21" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(408, -18)
+
+[node name="Lava22" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(408, -2)
+
+[node name="Lava23" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(424, -2)
+
+[node name="Lava24" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(424, -18)
+
+[node name="Lava25" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(392, -34)
+
+[node name="Lava26" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(408, -34)
+
+[node name="Lava27" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(424, -34)
+
+[node name="Lava28" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(408, -50)
+
+[node name="Lava29" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(440, -18)
+
+[node name="Lava30" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(408, 14)
+
+[node name="Lava31" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(336, 78)
+
+[node name="Lava32" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(336, -98)
+
+[node name="Lava33" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(320, -98)
+
+[node name="Lava34" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(320, 78)
+
+[node name="Lava35" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(464, 78)
+
+[node name="Lava36" parent="ROOMS/ROOM_4" instance=ExtResource("14_hpxsy")]
+position = Vector2(464, -98)
+
 [node name="ROOM_5" type="Node2D" parent="ROOMS"]
 y_sort_enabled = true
 
@@ -409,101 +562,133 @@ position = Vector2(1049, -10)
 rotation = 1.5708
 openable = false
 
-[node name="EnemyBasic" parent="ROOMS/ROOM_5" instance=ExtResource("6_kv2rs")]
-position = Vector2(912, -64)
+[node name="EnemyBasic" parent="ROOMS/ROOM_5" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_kv2rs")]
+position = Vector2(891, -59)
+followed_path = NodePath("../Path2D/PathFollow2D3")
+offset_followed_path = 0.66
 
-[node name="EnemyBasic2" parent="ROOMS/ROOM_5" instance=ExtResource("6_kv2rs")]
+[node name="EnemyBasic2" parent="ROOMS/ROOM_5" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_kv2rs")]
 position = Vector2(912, 48)
+followed_path = NodePath("../Path2D/PathFollow2D")
 
-[node name="Deamon" parent="ROOMS/ROOM_5" instance=ExtResource("11_024px")]
-position = Vector2(936, 0)
+[node name="Deamon" parent="ROOMS/ROOM_5" node_paths=PackedStringArray("followed_path") instance=ExtResource("11_024px")]
+position = Vector2(935, -43)
+followed_path = NodePath("../Path2D/PathFollow2D2")
+offset_followed_path = 0.33
 
-[node name="Deamon2" parent="ROOMS/ROOM_5" instance=ExtResource("11_024px")]
+[node name="Deamon2" parent="ROOMS/ROOM_5" node_paths=PackedStringArray("followed_path") instance=ExtResource("11_024px")]
 position = Vector2(1000, 80)
+followed_path = NodePath("../Path2D2/PathFollow2D")
 
-[node name="Torch" parent="ROOMS/ROOM_5" instance=ExtResource("8_qlv8h")]
+[node name="Obstacles and torches" type="Node2D" parent="ROOMS/ROOM_5"]
+
+[node name="Torch" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("8_qlv8h")]
 position = Vector2(784, 32)
 
-[node name="Torch2" parent="ROOMS/ROOM_5" instance=ExtResource("8_qlv8h")]
+[node name="Torch2" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("8_qlv8h")]
 position = Vector2(784, -40)
 
-[node name="Torch3" parent="ROOMS/ROOM_5" instance=ExtResource("8_qlv8h")]
+[node name="Torch3" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("8_qlv8h")]
 position = Vector2(864, -128)
 
-[node name="Torch4" parent="ROOMS/ROOM_5" instance=ExtResource("8_qlv8h")]
+[node name="Torch4" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("8_qlv8h")]
 position = Vector2(864, 112)
 
-[node name="Torch5" parent="ROOMS/ROOM_5" instance=ExtResource("8_qlv8h")]
+[node name="Torch5" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("8_qlv8h")]
 position = Vector2(1008, 112)
 
-[node name="Torch6" parent="ROOMS/ROOM_5" instance=ExtResource("8_qlv8h")]
+[node name="Torch6" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("8_qlv8h")]
 position = Vector2(1024, 32)
 
-[node name="Torch7" parent="ROOMS/ROOM_5" instance=ExtResource("8_qlv8h")]
+[node name="Torch7" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("8_qlv8h")]
 position = Vector2(1024, -48)
 
-[node name="Torch8" parent="ROOMS/ROOM_5" instance=ExtResource("8_qlv8h")]
+[node name="Torch8" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("8_qlv8h")]
 position = Vector2(1008, -128)
 
-[node name="Obstacle" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(960, 24)
 
-[node name="Obstacle2" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle2" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(960, 40)
 
-[node name="Obstacle3" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle3" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(960, 56)
 
-[node name="Obstacle4" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle4" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(960, -24)
 
-[node name="Obstacle5" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle5" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(960, -40)
 
-[node name="Obstacle6" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle6" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(960, -56)
 
-[node name="Obstacle7" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle7" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(960, -72)
 
-[node name="Obstacle8" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle8" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(960, 72)
 
-[node name="Obstacle9" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle9" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(856, 56)
 
-[node name="Obstacle10" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle10" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(856, 72)
 
-[node name="Obstacle11" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle11" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(856, 88)
 
-[node name="Obstacle12" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle12" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(856, 40)
 
-[node name="Obstacle13" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle13" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(856, 24)
 
-[node name="Obstacle14" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle14" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(856, 104)
 
-[node name="Obstacle15" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle15" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(864, 8)
 
-[node name="Obstacle16" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle16" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(864, -8)
 
-[node name="Obstacle17" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle17" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(864, -88)
 
-[node name="Obstacle18" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle18" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(848, -88)
 
-[node name="Obstacle19" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle19" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(832, -88)
 
-[node name="Obstacle20" parent="ROOMS/ROOM_5" instance=ExtResource("7_ijylg")]
+[node name="Obstacle20" parent="ROOMS/ROOM_5/Obstacles and torches" instance=ExtResource("7_ijylg")]
 position = Vector2(872, -24)
+
+[node name="Path2D" type="Path2D" parent="ROOMS/ROOM_5"]
+curve = SubResource("Curve2D_dgd4i")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOMS/ROOM_5/Path2D"]
+position = Vector2(909, 49)
+rotation = -0.43467
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="ROOMS/ROOM_5/Path2D"]
+position = Vector2(933.941, -46.4014)
+rotation = -1.59518
+progress = 113.334
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="ROOMS/ROOM_5/Path2D"]
+position = Vector2(890, -58.907)
+rotation = 1.5708
+progress = 226.668
+
+[node name="Path2D2" type="Path2D" parent="ROOMS/ROOM_5"]
+curve = SubResource("Curve2D_idqxe")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOMS/ROOM_5/Path2D2"]
+position = Vector2(986, 79)
+rotation = 0.0713075
 
 [node name="ROOM_6" type="Node2D" parent="ROOMS"]
 y_sort_enabled = true
@@ -829,6 +1014,204 @@ position = Vector2(2608, 62)
 
 [node name="Lava62" parent="ROOMS/RoomFinal/LAVA" instance=ExtResource("14_hpxsy")]
 position = Vector2(2624, 46)
+
+[node name="Lava" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-288, -66)
+
+[node name="Lava2" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-272, -66)
+
+[node name="Lava3" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-272, -82)
+
+[node name="Lava4" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-256, -82)
+
+[node name="Lava5" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-240, -98)
+
+[node name="Lava6" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-256, -98)
+
+[node name="Lava7" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-272, -98)
+
+[node name="Lava8" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-288, -98)
+
+[node name="Lava9" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-288, -82)
+
+[node name="Lava10" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-288, 78)
+
+[node name="Lava11" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-272, 78)
+
+[node name="Lava12" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-256, 78)
+
+[node name="Lava13" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-240, 78)
+
+[node name="Lava14" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-256, 62)
+
+[node name="Lava15" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-272, 62)
+
+[node name="Lava16" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-288, 62)
+
+[node name="Lava17" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-288, 46)
+
+[node name="Lava18" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-272, 46)
+
+[node name="Lava19" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-120, 86)
+
+[node name="Lava20" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-104, 86)
+
+[node name="Lava21" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-88, 86)
+
+[node name="Lava22" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-120, -106)
+
+[node name="Lava23" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-104, -106)
+
+[node name="Lava24" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-88, -106)
+
+[node name="Lava25" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(16, -82)
+
+[node name="Lava26" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(16, -98)
+
+[node name="Lava27" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(0, -98)
+
+[node name="Lava28" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(0, -82)
+
+[node name="Lava29" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-16, -98)
+
+[node name="Lava30" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-16, -114)
+
+[node name="Lava33" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(16, 78)
+
+[node name="Lava34" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(0, 78)
+
+[node name="Lava35" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-16, 78)
+
+[node name="Lava36" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-16, 94)
+
+[node name="Lava37" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(-32, 94)
+
+[node name="Lava38" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(0, 62)
+
+[node name="Lava39" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(16, 62)
+
+[node name="Lava40" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(16, 46)
+
+[node name="Lava31" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(16, -64)
+
+[node name="Lava41" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(881, 110)
+
+[node name="Lava42" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(897, 110)
+
+[node name="Lava43" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(913, 110)
+
+[node name="Lava44" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(929, 110)
+
+[node name="Lava45" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(945, 110)
+
+[node name="Lava46" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(881, 94)
+
+[node name="Lava47" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(897, 94)
+
+[node name="Lava48" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(913, 94)
+
+[node name="Lava49" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(896, -130)
+
+[node name="Lava50" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(912, -130)
+
+[node name="Lava51" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(880, -130)
+
+[node name="Lava52" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(928, -130)
+
+[node name="Lava53" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(944, -130)
+
+[node name="Lava54" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(960, -130)
+
+[node name="Lava55" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(976, -130)
+
+[node name="Lava56" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(992, -130)
+
+[node name="Lava57" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(848, -114)
+
+[node name="Lava58" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(864, -114)
+
+[node name="Lava59" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(880, -114)
+
+[node name="Lava60" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(895, -114)
+
+[node name="Lava61" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(1008, -114)
+
+[node name="Lava62" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(1024, -114)
+
+[node name="Lava63" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(992, -114)
+
+[node name="Lava64" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(1024, -98)
+
+[node name="Lava65" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(1008, -98)
+
+[node name="Lava66" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(1024, -82)
+
+[node name="Lava32" parent="ROOMS" instance=ExtResource("14_hpxsy")]
+position = Vector2(16, -64)
 
 [node name="SPIKES" type="Node2D" parent="."]
 
