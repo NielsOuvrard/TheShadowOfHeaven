@@ -336,12 +336,12 @@ func _on_health_life_change(_old, life: Variant) -> void:
 				1: # rays
 					number_skulls *= 1.5
 				2:
-					number_skulls = INITIAL_SKULLS_NUMBER * 2.5
+					number_skulls = INITIAL_SKULLS_NUMBER * 2.2
 					number_rays *= 1.4
 					rays_interval /= 1.5
 					spread_rays_x *= 1.8
 				3:
-					number_skulls *= 1.5
+					number_skulls *= 1.3
 					number_rays *= 1.4
 					rays_interval /= 1.5
 					spread_rays_x *= 1.8
