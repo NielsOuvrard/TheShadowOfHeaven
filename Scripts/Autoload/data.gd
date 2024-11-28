@@ -91,7 +91,7 @@ const PROJECTILS = {
 	Projectiles.SHOTGUN: {
 		"animation": "shotgun",
 		"speed": SPEED_PLAYER * 2.5,
-		"damage": 3,
+		"damage": 1,
 		"knockback": 100.0,
 		"light_energy": 1.5,
 		"light_color": Color(1, 1, 0, 1),
@@ -102,7 +102,7 @@ const PROJECTILS = {
 		"animation": "raygun", # this one is different, it's a ray
 		"speed": SPEED_PLAYER * 4,
 		"damage": 2,
-		"knockback": 10.0,
+		"knockback": 0,
 		"light_energy": 2,
 		"light_color": Color(0, 1, 1, 1),
 		"collision_scale": Vector2(1, 1),
@@ -120,8 +120,8 @@ const PROJECTILS = {
 	},
 	Projectiles.SKULL: {
 		"animation": "skull",
-		"speed": SPEED_PLAYER * 0.85,
-		"damage": 3,
+		"speed": SPEED_PLAYER * 0.7,
+		"damage": 1,
 		"knockback": 0.0,
 		"light_energy": 5,
 		"light_color": Color(1, 0, 1, 1),
