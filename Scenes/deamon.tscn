@@ -1,9 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://ccr7fpc8pwy60"]
+[gd_scene load_steps=21 format=3 uid="uid://ccr7fpc8pwy60"]
 
 [ext_resource type="PackedScene" uid="uid://ci1y4rydunn2t" path="res://Scenes/enemy_basic.tscn" id="1_cux81"]
 [ext_resource type="Texture2D" uid="uid://pjtbwgyf56mn" path="res://Assets/Characters/Demon.png" id="1_i8b0h"]
 [ext_resource type="Script" path="res://Scripts/Classes/hitbox.gd" id="2_jbbe1"]
-[ext_resource type="Script" path="res://Scripts/Demon.gd" id="2_qfyfg"]
 [ext_resource type="Script" path="res://Scripts/Classes/health.gd" id="3_8wklb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k4na3"]
@@ -126,10 +125,6 @@ animations = [{
 size = Vector2(29, 32)
 
 [node name="Deamon" instance=ExtResource("1_cux81")]
-script = ExtResource("2_qfyfg")
-linear_movement = null
-push_force = null
-offset_followed_path = null
 
 [node name="Mark" parent="." index="0"]
 position = Vector2(0, -44)
