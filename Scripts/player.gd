@@ -264,6 +264,8 @@ func _physics_process(delta):
 	# TODO fix it
 	if direction_input != null:
 		direction_input = direction_input.normalized()
+		var camera_global_position = Vector2(2457, -4)
+		SignalsHandler.player_asrael_fight_change_position.emit(camera_global_position - global_position)
 
 	var direction = direction_input
 	if direction.x != 0:

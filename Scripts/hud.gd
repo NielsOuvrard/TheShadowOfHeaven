@@ -10,6 +10,7 @@ extends CanvasLayer
 @onready var right: Control = $Right
 @onready var weapon: Node2D = $Right/Weapon
 @onready var cursor: Sprite2D = $Center/Cursor
+@onready var center: Control = $Center
 
 @onready var heart_parent: Node = $Left/HeartParent
 @onready var heart: Sprite2D = $Left/HeartParent/Heart
@@ -40,6 +41,7 @@ var dash_list := []
 var nmb_dash_on := 3
 var last_dash_modified : int
 
+var asrael_fight := false
 
 # todo hearts animated
 
@@ -88,6 +90,8 @@ func _ready() -> void:
 	SignalsHandler.player_look_direction.connect(_player_look_direction)
 	SignalsHandler.player_reload.connect(_player_reload)
 	SignalsHandler.player_update_dash.connect(_player_update_dash)
+	SignalsHandler.camera_change.connect(_asrael_fight_enable)
+	SignalsHandler.player_asrael_fight_change_position.connect(_player_asrael_fight_change_position)
 
 	life_to_hearts_list(PLAYER_FULL_LIFE) # should print 3 full hearts
 	update_hearts()
@@ -150,6 +154,14 @@ func _player_update_dash(value: int):
 
 	nmb_dash_on = value
 
+func _player_asrael_fight_change_position(position: Vector2):
+	if asrael_fight:
+		# zoom * 4
+		var center_screen = Vector2(960, 540) #get_viewport().size.x / 2, get_viewport().size.y / 2)
+		center.position = center_screen - position * 4
+
+func _asrael_fight_enable(_position: Vector2):
+	asrael_fight = true
 
 func _on_dash_animation_finished() -> void:
 	if dash_list[last_dash_modified].animation == "loss":
