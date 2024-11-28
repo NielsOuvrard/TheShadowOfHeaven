@@ -130,12 +130,12 @@ func update_hearts():
 		hearts_parent.remove_child(hearts_parent.get_child(0))
 	hearts.visible = true
 	var hearts_size = (hearts.texture.get_size().x / NMB_HEARTS)
-	var inirial_heart_position = -(hearts_size) * (ASRAEL_FULL_LIFE / 2.0) + (hearts_size / 2.0)
 	for i in range(ASRAEL_FULL_LIFE):
 		var new = hearts.duplicate()
 		new.frame = hearts_list[i]
 		new.z_index = 2
 		new.position.x += i * hearts_size
+		new.position.y += 1080 / 4 - hearts_size / 2
 		hearts_parent.add_child(new)
 	hearts.visible = false
 
