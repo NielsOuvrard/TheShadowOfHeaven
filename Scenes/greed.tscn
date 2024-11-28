@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://f7hotqo1373f"]
+[gd_scene load_steps=19 format=4 uid="uid://f7hotqo1373f"]
 
 [ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://Tres/greed2.tres" id="1_73fo5"]
 [ext_resource type="Script" path="res://Scripts/greed.gd" id="1_w82pv"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b2o724kx74abe" path="res://Scenes/obstacle.tscn" id="13_hrug7"]
 [ext_resource type="AudioStream" uid="uid://1qa1eme11s70" path="res://Assets/Sounds/Music/Level1.mp3" id="14_kaa8g"]
 [ext_resource type="PackedScene" uid="uid://bcbtjhffrph75" path="res://Scenes/item.tscn" id="15_2xedr"]
+[ext_resource type="Texture2D" uid="uid://b4ng8lqnl08o5" path="res://Assets/World/ControlDash.png" id="17_qc5h7"]
 
 [sub_resource type="Curve2D" id="Curve2D_llkya"]
 _data = {
@@ -82,7 +83,7 @@ y_sort_enabled = true
 position = Vector2(390, 779)
 
 [node name="Weapon" parent="ROOM_1" instance=ExtResource("9_ikai7")]
-position = Vector2(288.704, 777.542)
+position = Vector2(268, 778)
 
 [node name="LAVA" type="Node2D" parent="ROOM_1"]
 position = Vector2(16, 0)
@@ -941,6 +942,10 @@ type = 3
 stream = ExtResource("14_kaa8g")
 volume_db = -10.0
 autoplay = true
+
+[node name="ControlDash" type="Sprite2D" parent="."]
+position = Vector2(294, 768)
+texture = ExtResource("17_qc5h7")
 
 [connection signal="opening" from="ROOM_2/Door3" to="." method="_save_game"]
 [connection signal="opening" from="ROOM_5/Door9" to="." method="_on_door_9_opening"]
