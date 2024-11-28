@@ -237,7 +237,7 @@ rotation = 2.99655
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="ROOM_2/Path2D"]
 position = Vector2(596.942, 828.397)
-rotation = -0.238785
+rotation = -0.238787
 progress = 178.909
 
 [node name="ROOM_3" type="Node2D" parent="."]

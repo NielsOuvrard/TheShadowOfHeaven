@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://bnpnxeknwollu"]
+[gd_scene load_steps=19 format=4 uid="uid://bnpnxeknwollu"]
 
 [ext_resource type="Script" path="res://Scripts/wrath.gd" id="1_57gg5"]
 [ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://Tres/greed2.tres" id="1_gcgya"]
@@ -16,6 +16,12 @@
 [ext_resource type="PackedScene" uid="uid://k1nxlv42ukb" path="res://Scenes/asrael.tscn" id="13_gc3or"]
 [ext_resource type="PackedScene" uid="uid://dhsyf6vmve3jf" path="res://Scenes/lava.tscn" id="14_hpxsy"]
 [ext_resource type="AudioStream" uid="uid://d3qf3qynlej2j" path="res://Assets/Sounds/Music/Level3.mp3" id="15_0t1d0"]
+
+[sub_resource type="Curve2D" id="Curve2D_2v15e"]
+_data = {
+"points": PackedVector2Array(0.534304, 12.1821, -0.534304, -12.1821, -621, -21, -6.8391, 4.16758, 6.8391, -4.16758, -604, -54, -15.6017, -7.05282, 15.6017, 7.05282, -548, -59, -6.62538, -14.9605, 6.62538, 14.9605, -511, -26, 0, 0, 0, 0, -520, 29, 23.082, -0.534304, -23.082, 0.534304, -555, 67, 6.8391, 10.793, -6.8391, -10.793, -605, 43, 0, 0, 0, 0, -621, -21)
+}
+point_count = 8
 
 [sub_resource type="Curve2D" id="Curve2D_bggox"]
 _data = {
@@ -115,13 +121,17 @@ position = Vector2(-470, -10)
 rotation = 1.5708
 openable = false
 
-[node name="EnemyBasic" parent="ROOMS/ROOM_2" instance=ExtResource("6_kv2rs")]
-position = Vector2(-542, -38)
+[node name="EnemyBasic" parent="ROOMS/ROOM_2" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_kv2rs")]
+position = Vector2(-553, 63)
 linear_movement = Vector2(1, 0)
+followed_path = NodePath("../Path2D/PathFollow2D3")
+offset_followed_path = 0.66
 
-[node name="EnemyBasic2" parent="ROOMS/ROOM_2" instance=ExtResource("6_kv2rs")]
-position = Vector2(-540, 38)
+[node name="EnemyBasic2" parent="ROOMS/ROOM_2" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_kv2rs")]
+position = Vector2(-515, -26)
 linear_movement = Vector2(1, 0)
+followed_path = NodePath("../Path2D/PathFollow2D2")
+offset_followed_path = 0.33
 
 [node name="Obstacle2" parent="ROOMS/ROOM_2" instance=ExtResource("7_ijylg")]
 z_index = 0
@@ -207,12 +217,31 @@ position = Vector2(-496, -72)
 [node name="Torch4" parent="ROOMS/ROOM_2" instance=ExtResource("8_qlv8h")]
 position = Vector2(-592, -96)
 
-[node name="Ghost" parent="ROOMS/ROOM_2" instance=ExtResource("9_f3ewg")]
-position = Vector2(-536, 72)
+[node name="Ghost" parent="ROOMS/ROOM_2" node_paths=PackedStringArray("followed_path") instance=ExtResource("9_f3ewg")]
+position = Vector2(-620, -20)
 linear_movement = Vector2(1, 0)
+followed_path = NodePath("../Path2D/PathFollow2D")
 
 [node name="Chest" parent="ROOMS/ROOM_2" instance=ExtResource("3_13s5j")]
 position = Vector2(-536, -96)
+
+[node name="Path2D" type="Path2D" parent="ROOMS/ROOM_2"]
+position = Vector2(-1, -1)
+curve = SubResource("Curve2D_2v15e")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOMS/ROOM_2/Path2D"]
+position = Vector2(-621, -21)
+rotation = -1.61463
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="ROOMS/ROOM_2/Path2D"]
+position = Vector2(-525.226, -44.6809)
+rotation = 0.721233
+progress = 122.677
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="ROOMS/ROOM_2/Path2D"]
+position = Vector2(-543.426, 63.4343)
+rotation = 2.59398
+progress = 245.354
 
 [node name="ROOM_3" type="Node2D" parent="ROOMS"]
 y_sort_enabled = true
@@ -364,7 +393,7 @@ rotation = 2.70431
 progress = 178.501
 
 [node name="PathFollow2D3" type="PathFollow2D" parent="ROOMS/ROOM_4/Path2D"]
-position = Vector2(376.861, 54.1566)
+position = Vector2(376.861, 54.1567)
 rotation = -0.023408
 progress = 357.002
 
