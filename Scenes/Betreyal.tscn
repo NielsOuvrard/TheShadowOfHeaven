@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://crvpqpbodxy84"]
+[gd_scene load_steps=27 format=4 uid="uid://crvpqpbodxy84"]
 
 [ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://Tres/greed2.tres" id="1_63g51"]
 [ext_resource type="Script" path="res://Scripts/betreyal.gd" id="1_282fw"]
@@ -13,6 +13,84 @@
 [ext_resource type="PackedScene" uid="uid://domryt018ofom" path="res://Scenes/weapon.tscn" id="10_54dm5"]
 [ext_resource type="PackedScene" uid="uid://b2o724kx74abe" path="res://Scenes/obstacle.tscn" id="12_dnag6"]
 [ext_resource type="AudioStream" uid="uid://fxx1qh8n6sve" path="res://Assets/Sounds/Music/Level2.mp3" id="12_k2vvb"]
+
+[sub_resource type="Curve2D" id="Curve2D_6wtki"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 688, 56, 0, 0, 0, 0, 616, 48, 0, 0, 0, 0, 616, 56, 0, 0, 0, 0, 688, 56)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_2nwoy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 784, 48, 0, 0, 0, 0, 784, 144, 0, 0, 0, 0, 800, 144, 0, 0, 0, 0, 800, 48, 0, 0, 0, 0, 784, 48)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_ejnvw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 696, 120, 0, 0, 0, 0, 640, 120, 0, 0, 0, 0, 648, 144, 0, 0, 0, 0, 696, 144, 0, 0, 0, 0, 696, 120)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_g70v2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 688, 208, 0, 0, 0, 0, 640, 208, 0, 0, 0, 0, 640, 232, 0, 0, 0, 0, 688, 240, 0, 0, 0, 0, 688, 232, 0, 0, 0, 0, 688, 208)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_gakmc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1032, 200, 0, 0, 0, 0, 984, 192, 0, 0, 0, 0, 984, 280, 0, 0, 0, 0, 1040, 280, 0, 0, 0, 0, 1032, 200)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_v7uga"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1360, 248, 0, 0, 0, 0, 1272, 248, 0, 0, 0, 0, 1272, 264, 0, 0, 0, 0, 1376, 264, 0, 0, 0, 0, 1360, 248)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_gwrpb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1448, 312, 0, 0, 0, 0, 1448, 272, 0, 0, 0, 0, 1424, 272, 0, 0, 0, 0, 1432, 336, 0, 0, 0, 0, 1456, 344, 0, 0, 0, 0, 1448, 312)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_rwdnl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1320, 344, 0, 0, 0, 0, 1288, 344, 0, 0, 0, 0, 1280, 352, 0, 0, 0, 0, 1360, 360, 0, 0, 0, 0, 1352, 344, 0, 0, 0, 0, 1320, 344)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_mtn6s"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1360, 432, 0, 0, 0, 0, 1304, 424, 0, 0, 0, 0, 1296, 440, 0, 0, 0, 0, 1368, 440, 0, 0, 0, 0, 1360, 432)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_mre71"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1800, 392, 0, 0, 0, 0, 1776, 392, 0, 0, 0, 0, 1776, 464, 0, 0, 0, 0, 1824, 464, 0, 0, 0, 0, 1832, 392, 0, 0, 0, 0, 1800, 392)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_elg3q"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1928, 360, 0, 0, 0, 0, 1912, 352, 0, 0, 0, 0, 1904, 496, 0, 0, 0, 0, 1936, 504, 0, 0, 0, 0, 1928, 360)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_u4qyf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1840, 328, 0, 0, 0, 0, 1784, 320, 0, 0, 0, 0, 1904, 320, 0, 0, 0, 0, 1840, 328)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_4ss66"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1768, 512, 0, 0, 0, 0, 1720, 512, 0, 0, 0, 0, 1704, 488, 0, 0, 0, 0, 1664, 488, 0, 0, 0, 0, 1664, 536, 0, 0, 0, 0, 1720, 544, 0, 0, 0, 0, 1728, 520, 0, 0, 0, 0, 1768, 536, 0, 0, 0, 0, 1768, 528, 0, 0, 0, 0, 1824, 520, 0, 0, 0, 0, 1816, 496, 0, 0, 0, 0, 1784, 496, 0, 0, 0, 0, 1768, 512)
+}
+point_count = 13
 
 [node name="Betreyal" type="Node2D"]
 z_index = 1
@@ -549,20 +627,58 @@ position = Vector2(800, 231.998)
 rotation = -1.57011
 openable = false
 
-[node name="EnemyBasic" parent="ROOM_2" instance=ExtResource("6_y1xmd")]
+[node name="EnemyBasic" parent="ROOM_2" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_y1xmd")]
 position = Vector2(688, 48)
+followed_path = NodePath("../Path2D/PathFollow2D")
 
-[node name="EnemyBasic2" parent="ROOM_2" instance=ExtResource("6_y1xmd")]
+[node name="EnemyBasic2" parent="ROOM_2" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_y1xmd")]
 position = Vector2(808, 48)
+followed_path = NodePath("../Path2D2/PathFollow2D")
 
-[node name="EnemyBasic3" parent="ROOM_2" instance=ExtResource("6_y1xmd")]
+[node name="EnemyBasic3" parent="ROOM_2" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_y1xmd")]
 position = Vector2(808, 136)
+followed_path = NodePath("../Path2D2/PathFollow2D2")
+offset_followed_path = 0.5
 
-[node name="EnemyBasic4" parent="ROOM_2" instance=ExtResource("6_y1xmd")]
+[node name="EnemyBasic4" parent="ROOM_2" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_y1xmd")]
 position = Vector2(680, 136)
+followed_path = NodePath("../Path2D3/PathFollow2D")
 
-[node name="EnemyBasic5" parent="ROOM_2" instance=ExtResource("6_y1xmd")]
-position = Vector2(656, 224)
+[node name="EnemyBasic5" parent="ROOM_2" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_y1xmd")]
+position = Vector2(688, 208)
+followed_path = NodePath("../Path2D4/PathFollow2D")
+
+[node name="Path2D" type="Path2D" parent="ROOM_2"]
+curve = SubResource("Curve2D_6wtki")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOM_2/Path2D"]
+position = Vector2(688, 56)
+rotation = -3.03094
+
+[node name="Path2D2" type="Path2D" parent="ROOM_2"]
+curve = SubResource("Curve2D_2nwoy")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOM_2/Path2D2"]
+position = Vector2(784, 48)
+rotation = 1.5708
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="ROOM_2/Path2D2"]
+position = Vector2(800, 144)
+progress = 112.0
+
+[node name="Path2D3" type="Path2D" parent="ROOM_2"]
+curve = SubResource("Curve2D_ejnvw")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOM_2/Path2D3"]
+position = Vector2(696, 120)
+rotation = 3.14159
+
+[node name="Path2D4" type="Path2D" parent="ROOM_2"]
+curve = SubResource("Curve2D_g70v2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOM_2/Path2D4"]
+position = Vector2(688, 208)
+rotation = 3.14159
 
 [node name="ROOM_3" type="Node2D" parent="."]
 z_index = 1
@@ -577,11 +693,26 @@ position = Vector2(1120, 231.997)
 rotation = -1.57011
 openable = false
 
-[node name="Deamon" parent="ROOM_3" instance=ExtResource("7_xwsag")]
-position = Vector2(1024, 216)
+[node name="Deamon" parent="ROOM_3" node_paths=PackedStringArray("followed_path") instance=ExtResource("7_xwsag")]
+position = Vector2(1032, 200)
+followed_path = NodePath("../Path2D/PathFollow2D")
 
-[node name="Deamon2" parent="ROOM_3" instance=ExtResource("7_xwsag")]
-position = Vector2(1040, 264)
+[node name="Deamon2" parent="ROOM_3" node_paths=PackedStringArray("followed_path") instance=ExtResource("7_xwsag")]
+position = Vector2(984, 280)
+followed_path = NodePath("../Path2D/PathFollow2D2")
+offset_followed_path = 0.5
+
+[node name="Path2D" type="Path2D" parent="ROOM_3"]
+curve = SubResource("Curve2D_gakmc")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOM_3/Path2D"]
+position = Vector2(1032, 200)
+rotation = -2.97644
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="ROOM_3/Path2D"]
+position = Vector2(983.961, 279.93)
+rotation = 1.5708
+progress = 136.531
 
 [node name="ROOM_4" type="Node2D" parent="."]
 z_index = 1
@@ -592,17 +723,49 @@ position = Vector2(1448.01, 423.996)
 rotation = -1.57011
 openable = false
 
-[node name="Deamon3" parent="ROOM_4" instance=ExtResource("7_xwsag")]
+[node name="Deamon3" parent="ROOM_4" node_paths=PackedStringArray("followed_path") instance=ExtResource("7_xwsag")]
 position = Vector2(1376, 256)
+followed_path = NodePath("../Path2D/PathFollow2D")
 
-[node name="EnemyBasic6" parent="ROOM_4" instance=ExtResource("6_y1xmd")]
+[node name="EnemyBasic6" parent="ROOM_4" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_y1xmd")]
 position = Vector2(1448, 312)
+followed_path = NodePath("../Path2D2/PathFollow2D")
 
-[node name="EnemyBasic7" parent="ROOM_4" instance=ExtResource("6_y1xmd")]
+[node name="EnemyBasic7" parent="ROOM_4" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_y1xmd")]
 position = Vector2(1320, 344)
+followed_path = NodePath("../Path2D3/PathFollow2D")
 
-[node name="EnemyBasic8" parent="ROOM_4" instance=ExtResource("6_y1xmd")]
+[node name="EnemyBasic8" parent="ROOM_4" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_y1xmd")]
 position = Vector2(1368, 432)
+followed_path = NodePath("../Path2D4/PathFollow2D")
+
+[node name="Path2D" type="Path2D" parent="ROOM_4"]
+curve = SubResource("Curve2D_v7uga")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOM_4/Path2D"]
+position = Vector2(1360, 248)
+rotation = 3.14159
+
+[node name="Path2D2" type="Path2D" parent="ROOM_4"]
+curve = SubResource("Curve2D_gwrpb")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOM_4/Path2D2"]
+position = Vector2(1448, 312)
+rotation = -1.5708
+
+[node name="Path2D3" type="Path2D" parent="ROOM_4"]
+curve = SubResource("Curve2D_rwdnl")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOM_4/Path2D3"]
+position = Vector2(1320, 344)
+rotation = 3.14159
+
+[node name="Path2D4" type="Path2D" parent="ROOM_4"]
+curve = SubResource("Curve2D_mtn6s")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOM_4/Path2D4"]
+position = Vector2(1360, 432)
+rotation = -2.9997
 
 [node name="ROOM_5" type="Node2D" parent="."]
 z_index = 1
@@ -617,26 +780,77 @@ position = Vector2(2000.01, 423.995)
 rotation = -1.57011
 openable = false
 
-[node name="Deamon4" parent="ROOM_5" instance=ExtResource("7_xwsag")]
-position = Vector2(1800, 424)
+[node name="Deamon4" parent="ROOM_5" node_paths=PackedStringArray("followed_path") instance=ExtResource("7_xwsag")]
+position = Vector2(1800, 392)
+followed_path = NodePath("../Path2D/PathFollow2D")
 
-[node name="Deamon5" parent="ROOM_5" instance=ExtResource("7_xwsag")]
+[node name="Deamon5" parent="ROOM_5" node_paths=PackedStringArray("followed_path") instance=ExtResource("7_xwsag")]
 position = Vector2(1920, 504)
+followed_path = NodePath("../Path2D2/PathFollow2D2")
+offset_followed_path = 0.5
 
-[node name="Deamon6" parent="ROOM_5" instance=ExtResource("7_xwsag")]
-position = Vector2(1704, 512)
+[node name="Deamon6" parent="ROOM_5" node_paths=PackedStringArray("followed_path") instance=ExtResource("7_xwsag")]
+position = Vector2(1664, 504)
+followed_path = NodePath("../Path2D4/PathFollow2D2")
 
-[node name="EnemyBasic9" parent="ROOM_5" instance=ExtResource("6_y1xmd")]
-position = Vector2(1800, 328)
+[node name="EnemyBasic9" parent="ROOM_5" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_y1xmd")]
+position = Vector2(1840, 328)
+followed_path = NodePath("../Path2D3/PathFollow2D")
 
-[node name="EnemyBasic10" parent="ROOM_5" instance=ExtResource("6_y1xmd")]
+[node name="EnemyBasic10" parent="ROOM_5" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_y1xmd")]
 position = Vector2(1800, 464)
+followed_path = NodePath("../Path2D/PathFollow2D2")
+offset_followed_path = 0.5
 
-[node name="EnemyBasic11" parent="ROOM_5" instance=ExtResource("6_y1xmd")]
+[node name="EnemyBasic11" parent="ROOM_5" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_y1xmd")]
 position = Vector2(1928, 352)
+followed_path = NodePath("../Path2D2/PathFollow2D")
 
-[node name="EnemyBasic12" parent="ROOM_5" instance=ExtResource("6_y1xmd")]
-position = Vector2(1784, 520)
+[node name="EnemyBasic12" parent="ROOM_5" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_y1xmd")]
+position = Vector2(1768, 512)
+followed_path = NodePath("../Path2D4/PathFollow2D")
+
+[node name="Path2D" type="Path2D" parent="ROOM_5"]
+curve = SubResource("Curve2D_mre71")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOM_5/Path2D"]
+position = Vector2(1800, 392)
+rotation = 3.14159
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="ROOM_5/Path2D"]
+position = Vector2(1804.23, 464)
+progress = 124.222
+
+[node name="Path2D2" type="Path2D" parent="ROOM_5"]
+curve = SubResource("Curve2D_elg3q")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOM_5/Path2D2"]
+position = Vector2(1928, 360)
+rotation = -2.67795
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="ROOM_5/Path2D2"]
+position = Vector2(1911.32, 497.83)
+rotation = 0.244979
+progress = 169.659
+
+[node name="Path2D3" type="Path2D" parent="ROOM_5"]
+curve = SubResource("Curve2D_u4qyf")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOM_5/Path2D3"]
+position = Vector2(1840, 328)
+rotation = -2.9997
+
+[node name="Path2D4" type="Path2D" parent="ROOM_5"]
+curve = SubResource("Curve2D_4ss66")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOM_5/Path2D4"]
+position = Vector2(1768, 512)
+rotation = 3.14159
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="ROOM_5/Path2D4"]
+position = Vector2(1664, 501.4)
+rotation = 1.5708
+progress = 130.286
 
 [node name="Level2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_k2vvb")
@@ -727,6 +941,50 @@ user_frame = 5
 
 [node name="Obstacle25" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
 position = Vector2(1744, 320)
+user_frame = 5
+
+[node name="Obstacle32" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1728, 320)
+user_frame = 5
+
+[node name="Obstacle33" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1712, 304)
+user_frame = 5
+
+[node name="Obstacle34" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1728, 336)
+user_frame = 5
+
+[node name="Obstacle35" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1712, 320)
+user_frame = 5
+
+[node name="Obstacle36" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1696, 304)
+user_frame = 5
+
+[node name="Obstacle37" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1648, 352)
+user_frame = 5
+
+[node name="Obstacle38" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1664, 344)
+user_frame = 5
+
+[node name="Obstacle39" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1648, 336)
+user_frame = 5
+
+[node name="Obstacle40" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1664, 328)
+user_frame = 5
+
+[node name="Obstacle41" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1664, 312)
+user_frame = 5
+
+[node name="Obstacle42" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1728, 304)
 user_frame = 5
 
 [node name="Obstacle26" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
