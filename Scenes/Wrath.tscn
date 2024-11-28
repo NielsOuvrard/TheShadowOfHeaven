@@ -674,12 +674,12 @@ position = Vector2(909, 49)
 rotation = -0.43467
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="ROOMS/ROOM_5/Path2D"]
-position = Vector2(933.941, -46.4014)
+position = Vector2(933.941, -46.4013)
 rotation = -1.59518
 progress = 113.334
 
 [node name="PathFollow2D3" type="PathFollow2D" parent="ROOMS/ROOM_5/Path2D"]
-position = Vector2(890, -58.907)
+position = Vector2(890, -58.9072)
 rotation = 1.5708
 progress = 226.668
 

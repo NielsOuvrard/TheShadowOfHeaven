@@ -635,11 +635,6 @@ followed_path = NodePath("../Path2D/PathFollow2D")
 position = Vector2(808, 48)
 followed_path = NodePath("../Path2D2/PathFollow2D")
 
-[node name="EnemyBasic3" parent="ROOM_2" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_y1xmd")]
-position = Vector2(808, 136)
-followed_path = NodePath("../Path2D2/PathFollow2D2")
-offset_followed_path = 0.5
-
 [node name="EnemyBasic4" parent="ROOM_2" node_paths=PackedStringArray("followed_path") instance=ExtResource("6_y1xmd")]
 position = Vector2(680, 136)
 followed_path = NodePath("../Path2D3/PathFollow2D")
@@ -656,6 +651,8 @@ position = Vector2(688, 56)
 rotation = -3.03094
 
 [node name="Path2D2" type="Path2D" parent="ROOM_2"]
+position = Vector2(-337.997, 0)
+scale = Vector2(1.4375, 1)
 curve = SubResource("Curve2D_2nwoy")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="ROOM_2/Path2D2"]
@@ -993,30 +990,6 @@ user_frame = 5
 
 [node name="Obstacle27" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
 position = Vector2(1728, 344)
-user_frame = 5
-
-[node name="Obstacle32" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
-position = Vector2(1728, 328)
-user_frame = 5
-
-[node name="Obstacle33" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
-position = Vector2(1728, 312)
-user_frame = 5
-
-[node name="Obstacle34" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
-position = Vector2(1712, 304)
-user_frame = 5
-
-[node name="Obstacle35" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
-position = Vector2(1712, 320)
-user_frame = 5
-
-[node name="Obstacle36" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
-position = Vector2(1696, 312)
-user_frame = 5
-
-[node name="Obstacle37" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
-position = Vector2(1680, 304)
 user_frame = 5
 
 [node name="Obstacle28" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
