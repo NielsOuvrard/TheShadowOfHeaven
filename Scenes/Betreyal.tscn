@@ -34,7 +34,7 @@ tile_set = ExtResource("1_63g51")
 
 [node name="Player" parent="." instance=ExtResource("2_6sxn2")]
 z_index = 2
-position = Vector2(31, 6)
+position = Vector2(40, 24)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 z_index = 100
@@ -578,10 +578,10 @@ rotation = -1.57011
 openable = false
 
 [node name="Deamon" parent="ROOM_3" instance=ExtResource("7_xwsag")]
-position = Vector2(1032, 200)
+position = Vector2(1024, 216)
 
 [node name="Deamon2" parent="ROOM_3" instance=ExtResource("7_xwsag")]
-position = Vector2(1056, 280)
+position = Vector2(1040, 264)
 
 [node name="ROOM_4" type="Node2D" parent="."]
 z_index = 1
@@ -681,22 +681,6 @@ user_frame = 5
 position = Vector2(752, 128)
 user_frame = 5
 
-[node name="Obstacle10" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
-position = Vector2(1000, 240)
-user_frame = 5
-
-[node name="Obstacle11" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
-position = Vector2(1000, 224)
-user_frame = 5
-
-[node name="Obstacle12" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
-position = Vector2(1000, 208)
-user_frame = 5
-
-[node name="Obstacle13" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
-position = Vector2(1000, 256)
-user_frame = 5
-
 [node name="Obstacle14" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
 position = Vector2(1328, 240)
 user_frame = 5
@@ -750,7 +734,31 @@ position = Vector2(1744, 336)
 user_frame = 5
 
 [node name="Obstacle27" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
-position = Vector2(1760, 352)
+position = Vector2(1728, 344)
+user_frame = 5
+
+[node name="Obstacle32" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1728, 328)
+user_frame = 5
+
+[node name="Obstacle33" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1728, 312)
+user_frame = 5
+
+[node name="Obstacle34" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1712, 304)
+user_frame = 5
+
+[node name="Obstacle35" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1712, 320)
+user_frame = 5
+
+[node name="Obstacle36" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1696, 312)
+user_frame = 5
+
+[node name="Obstacle37" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
+position = Vector2(1680, 304)
 user_frame = 5
 
 [node name="Obstacle28" parent="OBSTACLES" instance=ExtResource("12_dnag6")]
