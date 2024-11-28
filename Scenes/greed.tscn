@@ -38,9 +38,9 @@ point_count = 5
 
 [sub_resource type="Curve2D" id="Curve2D_a4xvu"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1257, 862, 0, 0, 0, 0, 1201, 793, 0, 0, 0, 0, 1228, 725, 0, 0, 0, 0, 1283, 720, 0, 0, 0, 0, 1236, 775, 0, 0, 0, 0, 1243, 801, 0, 0, 0, 0, 1292, 837, 0, 0, 0, 0, 1257, 862)
+"points": PackedVector2Array(0, 0, 0, 0, 1257, 862, 0, 0, 0, 0, 1223, 829, 0, 0, 0, 0, 1201, 793, 0, 0, 0, 0, 1202, 745, 0, 0, 0, 0, 1228, 725, 0, 0, 0, 0, 1283, 720, 0, 0, 0, 0, 1286, 755, 0, 0, 0, 0, 1235, 768, 0, 0, 0, 0, 1236, 806, 0, 0, 0, 0, 1276, 819, 0, 0, 0, 0, 1292, 837, 0, 0, 0, 0, 1257, 862)
 }
-point_count = 8
+point_count = 12
 
 [sub_resource type="Curve2D" id="Curve2D_f7vpy"]
 _data = {
@@ -73,7 +73,7 @@ tile_set = ExtResource("1_73fo5")
 
 [node name="Player" parent="." instance=ExtResource("7_f7bvl")]
 z_index = 2
-position = Vector2(-33, 776)
+position = Vector2(-84, 780)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 z_index = 100
@@ -287,6 +287,7 @@ openable = false
 [node name="Ghost4" parent="ROOM_3" node_paths=PackedStringArray("followed_path") instance=ExtResource("10_jlttf")]
 position = Vector2(922, 679)
 followed_path = NodePath("../Path2D/PathFollow2D3")
+offset_followed_path = 0.66
 
 [node name="EnemyBasic" parent="ROOM_3" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_bkeho")]
 position = Vector2(912, 788)
@@ -295,6 +296,7 @@ followed_path = NodePath("../Path2D/PathFollow2D")
 [node name="EnemyBasic2" parent="ROOM_3" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_bkeho")]
 position = Vector2(976, 737)
 followed_path = NodePath("../Path2D/PathFollow2D2")
+offset_followed_path = 0.33
 
 [node name="Obstacles and Torches" type="Node2D" parent="ROOM_3"]
 
@@ -797,32 +799,37 @@ position = Vector2(1472, 648)
 [node name="Node2D" type="Node2D" parent="ROOM_4"]
 
 [node name="EnemyBasic" parent="ROOM_4/Node2D" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_bkeho")]
-position = Vector2(1255, 861)
-followed_path = NodePath("../Path2D2/PathFollow2D")
+position = Vector2(1257, 862)
+followed_path = NodePath("../PATH1/coso1")
 
 [node name="EnemyBasic2" parent="ROOM_4/Node2D" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_bkeho")]
 position = Vector2(1219, 748)
-followed_path = NodePath("../Path2D2/PathFollow2D2")
+followed_path = NodePath("../PATH1/coso2")
+offset_followed_path = 0.33
 
 [node name="EnemyBasic3" parent="ROOM_4/Node2D" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_bkeho")]
 position = Vector2(1246, 767)
-followed_path = NodePath("../Path2D2/PathFollow2D3")
+followed_path = NodePath("../PATH1/coso3")
+offset_followed_path = 0.66
 
 [node name="EnemyBasic4" parent="ROOM_4/Node2D" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_bkeho")]
 position = Vector2(1272, 652)
-followed_path = NodePath("../Path2D2/PathFollow2D")
+followed_path = NodePath("../Path2/PathFollow2D")
 
 [node name="EnemyBasic5" parent="ROOM_4/Node2D" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_bkeho")]
 position = Vector2(1215, 613)
-followed_path = NodePath("../Path2D2/PathFollow2D2")
+followed_path = NodePath("../Path2/PathFollow2D2")
+offset_followed_path = 0.33
 
 [node name="EnemyBasic6" parent="ROOM_4/Node2D" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_bkeho")]
 position = Vector2(1260, 571)
-followed_path = NodePath("../Path2D2/PathFollow2D3")
+followed_path = NodePath("../Path2/PathFollow2D3")
+offset_followed_path = 0.66
 
 [node name="EnemyBasic7" parent="ROOM_4/Node2D" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_bkeho")]
 position = Vector2(1424, 563)
 followed_path = NodePath("../Path2D3/PathFollow2D2")
+offset_followed_path = 0.5
 
 [node name="EnemyBasic8" parent="ROOM_4/Node2D" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_bkeho")]
 position = Vector2(1446, 627)
@@ -835,43 +842,45 @@ followed_path = NodePath("../Path2D4/PathFollow2D")
 [node name="EnemyBasic10" parent="ROOM_4/Node2D" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_bkeho")]
 position = Vector2(1557, 614)
 followed_path = NodePath("../Path2D4/PathFollow2D2")
+offset_followed_path = 0.33
 
 [node name="EnemyBasic11" parent="ROOM_4/Node2D" node_paths=PackedStringArray("followed_path") instance=ExtResource("3_bkeho")]
 position = Vector2(1600, 584)
 followed_path = NodePath("../Path2D4/PathFollow2D3")
+offset_followed_path = 0.66
 
-[node name="Path2D" type="Path2D" parent="ROOM_4/Node2D"]
+[node name="Path2" type="Path2D" parent="ROOM_4/Node2D"]
 curve = SubResource("Curve2D_3i48e")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="ROOM_4/Node2D/Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="ROOM_4/Node2D/Path2"]
 position = Vector2(1272, 652)
 rotation = -2.78468
 
-[node name="PathFollow2D2" type="PathFollow2D" parent="ROOM_4/Node2D/Path2D"]
+[node name="PathFollow2D2" type="PathFollow2D" parent="ROOM_4/Node2D/Path2"]
 position = Vector2(1214.56, 613.342)
 rotation = -1.47732
 progress = 79.6977
 
-[node name="PathFollow2D3" type="PathFollow2D" parent="ROOM_4/Node2D/Path2D"]
-position = Vector2(1259.4, 570.969)
+[node name="PathFollow2D3" type="PathFollow2D" parent="ROOM_4/Node2D/Path2"]
+position = Vector2(1259.4, 570.968)
 rotation = 1.41648
 progress = 159.395
 
-[node name="Path2D2" type="Path2D" parent="ROOM_4/Node2D"]
+[node name="PATH1" type="Path2D" parent="ROOM_4/Node2D"]
 curve = SubResource("Curve2D_a4xvu")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="ROOM_4/Node2D/Path2D2"]
+[node name="coso1" type="PathFollow2D" parent="ROOM_4/Node2D/PATH1"]
 position = Vector2(1257, 862)
-rotation = -2.25257
+rotation = -2.37112
 
-[node name="PathFollow2D2" type="PathFollow2D" parent="ROOM_4/Node2D/Path2D2"]
-position = Vector2(1219.4, 746.668)
-rotation = -1.19283
+[node name="coso2" type="PathFollow2D" parent="ROOM_4/Node2D/PATH1"]
+position = Vector2(1202.76, 744.381)
+rotation = -0.8323
 progress = 138.713
 
-[node name="PathFollow2D3" type="PathFollow2D" parent="ROOM_4/Node2D/Path2D2"]
-position = Vector2(1244, 765.637)
-rotation = 2.27792
+[node name="coso3" type="PathFollow2D" parent="ROOM_4/Node2D/PATH1"]
+position = Vector2(1269.83, 759.121)
+rotation = 2.89201
 progress = 277.426
 
 [node name="Path2D3" type="Path2D" parent="ROOM_4/Node2D"]
@@ -996,7 +1005,7 @@ position = Vector2(1214, 901)
 color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch20" parent="TORCHES" instance=ExtResource("8_of5e7")]
-position = Vector2(1232, 901)
+position = Vector2(1226, 903)
 color = Color(0.945098, 0.870588, 0, 1)
 
 [node name="Torch21" parent="TORCHES" instance=ExtResource("8_of5e7")]
