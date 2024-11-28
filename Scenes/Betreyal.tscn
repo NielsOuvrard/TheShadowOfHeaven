@@ -112,7 +112,7 @@ tile_set = ExtResource("1_63g51")
 
 [node name="Player" parent="." instance=ExtResource("2_6sxn2")]
 z_index = 2
-position = Vector2(1698.88, 343.043)
+position = Vector2(40, 24)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 z_index = 100
