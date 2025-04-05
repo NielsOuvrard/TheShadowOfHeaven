@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=4 uid="uid://bnpnxeknwollu"]
 
-[ext_resource type="Script" path="res://Scripts/wrath.gd" id="1_57gg5"]
+[ext_resource type="Script" uid="uid://dqymge6i442e3" path="res://Scripts/wrath.gd" id="1_57gg5"]
 [ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://Tres/greed2.tres" id="1_gcgya"]
 [ext_resource type="PackedScene" uid="uid://edx4h5swy4gu" path="res://Scenes/door.tscn" id="2_fetld"]
 [ext_resource type="PackedScene" uid="uid://0y06vbi8ods3" path="res://Scenes/player.tscn" id="2_tf1b3"]

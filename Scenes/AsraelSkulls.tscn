@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dhmwo21d0d5bf"]
 
-[ext_resource type="Script" path="res://Scripts/asrael_skulls.gd" id="1_0siex"]
+[ext_resource type="Script" uid="uid://bbpv1gpmsf08w" path="res://Scripts/asrael_skulls.gd" id="1_0siex"]
 
 [node name="AsraelSkulls" type="Node"]
 script = ExtResource("1_0siex")

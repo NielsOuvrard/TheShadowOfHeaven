@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b2o724kx74abe"]
 
 [ext_resource type="Texture2D" uid="uid://cqg1iesn6t17a" path="res://Assets/World/Obstacles.png" id="1_fddb0"]
-[ext_resource type="Script" path="res://Scripts/obstacles.gd" id="2_36d8p"]
+[ext_resource type="Script" uid="uid://dfdnf15vglvru" path="res://Scripts/obstacles.gd" id="2_36d8p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nhev8"]
 size = Vector2(16.0067, 17.9999)

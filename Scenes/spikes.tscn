@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=3 uid="uid://dacosqfur2u5l"]
 
 [ext_resource type="Texture2D" uid="uid://yoiq6qvnvna0" path="res://Assets/World/Spikes.png" id="1_65t34"]
-[ext_resource type="Script" path="res://Scripts/spikes.gd" id="1_bogmg"]
+[ext_resource type="Script" uid="uid://ct0an6daqg71h" path="res://Scripts/spikes.gd" id="1_bogmg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l0884"]
 atlas = ExtResource("1_65t34")
@@ -195,8 +195,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tl2na"]
 _data = {
-"RESET": SubResource("Animation_yeud3"),
-"run": SubResource("Animation_n8p8d")
+&"RESET": SubResource("Animation_yeud3"),
+&"run": SubResource("Animation_n8p8d")
 }
 
 [node name="Spikes" type="Area2D"]

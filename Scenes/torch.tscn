@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cy2atdt0bqntm"]
 
-[ext_resource type="Script" path="res://Scripts/torch.gd" id="1_twvyy"]
+[ext_resource type="Script" uid="uid://c4effldxxtpep" path="res://Scripts/torch.gd" id="1_twvyy"]
 [ext_resource type="Texture2D" uid="uid://bv1f68b0dkmkw" path="res://Assets/World/Fire.png" id="1_xdjud"]
 [ext_resource type="Texture2D" uid="uid://b0606qmktrjkd" path="res://Assets/light_halo.png" id="2_ftp3d"]
 

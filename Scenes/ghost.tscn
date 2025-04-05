@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://ci1y4rydunn2t" path="res://Scenes/enemy_basic.tscn" id="1_yqn6d"]
 [ext_resource type="Texture2D" uid="uid://pjtbwgyf56mn" path="res://Assets/Characters/Demon.png" id="3_4pypu"]
-[ext_resource type="Script" path="res://Scripts/Classes/hitbox.gd" id="4_txeha"]
-[ext_resource type="Script" path="res://Scripts/Classes/health.gd" id="5_vrakb"]
+[ext_resource type="Script" uid="uid://cb3qy4d4v1vx7" path="res://Scripts/Classes/hitbox.gd" id="4_txeha"]
+[ext_resource type="Script" uid="uid://dylpl26nm3gv1" path="res://Scripts/Classes/health.gd" id="5_vrakb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ojo1l"]
 atlas = ExtResource("3_4pypu")

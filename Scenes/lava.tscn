@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dhsyf6vmve3jf"]
 
-[ext_resource type="Script" path="res://Scripts/lava.gd" id="1_mey6b"]
+[ext_resource type="Script" uid="uid://igx50fxf18b" path="res://Scripts/lava.gd" id="1_mey6b"]
 [ext_resource type="Texture2D" uid="uid://djvahrbbof6hj" path="res://Assets/World/Lava.png" id="1_qhten"]
 [ext_resource type="Texture2D" uid="uid://b0606qmktrjkd" path="res://Assets/light_halo.png" id="3_lcub4"]
 

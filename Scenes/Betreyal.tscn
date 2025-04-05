@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=4 uid="uid://crvpqpbodxy84"]
 
 [ext_resource type="TileSet" uid="uid://c7wlmo04n8rct" path="res://Tres/greed2.tres" id="1_63g51"]
-[ext_resource type="Script" path="res://Scripts/betreyal.gd" id="1_282fw"]
+[ext_resource type="Script" uid="uid://b72yyv1qv0xsi" path="res://Scripts/betreyal.gd" id="1_282fw"]
 [ext_resource type="PackedScene" uid="uid://0y06vbi8ods3" path="res://Scenes/player.tscn" id="2_6sxn2"]
 [ext_resource type="PackedScene" uid="uid://cy2atdt0bqntm" path="res://Scenes/torch.tscn" id="3_ktdvi"]
 [ext_resource type="PackedScene" uid="uid://dacosqfur2u5l" path="res://Scenes/spikes.tscn" id="4_hr44c"]

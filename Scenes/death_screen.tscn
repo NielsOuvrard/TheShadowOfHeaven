@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://2soyylao0mul"]
 
-[ext_resource type="Script" path="res://Scripts/death_screen.gd" id="1_jbgpv"]
+[ext_resource type="Script" uid="uid://chjvimmmyicb1" path="res://Scripts/death_screen.gd" id="1_jbgpv"]
 [ext_resource type="Texture2D" uid="uid://dlec2ekkikmg1" path="res://Assets/Screens/Death Screen.png" id="1_wn82j"]
 
 [node name="DeathScreen" type="CanvasLayer"]

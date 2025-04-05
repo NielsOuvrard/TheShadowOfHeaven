@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bh6y6fqly7mys"]
 
 [ext_resource type="Texture2D" uid="uid://bq2ndipa8f1a0" path="res://Assets/Screens/SolRojo.png" id="1_6omlm"]
-[ext_resource type="Script" path="res://Scripts/splash_screen.gd" id="1_7ddvy"]
+[ext_resource type="Script" uid="uid://0l5t4lohn1c7" path="res://Scripts/splash_screen.gd" id="1_7ddvy"]
 [ext_resource type="AudioStream" uid="uid://d4g7d4oe0o5yc" path="res://Assets/Sounds/MusicOld/Splash.wav" id="3_oo25h"]
 
 [node name="SplashScreen" type="CanvasLayer"]

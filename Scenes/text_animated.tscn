@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b8ti5t7h2bqnq"]
 
-[ext_resource type="Script" path="res://Scripts/text_animated.gd" id="1_ygkvu"]
+[ext_resource type="Script" uid="uid://0gaijlrd8ogd" path="res://Scripts/text_animated.gd" id="1_ygkvu"]
 [ext_resource type="FontFile" uid="uid://dsvosxxjomnr5" path="res://Assets/Fonts/PixelOperator8.ttf" id="2_u0gie"]
 
 [sub_resource type="Animation" id="Animation_mofdr"]
@@ -137,8 +137,8 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wxpvb"]
 _data = {
-"RESET": SubResource("Animation_mofdr"),
-"text": SubResource("Animation_rvm6s")
+&"RESET": SubResource("Animation_mofdr"),
+&"text": SubResource("Animation_rvm6s")
 }
 
 [node name="AnimatedText" type="Node2D"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bcbtjhffrph75"]
 
-[ext_resource type="Script" path="res://Scripts/item.gd" id="1_tbm5b"]
+[ext_resource type="Script" uid="uid://cuusybogucrqo" path="res://Scripts/item.gd" id="1_tbm5b"]
 [ext_resource type="Texture2D" uid="uid://2u0tuliq82gr" path="res://Assets/Items/Weapons.png" id="2_2fo4k"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_rcabs"]
 [ext_resource type="AudioStream" uid="uid://l6o6e5pkwaix" path="res://Assets/Sounds/TakeItem.mp3" id="4_smby3"]
@@ -76,8 +76,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7cuq4"]
 _data = {
-"RESET": SubResource("Animation_8l8of"),
-"floating": SubResource("Animation_yi4ad")
+&"RESET": SubResource("Animation_8l8of"),
+&"floating": SubResource("Animation_yi4ad")
 }
 
 [node name="Item" type="Node2D"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://0yxl2knwuxbn"]
 
-[ext_resource type="Script" path="res://Scripts/sound_and_free.gd" id="1_min6g"]
+[ext_resource type="Script" uid="uid://b0rvwshq1anfm" path="res://Scripts/sound_and_free.gd" id="1_min6g"]
 [ext_resource type="AudioStream" uid="uid://di1jcngejpo4r" path="res://Assets/Sounds/Weapons/DropSkull.mp3" id="2_0547r"]
 
 [node name="SoundAndFree" type="Node"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bgpyev64thich"]
 
 [ext_resource type="Texture2D" uid="uid://b8ghltpp4c7pq" path="res://Assets/Items/BulletsIcons.png" id="1_3eqp3"]
-[ext_resource type="Script" path="res://Scripts/bullet_icon.gd" id="1_noct5"]
+[ext_resource type="Script" uid="uid://cnuelkjgm2xsl" path="res://Scripts/bullet_icon.gd" id="1_noct5"]
 
 [sub_resource type="Animation" id="Animation_hegmi"]
 length = 0.001
@@ -97,8 +97,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j1ccd"]
 _data = {
-"RESET": SubResource("Animation_hegmi"),
-"remove": SubResource("Animation_0i6rr")
+&"RESET": SubResource("Animation_hegmi"),
+&"remove": SubResource("Animation_0i6rr")
 }
 
 [node name="BulletIcon" type="Node2D"]

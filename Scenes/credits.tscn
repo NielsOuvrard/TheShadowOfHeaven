@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dq62xq5njmvb7"]
 
 [ext_resource type="Texture2D" uid="uid://cqi8u3nvojiy4" path="res://Assets/LevelSelector/SelectorBackground.png" id="1_g27q6"]
-[ext_resource type="Script" path="res://Scripts/credits.gd" id="1_nvn45"]
+[ext_resource type="Script" uid="uid://deuy60ble4yo3" path="res://Scripts/credits.gd" id="1_nvn45"]
 [ext_resource type="FontFile" uid="uid://dsvosxxjomnr5" path="res://Assets/Fonts/PixelOperator8.ttf" id="2_3gxch"]
 
 [node name="Credits" type="CanvasLayer"]

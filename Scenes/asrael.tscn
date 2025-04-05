@@ -1,10 +1,10 @@
 [gd_scene load_steps=51 format=3 uid="uid://k1nxlv42ukb"]
 
 [ext_resource type="Texture2D" uid="uid://blub6yqrxtdf0" path="res://Assets/Asrael/AsraelSpriteSheet.png" id="1_7b88j"]
-[ext_resource type="Script" path="res://Scripts/asrael.gd" id="1_k205k"]
-[ext_resource type="Script" path="res://Scripts/Classes/hitbox.gd" id="5_rbh43"]
+[ext_resource type="Script" uid="uid://cxmgi3ekrbii8" path="res://Scripts/asrael.gd" id="1_k205k"]
+[ext_resource type="Script" uid="uid://cb3qy4d4v1vx7" path="res://Scripts/Classes/hitbox.gd" id="5_rbh43"]
 [ext_resource type="Texture2D" uid="uid://ba0mtb21gyvh3" path="res://Assets/Asrael/Hearts.png" id="5_x3fhy"]
-[ext_resource type="Script" path="res://Scripts/Classes/health.gd" id="6_bi4xx"]
+[ext_resource type="Script" uid="uid://dylpl26nm3gv1" path="res://Scripts/Classes/health.gd" id="6_bi4xx"]
 [ext_resource type="SpriteFrames" uid="uid://dnjc0nnox370g" path="res://Tres/AsraelStab.tres" id="6_fcfmp"]
 [ext_resource type="Texture2D" uid="uid://diy851nj4f0ft" path="res://Assets/Asrael/Shield.png" id="7_lxjk6"]
 [ext_resource type="Texture2D" uid="uid://b0606qmktrjkd" path="res://Assets/light_halo.png" id="8_88br5"]

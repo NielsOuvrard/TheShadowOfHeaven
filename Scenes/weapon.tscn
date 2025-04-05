@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://domryt018ofom"]
 
-[ext_resource type="Script" path="res://Scripts/weapons.gd" id="1_r6hc8"]
+[ext_resource type="Script" uid="uid://bsj7kqgtqpmfq" path="res://Scripts/weapons.gd" id="1_r6hc8"]
 [ext_resource type="Texture2D" uid="uid://2u0tuliq82gr" path="res://Assets/Items/Weapons.png" id="2_ysdcs"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="3_g7di7"]
 
@@ -63,8 +63,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7cuq4"]
 _data = {
-"RESET": SubResource("Animation_8l8ov"),
-"floating": SubResource("Animation_yi4qd")
+&"RESET": SubResource("Animation_8l8ov"),
+&"floating": SubResource("Animation_yi4qd")
 }
 
 [node name="Weapon" type="Area2D"]

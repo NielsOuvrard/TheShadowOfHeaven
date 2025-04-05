@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://c5i2bxdxwfk3y"]
 
 [ext_resource type="Texture2D" uid="uid://ddg2g0ilhdsfy" path="res://Assets/Asrael/AsraelLaser.png" id="1_4fs2r"]
-[ext_resource type="Script" path="res://Scripts/asrael_ray.gd" id="2_xyyeg"]
+[ext_resource type="Script" uid="uid://cvo4jfhbki867" path="res://Scripts/asrael_ray.gd" id="2_xyyeg"]
 [ext_resource type="AudioStream" uid="uid://b76ooip2m3hww" path="res://Assets/Sounds/Enemigos/AsraelRay.mp3" id="3_eqvbr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6nglg"]

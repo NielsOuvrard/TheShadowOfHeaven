@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://b0ckibqpi4lpm"]
 
 [ext_resource type="Texture2D" uid="uid://b7sgoatuqubq5" path="res://Assets/World/Chest.png" id="1_7ub3n"]
-[ext_resource type="Script" path="res://Scripts/chest.gd" id="1_22v10"]
+[ext_resource type="Script" uid="uid://fkc2qbpc3w5l" path="res://Scripts/chest.gd" id="1_22v10"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_1ehsx"]
 [ext_resource type="Texture2D" uid="uid://bo2oh7b2lagb2" path="res://Assets/HUD/FBkeys.png" id="4_5acnk"]
 [ext_resource type="AudioStream" uid="uid://de3a46yjbkbxb" path="res://Assets/Sounds/OpenChest.mp3" id="5_i7na5"]

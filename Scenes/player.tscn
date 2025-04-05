@@ -1,14 +1,14 @@
 [gd_scene load_steps=26 format=3 uid="uid://0y06vbi8ods3"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_flqv2"]
+[ext_resource type="Script" uid="uid://bf4rfwei0ckw3" path="res://Scripts/player.gd" id="1_flqv2"]
 [ext_resource type="Texture2D" uid="uid://cmgydimid2fec" path="res://Assets/shadow_small.png" id="2_8qbm6"]
 [ext_resource type="SpriteFrames" uid="uid://bh0tmettehkq5" path="res://Tres/player.tres" id="3_u43qn"]
 [ext_resource type="Texture2D" uid="uid://ddh0hbfsxf05q" path="res://Assets/Items/Sword.png" id="4_12yd1"]
-[ext_resource type="Script" path="res://Scripts/Classes/health.gd" id="5_0t1cm"]
-[ext_resource type="Script" path="res://Scripts/Classes/hitbox.gd" id="5_j0n03"]
-[ext_resource type="Script" path="res://Scripts/sword_attack.gd" id="5_rnjnq"]
+[ext_resource type="Script" uid="uid://dylpl26nm3gv1" path="res://Scripts/Classes/health.gd" id="5_0t1cm"]
+[ext_resource type="Script" uid="uid://cb3qy4d4v1vx7" path="res://Scripts/Classes/hitbox.gd" id="5_j0n03"]
+[ext_resource type="Script" uid="uid://cll1ffvhk80rp" path="res://Scripts/sword_attack.gd" id="5_rnjnq"]
 [ext_resource type="Texture2D" uid="uid://btn2i18uvt7qf" path="res://Assets/Characters/SwordAttack.png" id="5_y8fcm"]
-[ext_resource type="Script" path="res://Scripts/animation_handler.gd" id="9_64uq1"]
+[ext_resource type="Script" uid="uid://dbhdmpuyj4ahj" path="res://Scripts/animation_handler.gd" id="9_64uq1"]
 [ext_resource type="AudioStream" uid="uid://chtbd7wr6fc8o" path="res://Assets/Sounds/Weapons/SwordSwing.wav" id="10_53l0g"]
 [ext_resource type="AudioStream" uid="uid://dmu2mwi681mhx" path="res://Assets/Sounds/Weapons/GunSoundArcade.wav" id="11_1p0jy"]
 [ext_resource type="AudioStream" uid="uid://ru30lj0524bq" path="res://Assets/Sounds/Weapons/LaserSound.mp3" id="12_2hym6"]
@@ -210,8 +210,8 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_04yk5"]
 _data = {
-"RESET": SubResource("Animation_vm6wg"),
-"sword_attack": SubResource("Animation_udfem")
+&"RESET": SubResource("Animation_vm6wg"),
+&"sword_attack": SubResource("Animation_udfem")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_owcke"]
